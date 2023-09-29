@@ -1,0 +1,4 @@
+﻿travl_travel_is_valid_recipient_trigger = {
+	is_alive = yes
+	is_landed = yes
+}

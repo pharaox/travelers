@@ -1,0 +1,253 @@
+﻿travl_travel_on_departure = {
+	effect = {
+		var:travl_travel_sender ?= { save_scope_as = sender }
+		var:travl_travel_recipient ?= { save_scope_as = recipient }
+		var:travl_travel_leader ?= { save_scope_as = leader }
+		travl_travel_get_companions_effect = { COMPANIONS = companions }
+
+		if = {
+			limit = { this = scope:leader }
+
+			# Send departure messages
+			travl_travel_send_messages_effect = {
+				SENDER = scope:sender
+				RECIPIENT = scope:recipient
+				COMPANIONS = companions
+				TITLE = travl_msg_departed_for_court
+				TEXT = travl_departed_for_court_tt
+			}
+		}
+
+		travl_debug_log_effect = { MSG = travl_debug_msg_character_departed }
+	}
+}
+
+travl_travel_on_arrival = {
+	effect = {
+		var:travl_travel_sender ?= { save_scope_as = sender }
+		var:travl_travel_recipient ?= { save_scope_as = recipient }
+		var:travl_travel_leader ?= { save_scope_as = leader }
+		travl_travel_get_companions_effect = { COMPANIONS = companions }
+
+		if = {
+			limit = {
+				scope:recipient ?= {
+					travl_travel_is_valid_recipient_trigger = yes
+				}
+			}
+
+			# Set location to recipient's capital province
+			set_location = scope:recipient.capital_province
+		}
+
+		if = {
+			limit = { this = scope:leader }
+
+			# Ensure companions arrive as well
+			every_in_list = {
+				list = companions
+				current_travel_plan ?= {
+					add_destination_progress = { years = 2 }
+				}
+			}
+
+			# Send arrival messages
+			travl_travel_send_messages_effect = {
+				SENDER = scope:sender
+				RECIPIENT = scope:recipient
+				COMPANIONS = companions
+				TITLE = travl_msg_arrived_at_court
+				TEXT = travl_arrived_at_court_tt
+			}
+		}
+
+		# Remove travel variables
+		travl_travel_remove_variables_effect = yes
+
+		travl_debug_log_effect = { MSG = travl_debug_msg_character_arrived }
+	}
+}
+
+# Arrival in any province during travel
+on_travel_plan_movement = {
+	on_actions = { travl_on_travel_plan_movement }
+}
+
+travl_on_travel_plan_movement = {
+	trigger = {
+		has_variable = travl_travel_sender
+		has_variable = travl_travel_recipient
+	}
+
+	effect = {
+		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_moved }
+
+		var:travl_travel_sender ?= { save_scope_as = sender }
+		var:travl_travel_recipient ?= { save_scope_as = recipient }
+		var:travl_travel_leader ?= { save_scope_as = leader }
+		travl_travel_get_companions_effect = { COMPANIONS = companions }
+
+		# If the leader died, make root leader
+		if = {
+			limit = {
+				exists = scope:leader
+				NOT = { this = scope:leader }
+				scope:leader = { is_alive = no }
+			}
+
+			# Evaluate new leader and companions
+			save_scope_as = leader
+			remove_from_list = companions
+
+			# Reset leader travel variables
+			travl_travel_remove_variables_effect = yes
+			travl_travel_set_variables_effect = {
+				SENDER = scope:sender
+				RECIPIENT = scope:recipient
+				LEADER = this
+				COMPANIONS = companions
+			}
+
+			every_in_list = {
+				list = companions
+
+				# Reset companion travel variables
+				travl_travel_remove_variables_effect = yes
+				travl_travel_set_variables_effect = {
+					SENDER = scope:sender
+					RECIPIENT = scope:recipient
+					LEADER = prev
+					COMPANIONS = companions
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				scope:recipient ?= {
+					travl_travel_is_valid_recipient_trigger = no
+				}
+			}
+
+			if = {
+				limit = {
+					liege ?= {
+						travl_travel_is_valid_recipient_trigger = yes
+					}
+				}
+
+				# Reset travel variables
+				travl_travel_remove_variables_effect = yes
+				travl_travel_set_variables_effect = {
+					SENDER = scope:sender
+					RECIPIENT = liege
+					LEADER = scope:leader
+					COMPANIONS = companions
+				}
+
+				# Reroute to home
+				current_travel_plan = {
+					reroute_to_home = yes
+				}
+
+				travl_debug_log_effect = { MSG = travl_debug_msg_character_rerouted_to_home }
+			}
+			else = {
+				# Remove travel variables
+				travl_travel_remove_variables_effect = yes
+
+				# Cancel travel
+				current_travel_plan = {
+					cancel_travel_plan = yes
+				}
+
+				travl_debug_log_effect = { MSG = travl_debug_msg_character_travel_cancelled }
+			}
+		}
+	}
+}
+
+# Starting a travel plan (starting to travel to the first destination)
+on_travel_plan_start = {
+	on_actions = { travl_on_travel_plan_start }
+}
+
+travl_on_travel_plan_start = {
+	trigger = {
+		has_variable = travl_travel_sender
+		has_variable = travl_travel_recipient
+	}
+
+	effect = {
+		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_started }
+	}
+}
+
+# Arrival in a destination province during travel (a travel plan can have multiple sequential destinations)
+on_travel_plan_arrival = {
+	on_actions = { travl_on_travel_plan_arrival }
+}
+
+travl_on_travel_plan_arrival = {
+	trigger = {
+		has_variable = travl_travel_sender
+		has_variable = travl_travel_recipient
+	}
+
+	effect = {
+		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_arrived }
+	}
+}
+
+# Completed a travel plan (arrived at final destination, or completed through script)
+# A travel plan ends either via 'on_travel_plan_complete' or 'on_travel_plan_abort'
+on_travel_plan_complete = {
+	on_actions = { travl_on_travel_plan_complete }
+}
+
+travl_on_travel_plan_complete = {
+	trigger = {
+		has_variable = travl_travel_sender
+		has_variable = travl_travel_recipient
+	}
+
+	effect = {
+		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_completed }
+	}
+}
+
+# Aborted a travel plan (travel plan was not completed, or aborted through script)
+# A travel plan ends either via 'on_travel_plan_complete' or 'on_travel_plan_abort'
+# This usually means everyone gets teleported to their default location after this.
+on_travel_plan_abort = {
+	on_actions = { travl_on_travel_plan_abort }
+}
+
+travl_on_travel_plan_abort = {
+	trigger = {
+		has_variable = travl_travel_sender
+		has_variable = travl_travel_recipient
+	}
+
+	effect = {
+		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_aborted }
+	}
+}
+
+# Cancelled a travel plan. Travel plan was cancelled by player interaction, and has
+# been rerouted back home. (the travel plan doesn't end yet until they arrive home)
+# People in the travel plan were removed from associated activities.
+on_travel_plan_cancel = {
+	on_actions = { travl_on_travel_plan_cancel }
+}
+
+travl_on_travel_plan_cancel = {
+	trigger = {
+		has_variable = travl_travel_sender
+		has_variable = travl_travel_recipient
+	}
+
+	effect = {
+		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_cancelled }
+	}
+}

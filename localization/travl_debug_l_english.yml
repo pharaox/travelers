@@ -1,0 +1,16 @@
+﻿l_english:
+ travl_debug_prefix: "[GetCurrentDate.GetStringShort]: [THIS.Char.GetFullNameNoTooltip] ([THIS.Char.GetID])"
+
+ travl_debug_msg_character_departed: "$travl_debug_prefix$: Character departed for court"
+ travl_debug_msg_character_arrived: "$travl_debug_prefix$: Character arrived at court"
+ travl_debug_msg_character_rerouted_to_home: "$travl_debug_prefix$: Character rerouted to home"
+ travl_debug_msg_character_travel_cancelled: "$travl_debug_prefix$: Character travel cancelled"
+
+ travl_debug_msg_travel_moved: "$travl_debug_prefix$: Travel plan moved"
+ travl_debug_msg_travel_started: "$travl_debug_prefix$: Travel plan started"
+ travl_debug_msg_travel_arrived: "$travl_debug_prefix$: Travel plan arrived"
+ travl_debug_msg_travel_completed: "$travl_debug_prefix$: Travel plan completed"
+ travl_debug_msg_travel_aborted: "$travl_debug_prefix$: Travel plan aborted"
+ travl_debug_msg_travel_cancelled: "$travl_debug_prefix$: Travel plan cancelled"
+
+ travl_debug_msg_character_joined_court: "$travl_debug_prefix$: Character joined court"

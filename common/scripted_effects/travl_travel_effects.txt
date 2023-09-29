@@ -1,0 +1,170 @@
+﻿travl_travel_effect = {
+	if = {
+		limit = {
+			exists = $ORIGIN$
+			exists = $RECIPIENT$.capital_province
+			NOT = { $ORIGIN$ = $RECIPIENT$.capital_province }
+		}
+
+		# Set leader travel variables
+		travl_travel_set_variables_effect = {
+			SENDER = $SENDER$
+			RECIPIENT = $RECIPIENT$
+			LEADER = this
+			COMPANIONS = $COMPANIONS$
+		}
+
+		# Start leader travel plan
+		set_location = $ORIGIN$
+		start_travel_plan = {
+			destination = $RECIPIENT$.capital_province
+			return_trip = no
+			on_start_on_action = travl_travel_on_departure
+			on_arrival_on_action = travl_travel_on_arrival
+			on_arrival_destinations = last
+		}
+
+		every_in_list = {
+			list = $COMPANIONS$
+
+			# Set companion travel variables
+			travl_travel_set_variables_effect = {
+				SENDER = $SENDER$
+				RECIPIENT = $RECIPIENT$
+				LEADER = prev
+				COMPANIONS = $COMPANIONS$
+			}
+
+			# Start companion travel plan
+			set_location = $ORIGIN$
+			start_travel_plan = {
+				destination = $RECIPIENT$.capital_province
+				return_trip = no
+				on_start_on_action = travl_travel_on_departure
+				on_arrival_on_action = travl_travel_on_arrival
+				on_arrival_destinations = last
+			}
+		}
+	}
+}
+
+travl_travel_set_variables_effect = {
+	set_variable = {
+		name = travl_travel_sender
+		value = $SENDER$
+		years = 2
+	}
+	set_variable = {
+		name = travl_travel_recipient
+		value = $RECIPIENT$
+		years = 2
+	}
+	set_variable = {
+		name = travl_travel_leader
+		value = $LEADER$
+		years = 2
+	}
+	save_temporary_scope_as = character
+	every_in_list = {
+		list = $COMPANIONS$
+		scope:character = {
+			add_to_variable_list = {
+				name = travl_travel_companions
+				target = prev
+			}
+		}
+	}
+}
+
+travl_travel_remove_variables_effect = {
+	if = {
+		limit = { has_variable = travl_travel_sender }
+		remove_variable = travl_travel_sender
+	}
+	if = {
+		limit = { has_variable = travl_travel_recipient }
+		remove_variable = travl_travel_recipient
+	}
+	if = {
+		limit = { has_variable = travl_travel_leader }
+		remove_variable = travl_travel_leader
+	}
+	if = {
+		limit = { has_variable_list = travl_travel_companions }
+		clear_variable_list = travl_travel_companions
+	}
+}
+
+travl_travel_get_companions_effect = {
+	if = {
+		limit = { has_variable_list = travl_travel_companions }
+		every_in_list = {
+			variable = travl_travel_companions
+			limit = { is_alive = yes }
+			add_to_list = $COMPANIONS$
+		}
+	}
+}
+
+travl_travel_send_messages_effect = {
+	save_temporary_scope_as = character
+
+	if = {
+		limit = {
+			exists = $SENDER$
+			scope:character.liege ?= $SENDER$
+		}
+		$SENDER$ = {
+			send_interface_message = {
+				type = event_generic_neutral
+				title = $TITLE$
+				right_icon = scope:character
+
+				scope:character = {
+					custom_description = {
+						text = $TEXT$
+						subject = this
+						object = $RECIPIENT$
+					}
+				}
+				every_in_list = {
+					list = $COMPANIONS$
+					custom_description = {
+						text = $TEXT$
+						subject = this
+						object = $RECIPIENT$
+					}
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			exists = $RECIPIENT$
+			scope:character.liege ?= $RECIPIENT$
+		}
+		$RECIPIENT$ = {
+			send_interface_message = {
+				type = event_generic_neutral
+				title = $TITLE$
+				right_icon = scope:character
+
+				scope:character = {
+					custom_description = {
+						text = $TEXT$
+						subject = this
+						object = $RECIPIENT$
+					}
+				}
+				every_in_list = {
+					list = $COMPANIONS$
+					custom_description = {
+						text = $TEXT$
+						subject = this
+						object = $RECIPIENT$
+					}
+				}
+			}
+		}
+	}
+}

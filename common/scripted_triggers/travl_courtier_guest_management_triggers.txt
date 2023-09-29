@@ -1,0 +1,3 @@
+﻿travl_can_be_recruited_trigger = {
+	always = yes
+}
