@@ -88,10 +88,12 @@
 					location = { save_scope_as = character_location }
 					every_traveling_family_member = {
 						limit = {
-							is_available = yes
 							is_at_location = scope:character_location
 						}
 						scope:actor = { add_courtier = prev }
+						hidden_effect = {
+							return_to_court = yes
+						}
 						if = {
 							limit = { NOT = { this = scope:recipient } }
 							add_to_list = traveling_family_members
