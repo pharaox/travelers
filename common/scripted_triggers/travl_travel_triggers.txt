@@ -1,4 +1,14 @@
-﻿travl_travel_is_valid_recipient_trigger = {
+﻿travl_travel_is_valid_receiver_trigger = {
 	is_alive = yes
 	is_landed = yes
+}
+
+travl_travel_should_send_message_trigger = {
+	OR = {
+		this = $CHARACTER$
+		liege ?= $CHARACTER$
+		host ?= $CHARACTER$
+		warden ?= $CHARACTER$
+		imprisoner ?= $CHARACTER$
+	}
 }

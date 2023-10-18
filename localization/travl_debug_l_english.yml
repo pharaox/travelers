@@ -1,10 +1,11 @@
 ﻿l_english:
- travl_debug_prefix: "[GetCurrentDate.GetStringShort]: [THIS.Char.GetFullNameNoTooltip] ([THIS.Char.GetID])"
+ travl_debug_prefix: "[GetCurrentDate.GetStringShort]: [THIS.Char.GetFullNameNoTooltip] ([THIS.Char.GetID], [THIS.Char.GetCurrentLocation.GetNameNoTooltip])"
 
- travl_debug_msg_character_departed: "$travl_debug_prefix$: Character departed for court"
- travl_debug_msg_character_arrived: "$travl_debug_prefix$: Character arrived at court"
- travl_debug_msg_character_rerouted_to_home: "$travl_debug_prefix$: Character rerouted to home"
+ travl_debug_msg_character_departed: "$travl_debug_prefix$: Character departed for [THIS.Var('travl_travel_receiver').Char.GetFullNameNoTooltip]'s court"
+ travl_debug_msg_character_arrived: "$travl_debug_prefix$: Character arrived at [THIS.Var('travl_travel_receiver').Char.GetFullNameNoTooltip]'s court"
+ travl_debug_msg_character_receiver_changed: "$travl_debug_prefix$: Character travel receiver changed to [THIS.Var('travl_travel_receiver').Char.GetFullNameNoTooltip]"
  travl_debug_msg_character_travel_cancelled: "$travl_debug_prefix$: Character travel cancelled"
+ travl_debug_msg_character_destination_changed: "$travl_debug_prefix$: Character travel destination changed"
 
  travl_debug_msg_travel_moved: "$travl_debug_prefix$: Travel plan moved"
  travl_debug_msg_travel_started: "$travl_debug_prefix$: Travel plan started"
@@ -13,4 +14,18 @@
  travl_debug_msg_travel_aborted: "$travl_debug_prefix$: Travel plan aborted"
  travl_debug_msg_travel_cancelled: "$travl_debug_prefix$: Travel plan cancelled"
 
- travl_debug_msg_character_joined_court: "$travl_debug_prefix$: Character joined court"
+ travl_debug_msg_character_married_major: "$travl_debug_prefix$: Character married (major partner)"
+ travl_debug_msg_character_married_minor: "$travl_debug_prefix$: Character married (minor partner)"
+ travl_debug_msg_character_divorced: "$travl_debug_prefix$: Character divorced"
+ travl_debug_msg_character_was_divorced: "$travl_debug_prefix$: Character was divorced"
+ travl_debug_msg_character_took_concubine: "$travl_debug_prefix$: Character took concubine"
+ travl_debug_msg_character_was_taken_concubine: "$travl_debug_prefix$: Character was taken as concubine"
+ travl_debug_msg_character_released_concubine: "$travl_debug_prefix$: Character released concubine"
+ travl_debug_msg_character_was_released_concubine: "$travl_debug_prefix$: Character was released as concubine"
+
+ travl_debug_msg_character_joined_court_in_entourage: "$travl_debug_prefix$: Character joined court as part of their liege's travel entourage"
+ travl_debug_msg_character_joined_court: "$travl_debug_prefix$: Character joined [THIS.Char.GetLiege.GetFullNameNoTooltip]'s court"
+ travl_debug_msg_character_left_court: "$travl_debug_prefix$: Character left court"
+ travl_debug_msg_character_imprisoned_location: "$travl_debug_prefix$: Character imprisoned ([THIS.Var('travl_location').Province.GetNameNoTooltip])"
+ travl_debug_msg_character_imprisoned: "$travl_debug_prefix$: Character imprisoned (?)"
+ travl_debug_msg_character_released_from_prison: "$travl_debug_prefix$: Character released from prison"

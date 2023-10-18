@@ -38,7 +38,7 @@
 			exists = scope:recipient
 			scope:recipient = {
 				is_pool_guest = no
-				location.province_owner = {
+				location.province_owner ?= { # Travelers: Handle non-existing scope
 					OR = {
 						any_liege_or_above = { this = scope:actor }
 						this = scope:actor
@@ -90,6 +90,11 @@
 						limit = {
 							is_at_location = scope:character_location
 						}
+						set_variable = {
+							name = travl_invited_character
+							value = yes
+							days = 1
+						}
 						scope:actor = { add_courtier = prev }
 						hidden_effect = {
 							return_to_court = yes
@@ -98,11 +103,10 @@
 							limit = { NOT = { this = scope:recipient } }
 							add_to_list = traveling_family_members
 						}
-						travl_debug_log_effect = { MSG = travl_debug_msg_character_joined_court }
 					}
 					travl_travel_effect = {
 						SENDER = scope:recipient
-						RECIPIENT = scope:actor
+						RECEIVER = scope:actor
 						ORIGIN = scope:character_location
 						COMPANIONS = traveling_family_members
 					}
@@ -375,7 +379,7 @@
  			desc = AI_CAN_BE_PERSUADED_TO_STAY
 
 			is_pool_guest = no
-			location.province_owner ?= { # CSR: Handle non-existing scope
+			location.province_owner ?= { # Travelers: Handle non-existing scope
 				OR = {
 					any_liege_or_above = { this = scope:actor }
 					this = scope:actor

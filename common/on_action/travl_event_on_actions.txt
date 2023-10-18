@@ -1,0 +1,255 @@
+﻿# Characters getting married
+# root = Major partner of the marriage
+# scope:spouse = Minor partner of the marriage
+on_marriage = {
+	on_actions = { travl_on_marriage }
+}
+
+travl_on_marriage = {
+	effect = {
+		#travl_debug_log_effect = { MSG = travl_debug_msg_character_married_major }
+		scope:spouse = {
+			travl_debug_log_effect = { MSG = travl_debug_msg_character_married_minor }
+		}
+	}
+}
+
+# Characters get divorced in any way
+# root = character initiating the divorce
+# scope:spouse = the divorced spouse
+# scope:reason = flag:script or flag:faith
+on_divorce = {
+	on_actions = { travl_on_divorce }
+}
+
+travl_on_divorce = {
+	effect = {
+		travl_debug_log_effect = { MSG = travl_debug_msg_character_divorced }
+		scope:spouse = {
+			travl_debug_log_effect = { MSG = travl_debug_msg_character_was_divorced }
+		}
+
+		if = {
+			limit = { has_variable = travl_location }
+			set_location = var:travl_location
+		}
+	}
+}
+
+# Character becomes another's concubine
+# root = the concubinist
+# scope:concubine = the concubine
+on_concubinage = {
+	on_actions = { travl_on_concubinage }
+}
+
+travl_on_concubinage = {
+	effect = {
+		#travl_debug_log_effect = { MSG = travl_debug_msg_character_took_concubine }
+		scope:concubine = {
+			travl_debug_log_effect = { MSG = travl_debug_msg_character_was_taken_concubine }
+		}
+	}
+}
+
+# Character ceases to be another's concubine
+# root = the concubinist
+# scope:concubine = the concubine
+# scope:reason = flag:death, flag:faith, or flag:script
+on_concubinage_end = {
+	on_actions = { travl_on_concubinage_end }
+}
+
+travl_on_concubinage_end = {
+	effect = {
+		#travl_debug_log_effect = { MSG = travl_debug_msg_character_released_concubine }
+		scope:concubine = {
+			travl_debug_log_effect = { MSG = travl_debug_msg_character_was_released_concubine }
+		}
+	}
+}
+
+# Fires when a character joins a court. Not fired for just generated characters
+# Root is the character
+# scope:new_employer is their new employer
+# scope:old_employer is their old employer (if they had one; otherwise unset)
+on_join_court = {
+	on_actions = { travl_on_join_court }
+}
+
+travl_on_join_court = {
+	effect = {
+		if = {
+			limit = {
+				scope:new_employer.current_travel_plan ?= {
+					any_entourage_character = {
+						this = root
+					}
+				}
+			}
+			travl_debug_log_effect = { MSG = travl_debug_msg_character_joined_court_in_entourage }
+		}
+		else = {
+			travl_debug_log_effect = { MSG = travl_debug_msg_character_joined_court }
+		}
+
+		if = {
+			limit = {
+				scope:new_employer ?= { is_landed = yes }
+				NOR = {
+					location ?= scope:new_employer.capital_province
+					has_variable = travl_invited_character
+					scope:new_employer.current_travel_plan ?= {
+						any_entourage_character = {
+							this = root
+						}
+					}
+					is_imprisoned = yes
+				}
+			}
+
+			# Determine sender
+			if = {
+				limit = { exists = scope:old_employer }
+				scope:old_employer = { save_scope_as = sender }
+			}
+			else = {
+				this = { save_scope_as = sender }
+			}
+
+			# Travel from current location to new employer's capital province
+			travl_travel_effect = {
+				SENDER = scope:sender
+				RECEIVER = scope:new_employer
+				ORIGIN = location
+				COMPANIONS = none
+			}
+		}
+	}
+}
+
+# Fires when a character leaves a court. Not fired when leaving due to death or similar
+# Will still fire even if on_join_court is firing (fires just before it)
+# Root is the character
+# scope:old_employer is their old employer
+on_leave_court = {
+	on_actions = { travl_on_leave_court }
+}
+
+travl_on_leave_court = {
+	effect = {
+		#travl_debug_log_effect = { MSG = travl_debug_msg_character_left_court }
+	}
+}
+
+# Code on-action: character being imprisoned in root scope
+# imprisoning character set as scope:imprisoner
+on_imprison = {
+	on_actions = { travl_on_imprison }
+}
+
+travl_on_imprison = {
+	effect = {
+		if = {
+			limit = { has_variable = travl_location }
+			travl_debug_log_effect = { MSG = travl_debug_msg_character_imprisoned_location }
+		}
+		else = {
+			travl_debug_log_effect = { MSG = travl_debug_msg_character_imprisoned }
+		}
+
+		if = {
+			limit = {
+				scope:imprisoner ?= { is_landed = yes }
+				has_variable = travl_location
+			}
+
+			# Travel from current location to imprisoner's capital province
+			travl_travel_effect = {
+				SENDER = this
+				RECEIVER = scope:imprisoner
+				ORIGIN = var:travl_location
+				COMPANIONS = none
+			}
+		}
+	}
+}
+
+# Code on-action: character released from prison in root scope. Does not fire when "released" due to dying
+# imprisoning character set as scope:imprisoner
+on_release_from_prison = {
+	on_actions = { travl_on_release_from_prison }
+}
+
+travl_on_release_from_prison = {
+	effect = {
+		travl_debug_log_effect = { MSG = travl_debug_msg_character_released_from_prison }
+
+		# Abort travel if traveling to imprisoner
+		travl_abort_travel_effect = { RECEIVER = scope:imprisoner }
+
+		# Save location to be able to return to it on "teleport" events (such as divorce)
+		set_variable = {
+			name = travl_location
+			value = location
+			days = 1
+		}
+
+		# Determine receiver
+		if = {
+			limit = { is_ruler = yes }
+			save_scope_as = receiver
+		}
+		else = {
+			liege ?= { save_scope_as = receiver }
+		}
+
+		if = {
+			limit = {
+				scope:receiver ?= { is_landed = yes }
+			}
+
+			# Travel from current location to receiver's capital province
+			travl_travel_effect = {
+				SENDER = scope:imprisoner
+				RECEIVER = scope:receiver
+				ORIGIN = location
+				COMPANIONS = none
+			}
+		}
+	}
+}
+
+# called when a siege completes. Does *not* fire on reoccupation by province order
+# root is the occupant
+# scope:barony is the barony title that got occupied
+# scope:county is the county title for the barony
+# scope:previous_controller is the previous controller of the county
+# scope:war is the war causing the previous controller and the occupant to be hostile
+# occupied_baronies is a list of all baronies that the siege caused the occupier to control (I.E., can include baronies with no fort level)
+on_siege_completion = {
+}
+
+# Called when a raid action finishes
+# root is the raid army
+# scope:raider is the person owning the raid army
+# scope:barony is the barony title that got raided
+# scope:county is the county title for the barony
+on_raid_action_completion = {
+}
+
+# Root = Winning combat side
+# scope:wipe - Was this a wipe?
+on_combat_end_winner = {
+}
+
+# Root = Losing combat side
+# scope:wipe - Was this a wipe?
+on_combat_end_loser = {
+}
+
+on_war_won_attacker = {
+}
+
+on_war_won_defender = {
+}

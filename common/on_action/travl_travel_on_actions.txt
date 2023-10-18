@@ -1,17 +1,24 @@
 ﻿travl_travel_on_departure = {
 	effect = {
 		var:travl_travel_sender ?= { save_scope_as = sender }
-		var:travl_travel_recipient ?= { save_scope_as = recipient }
+		var:travl_travel_receiver ?= { save_scope_as = receiver }
 		var:travl_travel_leader ?= { save_scope_as = leader }
 		travl_travel_get_companions_effect = { COMPANIONS = companions }
 
+		# Ensure the character is at the current location
+		location = { save_scope_as = current_location }
+		current_travel_plan ?= {
+			current_location = { save_scope_as = current_location }
+		}
+		set_location = scope:current_location
+
 		if = {
-			limit = { this = scope:leader }
+			limit = { scope:leader ?= this }
 
 			# Send departure messages
 			travl_travel_send_messages_effect = {
 				SENDER = scope:sender
-				RECIPIENT = scope:recipient
+				RECEIVER = scope:receiver
 				COMPANIONS = companions
 				TITLE = travl_msg_departed_for_court
 				TEXT = travl_departed_for_court_tt
@@ -25,23 +32,19 @@
 travl_travel_on_arrival = {
 	effect = {
 		var:travl_travel_sender ?= { save_scope_as = sender }
-		var:travl_travel_recipient ?= { save_scope_as = recipient }
+		var:travl_travel_receiver ?= { save_scope_as = receiver }
 		var:travl_travel_leader ?= { save_scope_as = leader }
 		travl_travel_get_companions_effect = { COMPANIONS = companions }
 
-		if = {
-			limit = {
-				scope:recipient ?= {
-					travl_travel_is_valid_recipient_trigger = yes
-				}
-			}
-
-			# Set location to recipient's capital province
-			set_location = scope:recipient.capital_province
+		# Ensure the character is at the destination
+		location = { save_scope_as = current_location }
+		current_travel_plan ?= {
+			final_destination_province = { save_scope_as = current_location }
 		}
+		set_location = scope:current_location
 
 		if = {
-			limit = { this = scope:leader }
+			limit = { scope:leader ?= this }
 
 			# Ensure companions arrive as well
 			every_in_list = {
@@ -54,17 +57,17 @@ travl_travel_on_arrival = {
 			# Send arrival messages
 			travl_travel_send_messages_effect = {
 				SENDER = scope:sender
-				RECIPIENT = scope:recipient
+				RECEIVER = scope:receiver
 				COMPANIONS = companions
 				TITLE = travl_msg_arrived_at_court
 				TEXT = travl_arrived_at_court_tt
 			}
 		}
 
+		travl_debug_log_effect = { MSG = travl_debug_msg_character_arrived }
+
 		# Remove travel variables
 		travl_travel_remove_variables_effect = yes
-
-		travl_debug_log_effect = { MSG = travl_debug_msg_character_arrived }
 	}
 }
 
@@ -76,23 +79,31 @@ on_travel_plan_movement = {
 travl_on_travel_plan_movement = {
 	trigger = {
 		has_variable = travl_travel_sender
-		has_variable = travl_travel_recipient
+		has_variable = travl_travel_receiver
 	}
 
 	effect = {
 		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_moved }
 
 		var:travl_travel_sender ?= { save_scope_as = sender }
-		var:travl_travel_recipient ?= { save_scope_as = recipient }
+		var:travl_travel_receiver ?= { save_scope_as = receiver }
 		var:travl_travel_leader ?= { save_scope_as = leader }
 		travl_travel_get_companions_effect = { COMPANIONS = companions }
+
+		# Ensure the character is at the current location
+		location = { save_scope_as = current_location }
+		current_travel_plan ?= {
+			current_location = { save_scope_as = current_location }
+		}
+		set_location = scope:current_location
 
 		# If the leader died, make root leader
 		if = {
 			limit = {
-				exists = scope:leader
-				NOT = { this = scope:leader }
-				scope:leader = { is_alive = no }
+				scope:leader ?= {
+					NOT = { this = prev }
+					is_alive = no
+				}
 			}
 
 			# Evaluate new leader and companions
@@ -103,7 +114,7 @@ travl_on_travel_plan_movement = {
 			travl_travel_remove_variables_effect = yes
 			travl_travel_set_variables_effect = {
 				SENDER = scope:sender
-				RECIPIENT = scope:recipient
+				RECEIVER = scope:receiver
 				LEADER = this
 				COMPANIONS = companions
 			}
@@ -115,54 +126,81 @@ travl_on_travel_plan_movement = {
 				travl_travel_remove_variables_effect = yes
 				travl_travel_set_variables_effect = {
 					SENDER = scope:sender
-					RECIPIENT = scope:recipient
+					RECEIVER = scope:receiver
 					LEADER = prev
 					COMPANIONS = companions
 				}
 			}
 		}
 
+		# If the receiver is no longer valid, change receiver or cancel
 		if = {
 			limit = {
-				scope:recipient ?= {
-					travl_travel_is_valid_recipient_trigger = no
-				}
+				scope:receiver ?= { travl_travel_is_valid_receiver_trigger = no }
 			}
 
+			# Determine new receiver
+			travl_set_receiver_effect = yes
+
 			if = {
-				limit = {
-					liege ?= {
-						travl_travel_is_valid_recipient_trigger = yes
-					}
-				}
+				limit = { exists = scope:receiver }
 
 				# Reset travel variables
 				travl_travel_remove_variables_effect = yes
 				travl_travel_set_variables_effect = {
 					SENDER = scope:sender
-					RECIPIENT = liege
+					RECEIVER = scope:receiver
 					LEADER = scope:leader
 					COMPANIONS = companions
 				}
 
-				# Reroute to home
-				current_travel_plan = {
-					reroute_to_home = yes
+				# Reroute to new receiver's capital province
+				current_travel_plan ?= {
+					abort_travel_plan = yes
+				}
+				set_location = scope:current_location
+				start_travel_plan = {
+					destination = scope:receiver.capital_province
+					return_trip = no
+					on_arrival_on_action = travl_travel_on_arrival
+					on_arrival_destinations = last
 				}
 
-				travl_debug_log_effect = { MSG = travl_debug_msg_character_rerouted_to_home }
+				travl_debug_log_effect = { MSG = travl_debug_msg_character_receiver_changed }
 			}
 			else = {
 				# Remove travel variables
 				travl_travel_remove_variables_effect = yes
 
 				# Cancel travel
-				current_travel_plan = {
+				current_travel_plan ?= {
 					cancel_travel_plan = yes
 				}
 
 				travl_debug_log_effect = { MSG = travl_debug_msg_character_travel_cancelled }
 			}
+		}
+		# If the receiver's capital province changed, reroute to new capital province
+		else_if = {
+			limit = {
+				current_travel_plan ?= {
+					NOT = { final_destination_province = scope:receiver.capital_province }
+				}
+			}
+
+			# Reroute to new capital province
+			current_travel_plan ?= {
+				abort_travel_plan = yes
+			}
+			set_location = scope:current_location
+			start_travel_plan = {
+				destination = scope:receiver.capital_province
+				return_trip = no
+				on_arrival_on_action = travl_travel_on_arrival
+				on_arrival_destinations = last
+			}
+
+			travl_debug_log_effect = { MSG = travl_debug_msg_character_destination_changed }
 		}
 	}
 }
@@ -175,7 +213,7 @@ on_travel_plan_start = {
 travl_on_travel_plan_start = {
 	trigger = {
 		has_variable = travl_travel_sender
-		has_variable = travl_travel_recipient
+		has_variable = travl_travel_receiver
 	}
 
 	effect = {
@@ -191,7 +229,7 @@ on_travel_plan_arrival = {
 travl_on_travel_plan_arrival = {
 	trigger = {
 		has_variable = travl_travel_sender
-		has_variable = travl_travel_recipient
+		has_variable = travl_travel_receiver
 	}
 
 	effect = {
@@ -208,7 +246,7 @@ on_travel_plan_complete = {
 travl_on_travel_plan_complete = {
 	trigger = {
 		has_variable = travl_travel_sender
-		has_variable = travl_travel_recipient
+		has_variable = travl_travel_receiver
 	}
 
 	effect = {
@@ -226,7 +264,7 @@ on_travel_plan_abort = {
 travl_on_travel_plan_abort = {
 	trigger = {
 		has_variable = travl_travel_sender
-		has_variable = travl_travel_recipient
+		has_variable = travl_travel_receiver
 	}
 
 	effect = {
@@ -244,7 +282,7 @@ on_travel_plan_cancel = {
 travl_on_travel_plan_cancel = {
 	trigger = {
 		has_variable = travl_travel_sender
-		has_variable = travl_travel_recipient
+		has_variable = travl_travel_receiver
 	}
 
 	effect = {

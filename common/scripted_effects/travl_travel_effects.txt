@@ -2,22 +2,26 @@
 	if = {
 		limit = {
 			exists = $ORIGIN$
-			exists = $RECIPIENT$.capital_province
-			NOT = { $ORIGIN$ = $RECIPIENT$.capital_province }
+			exists = $RECEIVER$.capital_province
+			NOT = { $ORIGIN$ = $RECEIVER$.capital_province }
+			NOT = { var:travl_travel_receiver ?= $RECEIVER$ }
 		}
 
 		# Set leader travel variables
 		travl_travel_set_variables_effect = {
 			SENDER = $SENDER$
-			RECIPIENT = $RECIPIENT$
+			RECEIVER = $RECEIVER$
 			LEADER = this
 			COMPANIONS = $COMPANIONS$
 		}
 
 		# Start leader travel plan
+		current_travel_plan ?= {
+			abort_travel_plan = yes
+		}
 		set_location = $ORIGIN$
 		start_travel_plan = {
-			destination = $RECIPIENT$.capital_province
+			destination = $RECEIVER$.capital_province
 			return_trip = no
 			on_start_on_action = travl_travel_on_departure
 			on_arrival_on_action = travl_travel_on_arrival
@@ -30,21 +34,44 @@
 			# Set companion travel variables
 			travl_travel_set_variables_effect = {
 				SENDER = $SENDER$
-				RECIPIENT = $RECIPIENT$
+				RECEIVER = $RECEIVER$
 				LEADER = prev
 				COMPANIONS = $COMPANIONS$
 			}
 
 			# Start companion travel plan
+			current_travel_plan ?= {
+				abort_travel_plan = yes
+			}
 			set_location = $ORIGIN$
 			start_travel_plan = {
-				destination = $RECIPIENT$.capital_province
+				destination = $RECEIVER$.capital_province
 				return_trip = no
 				on_start_on_action = travl_travel_on_departure
 				on_arrival_on_action = travl_travel_on_arrival
 				on_arrival_destinations = last
 			}
 		}
+	}
+}
+
+travl_abort_travel_effect = {
+	if = {
+		limit = {
+			var:travl_travel_receiver ?= $RECEIVER$
+		}
+
+		# Save current location
+		location = { save_scope_as = current_location }
+
+		# Remove travel variables
+		travl_travel_remove_variables_effect = yes
+
+		# Abort travel plan
+		current_travel_plan ?= {
+			abort_travel_plan = yes
+		}
+		set_location = scope:current_location
 	}
 }
 
@@ -55,8 +82,8 @@ travl_travel_set_variables_effect = {
 		years = 2
 	}
 	set_variable = {
-		name = travl_travel_recipient
-		value = $RECIPIENT$
+		name = travl_travel_receiver
+		value = $RECEIVER$
 		years = 2
 	}
 	set_variable = {
@@ -82,8 +109,8 @@ travl_travel_remove_variables_effect = {
 		remove_variable = travl_travel_sender
 	}
 	if = {
-		limit = { has_variable = travl_travel_recipient }
-		remove_variable = travl_travel_recipient
+		limit = { has_variable = travl_travel_receiver }
+		remove_variable = travl_travel_receiver
 	}
 	if = {
 		limit = { has_variable = travl_travel_leader }
@@ -112,7 +139,7 @@ travl_travel_send_messages_effect = {
 	if = {
 		limit = {
 			exists = $SENDER$
-			scope:character.liege ?= $SENDER$
+			travl_travel_should_send_message_trigger = { CHARACTER = $SENDER$ }
 		}
 		$SENDER$ = {
 			send_interface_message = {
@@ -124,7 +151,7 @@ travl_travel_send_messages_effect = {
 					custom_description = {
 						text = $TEXT$
 						subject = this
-						object = $RECIPIENT$
+						object = $RECEIVER$
 					}
 				}
 				every_in_list = {
@@ -132,7 +159,7 @@ travl_travel_send_messages_effect = {
 					custom_description = {
 						text = $TEXT$
 						subject = this
-						object = $RECIPIENT$
+						object = $RECEIVER$
 					}
 				}
 			}
@@ -140,10 +167,10 @@ travl_travel_send_messages_effect = {
 	}
 	else_if = {
 		limit = {
-			exists = $RECIPIENT$
-			scope:character.liege ?= $RECIPIENT$
+			exists = $RECEIVER$
+			travl_travel_should_send_message_trigger = { CHARACTER = $RECEIVER$ }
 		}
-		$RECIPIENT$ = {
+		$RECEIVER$ = {
 			send_interface_message = {
 				type = event_generic_neutral
 				title = $TITLE$
@@ -153,7 +180,7 @@ travl_travel_send_messages_effect = {
 					custom_description = {
 						text = $TEXT$
 						subject = this
-						object = $RECIPIENT$
+						object = $RECEIVER$
 					}
 				}
 				every_in_list = {
@@ -161,10 +188,57 @@ travl_travel_send_messages_effect = {
 					custom_description = {
 						text = $TEXT$
 						subject = this
-						object = $RECIPIENT$
+						object = $RECEIVER$
 					}
 				}
 			}
 		}
+	}
+}
+
+travl_set_receiver_effect = {
+	if = {
+		limit = {
+			imprisoner ?= { travl_travel_is_valid_receiver_trigger = yes }
+		}
+		imprisoner = { save_scope_as = receiver }
+	}
+	else_if = {
+		limit = {
+			travl_travel_is_valid_receiver_trigger = yes
+		}
+		save_scope_as = receiver
+	}
+	else_if = {
+		limit = {
+			warden ?= { travl_travel_is_valid_receiver_trigger = yes }
+		}
+		warden = { save_scope_as = receiver }
+	}
+	else_if = {
+		limit = {
+			host ?= { travl_travel_is_valid_receiver_trigger = yes }
+		}
+		host = { save_scope_as = receiver }
+	}
+	else_if = {
+		limit = {
+			liege ?= { travl_travel_is_valid_receiver_trigger = yes }
+		}
+		liege = { save_scope_as = receiver }
+	}
+}
+
+travl_imprison_effect = {
+	$TARGET$ = {
+		set_variable = {
+			name = travl_location
+			value = location
+			days = 1
+		}
+	}
+	imprison = {
+		target = $TARGET$
+		type = $TYPE$
 	}
 }
