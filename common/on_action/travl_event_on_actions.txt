@@ -113,22 +113,7 @@ travl_on_join_court = {
 		}
 
 		# Determine receiver
-		if = {
-			limit = { exists = imprisoner }
-			imprisoner = { save_scope_as = receiver }
-		}
-		else_if = {
-			limit = { exists = warden }
-			warden = { save_scope_as = receiver }
-		}
-		else_if = {
-			limit = { exists = host }
-			host = { save_scope_as = receiver }
-		}
-		else_if = {
-			limit = { exists = liege }
-			liege = { save_scope_as = receiver }
-		}
+		travl_set_receiver_effect = yes
 
 		travl_travel_to_court_effect = {
 			SENDER = scope:sender
@@ -148,7 +133,11 @@ on_leave_court = {
 
 travl_on_leave_court = {
 	effect = {
-		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_left_court }
+		if = {
+			limit = { is_pool_character = no }
+			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_left_court }
+			travl_travel_to_location_effect = { EVENT = flag:on_leave_court }
+		}
 	}
 }
 
@@ -161,7 +150,6 @@ on_imprison = {
 travl_on_imprison = {
 	effect = {
 		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_imprisoned }
-
 		travl_travel_to_location_effect = { EVENT = flag:on_imprison }
 	}
 }
@@ -176,8 +164,11 @@ travl_on_release_from_prison = {
 	effect = {
 		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_released_from_prison }
 
-		# Abort any ongoing travel
-		travl_abort_travel_effect = yes
+		# Abort ongoing travel for pool characters
+		if = {
+			limit = { is_pool_character = yes }
+			travl_abort_travel_effect = yes
+		}
 
 		# Determine sender
 		if = {
@@ -189,18 +180,7 @@ travl_on_release_from_prison = {
 		}
 
 		# Determine receiver
-		if = {
-			limit = { is_landed = yes }
-			save_scope_as = receiver
-		}
-		else_if = {
-			limit = { exists = host }
-			host = { save_scope_as = receiver }
-		}
-		else_if = {
-			limit = { exists = liege }
-			liege = { save_scope_as = receiver }
-		}
+		travl_set_receiver_effect = yes
 
 		travl_travel_to_court_effect = {
 			SENDER = scope:sender
@@ -221,7 +201,6 @@ on_title_gain = {
 travl_on_title_gain = {
 	effect = {
 		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_gained_title }
-
 		travl_travel_to_location_effect = { EVENT = flag:on_title_gain }
 	}
 }
@@ -236,16 +215,17 @@ on_title_lost = {
 
 travl_on_title_lost = {
 	effect = {
-		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_lost_title }
-
-		travl_travel_to_location_effect = { EVENT = flag:on_title_lost }
+		if = {
+			limit = { is_pool_character = no }
+			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_lost_title }
+			travl_travel_to_location_effect = { EVENT = flag:on_title_lost }
+		}
 	}
 }
 
 travl_on_teleport = {
 	effect = {
 		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_teleported }
-
 		travl_travel_to_location_effect = { EVENT = flag:on_teleport }
 	}
 }
@@ -270,13 +250,55 @@ travl_on_teleport = {
 
 # Root = Winning combat side
 # scope:wipe - Was this a wipe?
-#on_combat_end_winner = {
-#}
+on_combat_end_winner = {
+	on_actions = { travl_on_combat_end_winner }
+}
+
+travl_on_combat_end_winner = {
+	effect = {
+		combat.location = { save_scope_as = combat_location }
+		every_side_knight = {
+			limit = { is_alive = yes }
+			set_variable = {
+				name = travl_location
+				value = scope:combat_location
+			}
+		}
+		every_side_commander = {
+			limit = { is_alive = yes }
+			set_variable = {
+				name = travl_location
+				value = scope:combat_location
+			}
+		}
+	}
+}
 
 # Root = Losing combat side
 # scope:wipe - Was this a wipe?
-#on_combat_end_loser = {
-#}
+on_combat_end_loser = {
+	on_actions = { travl_on_combat_end_loser }
+}
+
+travl_on_combat_end_loser = {
+	effect = {
+		combat.location = { save_scope_as = combat_location }
+		every_side_knight = {
+			limit = { is_alive = yes }
+			set_variable = {
+				name = travl_location
+				value = scope:combat_location
+			}
+		}
+		every_side_commander = {
+			limit = { is_alive = yes }
+			set_variable = {
+				name = travl_location
+				value = scope:combat_location
+			}
+		}
+	}
+}
 
 #on_war_won_attacker = {
 #}

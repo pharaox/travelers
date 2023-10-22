@@ -3,10 +3,10 @@
 
  travl_debug_msg_initialized: "[GetCurrentDate.GetStringShort]: Travelers mod initialized"
 
- travl_debug_msg_staring_travel_as_leader: "$travl_debug_prefix$: Starting travel as leader"
- travl_debug_msg_staring_travel_as_companion: "$travl_debug_prefix$: Starting travel as companion"
- travl_debug_msg_aborting_travel: "$travl_debug_prefix$: Aborting travel"
- travl_debug_msg_restoring_location: "$travl_debug_prefix$: Restoring location"
+ travl_debug_msg_staring_travel_as_leader: "$travl_debug_prefix$: Starting travel as leader ($travl_travel_event$)"
+ travl_debug_msg_staring_travel_as_companion: "$travl_debug_prefix$: Starting travel as companion ($travl_travel_event$)"
+ travl_debug_msg_aborting_travel: "$travl_debug_prefix$: Aborting travel ($travl_travel_event$)"
+ travl_debug_msg_restoring_location: "$travl_debug_prefix$: Restoring location ($travl_location$)"
 
  travl_debug_msg_character_departed: "$travl_debug_prefix$: Character departed for $travl_travel_receiver$'s court ($travl_travel_event$)"
  travl_debug_msg_character_departed_companion: "$travl_debug_prefix$: Character departed for $travl_travel_receiver$'s court as companion ($travl_travel_event$)"

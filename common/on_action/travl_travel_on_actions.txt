@@ -34,7 +34,8 @@
 			limit = { scope:leader ?= this }
 			travl_debug_log_effect = { MSG = travl_debug_msg_character_departed }
 		}
-		else = {
+		else_if = {
+			limit = { exists = scope:leader }
 			travl_debug_log_effect = { MSG = travl_debug_msg_character_departed_companion }
 		}
 	}
@@ -84,7 +85,8 @@ travl_travel_on_arrival = {
 			limit = { scope:leader ?= this }
 			travl_debug_log_effect = { MSG = travl_debug_msg_character_arrived }
 		}
-		else = {
+		else_if = {
+			limit = { exists = scope:leader }
 			travl_debug_log_effect = { MSG = travl_debug_msg_character_arrived_companion }
 		}
 
@@ -140,14 +142,21 @@ travl_on_travel_plan_movement = {
 		# If the receiver is no longer valid, change receiver or cancel
 		if = {
 			limit = {
-				scope:receiver ?= { travl_travel_is_valid_receiver_trigger = no }
+				scope:receiver ?= {
+					OR = {
+						is_alive = no
+						is_landed = no
+					}
+				}
 			}
 
 			# Determine new receiver
 			travl_set_receiver_effect = yes
 
 			if = {
-				limit = { exists = scope:receiver }
+				limit = {
+					scope:receiver ?= { is_landed = yes }
+				}
 
 				# Abort current travel plan
 				current_travel_plan ?= {

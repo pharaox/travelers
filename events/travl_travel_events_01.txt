@@ -23,9 +23,17 @@ travl_travel.0001 = {
 						if = {
 							limit = {
 								save_temporary_scope_as = character
-								NOT = {
+								NOR = {
+									# Currently traveling and at their current location
 									current_travel_plan ?= {
 										current_location = scope:character.location
+									}
+
+									# Barons teleporting to their capitals
+									AND = {
+										is_landed = yes
+										highest_held_title_tier = tier_barony
+										location = capital_province
 									}
 								}
 							}
