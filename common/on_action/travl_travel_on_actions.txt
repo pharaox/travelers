@@ -89,6 +89,7 @@ travl_on_travel_plan_movement = {
 		var:travl_travel_receiver ?= { save_scope_as = receiver }
 		var:travl_travel_leader ?= { save_scope_as = leader }
 		travl_travel_get_companions_effect = { COMPANIONS = companions }
+		var:travl_travel_event ?= { save_scope_as = event }
 
 		# Ensure the character is at the current location
 		location = { save_scope_as = current_location }
@@ -110,25 +111,25 @@ travl_on_travel_plan_movement = {
 			save_scope_as = leader
 			remove_from_list = companions
 
-			# Reset leader travel variables
-			travl_travel_remove_variables_effect = yes
+			# Set leader travel variables
 			travl_travel_set_variables_effect = {
 				SENDER = scope:sender
 				RECEIVER = scope:receiver
 				LEADER = this
 				COMPANIONS = companions
+				EVENT = scope:event
 			}
 
 			every_in_list = {
 				list = companions
 
-				# Reset companion travel variables
-				travl_travel_remove_variables_effect = yes
+				# Set companion travel variables
 				travl_travel_set_variables_effect = {
 					SENDER = scope:sender
 					RECEIVER = scope:receiver
 					LEADER = prev
 					COMPANIONS = companions
+					EVENT = scope:event
 				}
 			}
 		}
@@ -145,13 +146,13 @@ travl_on_travel_plan_movement = {
 			if = {
 				limit = { exists = scope:receiver }
 
-				# Reset travel variables
-				travl_travel_remove_variables_effect = yes
+				# Set travel variables
 				travl_travel_set_variables_effect = {
 					SENDER = scope:sender
 					RECEIVER = scope:receiver
 					LEADER = scope:leader
 					COMPANIONS = companions
+					EVENT = scope:event
 				}
 
 				# Reroute to new receiver's capital province

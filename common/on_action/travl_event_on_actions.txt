@@ -1,15 +1,34 @@
-﻿# Characters getting married
+﻿# Called from code after history generation
+# Empty scope
+on_game_start = {
+	on_actions = { travl_on_init }
+}
+
+travl_on_init = {
+	trigger = {
+		NOT = { has_global_variable = travl_initialized }
+	}
+	events = {
+		travl_travel.0001
+	}
+	effect = {
+		set_global_variable = travl_initialized
+		travl_debug_log_effect = { MSG = travl_debug_msg_initialized }
+	}
+}
+
+# Characters getting married
 # root = Major partner of the marriage
 # scope:spouse = Minor partner of the marriage
 on_marriage = {
-	on_actions = { travl_on_marriage }
+	on_actions = { travl_on_init travl_on_marriage }
 }
 
 travl_on_marriage = {
 	effect = {
-		#travl_debug_log_effect = { MSG = travl_debug_msg_character_married_major }
+		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_married_major }
 		scope:spouse = {
-			travl_debug_log_effect = { MSG = travl_debug_msg_character_married_minor }
+			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_married_minor }
 		}
 	}
 }
@@ -24,14 +43,11 @@ on_divorce = {
 
 travl_on_divorce = {
 	effect = {
-		travl_debug_log_effect = { MSG = travl_debug_msg_character_divorced }
+		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_divorced }
+		travl_restore_location_effect = yes
 		scope:spouse = {
-			travl_debug_log_effect = { MSG = travl_debug_msg_character_was_divorced }
-		}
-
-		if = {
-			limit = { has_variable = travl_location }
-			set_location = var:travl_location
+			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_was_divorced }
+			travl_restore_location_effect = yes
 		}
 	}
 }
@@ -45,9 +61,9 @@ on_concubinage = {
 
 travl_on_concubinage = {
 	effect = {
-		#travl_debug_log_effect = { MSG = travl_debug_msg_character_took_concubine }
+		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_took_concubine }
 		scope:concubine = {
-			travl_debug_log_effect = { MSG = travl_debug_msg_character_was_taken_concubine }
+			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_was_taken_concubine }
 		}
 	}
 }
@@ -62,9 +78,9 @@ on_concubinage_end = {
 
 travl_on_concubinage_end = {
 	effect = {
-		#travl_debug_log_effect = { MSG = travl_debug_msg_character_released_concubine }
+		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_released_concubine }
 		scope:concubine = {
-			travl_debug_log_effect = { MSG = travl_debug_msg_character_was_released_concubine }
+			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_was_released_concubine }
 		}
 	}
 }
@@ -74,56 +90,44 @@ travl_on_concubinage_end = {
 # scope:new_employer is their new employer
 # scope:old_employer is their old employer (if they had one; otherwise unset)
 on_join_court = {
-	on_actions = { travl_on_join_court }
+	on_actions = { travl_on_init travl_on_join_court }
 }
 
 travl_on_join_court = {
 	effect = {
+		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_joined_court }
+
+		# Determine sender
 		if = {
-			limit = {
-				scope:new_employer.current_travel_plan ?= {
-					any_entourage_character = {
-						this = root
-					}
-				}
-			}
-			travl_debug_log_effect = { MSG = travl_debug_msg_character_joined_court_in_entourage }
+			limit = { exists = scope:old_employer }
+			scope:old_employer = { save_scope_as = sender }
 		}
 		else = {
-			travl_debug_log_effect = { MSG = travl_debug_msg_character_joined_court }
+			this = { save_scope_as = sender }
 		}
 
+		# Determine receiver
 		if = {
-			limit = {
-				scope:new_employer ?= { is_landed = yes }
-				NOR = {
-					location ?= scope:new_employer.capital_province
-					has_variable = travl_invited_character
-					scope:new_employer.current_travel_plan ?= {
-						any_entourage_character = {
-							this = root
-						}
-					}
-					is_imprisoned = yes
-				}
-			}
+			limit = { exists = imprisoner }
+			imprisoner = { save_scope_as = receiver }
+		}
+		else_if = {
+			limit = { exists = warden }
+			warden = { save_scope_as = receiver }
+		}
+		else_if = {
+			limit = { exists = host }
+			host = { save_scope_as = receiver }
+		}
+		else_if = {
+			limit = { exists = liege }
+			liege = { save_scope_as = receiver }
+		}
 
-			# Determine sender
-			if = {
-				limit = { exists = scope:old_employer }
-				scope:old_employer = { save_scope_as = sender }
-			}
-			else = {
-				this = { save_scope_as = sender }
-			}
-
-			# Travel from current location to new employer's capital province
-			travl_travel_effect = {
-				SENDER = scope:sender
-				RECEIVER = scope:new_employer
-				ORIGIN = location
-				COMPANIONS = none
-			}
+		travl_travel_to_court_effect = {
+			SENDER = scope:sender
+			RECEIVER = scope:receiver
+			EVENT = flag:on_join_court
 		}
 	}
 }
@@ -138,7 +142,7 @@ on_leave_court = {
 
 travl_on_leave_court = {
 	effect = {
-		#travl_debug_log_effect = { MSG = travl_debug_msg_character_left_court }
+		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_left_court }
 	}
 }
 
@@ -150,28 +154,9 @@ on_imprison = {
 
 travl_on_imprison = {
 	effect = {
-		if = {
-			limit = { has_variable = travl_location }
-			travl_debug_log_effect = { MSG = travl_debug_msg_character_imprisoned_location }
-		}
-		else = {
-			travl_debug_log_effect = { MSG = travl_debug_msg_character_imprisoned }
-		}
+		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_imprisoned }
 
-		if = {
-			limit = {
-				scope:imprisoner ?= { is_landed = yes }
-				has_variable = travl_location
-			}
-
-			# Travel from current location to imprisoner's capital province
-			travl_travel_effect = {
-				SENDER = this
-				RECEIVER = scope:imprisoner
-				ORIGIN = var:travl_location
-				COMPANIONS = none
-			}
-		}
+		travl_travel_to_location_effect = { EVENT = flag:on_imprison }
 	}
 }
 
@@ -183,40 +168,79 @@ on_release_from_prison = {
 
 travl_on_release_from_prison = {
 	effect = {
-		travl_debug_log_effect = { MSG = travl_debug_msg_character_released_from_prison }
+		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_released_from_prison }
 
-		# Abort travel if traveling to imprisoner
-		travl_abort_travel_effect = { RECEIVER = scope:imprisoner }
+		# Abort any ongoing travel
+		travl_abort_travel_effect = yes
 
-		# Save location to be able to return to it on "teleport" events (such as divorce)
-		set_variable = {
-			name = travl_location
-			value = location
-			days = 1
+		# Determine sender
+		if = {
+			limit = { exists = scope:imprisoner }
+			scope:imprisoner = { save_scope_as = sender }
+		}
+		else = {
+			this = { save_scope_as = sender }
 		}
 
 		# Determine receiver
 		if = {
-			limit = { is_ruler = yes }
+			limit = { is_landed = yes }
 			save_scope_as = receiver
 		}
-		else = {
-			liege ?= { save_scope_as = receiver }
+		else_if = {
+			limit = { exists = host }
+			host = { save_scope_as = receiver }
+		}
+		else_if = {
+			limit = { exists = liege }
+			liege = { save_scope_as = receiver }
 		}
 
-		if = {
-			limit = {
-				scope:receiver ?= { is_landed = yes }
-			}
-
-			# Travel from current location to receiver's capital province
-			travl_travel_effect = {
-				SENDER = scope:imprisoner
-				RECEIVER = scope:receiver
-				ORIGIN = location
-				COMPANIONS = none
-			}
+		travl_travel_to_court_effect = {
+			SENDER = scope:sender
+			RECEIVER = scope:receiver
+			EVENT = flag:on_release_from_prison
 		}
+	}
+}
+
+# A title is transferred to a new character
+# root = the new holder
+# scope:title = the title that changes hands
+# scope:previous_holder = previous holder. Might be dead
+on_title_gain = {
+	on_actions = { travl_on_title_gain }
+}
+
+travl_on_title_gain = {
+	effect = {
+		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_gained_title }
+
+		travl_travel_to_location_effect = { EVENT = flag:on_title_gain }
+	}
+}
+
+# A title is lost by a character
+# root = the old holder
+# scope:title = the title that changes hands
+# scope:new_holder = new holder.
+on_title_lost = {
+	on_actions = { travl_on_title_lost }
+}
+
+travl_on_title_lost = {
+	effect = {
+		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_lost_title }
+
+		travl_travel_to_location_effect = { EVENT = flag:on_title_lost }
+	}
+}
+
+travl_on_teleport = {
+	effect = {
+		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_teleported }
+
+		travl_travel_to_location_effect = { EVENT = flag:on_teleport }
 	}
 }
 
@@ -227,29 +251,29 @@ travl_on_release_from_prison = {
 # scope:previous_controller is the previous controller of the county
 # scope:war is the war causing the previous controller and the occupant to be hostile
 # occupied_baronies is a list of all baronies that the siege caused the occupier to control (I.E., can include baronies with no fort level)
-on_siege_completion = {
-}
+#on_siege_completion = {
+#}
 
 # Called when a raid action finishes
 # root is the raid army
 # scope:raider is the person owning the raid army
 # scope:barony is the barony title that got raided
 # scope:county is the county title for the barony
-on_raid_action_completion = {
-}
+#on_raid_action_completion = {
+#}
 
 # Root = Winning combat side
 # scope:wipe - Was this a wipe?
-on_combat_end_winner = {
-}
+#on_combat_end_winner = {
+#}
 
 # Root = Losing combat side
 # scope:wipe - Was this a wipe?
-on_combat_end_loser = {
-}
+#on_combat_end_loser = {
+#}
 
-on_war_won_attacker = {
-}
+#on_war_won_attacker = {
+#}
 
-on_war_won_defender = {
-}
+#on_war_won_defender = {
+#}

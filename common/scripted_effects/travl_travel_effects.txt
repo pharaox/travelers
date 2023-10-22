@@ -1,10 +1,91 @@
-﻿travl_travel_effect = {
+﻿travl_travel_to_court_effect = {
+	if = {
+		limit = {
+			exists = $RECEIVER$
+			NOR = {
+				current_travel_plan ?= {
+					travel_plan_owner = $RECEIVER$
+				}
+				is_in_army = yes
+				has_variable = travl_invited_character
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { location = $RECEIVER$.capital_province }
+			}
+
+			# Travel from current location to receiver's capital province
+			travl_travel_effect = {
+				SENDER = $SENDER$
+				RECEIVER = $RECEIVER$
+				ORIGIN = location
+				COMPANIONS = none
+				EVENT = $EVENT$
+			}
+		}
+		else = {
+			# Abort any ongoing travel
+			travl_abort_travel_effect = yes
+		}
+	}
+}
+
+travl_travel_to_location_effect = {
+	save_scope_as = traveler
+
+	if = {
+		limit = {
+			has_variable = travl_location
+			NOT = { var:travl_location = location }
+		}
+
+		# Determine receiver from the current location
+		random_living_character = {
+			limit = {
+				is_landed = yes
+				capital_province = scope:traveler.location
+			}
+			save_scope_as = receiver
+		}
+
+		if = {
+			limit = { exists = scope:receiver }
+
+			# Travel from saved location to receiver's capital province
+			travl_travel_effect = {
+				SENDER = scope:traveler
+				RECEIVER = scope:receiver
+				ORIGIN = var:travl_location
+				COMPANIONS = none
+				EVENT = $EVENT$
+			}
+		}
+	}
+}
+
+travl_restore_location_effect = {
+	if = {
+		limit = {
+			has_variable = travl_location
+			NOT = { var:travl_location = location }
+		}
+		set_location = var:travl_location
+	}
+}
+
+travl_travel_effect = {
 	if = {
 		limit = {
 			exists = $ORIGIN$
 			exists = $RECEIVER$.capital_province
-			NOT = { $ORIGIN$ = $RECEIVER$.capital_province }
-			NOT = { var:travl_travel_receiver ?= $RECEIVER$ }
+			NOR = {
+				$ORIGIN$ = $RECEIVER$.capital_province
+				current_travel_plan ?= {
+					final_destination_province = $RECEIVER$.capital_province
+				}
+			}
 		}
 
 		# Set leader travel variables
@@ -13,6 +94,7 @@
 			RECEIVER = $RECEIVER$
 			LEADER = this
 			COMPANIONS = $COMPANIONS$
+			EVENT = $EVENT$
 		}
 
 		# Start leader travel plan
@@ -37,6 +119,7 @@
 				RECEIVER = $RECEIVER$
 				LEADER = prev
 				COMPANIONS = $COMPANIONS$
+				EVENT = $EVENT$
 			}
 
 			# Start companion travel plan
@@ -57,21 +140,21 @@
 
 travl_abort_travel_effect = {
 	if = {
-		limit = {
-			var:travl_travel_receiver ?= $RECEIVER$
-		}
+		limit = { exists = current_travel_plan }
 
 		# Save current location
 		location = { save_scope_as = current_location }
-
-		# Remove travel variables
-		travl_travel_remove_variables_effect = yes
 
 		# Abort travel plan
 		current_travel_plan ?= {
 			abort_travel_plan = yes
 		}
 		set_location = scope:current_location
+
+		travl_debug_log_effect = { MSG = travl_debug_msg_travel_aborted }
+
+		# Remove travel variables
+		travl_travel_remove_variables_effect = yes
 	}
 }
 
@@ -92,6 +175,7 @@ travl_travel_set_variables_effect = {
 		years = 2
 	}
 	save_temporary_scope_as = character
+	clear_variable_list = travl_travel_companions
 	every_in_list = {
 		list = $COMPANIONS$
 		scope:character = {
@@ -100,6 +184,11 @@ travl_travel_set_variables_effect = {
 				target = prev
 			}
 		}
+	}
+	set_variable = {
+		name = travl_travel_event
+		value = $EVENT$
+		years = 2
 	}
 }
 
@@ -119,6 +208,10 @@ travl_travel_remove_variables_effect = {
 	if = {
 		limit = { has_variable_list = travl_travel_companions }
 		clear_variable_list = travl_travel_companions
+	}
+	if = {
+		limit = { has_variable = travl_travel_event }
+		remove_variable = travl_travel_event
 	}
 }
 
@@ -165,9 +258,10 @@ travl_travel_send_messages_effect = {
 			}
 		}
 	}
-	else_if = {
+	if = {
 		limit = {
 			exists = $RECEIVER$
+			NOT = { $RECEIVER$ = $SENDER$ }
 			travl_travel_should_send_message_trigger = { CHARACTER = $RECEIVER$ }
 		}
 		$RECEIVER$ = {
@@ -229,16 +323,3 @@ travl_set_receiver_effect = {
 	}
 }
 
-travl_imprison_effect = {
-	$TARGET$ = {
-		set_variable = {
-			name = travl_location
-			value = location
-			days = 1
-		}
-	}
-	imprison = {
-		target = $TARGET$
-		type = $TYPE$
-	}
-}

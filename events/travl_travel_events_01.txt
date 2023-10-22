@@ -1,0 +1,65 @@
+﻿namespace = travl_travel
+
+travl_travel.0001 = {
+	scope = none
+	hidden = yes
+
+	immediate = {
+		every_living_character = {
+			# Track location of non-pool characters that are not in an army
+			if = {
+				limit = {
+					is_pool_character = no
+					is_in_army = no
+				}
+
+				if = {
+					limit = { has_variable = travl_location }
+					if = {
+						limit = {
+							NOT = { location = var:travl_location }
+						}
+
+						if = {
+							limit = {
+								save_temporary_scope_as = character
+								NOT = {
+									current_travel_plan ?= {
+										current_location = scope:character.location
+									}
+								}
+							}
+
+							var:travl_location = { save_scope_as = location }
+							trigger_event = {
+								on_action = travl_on_teleport
+							}
+						}
+
+						set_variable = {
+							name = travl_location
+							value = location
+						}
+					}
+				}
+				else = {
+					set_variable = {
+						name = travl_location
+						value = location
+					}
+				}
+			}
+			else = {
+				if = {
+					limit = { has_variable = travl_location }
+					remove_variable = travl_location
+				}
+			}
+		}
+
+		trigger_event = {
+			id = travl_travel.0001
+			days = 1
+		}
+	}
+}

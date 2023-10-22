@@ -4,3 +4,14 @@
 		debug_log = $MSG$
 	}
 }
+
+travl_debug_log_event_effect = {
+	if = {
+		limit = {
+			debug_only = yes
+			has_variable = travl_location
+			NOT = { var:travl_location = location }
+		}
+		debug_log = $MSG$
+	}
+}

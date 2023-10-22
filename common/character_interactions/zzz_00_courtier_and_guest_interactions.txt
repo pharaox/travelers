@@ -109,6 +109,7 @@
 						RECEIVER = scope:actor
 						ORIGIN = scope:character_location
 						COMPANIONS = traveling_family_members
+						EVENT = flag:invite_to_court
 					}
 				}
 
