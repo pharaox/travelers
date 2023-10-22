@@ -84,32 +84,11 @@
 				right_icon = scope:recipient
 
 				scope:recipient = {
-					# Travellers: Travel to actor's court
-					location = { save_scope_as = character_location }
 					every_traveling_family_member = {
-						limit = {
-							is_at_location = scope:character_location
-						}
-						set_variable = {
-							name = travl_invited_character
-							value = yes
-							days = 1
-						}
 						scope:actor = { add_courtier = prev }
 						hidden_effect = {
 							return_to_court = yes
 						}
-						if = {
-							limit = { NOT = { this = scope:recipient } }
-							add_to_list = traveling_family_members
-						}
-					}
-					travl_travel_effect = {
-						SENDER = scope:recipient
-						RECEIVER = scope:actor
-						ORIGIN = scope:character_location
-						COMPANIONS = traveling_family_members
-						EVENT = flag:invite_to_court
 					}
 				}
 

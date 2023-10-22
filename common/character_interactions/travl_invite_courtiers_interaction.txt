@@ -38,9 +38,6 @@ travl_invite_courtiers_interaction = {
 		show_as_tooltip = {
 			scope:secondary_recipient = {
 				every_traveling_family_member = {
-					limit = {
-						is_at_location = scope:secondary_recipient.location
-					}
 					scope:actor = { add_courtier = prev }
 				}
 			}

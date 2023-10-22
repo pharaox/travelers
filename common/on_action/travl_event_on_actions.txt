@@ -27,8 +27,10 @@ on_marriage = {
 travl_on_marriage = {
 	effect = {
 		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_married_major }
+		travl_restore_location_effect = yes
 		scope:spouse = {
 			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_married_minor }
+			travl_restore_location_effect = yes
 		}
 	}
 }
@@ -62,8 +64,10 @@ on_concubinage = {
 travl_on_concubinage = {
 	effect = {
 		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_took_concubine }
+		travl_restore_location_effect = yes
 		scope:concubine = {
 			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_was_taken_concubine }
+			travl_restore_location_effect = yes
 		}
 	}
 }
@@ -79,8 +83,10 @@ on_concubinage_end = {
 travl_on_concubinage_end = {
 	effect = {
 		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_released_concubine }
+		travl_restore_location_effect = yes
 		scope:concubine = {
 			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_was_released_concubine }
+			travl_restore_location_effect = yes
 		}
 	}
 }
