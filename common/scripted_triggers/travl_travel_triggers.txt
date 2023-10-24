@@ -1,4 +1,45 @@
-﻿travl_travel_should_send_message_trigger = {
+﻿travl_is_free_pool_character_trigger = {
+	is_pool_character = yes
+	is_imprisoned = no
+}
+
+travl_is_travelling_to_receiver_trigger = {
+	var:travl_travel_receiver ?= $RECEIVER$
+	current_travel_plan ?= {
+		final_destination_province = $RECEIVER$.capital_province
+	}
+}
+
+travl_is_near_saved_location_trigger = {
+	save_temporary_scope_as = character
+	OR = {
+		location = var:travl_location
+		AND = {
+			is_travelling = yes
+			location = {
+				any_neighboring_province = {
+					this = scope:character.var:travl_location
+				}
+			}
+		}
+	}
+}
+
+travl_is_near_current_location_trigger = {
+	save_temporary_scope_as = character
+	current_travel_plan ?= {
+		current_location = {
+			OR = {
+				this = scope:character.location
+				any_neighboring_province = {
+					this = scope:character.location
+				}
+			}
+		}
+	}
+}
+
+travl_travel_should_send_message_trigger = {
 	OR = {
 		this = $CHARACTER$
 		liege ?= $CHARACTER$

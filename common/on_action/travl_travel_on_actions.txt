@@ -123,9 +123,9 @@ travl_on_travel_plan_movement = {
 		if = {
 			limit = {
 				scope:receiver ?= {
-					OR = {
-						is_alive = no
-						is_landed = no
+					NAND = {
+						is_alive = yes
+						exists = capital_province
 					}
 				}
 			}
@@ -136,7 +136,7 @@ travl_on_travel_plan_movement = {
 		# If the receiver's capital province changed, reroute to new capital province
 		if = {
 			limit = {
-				scope:receiver ?= { is_landed = yes }
+				scope:receiver ?= { exists = capital_province }
 				current_travel_plan ?= {
 					NOT = { final_destination_province = scope:receiver.capital_province }
 				}
@@ -159,6 +159,7 @@ travl_on_travel_plan_movement = {
 			# Start new travel plan
 			start_travel_plan = {
 				destination = scope:receiver.capital_province
+				players_use_planner = no
 				return_trip = no
 				on_arrival_on_action = travl_travel_on_arrival
 				on_arrival_destinations = last

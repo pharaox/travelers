@@ -10,8 +10,42 @@ travl_debug_log_event_effect = {
 		limit = {
 			debug_only = yes
 			has_variable = travl_location
-			NOT = { var:travl_location = location }
+			travl_is_near_saved_location_trigger = no
 		}
 		debug_log = $MSG$
+	}
+}
+
+travl_debug_log_1_effect = {
+	if = {
+		limit = { debug_only = yes }
+
+		travl_debug_set_scope_variable_effect = { NAME = $NAME1$ TYPE = $TYPE1$ }
+		debug_log = $MSG$
+		travl_debug_remove_scope_variable_effect = { NAME = $NAME1$ TYPE = $TYPE1$ }
+	}
+}
+
+travl_debug_set_scope_variable_effect = {
+	if = {
+		limit = {
+			NOT = { $TYPE$ = flag:variable }
+			exists = scope:$NAME$
+			trigger_if = {
+				limit = { $TYPE$ = flag:boolean }
+				scope:$NAME$ = yes
+			}
+		}
+		set_variable = { name = $NAME$ value = scope:$NAME$ }
+	}
+}
+
+travl_debug_remove_scope_variable_effect = {
+	if = {
+		limit = {
+			NOT = { $TYPE$ = flag:variable }
+			has_variable = $NAME$
+		}
+		remove_variable = $NAME$
 	}
 }

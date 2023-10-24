@@ -39,6 +39,7 @@
  travl_debug_msg_character_gained_title: "$travl_debug_prefix$: Character gained title ($travl_location$)"
  travl_debug_msg_character_lost_title: "$travl_debug_prefix$: Character lost title ($travl_location$)"
 
+ travl_debug_msg_character_prison_changed: "$travl_debug_prefix$: Character prison changed ($travl_location$)"
  travl_debug_msg_character_teleported: "$travl_debug_prefix$: Character teleported ($travl_location$)"
 
  travl_debug_msg_invalid_receiver_detected: "$travl_debug_prefix$: Invalid receiver $travl_travel_receiver$ detected"

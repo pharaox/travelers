@@ -103,21 +103,8 @@ travl_on_join_court = {
 	effect = {
 		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_joined_court }
 
-		# Determine sender
-		if = {
-			limit = { exists = scope:old_employer }
-			scope:old_employer = { save_scope_as = sender }
-		}
-		else = {
-			this = { save_scope_as = sender }
-		}
-
-		# Determine receiver
-		travl_set_receiver_effect = yes
-
-		travl_travel_to_court_effect = {
-			SENDER = scope:sender
-			RECEIVER = scope:receiver
+		travl_travel_effect = {
+			SENDER = scope:old_employer
 			EVENT = flag:on_join_court
 		}
 	}
@@ -134,9 +121,13 @@ on_leave_court = {
 travl_on_leave_court = {
 	effect = {
 		if = {
-			limit = { is_pool_character = no }
+			limit = { travl_is_free_pool_character_trigger = no }
 			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_left_court }
-			travl_travel_to_location_effect = { EVENT = flag:on_leave_court }
+
+			travl_travel_effect = {
+				SENDER = scope:old_employer
+				EVENT = flag:on_leave_court
+			}
 		}
 		else = {
 			travl_abort_travel_effect = yes
@@ -153,7 +144,11 @@ on_imprison = {
 travl_on_imprison = {
 	effect = {
 		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_imprisoned }
-		travl_travel_to_location_effect = { EVENT = flag:on_imprison }
+
+		travl_travel_effect = {
+			SENDER = scope:imprisoner
+			EVENT = flag:on_imprison
+		}
 	}
 }
 
@@ -166,25 +161,11 @@ on_release_from_prison = {
 travl_on_release_from_prison = {
 	effect = {
 		if = {
-			limit = { is_pool_character = no }
-
+			limit = { travl_is_free_pool_character_trigger = no }
 			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_released_from_prison }
 
-			# Determine sender
-			if = {
-				limit = { exists = scope:imprisoner }
-				scope:imprisoner = { save_scope_as = sender }
-			}
-			else = {
-				this = { save_scope_as = sender }
-			}
-
-			# Determine receiver
-			travl_set_receiver_effect = yes
-
-			travl_travel_to_court_effect = {
-				SENDER = scope:sender
-				RECEIVER = scope:receiver
+			travl_travel_effect = {
+				SENDER = scope:imprisoner
 				EVENT = flag:on_release_from_prison
 			}
 		}
@@ -205,7 +186,36 @@ on_title_gain = {
 travl_on_title_gain = {
 	effect = {
 		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_gained_title }
-		travl_travel_to_location_effect = { EVENT = flag:on_title_gain }
+
+		# Trigger on_prison_change event for prisoners not in capital
+		save_scope_as = imprisoner
+		if = {
+			limit = {
+				NOT = { has_variable = travl_on_prison_change_triggered }
+				exists = capital_province
+			}
+			every_prisoner = {
+				limit = {
+					NOR = {
+						location = scope:imprisoner.capital_province
+						travl_is_travelling_to_receiver_trigger = { RECEIVER = scope:imprisoner }
+					}
+				}
+				trigger_event = {
+					on_action = travl_on_prison_change
+				}
+			}
+		}
+		set_variable = {
+			name = travl_on_prison_change_triggered
+			value = yes
+			days = 1
+		}
+
+		travl_travel_effect = {
+			SENDER = this
+			EVENT = flag:on_title_gain
+		}
 	}
 }
 
@@ -220,9 +230,13 @@ on_title_lost = {
 travl_on_title_lost = {
 	effect = {
 		if = {
-			limit = { is_pool_character = no }
+			limit = { travl_is_free_pool_character_trigger = no }
 			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_lost_title }
-			travl_travel_to_location_effect = { EVENT = flag:on_title_lost }
+
+			travl_travel_effect = {
+				SENDER = this
+				EVENT = flag:on_title_lost
+			}
 		}
 		else = {
 			travl_abort_travel_effect = yes
@@ -230,10 +244,25 @@ travl_on_title_lost = {
 	}
 }
 
+travl_on_prison_change = {
+	effect = {
+		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_prison_changed }
+
+		travl_travel_effect = {
+			SENDER = scope:imprisoner
+			EVENT = flag:on_prison_change
+		}
+	}
+}
+
 travl_on_teleport = {
 	effect = {
 		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_teleported }
-		travl_travel_to_location_effect = { EVENT = flag:on_teleport }
+
+		travl_travel_effect = {
+			SENDER = this
+			EVENT = flag:on_teleport
+		}
 	}
 }
 

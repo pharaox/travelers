@@ -1,7 +1,42 @@
-﻿travl_travel_to_court_effect = {
+﻿travl_travel_effect = {
+	# Determine sender
+	if = {
+		limit = { exists = $SENDER$ }
+		$SENDER$ = { save_scope_as = sender }
+	}
+	else = {
+		save_scope_as = sender
+	}
+
+	# Determine receiver
+	travl_set_receiver_effect = yes
+
 	if = {
 		limit = {
-			exists = $RECEIVER$
+			OR = {
+				NOT = { has_variable = travl_location }
+				travl_is_near_saved_location_trigger = yes
+			}
+		}
+		travl_travel_to_court_effect = {
+			SENDER = scope:sender
+			RECEIVER = scope:receiver
+			EVENT = $EVENT$
+		}
+	}
+	else = {
+		travl_travel_to_location_effect = {
+			SENDER = scope:sender
+			RECEIVER = scope:receiver
+			EVENT = $EVENT$
+		}
+	}
+}
+
+travl_travel_to_court_effect = {
+	if = {
+		limit = {
+			$RECEIVER$ ?= { exists = capital_province }
 			NOR = {
 				# Currently participating in travel owned by the receiver
 				AND = {
@@ -31,9 +66,14 @@
 					NOT = { is_foreign_court_guest_of = $RECEIVER$ }
 				}
 
-				# Is a pool character or in an army
-				is_pool_character = yes
+				# Free wandering character
+				travl_is_free_pool_character_trigger = yes
+
+				# In an army
 				is_in_army = yes
+
+				# Gone adventuring
+				has_variable = gone_adventuring
 			}
 		}
 
@@ -61,30 +101,21 @@ travl_travel_to_location_effect = {
 
 	if = {
 		limit = {
-			has_variable = travl_location
-			NOT = { var:travl_location = location }
+			$RECEIVER$ ?= { capital_province ?= scope:traveler.location }
 		}
 
-		# Determine receiver from the current location
-		random_living_character = {
-			limit = {
-				is_landed = yes
-				capital_province = scope:traveler.location
-			}
-			save_scope_as = receiver
+		# Travel from saved location to receiver's capital province
+		set_location = var:travl_location
+		travl_start_travel_effect = {
+			SENDER = $SENDER$
+			RECEIVER = $RECEIVER$
+			EVENT = $EVENT$
 		}
-
-		if = {
-			limit = { exists = scope:receiver }
-
-			# Travel from saved location to receiver's capital province
-			set_location = var:travl_location
-			travl_start_travel_effect = {
-				SENDER = scope:traveler
-				RECEIVER = scope:receiver
-				EVENT = $EVENT$
-			}
-		}
+	}
+	else = {
+		# Restore saved location without travel
+		travl_debug_log_effect = { MSG = travl_debug_msg_restoring_location }
+		set_location = var:travl_location
 	}
 }
 
@@ -92,36 +123,18 @@ travl_restore_location_effect = {
 	if = {
 		limit = {
 			has_variable = travl_location
-			NOT = { var:travl_location = location }
+			travl_is_near_saved_location_trigger = no
 		}
 
 		travl_debug_log_effect = { MSG = travl_debug_msg_restoring_location }
-		location = { save_scope_as = current_location }
 		set_location = var:travl_location
-
-		if = {
-			limit = {
-				current_travel_plan ?= {
-					current_location = scope:current_location
-					days_travelled <= 1
-				}
-			}
-
-			save_scope_as = sender
-			travl_set_receiver_effect = yes
-
-			travl_travel_to_court_effect = {
-				SENDER = scope:sender
-				RECEIVER = scope:receiver
-				EVENT = flag:on_restore_location
-			}
-		}
 	}
 }
 
 travl_start_travel_effect = {
 	if = {
 		limit = {
+			save_temporary_scope_as = character
 			exists = $RECEIVER$.capital_province
 			NOR = {
 				AND = {
@@ -129,11 +142,8 @@ travl_start_travel_effect = {
 					location = $RECEIVER$.capital_province
 				}
 				AND = {
-					current_travel_plan ?= {
-						current_location = prev.location
-						final_destination_province = $RECEIVER$.capital_province
-					}
-					var:travl_travel_receiver ?= $RECEIVER$
+					travl_is_travelling_to_receiver_trigger = { RECEIVER = $RECEIVER$ }
+					travl_is_near_current_location_trigger = yes
 				}
 			}
 		}
@@ -171,6 +181,7 @@ travl_start_travel_effect = {
 		start_travel_plan = {
 			destination = $RECEIVER$.capital_province
 			return_trip = no
+			players_use_planner = no
 			on_start_on_action = travl_travel_on_departure
 			on_arrival_on_action = travl_travel_on_arrival
 			on_arrival_destinations = last
@@ -210,16 +221,15 @@ travl_abort_travel_effect = {
 }
 
 travl_add_leader_or_companion_effect = {
-	var:travl_travel_receiver ?= { save_temporary_scope_as = receiver1 }
+	var:travl_travel_receiver ?= { save_scope_as = receiver1 }
 
 	# Find an existing travel leader in the current location
 	location = {
 		random_character_in_location = {
 			limit = {
-				var:travl_travel_receiver ?= scope:receiver1
+				travl_is_travelling_to_receiver_trigger = { RECEIVER = scope:receiver1 }
 				var:travl_travel_leader ?= this
 				current_travel_plan ?= {
-					final_destination_province = scope:receiver1.capital_province
 					days_travelled <= 1
 				}
 			}
@@ -234,11 +244,11 @@ travl_add_leader_or_companion_effect = {
 		scope:leader1 = {
 			travl_get_companions_effect = { COMPANIONS = companions1 }
 		}
-		add_to_temporary_list = companions1
+		add_to_list = companions1
 	}
 	else = {
 		# Set character as leader
-		save_temporary_scope_as = leader1
+		save_scope_as = leader1
 	}
 
 	# Update leader and companions for all characters
@@ -259,14 +269,14 @@ travl_add_leader_or_companion_effect = {
 
 travl_remove_leader_or_companion_effect = {
 	# Get leader and companions
-	var:travl_travel_leader ?= { save_temporary_scope_as = leader2 }
+	var:travl_travel_leader ?= { save_scope_as = leader2 }
 	scope:leader2 ?= {
 		travl_get_companions_effect = { COMPANIONS = companions2 }
 	}
 
 	if = {
 		limit = {
-			scope:leader ?= this
+			scope:leader2 ?= this
 			any_in_list = {
 				list = companions2
 				count > 0
@@ -376,7 +386,7 @@ travl_get_companions_effect = {
 		every_in_list = {
 			variable = travl_travel_companions
 			limit = { is_alive = yes }
-			add_to_temporary_list = $COMPANIONS$
+			add_to_list = $COMPANIONS$
 		}
 	}
 }
@@ -450,8 +460,8 @@ travl_set_receiver_effect = {
 		limit = { exists = imprisoner }
 		imprisoner = { save_scope_as = receiver }
 	}
-	if = {
-		limit = { is_landed = yes }
+	else_if = {
+		limit = { exists = capital_province }
 		save_scope_as = receiver
 	}
 	else_if = {

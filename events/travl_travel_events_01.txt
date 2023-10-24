@@ -9,8 +9,9 @@ travl_travel.0001 = {
 			# Track location of non-pool characters that are not in an army
 			if = {
 				limit = {
-					is_pool_character = no
+					travl_is_free_pool_character_trigger = no
 					is_in_army = no
+					NOT = { has_variable = gone_adventuring }
 				}
 
 				if = {
@@ -22,14 +23,11 @@ travl_travel.0001 = {
 
 						if = {
 							limit = {
-								save_temporary_scope_as = character
 								NOR = {
-									# Currently traveling and at their current location
-									current_travel_plan ?= {
-										current_location = scope:character.location
-									}
+									# Travelling and near their current location
+									travl_is_near_current_location_trigger = yes
 
-									# Barons teleporting to their capitals
+									# Baron at their capital
 									AND = {
 										is_landed = yes
 										highest_held_title_tier = tier_barony
@@ -38,7 +36,6 @@ travl_travel.0001 = {
 								}
 							}
 
-							var:travl_location = { save_scope_as = location }
 							trigger_event = {
 								on_action = travl_on_teleport
 							}
