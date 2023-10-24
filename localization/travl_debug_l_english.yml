@@ -3,17 +3,17 @@
 
  travl_debug_msg_initialized: "[GetCurrentDate.GetStringShort]: Travelers mod initialized"
 
- travl_debug_msg_staring_travel_as_leader: "$travl_debug_prefix$: Starting travel as leader ($travl_travel_event$)"
- travl_debug_msg_staring_travel_as_companion: "$travl_debug_prefix$: Starting travel as companion ($travl_travel_event$)"
+ travl_debug_msg_starting_travel: "$travl_debug_prefix$: Starting travel ($travl_travel_event$)"
  travl_debug_msg_aborting_travel: "$travl_debug_prefix$: Aborting travel ($travl_travel_event$)"
  travl_debug_msg_restoring_location: "$travl_debug_prefix$: Restoring location ($travl_location$)"
 
- travl_debug_msg_character_departed: "$travl_debug_prefix$: Character departed for $travl_travel_receiver$'s court ($travl_travel_event$)"
- travl_debug_msg_character_departed_companion: "$travl_debug_prefix$: Character departed for $travl_travel_receiver$'s court as companion ($travl_travel_event$)"
- travl_debug_msg_character_arrived: "$travl_debug_prefix$: Character arrived at $travl_travel_receiver$'s court"
- travl_debug_msg_character_arrived_companion: "$travl_debug_prefix$: Character arrived at $travl_travel_receiver$'s court as companion"
- travl_debug_msg_character_receiver_changed: "$travl_debug_prefix$: Character rerouted to $travl_travel_receiver$'s court"
- travl_debug_msg_character_travel_cancelled: "$travl_debug_prefix$: Character travel to $travl_travel_receiver$'s court cancelled"
+ travl_debug_msg_changing_leader: "$travl_debug_prefix$: Changing travel leader"
+ travl_debug_msg_removing_companion: "$travl_debug_prefix$: Removing travel companion"
+
+ travl_debug_msg_character_departed_leader: "$travl_debug_prefix$: Character departed for $travl_travel_receiver$'s court as leader ($travl_travel_event$)"
+ travl_debug_msg_character_departed_companion: "$travl_debug_prefix$: Character departed for $travl_travel_receiver$'s court as companion of $travl_travel_leader$ ($travl_travel_event$)"
+ travl_debug_msg_character_arrived_leader: "$travl_debug_prefix$: Character arrived at $travl_travel_receiver$'s court as leader"
+ travl_debug_msg_character_arrived_companion: "$travl_debug_prefix$: Character arrived at $travl_travel_receiver$'s court as companion of $travl_travel_leader$"
  travl_debug_msg_character_destination_changed: "$travl_debug_prefix$: Character travel to $travl_travel_receiver$'s court destination changed"
 
  travl_debug_msg_travel_moved: "$travl_debug_prefix$: Travel plan to $travl_travel_receiver$'s court moved"
@@ -41,7 +41,10 @@
 
  travl_debug_msg_character_teleported: "$travl_debug_prefix$: Character teleported ($travl_location$)"
 
+ travl_debug_msg_invalid_receiver_detected: "$travl_debug_prefix$: Invalid receiver $travl_travel_receiver$ detected"
+
  travl_travel_receiver: "[THIS.Var('travl_travel_receiver').Char.GetFullNameNoTooltip]"
+ travl_travel_leader: "[THIS.Var('travl_travel_leader').Char.GetFullNameNoTooltip]"
  travl_travel_event: "[THIS.Var('travl_travel_event').GetFlagName]"
  travl_location: "[THIS.Var('travl_location').Province.GetNameNoTooltip]"
 

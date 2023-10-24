@@ -8,7 +8,7 @@
 		var:travl_travel_sender ?= { save_scope_as = sender }
 		var:travl_travel_receiver ?= { save_scope_as = receiver }
 		var:travl_travel_leader ?= { save_scope_as = leader }
-		travl_travel_get_companions_effect = { COMPANIONS = companions }
+		travl_get_companions_effect = { COMPANIONS = companions }
 
 		# Ensure the character is at the current location
 		location = { save_scope_as = current_location }
@@ -21,7 +21,7 @@
 			limit = { scope:leader ?= this }
 
 			# Send departure messages
-			travl_travel_send_messages_effect = {
+			travl_send_messages_effect = {
 				SENDER = scope:sender
 				RECEIVER = scope:receiver
 				COMPANIONS = companions
@@ -32,10 +32,10 @@
 
 		if = {
 			limit = { scope:leader ?= this }
-			travl_debug_log_effect = { MSG = travl_debug_msg_character_departed }
+			travl_debug_log_effect = { MSG = travl_debug_msg_character_departed_leader }
 		}
 		else_if = {
-			limit = { exists = scope:leader }
+			limit = { is_in_list = companions }
 			travl_debug_log_effect = { MSG = travl_debug_msg_character_departed_companion }
 		}
 	}
@@ -51,7 +51,7 @@ travl_travel_on_arrival = {
 		var:travl_travel_sender ?= { save_scope_as = sender }
 		var:travl_travel_receiver ?= { save_scope_as = receiver }
 		var:travl_travel_leader ?= { save_scope_as = leader }
-		travl_travel_get_companions_effect = { COMPANIONS = companions }
+		travl_get_companions_effect = { COMPANIONS = companions }
 
 		# Ensure the character is at the destination
 		location = { save_scope_as = current_location }
@@ -72,7 +72,7 @@ travl_travel_on_arrival = {
 			}
 
 			# Send arrival messages
-			travl_travel_send_messages_effect = {
+			travl_send_messages_effect = {
 				SENDER = scope:sender
 				RECEIVER = scope:receiver
 				COMPANIONS = companions
@@ -83,15 +83,16 @@ travl_travel_on_arrival = {
 
 		if = {
 			limit = { scope:leader ?= this }
-			travl_debug_log_effect = { MSG = travl_debug_msg_character_arrived }
+			travl_debug_log_effect = { MSG = travl_debug_msg_character_arrived_leader }
 		}
 		else_if = {
-			limit = { exists = scope:leader }
+			limit = { is_in_list = companions }
 			travl_debug_log_effect = { MSG = travl_debug_msg_character_arrived_companion }
 		}
 
 		# Remove travel variables
-		travl_travel_remove_variables_effect = yes
+		travl_remove_variables_effect = yes
+		travl_remove_leader_and_companions_effect = yes
 	}
 }
 
@@ -109,11 +110,7 @@ travl_on_travel_plan_movement = {
 	effect = {
 		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_moved }
 
-		var:travl_travel_sender ?= { save_scope_as = sender }
 		var:travl_travel_receiver ?= { save_scope_as = receiver }
-		var:travl_travel_leader ?= { save_scope_as = leader }
-		travl_travel_get_companions_effect = { COMPANIONS = companions }
-		var:travl_travel_event ?= { save_scope_as = event }
 
 		# Ensure the character is at the current location
 		location = { save_scope_as = current_location }
@@ -122,24 +119,7 @@ travl_on_travel_plan_movement = {
 		}
 		set_location = scope:current_location
 
-		# If the leader died, make root leader
-		if = {
-			limit = {
-				scope:leader ?= {
-					NOT = { this = prev }
-					is_alive = no
-				}
-			}
-
-			# Evaluate new leader and companions
-			save_scope_as = leader
-			remove_from_list = companions
-
-			# Update leader and companions for all characters in the group
-			travl_travel_update_leader_and_companions_effect = { COMPANIONS = companions }
-		}
-
-		# If the receiver is no longer valid, change receiver or cancel
+		# If the receiver is no longer valid, log error
 		if = {
 			limit = {
 				scope:receiver ?= {
@@ -150,60 +130,27 @@ travl_on_travel_plan_movement = {
 				}
 			}
 
-			# Determine new receiver
-			travl_set_receiver_effect = yes
-
-			if = {
-				limit = {
-					scope:receiver ?= { is_landed = yes }
-				}
-
-				# Abort current travel plan
-				current_travel_plan ?= {
-					abort_travel_plan = yes
-				}
-				set_location = scope:current_location
-
-				# Set travel variables
-				travl_travel_set_variables_effect = {
-					SENDER = scope:sender
-					RECEIVER = scope:receiver
-					LEADER = scope:leader
-					COMPANIONS = companions
-					EVENT = scope:event
-				}
-
-				# Start new travel plan
-				start_travel_plan = {
-					destination = scope:receiver.capital_province
-					return_trip = no
-					on_arrival_on_action = travl_travel_on_arrival
-					on_arrival_destinations = last
-				}
-
-				travl_debug_log_effect = { MSG = travl_debug_msg_character_receiver_changed }
-			}
-			else = {
-				# Cancel travel
-				current_travel_plan ?= {
-					cancel_travel_plan = yes
-				}
-
-				travl_debug_log_effect = { MSG = travl_debug_msg_character_travel_cancelled }
-
-				# Remove travel variables
-				travl_travel_remove_variables_effect = yes
-			}
+			error_log = travl_debug_msg_invalid_receiver_detected
 		}
+
 		# If the receiver's capital province changed, reroute to new capital province
-		else_if = {
+		if = {
 			limit = {
+				scope:receiver ?= { is_landed = yes }
 				current_travel_plan ?= {
 					NOT = { final_destination_province = scope:receiver.capital_province }
 				}
 			}
 
+			# Suppress events, no need to update leader and companions
+			set_variable = {
+				name = travl_suppress_events
+				value = yes
+				days = 1
+			}
+
 			# Abort current travel plan
+			location = { save_scope_as = current_location }
 			current_travel_plan ?= {
 				abort_travel_plan = yes
 			}
@@ -231,10 +178,13 @@ travl_on_travel_plan_start = {
 	trigger = {
 		has_variable = travl_travel_sender
 		has_variable = travl_travel_receiver
+		NOT = { has_variable = travl_travel_leader }
+		NOT = { has_variable = travl_suppress_events }
 	}
 
 	effect = {
-		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_started }
+		travl_debug_log_effect = { MSG = travl_debug_msg_travel_started }
+		travl_add_leader_or_companion_effect = yes
 	}
 }
 
@@ -282,10 +232,13 @@ travl_on_travel_plan_abort = {
 	trigger = {
 		has_variable = travl_travel_sender
 		has_variable = travl_travel_receiver
+		has_variable = travl_travel_leader
+		NOT = { has_variable = travl_suppress_events }
 	}
 
 	effect = {
-		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_aborted }
+		travl_debug_log_effect = { MSG = travl_debug_msg_travel_aborted }
+		travl_remove_leader_or_companion_effect = yes
 	}
 }
 

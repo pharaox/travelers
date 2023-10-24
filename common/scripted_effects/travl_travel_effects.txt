@@ -31,7 +31,8 @@
 					NOT = { is_foreign_court_guest_of = $RECEIVER$ }
 				}
 
-				# In an army
+				# Is a pool character or in an army
+				is_pool_character = yes
 				is_in_army = yes
 			}
 		}
@@ -42,7 +43,7 @@
 			}
 
 			# Travel from current location to receiver's capital province
-			travl_travel_effect = {
+			travl_start_travel_effect = {
 				SENDER = $SENDER$
 				RECEIVER = $RECEIVER$
 				EVENT = $EVENT$
@@ -78,7 +79,7 @@ travl_travel_to_location_effect = {
 
 			# Travel from saved location to receiver's capital province
 			set_location = var:travl_location
-			travl_travel_effect = {
+			travl_start_travel_effect = {
 				SENDER = scope:traveler
 				RECEIVER = scope:receiver
 				EVENT = $EVENT$
@@ -118,18 +119,36 @@ travl_restore_location_effect = {
 	}
 }
 
-travl_travel_effect = {
+travl_start_travel_effect = {
 	if = {
 		limit = {
 			exists = $RECEIVER$.capital_province
 			NOR = {
-				location = $RECEIVER$.capital_province
-				current_travel_plan ?= {
-					current_location = prev.location
-					final_destination_province = $RECEIVER$.capital_province
+				AND = {
+					is_travelling = no
+					location = $RECEIVER$.capital_province
+				}
+				AND = {
+					current_travel_plan ?= {
+						current_location = prev.location
+						final_destination_province = $RECEIVER$.capital_province
+					}
+					var:travl_travel_receiver ?= $RECEIVER$
 				}
 			}
 		}
+
+		#travl_debug_log_effect = { MSG = travl_debug_msg_starting_travel }
+
+		# Suppress events, we'll update leader and companions manually
+		set_variable = {
+			name = travl_suppress_events
+			value = yes
+			days = 1
+		}
+
+		# Remove character as leader or companion
+		travl_remove_leader_or_companion_effect = yes
 
 		# Abort current travel plan
 		location = { save_scope_as = current_location }
@@ -138,75 +157,23 @@ travl_travel_effect = {
 		}
 		set_location = scope:current_location
 
-		# Find an existing travel leader in the current location
-		location = {
-			random_character_in_location = {
-				limit = {
-					var:travl_travel_receiver ?= $RECEIVER$
-					var:travl_travel_leader ?= this
-					current_travel_plan ?= {
-						final_destination_province = $RECEIVER$.capital_province
-						days_travelled <= 1
-					}
-				}
-				save_scope_as = leader
-			}
+		# Set travel variables
+		travl_set_variables_effect = {
+			SENDER = $SENDER$
+			RECEIVER = $RECEIVER$
+			EVENT = $EVENT$
 		}
 
-		if = {
-			limit = { exists = scope:leader }
+		# Add character as leader or companion
+		travl_add_leader_or_companion_effect = yes
 
-			# Add the current character to the list of companions
-			scope:leader = {
-				travl_travel_get_companions_effect = { COMPANIONS = companions }
-			}
-			add_to_list = companions
-
-			# Set travel variables
-			travl_travel_set_variables_effect = {
-				SENDER = $SENDER$
-				RECEIVER = $RECEIVER$
-				LEADER = scope:leader
-				COMPANIONS = companions
-				EVENT = $EVENT$
-			}
-
-			# Update leader and companions for all characters in the group
-			scope:leader = {
-				travl_travel_update_leader_and_companions_effect = { COMPANIONS = companions }
-			}
-
-			#travl_debug_log_effect = { MSG = travl_debug_msg_staring_travel_as_companion }
-
-			# Start new travel plan
-			start_travel_plan = {
-				destination = $RECEIVER$.capital_province
-				return_trip = no
-				on_start_on_action = travl_travel_on_departure
-				on_arrival_on_action = travl_travel_on_arrival
-				on_arrival_destinations = last
-			}
-		}
-		else = {
-			# Set travel variables
-			travl_travel_set_variables_effect = {
-				SENDER = $SENDER$
-				RECEIVER = $RECEIVER$
-				LEADER = this
-				COMPANIONS = none
-				EVENT = $EVENT$
-			}
-
-			#travl_debug_log_effect = { MSG = travl_debug_msg_staring_travel_as_leader }
-
-			# Start new travel plan
-			start_travel_plan = {
-				destination = $RECEIVER$.capital_province
-				return_trip = no
-				on_start_on_action = travl_travel_on_departure
-				on_arrival_on_action = travl_travel_on_arrival
-				on_arrival_destinations = last
-			}
+		# Start new travel plan
+		start_travel_plan = {
+			destination = $RECEIVER$.capital_province
+			return_trip = no
+			on_start_on_action = travl_travel_on_departure
+			on_arrival_on_action = travl_travel_on_arrival
+			on_arrival_destinations = last
 		}
 	}
 }
@@ -220,6 +187,16 @@ travl_abort_travel_effect = {
 
 		travl_debug_log_effect = { MSG = travl_debug_msg_aborting_travel }
 
+		# Suppress events, we'll update leader and companions manually
+		set_variable = {
+			name = travl_suppress_events
+			value = yes
+			days = 1
+		}
+
+		# Remove character as leader or companion
+		travl_remove_leader_or_companion_effect = yes
+
 		# Abort current travel plan
 		location = { save_scope_as = current_location }
 		current_travel_plan ?= {
@@ -228,31 +205,112 @@ travl_abort_travel_effect = {
 		set_location = scope:current_location
 
 		# Remove travel variables
-		travl_travel_remove_variables_effect = yes
+		travl_remove_variables_effect = yes
 	}
 }
 
-travl_travel_update_leader_and_companions_effect = {
-	set_variable = {
-		name = travl_travel_leader
-		value = this
-		years = 2
-	}
-	travl_travel_set_companions_effect = { COMPANIONS = $COMPANIONS$ }
+travl_add_leader_or_companion_effect = {
+	var:travl_travel_receiver ?= { save_temporary_scope_as = receiver1 }
 
-	every_in_list = {
-		list = $COMPANIONS$
-
-		set_variable = {
-			name = travl_travel_leader
-			value = prev
-			years = 2
+	# Find an existing travel leader in the current location
+	location = {
+		random_character_in_location = {
+			limit = {
+				var:travl_travel_receiver ?= scope:receiver1
+				var:travl_travel_leader ?= this
+				current_travel_plan ?= {
+					final_destination_province = scope:receiver1.capital_province
+					days_travelled <= 1
+				}
+			}
+			save_temporary_scope_as = leader1
 		}
-		travl_travel_set_companions_effect = { COMPANIONS = $COMPANIONS$ }
+	}
+
+	if = {
+		limit = { exists = scope:leader1 }
+
+		# Add character as companion
+		scope:leader1 = {
+			travl_get_companions_effect = { COMPANIONS = companions1 }
+		}
+		add_to_temporary_list = companions1
+	}
+	else = {
+		# Set character as leader
+		save_temporary_scope_as = leader1
+	}
+
+	# Update leader and companions for all characters
+	scope:leader1 ?= {
+		travl_set_leader_and_companions_effect = {
+			LEADER = this
+			COMPANIONS = companions1
+		}
+		every_in_list = {
+			list = companions1
+			travl_set_leader_and_companions_effect = {
+				LEADER = prev
+				COMPANIONS = companions1
+			}
+		}
 	}
 }
 
-travl_travel_set_variables_effect = {
+travl_remove_leader_or_companion_effect = {
+	# Get leader and companions
+	var:travl_travel_leader ?= { save_temporary_scope_as = leader2 }
+	scope:leader2 ?= {
+		travl_get_companions_effect = { COMPANIONS = companions2 }
+	}
+
+	if = {
+		limit = {
+			scope:leader ?= this
+			any_in_list = {
+				list = companions2
+				count > 0
+			}
+		}
+
+		travl_debug_log_effect = { MSG = travl_debug_msg_changing_leader }
+
+		# Set random companion as leader
+		random_in_list = {
+			list = companions2
+			save_temporary_scope_as = leader2
+			remove_from_list = companions2
+		}
+	}
+	else_if = {
+		limit = { is_in_list = companions2 }
+
+		travl_debug_log_effect = { MSG = travl_debug_msg_removing_companion }
+
+		# Remove character as companion
+		remove_from_list = companions2
+	}
+
+	# Update leader and companions for remaining characters
+	scope:leader2 ?= {
+		travl_set_leader_and_companions_effect = {
+			LEADER = this
+			COMPANIONS = companions2
+		}
+		every_in_list = {
+			list = companions2
+			travl_set_leader_and_companions_effect = {
+				LEADER = prev
+				COMPANIONS = companions2
+			}
+		}
+	}
+
+	# Remove leader and companions for this character
+	travl_remove_leader_and_companions_effect = yes
+}
+
+travl_set_variables_effect = {
 	set_variable = {
 		name = travl_travel_sender
 		value = $SENDER$
@@ -264,19 +322,13 @@ travl_travel_set_variables_effect = {
 		years = 2
 	}
 	set_variable = {
-		name = travl_travel_leader
-		value = $LEADER$
-		years = 2
-	}
-	travl_travel_set_companions_effect = { COMPANIONS = $COMPANIONS$ }
-	set_variable = {
 		name = travl_travel_event
 		value = $EVENT$
 		years = 2
 	}
 }
 
-travl_travel_remove_variables_effect = {
+travl_remove_variables_effect = {
 	if = {
 		limit = { has_variable = travl_travel_sender }
 		remove_variable = travl_travel_sender
@@ -286,25 +338,21 @@ travl_travel_remove_variables_effect = {
 		remove_variable = travl_travel_receiver
 	}
 	if = {
-		limit = { has_variable = travl_travel_leader }
-		remove_variable = travl_travel_leader
-	}
-	if = {
-		limit = { has_variable_list = travl_travel_companions }
-		clear_variable_list = travl_travel_companions
-	}
-	if = {
 		limit = { has_variable = travl_travel_event }
 		remove_variable = travl_travel_event
 	}
 }
 
-travl_travel_set_companions_effect = {
-	save_temporary_scope_as = character
+travl_set_leader_and_companions_effect = {
+	set_variable = {
+		name = travl_travel_leader
+		value = $LEADER$
+		years = 2
+	}
 	clear_variable_list = travl_travel_companions
+	save_temporary_scope_as = character
 	every_in_list = {
 		list = $COMPANIONS$
-		limit = { is_alive = yes }
 		scope:character = {
 			add_to_variable_list = {
 				name = travl_travel_companions
@@ -314,18 +362,26 @@ travl_travel_set_companions_effect = {
 	}
 }
 
-travl_travel_get_companions_effect = {
+travl_remove_leader_and_companions_effect = {
+	if = {
+		limit = { has_variable = travl_travel_leader }
+		remove_variable = travl_travel_leader
+	}
+	clear_variable_list = travl_travel_companions
+}
+
+travl_get_companions_effect = {
 	if = {
 		limit = { has_variable_list = travl_travel_companions }
 		every_in_list = {
 			variable = travl_travel_companions
 			limit = { is_alive = yes }
-			add_to_list = $COMPANIONS$
+			add_to_temporary_list = $COMPANIONS$
 		}
 	}
 }
 
-travl_travel_send_messages_effect = {
+travl_send_messages_effect = {
 	save_temporary_scope_as = character
 
 	if = {

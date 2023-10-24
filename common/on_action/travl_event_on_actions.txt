@@ -138,6 +138,9 @@ travl_on_leave_court = {
 			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_left_court }
 			travl_travel_to_location_effect = { EVENT = flag:on_leave_court }
 		}
+		else = {
+			travl_abort_travel_effect = yes
+		}
 	}
 }
 
@@ -162,30 +165,31 @@ on_release_from_prison = {
 
 travl_on_release_from_prison = {
 	effect = {
-		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_released_from_prison }
-
-		# Abort ongoing travel for pool characters
 		if = {
-			limit = { is_pool_character = yes }
-			travl_abort_travel_effect = yes
-		}
+			limit = { is_pool_character = no }
 
-		# Determine sender
-		if = {
-			limit = { exists = scope:imprisoner }
-			scope:imprisoner = { save_scope_as = sender }
+			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_released_from_prison }
+
+			# Determine sender
+			if = {
+				limit = { exists = scope:imprisoner }
+				scope:imprisoner = { save_scope_as = sender }
+			}
+			else = {
+				this = { save_scope_as = sender }
+			}
+
+			# Determine receiver
+			travl_set_receiver_effect = yes
+
+			travl_travel_to_court_effect = {
+				SENDER = scope:sender
+				RECEIVER = scope:receiver
+				EVENT = flag:on_release_from_prison
+			}
 		}
 		else = {
-			this = { save_scope_as = sender }
-		}
-
-		# Determine receiver
-		travl_set_receiver_effect = yes
-
-		travl_travel_to_court_effect = {
-			SENDER = scope:sender
-			RECEIVER = scope:receiver
-			EVENT = flag:on_release_from_prison
+			travl_abort_travel_effect = yes
 		}
 	}
 }
@@ -219,6 +223,9 @@ travl_on_title_lost = {
 			limit = { is_pool_character = no }
 			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_lost_title }
 			travl_travel_to_location_effect = { EVENT = flag:on_title_lost }
+		}
+		else = {
+			travl_abort_travel_effect = yes
 		}
 	}
 }
