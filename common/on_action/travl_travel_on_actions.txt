@@ -239,6 +239,9 @@ travl_on_travel_plan_abort = {
 
 	effect = {
 		travl_debug_log_effect = { MSG = travl_debug_msg_travel_aborted }
+
+		# Remove travel variables
+		travl_remove_variables_effect = yes
 		travl_remove_leader_or_companion_effect = yes
 	}
 }

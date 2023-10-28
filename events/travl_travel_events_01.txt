@@ -6,13 +6,9 @@ travl_travel.0001 = {
 
 	immediate = {
 		every_living_character = {
-			# Track location of non-pool characters that are not in an army
+			# Track location of non-teleporting characters
 			if = {
-				limit = {
-					travl_is_free_pool_character_trigger = no
-					is_in_army = no
-					NOT = { has_variable = gone_adventuring }
-				}
+				limit = { travl_is_teleporting_character_trigger = no }
 
 				if = {
 					limit = { has_variable = travl_location }

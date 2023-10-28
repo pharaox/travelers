@@ -1,12 +1,77 @@
-﻿travl_is_free_pool_character_trigger = {
-	is_pool_character = yes
+﻿travl_is_teleporting_character_trigger = {
 	is_imprisoned = no
+	OR = {
+		is_pool_character = yes
+		is_in_army = yes
+		has_variable = gone_adventuring
+	}
 }
 
 travl_is_travelling_to_receiver_trigger = {
 	var:travl_travel_receiver ?= $RECEIVER$
 	current_travel_plan ?= {
 		final_destination_province = $RECEIVER$.capital_province
+	}
+}
+
+travl_may_travel_to_receiver_trigger = {
+	NOR = {
+		# Imprisoned by somebody else than the receiver
+		AND = {
+			is_imprisoned = yes
+			NOT = { is_imprisoned_by = $RECEIVER$ }
+		}
+
+		# Not imprisoned and somebody else's hostage
+		AND = {
+			is_imprisoned = no
+			is_hostage = yes
+			NOT = { is_hostage_of = $RECEIVER$ }
+		}
+
+		# Not imprisoned and somebody else's guest
+		AND = {
+			is_imprisoned = no
+			is_foreign_court_guest = yes
+			NOT = { is_foreign_court_guest_of = $RECEIVER$ }
+		}
+	}
+}
+
+travl_is_in_vanilla_travel_trigger = {
+	NOT = { has_variable = travl_travel_receiver }
+	is_travelling = yes
+	current_travel_plan ?= {
+		travel_plan_owner = $OWNER$
+	}
+	OR = {
+		NOT = { this = $OWNER$ }
+		is_ruler = yes
+	}
+}
+
+travl_is_joining_travel_trigger = {
+	$OWNER$ = {
+		is_travelling = yes
+		is_landed = yes
+		current_travel_plan ?= {
+			days_travelled > 1
+		}
+	}
+	is_travelling = no
+	OR = {
+		is_at_same_location = $OWNER$
+		has_variable = travl_adding_courtier
+	}
+	OR = {
+		AND = {
+			is_courtier_of = $OWNER$
+			$EVENT$ = flag:on_join_court
+		}
+		AND = {
+			is_imprisoned_by = $OWNER$
+			$EVENT$ = flag:on_imprison
+		}
 	}
 }
 
