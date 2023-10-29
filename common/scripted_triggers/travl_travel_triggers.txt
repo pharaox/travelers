@@ -8,7 +8,10 @@
 }
 
 travl_is_travelling_to_receiver_trigger = {
-	var:travl_travel_receiver ?= $RECEIVER$
+	OR = {
+		NOT = { has_variable = travl_travel_receiver }
+		var:travl_travel_receiver = $RECEIVER$
+	}
 	current_travel_plan ?= {
 		final_destination_province = $RECEIVER$.capital_province
 	}
@@ -20,6 +23,13 @@ travl_may_travel_to_receiver_trigger = {
 		AND = {
 			is_imprisoned = yes
 			NOT = { is_imprisoned_by = $RECEIVER$ }
+		}
+
+		# Not imprisoned, landed, and not the receiver
+		AND = {
+			is_imprisoned = no
+			exists = capital_province
+			NOT = { this = $RECEIVER$ }
 		}
 
 		# Not imprisoned and somebody else's hostage
@@ -35,18 +45,39 @@ travl_may_travel_to_receiver_trigger = {
 			is_foreign_court_guest = yes
 			NOT = { is_foreign_court_guest_of = $RECEIVER$ }
 		}
+
+		# Not imprisoned, hostage, or guest, and somebody else's courtier
+		AND = {
+			is_imprisoned = no
+			is_hostage = no
+			is_foreign_court_guest = no
+			is_courtier = yes
+			NOT = { is_courtier_of = $RECEIVER$ }
+		}
 	}
 }
 
-travl_is_in_vanilla_travel_trigger = {
-	NOT = { has_variable = travl_travel_receiver }
-	is_travelling = yes
+travl_is_in_travel_entourage_of_trigger = {
+	is_travel_entourage_character = yes
 	current_travel_plan ?= {
 		travel_plan_owner = $OWNER$
 	}
+}
+
+travl_is_vanilla_travel_owner_trigger = {
+	is_travelling = yes
+	current_travel_plan ?= {
+		travel_plan_owner = prev
+	}
+	NOT = { has_variable = travl_travel_receiver }
+}
+
+travl_is_vanilla_bp2_traveler_trigger = {
 	OR = {
-		NOT = { this = $OWNER$ }
-		is_ruler = yes
+		has_variable = hostage_travelling_to_warden
+		has_variable = guardian_travelling_to_ward
+		has_variable = ward_travelling_to_guardian
+		has_variable = adoptee_travelling_to_adopter
 	}
 }
 
