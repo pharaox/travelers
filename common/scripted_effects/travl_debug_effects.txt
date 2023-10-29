@@ -26,6 +26,12 @@ travl_debug_log_1_effect = {
 	}
 }
 
+travl_error_log_1_effect = {
+	travl_debug_set_scope_variable_effect = { NAME = $NAME1$ TYPE = $TYPE1$ }
+	error_log = $MSG$
+	travl_debug_remove_scope_variable_effect = { NAME = $NAME1$ TYPE = $TYPE1$ }
+}
+
 travl_debug_set_scope_variable_effect = {
 	if = {
 		limit = {

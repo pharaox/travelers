@@ -49,6 +49,30 @@ travl_travel.0001 = {
 						value = location
 					}
 				}
+
+				# Determine receiver
+				travl_set_receiver_effect = yes
+
+				# Check current location
+				if = {
+					limit = {
+						exists = scope:receiver
+						exists = scope:receiver.capital_province
+						NOR = {
+							is_travelling = yes
+							location = scope:receiver.capital_province
+						}
+					}
+
+					travl_error_log_1_effect = {
+						MSG = travl_error_msg_invalid_character_location_detected
+						NAME1 = receiver TYPE1 = flag:character
+					}
+
+					trigger_event = {
+						on_action = travl_on_invalid_location
+					}
+				}
 			}
 			else = {
 				if = {

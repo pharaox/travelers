@@ -280,6 +280,17 @@ travl_on_teleport = {
 	}
 }
 
+travl_on_invalid_location = {
+	effect = {
+		travl_debug_log_event_effect = { MSG = travl_debug_msg_invalid_character_location_detected }
+
+		travl_travel_effect = {
+			SENDER = this
+			EVENT = flag:on_invalid_location
+		}
+	}
+}
+
 # called when a siege completes. Does *not* fire on reoccupation by province order
 # root is the occupant
 # scope:barony is the barony title that got occupied

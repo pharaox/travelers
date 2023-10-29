@@ -130,7 +130,7 @@ travl_on_travel_plan_movement = {
 				}
 			}
 
-			error_log = travl_debug_msg_invalid_receiver_detected
+			error_log = travl_error_msg_invalid_receiver_detected
 		}
 
 		# If the receiver's capital province changed, reroute to new capital province

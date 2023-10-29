@@ -41,8 +41,10 @@
 
  travl_debug_msg_character_prison_changed: "$travl_debug_prefix$: Character prison changed ($travl_location$)"
  travl_debug_msg_character_teleported: "$travl_debug_prefix$: Character teleported ($travl_location$)"
+ travl_debug_msg_invalid_character_location_detected: "$travl_debug_prefix$: Invalid character location detected ($travl_location$)"
 
- travl_debug_msg_invalid_receiver_detected: "$travl_debug_prefix$: Invalid receiver $travl_travel_receiver$ detected"
+ travl_error_msg_invalid_receiver_detected: "$travl_debug_prefix$: Invalid receiver $travl_travel_receiver$ detected"
+ travl_error_msg_invalid_character_location_detected: "$travl_debug_prefix$: Invalid character location detected, receiver is [THIS.Var('receiver').Char.GetFullNameNoTooltip]"
 
  travl_travel_receiver: "[THIS.Var('travl_travel_receiver').Char.GetFullNameNoTooltip]"
  travl_travel_leader: "[THIS.Var('travl_travel_leader').Char.GetFullNameNoTooltip]"
