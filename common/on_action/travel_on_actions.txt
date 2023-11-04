@@ -8,6 +8,7 @@ game_on_travel_plan_movement = {
 	trigger = {
 		is_landed = yes
 		is_adult = yes
+		is_imprisoned = no # Travelers
 	}
 
 	on_actions = {
@@ -349,6 +350,7 @@ game_on_travel_plan_arrival = {
 			}
 			has_character_flag = in_pilgrimage_event_chain
 		}
+		is_imprisoned = no # Travelers
 	}
 	random_events = {
 		100 = 0
@@ -378,6 +380,7 @@ game_on_travel_plan_start = {
 			}
 		}
 		NOT = { has_character_flag = recently_invalidated_hostage }
+		is_imprisoned = no # Travelers
 	}
 	effect = {
 		if = {
@@ -408,10 +411,16 @@ game_on_travel_plan_start = {
 					any_court_position_holder = {
 						type = court_physician_court_position
 						is_available = yes
+						is_at_same_location = root # Travelers
 					}
 				}
 				random_court_position_holder = {
 					type = court_physician_court_position
+					 # Travelers
+					limit = {
+						is_available = yes
+						is_at_same_location = root
+					}
 					save_scope_as = court_phys
 				}
 				current_travel_plan = {
@@ -429,11 +438,16 @@ game_on_travel_plan_start = {
 					any_court_position_holder = {
 						type = bodyguard_court_position
 						is_available = yes
+						is_at_same_location = root # Travelers
 					}
 				}
 				random_court_position_holder = {
 					type = bodyguard_court_position
-					limit = { is_available = yes }
+					 # Travelers
+					limit = {
+						is_available = yes
+						is_at_same_location = root
+					}
 					save_scope_as = bodyguard
 				}
 				current_travel_plan = {
@@ -536,7 +550,10 @@ on_travel_plan_complete = {
 }
 
 game_on_travel_plan_complete = {
-	trigger = { is_ruler = yes }
+	trigger = {
+		is_ruler = yes
+		is_imprisoned = no # Travelers
+	}
 	first_valid = {
 		pilgrimage.9010 #Bury the old host after finishing the Pilgrimage
 		pilgrimage.9001 #Nice Spiritual Journey
@@ -597,7 +614,10 @@ on_travel_plan_abort = {
 }
 
 game_on_travel_plan_abort = {
-	trigger = { is_ruler = yes }
+	trigger = {
+		is_ruler = yes
+		is_imprisoned = no # Travelers
+	}
 	events = {
 		travel_completion_event.1000
 	}
@@ -619,6 +639,9 @@ on_travel_plan_cancel = {
 }
 
 game_on_travel_plan_cancel = {
+	trigger = {
+		is_imprisoned = no # Travelers
+	}
 	effect = {
 		if = {
 			limit = {
