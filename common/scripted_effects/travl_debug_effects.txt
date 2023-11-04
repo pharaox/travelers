@@ -26,10 +26,30 @@ travl_debug_log_1_effect = {
 	}
 }
 
+travl_debug_log_2_effect = {
+	if = {
+		limit = { debug_only = yes }
+
+		travl_debug_set_scope_variable_effect = { NAME = $NAME1$ TYPE = $TYPE1$ }
+		travl_debug_set_scope_variable_effect = { NAME = $NAME2$ TYPE = $TYPE2$ }
+		debug_log = $MSG$
+		travl_debug_remove_scope_variable_effect = { NAME = $NAME1$ TYPE = $TYPE1$ }
+		travl_debug_remove_scope_variable_effect = { NAME = $NAME2$ TYPE = $TYPE2$ }
+	}
+}
+
 travl_error_log_1_effect = {
 	travl_debug_set_scope_variable_effect = { NAME = $NAME1$ TYPE = $TYPE1$ }
 	error_log = $MSG$
 	travl_debug_remove_scope_variable_effect = { NAME = $NAME1$ TYPE = $TYPE1$ }
+}
+
+travl_error_log_2_effect = {
+	travl_debug_set_scope_variable_effect = { NAME = $NAME1$ TYPE = $TYPE1$ }
+	travl_debug_set_scope_variable_effect = { NAME = $NAME2$ TYPE = $TYPE2$ }
+	error_log = $MSG$
+	travl_debug_remove_scope_variable_effect = { NAME = $NAME1$ TYPE = $TYPE1$ }
+	travl_debug_remove_scope_variable_effect = { NAME = $NAME2$ TYPE = $TYPE2$ }
 }
 
 travl_debug_set_scope_variable_effect = {

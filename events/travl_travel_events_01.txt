@@ -5,7 +5,11 @@ travl_travel.0001 = {
 	hidden = yes
 
 	immediate = {
-		every_living_character = {
+		ordered_living_character = {
+			order_by = highest_held_title_tier
+			max = 100000
+			check_range_bounds = no
+
 			# Track location of non-teleporting characters
 			if = {
 				limit = { travl_is_teleporting_character_trigger = no }
@@ -62,11 +66,6 @@ travl_travel.0001 = {
 							is_travelling = yes
 							location = scope:receiver.capital_province
 						}
-					}
-
-					travl_error_log_1_effect = {
-						MSG = travl_error_msg_invalid_character_location_detected
-						NAME1 = receiver TYPE1 = flag:character
 					}
 
 					trigger_event = {

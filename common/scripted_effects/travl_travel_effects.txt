@@ -107,6 +107,19 @@ travl_start_travel_effect = {
 			}
 		}
 
+		# Check that the receiver's capital is this character's default location
+		if = {
+			limit = {
+				NOT = { default_location = $RECEIVER$.capital_province }
+			}
+			default_location = { save_scope_as = default_location }
+			travl_error_log_2_effect = {
+				MSG = travl_error_msg_starting_travel_to_non_default_location
+				NAME1 = receiver TYPE1 = flag:character
+				NAME2 = default_location TYPE2 = flag:location
+			}
+		}
+
 		#travl_debug_log_effect = { MSG = travl_debug_msg_starting_travel }
 
 		# Suppress events, we'll update leader and companions manually
@@ -446,5 +459,60 @@ travl_add_courtier_effect = {
 		}
 	}
 	add_courtier = $COURTIER$
+}
+
+travl_notify_courtiers_effect = {
+	# Trigger on_liege_title_change event for prisoners, hostages, guests, and courtiers not in capital
+	save_scope_as = liege
+	if = {
+		limit = {
+			is_alive = yes
+			exists = capital_province
+		}
+
+		every_prisoner = {
+			add_to_temporary_list = courtiers
+		}
+		every_warden_hostage = {
+			limit = { is_imprisoned = no }
+			add_to_temporary_list = courtiers
+		}
+		every_foreign_court_guest = {
+			limit = { is_imprisoned = no }
+			add_to_temporary_list = courtiers
+		}
+		every_pool_guest = {
+			limit = { is_imprisoned = no }
+			add_to_temporary_list = courtiers
+		}
+		every_courtier = {
+			limit = {
+				is_imprisoned = no
+				is_hostage = no
+				is_foreign_court_guest = no
+			}
+			add_to_temporary_list = courtiers
+		}
+
+		every_in_list = {
+			list = courtiers
+			limit = {
+				travl_is_teleporting_character_trigger = no
+				NOR = {
+					is_travelling = yes
+					AND = {
+						location = scope:liege.capital_province
+						OR = {
+							NOT = { has_variable = travl_location }
+							var:travl_location = location
+						}
+					}
+				}
+			}
+			trigger_event = {
+				on_action = travl_on_liege_title_change
+			}
+		}
+	}
 }
 
