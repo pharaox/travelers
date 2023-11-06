@@ -4,24 +4,31 @@
  travl_debug_msg_initialized: "[GetCurrentDate.GetStringShort]: Travelers mod initialized"
 
  travl_debug_msg_starting_travel: "$travl_debug_prefix$: Starting travel ($travl_travel_event$)"
- travl_debug_msg_aborting_travel: "$travl_debug_prefix$: Aborting travel ($travl_travel_event$)"
- travl_debug_msg_restoring_location: "$travl_debug_prefix$: Restoring location ($travl_location$)"
+ travl_debug_msg_adding_entourage_character: "$travl_debug_prefix$: Adding entourage character ($travl_travel_event$)"
+ travl_debug_msg_aborting_travel: "$travl_debug_prefix$: Aborting travel ($travl_travel_event$)" # Rare
+ travl_debug_msg_restoring_location: "$travl_debug_prefix$: Restoring location ($travl_location$)" # Rare
+ travl_debug_msg_adding_companion_mid_travel: "$travl_debug_prefix$: Adding companion mid-travel ($travl_travel_event$)" # Rare
 
- travl_debug_msg_changing_leader: "$travl_debug_prefix$: Changing travel leader"
- travl_debug_msg_removing_companion: "$travl_debug_prefix$: Removing travel companion"
+ travl_debug_msg_changing_leader: "$travl_debug_prefix$: Changing travel leader" # Rare
+ travl_debug_msg_removing_companion: "$travl_debug_prefix$: Removing travel companion" # Rare
 
  travl_debug_msg_character_departed_leader: "$travl_debug_prefix$: Character departed for $travl_travel_receiver$'s court as leader ($travl_travel_event$)"
  travl_debug_msg_character_departed_companion: "$travl_debug_prefix$: Character departed for $travl_travel_receiver$'s court as companion of $travl_travel_leader$ ($travl_travel_event$)"
+ travl_debug_msg_character_departed_entourage: "$travl_debug_prefix$: Character departed for $travl_travel_receiver$'s court as entourage of $travl_travel_owner$ ($travl_travel_event$)"
  travl_debug_msg_character_arrived_leader: "$travl_debug_prefix$: Character arrived at $travl_travel_receiver$'s court as leader"
  travl_debug_msg_character_arrived_companion: "$travl_debug_prefix$: Character arrived at $travl_travel_receiver$'s court as companion of $travl_travel_leader$"
- travl_debug_msg_character_destination_changed: "$travl_debug_prefix$: Character travel to $travl_travel_receiver$'s court destination changed"
+ travl_debug_msg_character_arrived_entourage: "$travl_debug_prefix$: Character arrived at $travl_travel_receiver$'s court as entourage of $travl_travel_owner$"
 
  travl_debug_msg_travel_moved: "$travl_debug_prefix$: Travel plan to $travl_travel_receiver$'s court moved"
  travl_debug_msg_travel_started: "$travl_debug_prefix$: Travel plan to $travl_travel_receiver$'s court started"
  travl_debug_msg_travel_arrived: "$travl_debug_prefix$: Travel plan to $travl_travel_receiver$'s court arrived"
  travl_debug_msg_travel_completed: "$travl_debug_prefix$: Travel plan to $travl_travel_receiver$'s court completed"
- travl_debug_msg_travel_aborted: "$travl_debug_prefix$: Travel plan to $travl_travel_receiver$'s court aborted"
+ travl_debug_msg_travel_aborted: "$travl_debug_prefix$: Travel plan to $travl_travel_receiver$'s court aborted" # Rare
  travl_debug_msg_travel_cancelled: "$travl_debug_prefix$: Travel plan to $travl_travel_receiver$'s court cancelled"
+ travl_debug_msg_travel_leader_removed: "$travl_debug_prefix$: Travel plan to $travl_travel_receiver$'s court travel leader removed"
+
+ travl_debug_msg_entourage_character_added: "$travl_debug_prefix$: Character added to $travl_travel_owner$'s entourage" # Rare
+ travl_debug_msg_entourage_character_removed: "$travl_debug_prefix$: Character removed from $travl_travel_owner$'s entourage" # Rare
 
  travl_debug_msg_character_married_major: "$travl_debug_prefix$: Character married as major partner ($travl_location$)"
  travl_debug_msg_character_married_minor: "$travl_debug_prefix$: Character married as minor partner ($travl_location$)"
@@ -39,16 +46,17 @@
  travl_debug_msg_character_gained_title: "$travl_debug_prefix$: Character gained title ($travl_location$)"
  travl_debug_msg_character_lost_title: "$travl_debug_prefix$: Character lost title ($travl_location$)"
 
- travl_debug_msg_liege_titles_changed: "$travl_debug_prefix$: Liege titles changed ($travl_location$)"
+ travl_debug_msg_invalid_receiver_detected: "$travl_debug_prefix$: Invalid receiver $travl_travel_receiver$ detected" # Rare
+ travl_debug_msg_character_destination_changed: "$travl_debug_prefix$: Character travel to $travl_travel_receiver$'s court destination changed" # Rare
+ travl_debug_msg_liege_event_happened: "$travl_debug_prefix$: Liege event happened ($travl_location$)"
  travl_debug_msg_character_teleported: "$travl_debug_prefix$: Character teleported ($travl_location$)"
  travl_debug_msg_invalid_character_location_detected: "$travl_debug_prefix$: Invalid character location detected ($travl_location$)"
 
- travl_error_msg_invalid_receiver_detected: "$travl_debug_prefix$: Invalid receiver $travl_travel_receiver$ detected"
- travl_error_msg_invalid_character_location_detected: "$travl_debug_prefix$: Invalid character location detected, receiver is [THIS.Var('receiver').Char.GetFullNameNoTooltip]"
  travl_error_msg_starting_travel_to_non_default_location: "$travl_debug_prefix$: Starting travel to non-default location, receiver is [THIS.Var('receiver').Char.GetFullNameNoTooltip], default location is [THIS.Var('default_location').Province.GetNameNoTooltip]"
 
  travl_travel_receiver: "[THIS.Var('travl_travel_receiver').Char.GetFullNameNoTooltip]"
  travl_travel_leader: "[THIS.Var('travl_travel_leader').Char.GetFullNameNoTooltip]"
+ travl_travel_owner: "[THIS.Var('travl_travel_owner').Char.GetFullNameNoTooltip]"
  travl_travel_event: "[THIS.Var('travl_travel_event').GetFlagName]"
  travl_location: "[THIS.Var('travl_location').Province.GetNameNoTooltip]"
 

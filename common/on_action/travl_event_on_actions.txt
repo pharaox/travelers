@@ -237,13 +237,51 @@ travl_on_title_lost = {
 	}
 }
 
-travl_on_liege_title_change = {
+travl_on_invalid_receiver = {
 	effect = {
-		#travl_debug_log_effect = { MSG = travl_debug_msg_liege_titles_changed }
+		travl_debug_log_effect = { MSG = travl_debug_msg_invalid_receiver_detected }
+
+		if = {
+			limit = { travl_is_teleporting_character_trigger = no }
+			travl_travel_effect = {
+				SENDER = this
+				EVENT = flag:on_invalid_receiver
+			}
+		}
+		else = {
+			travl_abort_travel_effect = yes
+		}
+
+		travl_notify_courtiers_effect = yes
+	}
+}
+
+travl_on_destination_changed = {
+	effect = {
+		travl_debug_log_effect = { MSG = travl_debug_msg_character_destination_changed }
+
+		if = {
+			limit = { travl_is_teleporting_character_trigger = no }
+			travl_travel_effect = {
+				SENDER = this
+				EVENT = flag:on_destination_changed
+			}
+		}
+		else = {
+			travl_abort_travel_effect = yes
+		}
+
+		travl_notify_courtiers_effect = yes
+	}
+}
+
+travl_on_liege_event = {
+	effect = {
+		#travl_debug_log_effect = { MSG = travl_debug_msg_liege_event_happened }
 
 		travl_travel_effect = {
 			SENDER = this
-			EVENT = flag:on_liege_title_change
+			EVENT = flag:on_liege_event
 		}
 	}
 }

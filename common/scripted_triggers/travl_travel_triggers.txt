@@ -14,6 +14,7 @@ travl_is_travelling_to_receiver_trigger = {
 	}
 	current_travel_plan ?= {
 		final_destination_province = $RECEIVER$.capital_province
+		is_aborted = no
 	}
 }
 
@@ -61,6 +62,7 @@ travl_is_in_travel_entourage_of_trigger = {
 	is_travel_entourage_character = yes
 	current_travel_plan ?= {
 		travel_plan_owner = $OWNER$
+		is_aborted = no
 	}
 }
 

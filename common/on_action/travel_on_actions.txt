@@ -617,6 +617,7 @@ game_on_travel_plan_abort = {
 	trigger = {
 		is_ruler = yes
 		is_imprisoned = no # Travelers
+		NOT = { has_variable = travl_suppress_events }
 	}
 	events = {
 		travel_completion_event.1000
@@ -789,8 +790,14 @@ on_travel_activity_estimated_arrival_too_late = {
 # scope:travel_plan - The travel plan
 # scope:old_travel_leader - The now removed leader.
 on_travel_leader_removed = {
+	on_actions = { game_on_travel_leader_removed }
+}
+
+game_on_travel_leader_removed = {
 	trigger = {
 		is_landed = yes
+		is_imprisoned = no # Travelers
+		NOT = { exists = current_travel_plan.travel_leader }
 	}
 	events = {
 		travel_events.1020 # Provides the option to employ a new travel leader from your entourage or your current location
