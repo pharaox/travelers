@@ -102,6 +102,9 @@ on_join_court = {
 travl_on_join_court = {
 	effect = {
 		#travl_debug_log_effect = { MSG = travl_debug_msg_character_joined_court }
+
+		travl_notify_liege_effect = yes
+
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
 			travl_travel_effect = {
@@ -110,7 +113,7 @@ travl_on_join_court = {
 			}
 		}
 		else = {
-			travl_abort_travel_effect = yes
+			travl_abort_travel_effect = { EVENT = flag:on_join_court }
 		}
 	}
 }
@@ -126,6 +129,9 @@ on_leave_court = {
 travl_on_leave_court = {
 	effect = {
 		#travl_debug_log_effect = { MSG = travl_debug_msg_character_left_court }
+
+		travl_notify_liege_effect = yes
+
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
 			travl_travel_effect = {
@@ -134,7 +140,7 @@ travl_on_leave_court = {
 			}
 		}
 		else = {
-			travl_abort_travel_effect = yes
+			travl_abort_travel_effect = { EVENT = flag:on_leave_court }
 		}
 	}
 }
@@ -148,6 +154,7 @@ on_imprison = {
 travl_on_imprison = {
 	effect = {
 		#travl_debug_log_effect = { MSG = travl_debug_msg_character_imprisoned }
+
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
 			travl_travel_effect = {
@@ -156,7 +163,7 @@ travl_on_imprison = {
 			}
 		}
 		else = {
-			travl_abort_travel_effect = yes
+			travl_abort_travel_effect = { EVENT = flag:on_imprison }
 		}
 	}
 }
@@ -170,6 +177,7 @@ on_release_from_prison = {
 travl_on_release_from_prison = {
 	effect = {
 		#travl_debug_log_effect = { MSG = travl_debug_msg_character_released_from_prison }
+
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
 			travl_travel_effect = {
@@ -178,7 +186,7 @@ travl_on_release_from_prison = {
 			}
 		}
 		else = {
-			travl_abort_travel_effect = yes
+			travl_abort_travel_effect = { EVENT = flag:on_release_from_prison }
 		}
 	}
 }
@@ -203,7 +211,7 @@ travl_on_title_gain = {
 			}
 		}
 		else = {
-			travl_abort_travel_effect = yes
+			travl_abort_travel_effect = { EVENT = flag:on_title_gain }
 		}
 
 		travl_notify_courtiers_effect = yes
@@ -230,7 +238,7 @@ travl_on_title_lost = {
 			}
 		}
 		else = {
-			travl_abort_travel_effect = yes
+			travl_abort_travel_effect = { EVENT = flag:on_title_lost }
 		}
 
 		travl_notify_courtiers_effect = yes
@@ -249,29 +257,25 @@ travl_on_invalid_receiver = {
 			}
 		}
 		else = {
-			travl_abort_travel_effect = yes
+			travl_abort_travel_effect = { EVENT = flag:on_invalid_receiver }
 		}
-
-		travl_notify_courtiers_effect = yes
 	}
 }
 
-travl_on_destination_changed = {
+travl_on_invalid_destination = {
 	effect = {
-		travl_debug_log_effect = { MSG = travl_debug_msg_character_destination_changed }
+		travl_debug_log_effect = { MSG = travl_debug_msg_invalid_destination_detected }
 
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
 			travl_travel_effect = {
 				SENDER = this
-				EVENT = flag:on_destination_changed
+				EVENT = flag:on_invalid_destination
 			}
 		}
 		else = {
-			travl_abort_travel_effect = yes
+			travl_abort_travel_effect = { EVENT = flag:on_invalid_destination }
 		}
-
-		travl_notify_courtiers_effect = yes
 	}
 }
 
@@ -282,6 +286,17 @@ travl_on_liege_event = {
 		travl_travel_effect = {
 			SENDER = this
 			EVENT = flag:on_liege_event
+		}
+	}
+}
+
+travl_on_courtier_event = {
+	effect = {
+		#travl_debug_log_effect = { MSG = travl_debug_msg_courtier_event_happened }
+
+		travl_travel_effect = {
+			SENDER = this
+			EVENT = flag:on_courtier_event
 		}
 	}
 }

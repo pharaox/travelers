@@ -8,11 +8,13 @@
 }
 
 travl_is_travelling_to_receiver_trigger = {
-	OR = {
-		NOT = { has_variable = travl_travel_receiver }
-		var:travl_travel_receiver = $RECEIVER$
-	}
 	current_travel_plan ?= {
+		travel_plan_owner = {
+			OR = {
+				NOT = { has_variable = travl_travel_receiver }
+				var:travl_travel_receiver = $RECEIVER$
+			}
+		}
 		final_destination_province = $RECEIVER$.capital_province
 		is_aborted = no
 	}
@@ -133,6 +135,25 @@ travl_is_near_current_location_trigger = {
 					this = scope:character.location
 				}
 			}
+		}
+	}
+}
+
+travl_should_notify_trigger = {
+	OR = {
+		is_travelling = no
+		current_travel_plan ?= {
+			OR = {
+				is_aborted = yes
+				NOT = { final_destination_province = $LIEGE$.capital_province }
+			}
+		}
+	}
+	NAND = {
+		location = $LIEGE$.capital_province
+		OR = {
+			NOT = { has_variable = travl_location }
+			var:travl_location = location
 		}
 	}
 }

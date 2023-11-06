@@ -8,7 +8,9 @@
 		var:travl_travel_sender ?= { save_scope_as = sender }
 		var:travl_travel_receiver ?= { save_scope_as = receiver }
 		var:travl_travel_leader ?= { save_scope_as = leader }
-		travl_get_companions_effect = { COMPANIONS = companions }
+		scope:leader ?= {
+			travl_get_companions_effect = { COMPANIONS = companions }
+		}
 
 		# Ensure the character is at the current location
 		location = { save_scope_as = current_location }
@@ -20,11 +22,18 @@
 		if = {
 			limit = { scope:leader ?= this }
 
+			# Get all travelers (leader, companions, and their entourages)
+			travl_get_travelers_effect = {
+				LEADER = scope:leader
+				COMPANIONS = companions
+				TRAVELERS = travelers
+			}
+
 			# Send departure messages
 			travl_send_messages_effect = {
 				SENDER = scope:sender
 				RECEIVER = scope:receiver
-				COMPANIONS = companions
+				TRAVELERS = travelers
 				TITLE = travl_msg_departed_for_court
 				TEXT = travl_departed_for_court_tt
 			}
@@ -39,9 +48,13 @@
 			travl_debug_log_effect = { MSG = travl_debug_msg_character_departed_companion }
 		}
 		current_travel_plan ?= {
+			travel_plan_owner = { save_temporary_scope_as = owner }
 			every_entourage_character = {
-				limit = { has_variable = travl_travel_owner }
-				travl_debug_log_effect = { MSG = travl_debug_msg_character_departed_entourage }
+				travl_debug_log_2_effect = {
+					MSG = travl_debug_msg_character_departed_entourage
+					NAME1 = receiver TYPE1 = flag:character
+					NAME2 = owner TYPE2 = flag:character
+				}
 			}
 		}
 	}
@@ -57,7 +70,9 @@ travl_travel_on_arrival = {
 		var:travl_travel_sender ?= { save_scope_as = sender }
 		var:travl_travel_receiver ?= { save_scope_as = receiver }
 		var:travl_travel_leader ?= { save_scope_as = leader }
-		travl_get_companions_effect = { COMPANIONS = companions }
+		scope:leader ?= {
+			travl_get_companions_effect = { COMPANIONS = companions }
+		}
 
 		# Ensure the character is at the destination
 		location = { save_scope_as = current_location }
@@ -72,17 +87,23 @@ travl_travel_on_arrival = {
 			# Ensure companions arrive as well
 			every_in_list = {
 				list = companions
-				limit = { is_travel_entourage_character = no }
 				current_travel_plan ?= {
 					add_destination_progress = { years = 2 }
 				}
+			}
+
+			# Get all travelers (leader, companions, and their entourages)
+			travl_get_travelers_effect = {
+				LEADER = scope:leader
+				COMPANIONS = companions
+				TRAVELERS = travelers
 			}
 
 			# Send arrival messages
 			travl_send_messages_effect = {
 				SENDER = scope:sender
 				RECEIVER = scope:receiver
-				COMPANIONS = companions
+				TRAVELERS = travelers
 				TITLE = travl_msg_arrived_at_court
 				TEXT = travl_arrived_at_court_tt
 			}
@@ -97,25 +118,19 @@ travl_travel_on_arrival = {
 			travl_debug_log_effect = { MSG = travl_debug_msg_character_arrived_companion }
 		}
 		current_travel_plan ?= {
+			travel_plan_owner = { save_temporary_scope_as = owner }
 			every_entourage_character = {
-				limit = { has_variable = travl_travel_owner }
-				travl_debug_log_effect = { MSG = travl_debug_msg_character_arrived_entourage }
+				travl_debug_log_2_effect = {
+					MSG = travl_debug_msg_character_arrived_entourage
+					NAME1 = receiver TYPE1 = flag:character
+					NAME2 = owner TYPE2 = flag:character
+				}
 			}
 		}
 
 		# Remove travel variables
 		travl_remove_sender_and_receiver_effect = yes
 		travl_remove_leader_and_companions_effect = yes
-		travl_remove_owner_effect = yes
-
-		# Remove travel variables from entourage characters
-		current_travel_plan ?= {
-			every_entourage_character = {
-				travl_remove_sender_and_receiver_effect = yes
-				travl_remove_leader_and_companions_effect = yes
-				travl_remove_owner_effect = yes
-			}
-		}
 	}
 }
 
@@ -136,7 +151,9 @@ travl_on_travel_plan_movement = {
 		var:travl_travel_sender ?= { save_scope_as = sender }
 		var:travl_travel_receiver ?= { save_scope_as = receiver }
 		var:travl_travel_leader ?= { save_scope_as = leader }
-		travl_get_companions_effect = { COMPANIONS = companions }
+		scope:leader ?= {
+			travl_get_companions_effect = { COMPANIONS = companions }
+		}
 
 		# Ensure the character is at the current location
 		location = { save_scope_as = current_location }
@@ -145,55 +162,47 @@ travl_on_travel_plan_movement = {
 		}
 		set_location = scope:current_location
 
-		# Trigger on_entourage_added for newly added entourage characters
-		current_travel_plan ?= {
-			travel_plan_owner = { save_scope_as = owner }
-			every_entourage_character = {
-				limit = {
-					NOT = { has_variable = travl_travel_receiver }
-				}
-				trigger_event = {
-					on_action = travl_on_entourage_character_added
-				}
-			}
-		}
-
-		# Trigger on_entourage_removed for newly removed entourage characters
-		every_in_list = {
-			list = companions
-			limit = {
-				var:travl_travel_owner ?= prev
-				is_travel_entourage_character = no
-			}
-			trigger_event = {
-				on_action = travl_on_entourage_character_removed
-			}
-		}
-
-		# If the receiver is no longer valid, trigger on_invalid_receiver event
 		if = {
-			limit = {
-				scope:receiver ?= {
-					NAND = {
-						is_alive = yes
-						exists = capital_province
+			limit = { scope:leader ?= this }
+
+			# Get all travelers (leader, companions, and their entourages)
+			travl_get_travelers_effect = {
+				LEADER = scope:leader
+				COMPANIONS = companions
+				TRAVELERS = travelers
+			}
+
+			# If the receiver is no longer valid, trigger on_invalid_receiver event
+			# If the destination is no longer valid, trigger on_invalid_destination event
+			if = {
+				limit = {
+					scope:receiver ?= {
+						NAND = {
+							is_alive = yes
+							exists = capital_province
+						}
+					}
+				}
+				every_in_list = {
+					list = travelers
+					trigger_event = {
+						on_action = travl_on_invalid_receiver
 					}
 				}
 			}
-			trigger_event = {
-				on_action = travl_on_invalid_receiver
-			}
-		}
-		# If the receiver's capital province changed, trigger on_destination_changed event
-		else_if = {
-			limit = {
-				scope:receiver ?= { exists = capital_province }
-				current_travel_plan ?= {
-					NOT = { final_destination_province = scope:receiver.capital_province }
+			else_if = {
+				limit = {
+					scope:receiver ?= { exists = capital_province }
+					current_travel_plan ?= {
+						NOT = { final_destination_province = scope:receiver.capital_province }
+					}
 				}
-			}
-			trigger_event = {
-				on_action = travl_on_destination_changed
+				every_in_list = {
+					list = travelers
+					trigger_event = {
+						on_action = travl_on_invalid_destination
+					}
+				}
 			}
 		}
 	}
@@ -269,16 +278,6 @@ travl_on_travel_plan_abort = {
 		# Remove travel variables
 		travl_remove_sender_and_receiver_effect = yes
 		travl_remove_leader_or_companion_effect = yes
-		travl_remove_owner_effect = yes
-
-		# Remove travel variables from entourage characters
-		current_travel_plan ?= {
-			every_entourage_character = {
-				travl_remove_sender_and_receiver_effect = yes
-				travl_remove_leader_or_companion_effect = yes
-				travl_remove_owner_effect = yes
-			}
-		}
 	}
 }
 
@@ -316,29 +315,5 @@ travl_on_travel_leader_removed = {
 
 	effect = {
 		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_leader_removed }
-	}
-}
-
-travl_on_entourage_character_added = {
-	effect = {
-		travl_set_sender_and_receiver_effect = {
-			SENDER = scope:sender
-			RECEIVER = scope:receiver
-			EVENT = flag:on_entourage_added
-		}
-		travl_add_leader_or_companion_effect = yes
-		travl_set_owner_effect = { OWNER = scope:owner }
-
-		travl_debug_log_effect = { MSG = travl_debug_msg_entourage_character_added }
-	}
-}
-
-travl_on_entourage_character_removed = {
-	effect = {
-		travl_debug_log_effect = { MSG = travl_debug_msg_entourage_character_removed }
-
-		travl_remove_sender_and_receiver_effect = yes
-		travl_remove_leader_or_companion_effect = yes
-		travl_remove_owner_effect = yes
 	}
 }
