@@ -44,8 +44,7 @@
 			limit = { scope:leader ?= this }
 			travl_debug_log_effect = { MSG = travl_debug_msg_character_departed_leader }
 		}
-		else_if = {
-			limit = { is_in_list = companions }
+		else = {
 			travl_debug_log_effect = { MSG = travl_debug_msg_character_departed_companion }
 		}
 		current_travel_plan ?= {
@@ -114,8 +113,7 @@ travl_travel_on_arrival = {
 			limit = { scope:leader ?= this }
 			travl_debug_log_effect = { MSG = travl_debug_msg_character_arrived_leader }
 		}
-		else_if = {
-			limit = { is_in_list = companions }
+		else = {
 			travl_debug_log_effect = { MSG = travl_debug_msg_character_arrived_companion }
 		}
 		current_travel_plan ?= {

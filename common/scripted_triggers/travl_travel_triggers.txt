@@ -10,6 +10,7 @@
 travl_is_travelling_to_receiver_trigger = {
 	current_travel_plan ?= {
 		travel_plan_owner = {
+			is_alive = yes
 			OR = {
 				NOT = { has_variable = travl_travel_receiver }
 				var:travl_travel_receiver = $RECEIVER$
@@ -69,6 +70,7 @@ travl_is_in_travel_entourage_of_trigger = {
 }
 
 travl_is_vanilla_travel_owner_trigger = {
+	is_alive = yes
 	is_travelling = yes
 	current_travel_plan ?= {
 		travel_plan_owner = prev

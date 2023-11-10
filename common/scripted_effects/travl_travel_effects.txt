@@ -148,11 +148,24 @@ travl_start_travel_effect = {
 		set_location = scope:current_location
 
 		# Determine travel owner
-		travl_set_travel_owner_effect = yes
+		if = {
+			limit = {
+				$RECEIVER$ = { is_at_same_location = prev }
+			}
+			$RECEIVER$ = { save_scope_as = travel_owner }
+		}
+		else_if = {
+			limit = {
+				is_imprisoned = yes
+				liege ?= { is_at_same_location = prev }
+			}
+			liege = { save_scope_as = travel_owner }
+		}
 
 		if = {
 			limit = {
 				is_ruler = no
+				is_travelling = no
 				scope:travel_owner ?= {
 					is_ruler = yes
 					is_at_same_location = prev
@@ -550,38 +563,6 @@ travl_set_receiver_effect = {
 	else_if = {
 		limit = { exists = liege }
 		liege = { save_scope_as = receiver }
-	}
-}
-
-travl_set_travel_owner_effect = {
-	if = {
-		limit = { is_imprisoned = yes }
-		if = {
-			limit = { exists = capital_province }
-			save_scope_as = travel_owner
-		}
-		else_if = {
-			limit = { exists = liege }
-			liege = { save_scope_as = travel_owner }
-		}
-	}
-	else = {
-		if = {
-			limit = { exists = capital_province }
-			save_scope_as = travel_owner
-		}
-		else_if = {
-			limit = { exists = warden }
-			warden = { save_scope_as = travel_owner }
-		}
-		else_if = {
-			limit = { exists = host }
-			host = { save_scope_as = travel_owner }
-		}
-		else_if = {
-			limit = { exists = liege }
-			liege = { save_scope_as = travel_owner }
-		}
 	}
 }
 
