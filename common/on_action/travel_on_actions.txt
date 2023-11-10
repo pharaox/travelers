@@ -553,6 +553,9 @@ game_on_travel_plan_complete = {
 	trigger = {
 		is_ruler = yes
 		is_imprisoned = no # Travelers
+		current_travel_plan ?= {
+			NOT = { has_travel_plan_modifier = travl_is_imprisoned_modifier }
+		}
 	}
 	first_valid = {
 		pilgrimage.9010 #Bury the old host after finishing the Pilgrimage
@@ -617,7 +620,9 @@ game_on_travel_plan_abort = {
 	trigger = {
 		is_ruler = yes
 		is_imprisoned = no # Travelers
-		NOT = { has_variable = travl_suppress_events }
+		current_travel_plan ?= {
+			NOT = { has_travel_plan_modifier = travl_is_imprisoned_modifier }
+		}
 	}
 	events = {
 		travel_completion_event.1000

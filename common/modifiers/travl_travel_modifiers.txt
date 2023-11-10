@@ -1,0 +1,4 @@
+﻿travl_is_imprisoned_modifier = {
+	icon = prison_negative
+	travel_safety = 10
+}

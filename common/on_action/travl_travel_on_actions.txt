@@ -2,6 +2,7 @@
 	trigger = {
 		has_variable = travl_travel_sender
 		has_variable = travl_travel_receiver
+		has_variable = travl_travel_event
 	}
 
 	effect = {
@@ -131,6 +132,9 @@ travl_travel_on_arrival = {
 		# Remove travel variables
 		travl_remove_sender_and_receiver_effect = yes
 		travl_remove_leader_and_companions_effect = yes
+
+		# Send added entourage characters to pool
+		travl_send_added_characters_to_pool_effect = yes
 	}
 }
 
@@ -268,7 +272,6 @@ travl_on_travel_plan_abort = {
 	trigger = {
 		has_variable = travl_travel_sender
 		has_variable = travl_travel_receiver
-		has_variable = travl_travel_leader
 		NOT = { has_variable = travl_suppress_events }
 	}
 
@@ -278,6 +281,9 @@ travl_on_travel_plan_abort = {
 		# Remove travel variables
 		travl_remove_sender_and_receiver_effect = yes
 		travl_remove_leader_or_companion_effect = yes
+
+		# Send added entourage characters to pool
+		travl_send_added_characters_to_pool_effect = yes
 	}
 }
 
@@ -296,24 +302,5 @@ travl_on_travel_plan_cancel = {
 
 	effect = {
 		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_cancelled }
-	}
-}
-
-# If the travel leader gets removed (not replaced), this will trigger.
-# Root - The owner of the travel plan
-# scope:travel_plan - The travel plan
-# scope:old_travel_leader - The now removed leader.
-on_travel_leader_removed = {
-	on_actions = { travl_on_travel_leader_removed }
-}
-
-travl_on_travel_leader_removed = {
-	trigger = {
-		has_variable = travl_travel_sender
-		has_variable = travl_travel_receiver
-	}
-
-	effect = {
-		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_leader_removed }
 	}
 }
