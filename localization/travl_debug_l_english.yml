@@ -24,7 +24,6 @@
  travl_debug_msg_travel_completed: "$travl_debug_prefix$: Travel plan to $travl_travel_receiver$'s court completed"
  travl_debug_msg_travel_aborted: "$travl_debug_prefix$: Travel plan to $travl_travel_receiver$'s court aborted" # Rare
  travl_debug_msg_travel_cancelled: "$travl_debug_prefix$: Travel plan to $travl_travel_receiver$'s court cancelled"
- travl_debug_msg_travel_leader_removed: "$travl_debug_prefix$: Travel plan to $travl_travel_receiver$'s court travel leader removed"
 
  travl_debug_msg_character_married_major: "$travl_debug_prefix$: Character married as major partner ($travl_location$)"
  travl_debug_msg_character_married_minor: "$travl_debug_prefix$: Character married as minor partner ($travl_location$)"
