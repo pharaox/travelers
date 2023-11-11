@@ -55,7 +55,10 @@ add_to_entourage_court_and_activity_effect = {
 				travl_add_courtier_effect = { COURTIER = $CHAR_TO_ADD$ }
 			}
 			if = {
-				limit = { exists = involved_activity }
+				limit = {
+					exists = involved_activity
+					$CHAR_TO_ADD$ = { can_join_activity = $NEW_COURT_OWNER$.involved_activity }
+				}
 				$CHAR_TO_ADD$ = { add_to_activity = $NEW_COURT_OWNER$.involved_activity }
 			}
 			hidden_effect = {
