@@ -245,6 +245,35 @@ travl_on_title_lost = {
 	}
 }
 
+# Called when realm capital changes. It can be manual move, loss in conquest, move after inheritance,
+# move when granted a better title, becoming landed for the first time
+# root: New realm capital barony
+# scope:old_capital - previous capital barony. Can be empty, can be owned by someone else
+on_realm_capital_change = {
+	on_actions = { travl_on_realm_capital_change }
+}
+
+travl_on_realm_capital_change = {
+	effect = {
+		holder = {
+			#travl_debug_log_effect = { MSG = travl_debug_msg_realm_capital_changed }
+
+			if = {
+				limit = { travl_is_teleporting_character_trigger = no }
+				travl_travel_effect = {
+					SENDER = this
+					EVENT = flag:on_realm_capital_change
+				}
+			}
+			else = {
+				travl_abort_travel_effect = { EVENT = flag:on_realm_capital_change }
+			}
+
+			travl_notify_courtiers_effect = yes
+		}
+	}
+}
+
 travl_on_invalid_receiver = {
 	effect = {
 		travl_debug_log_effect = { MSG = travl_debug_msg_invalid_receiver_detected }
