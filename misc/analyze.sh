@@ -1,35 +1,36 @@
 #!/usr/bin/env bash
 
 # Departures and arrivals
-echo "Departed as leader: $(grep -a "Character departed for .*'s court as leader" debug.log | wc -l)"
-echo "Departed as companion: $(grep -a "Character departed for .*'s court as companion of" debug.log | wc -l)"
-echo "Departed as entourage: $(grep -a "Character departed for .*'s court as entourage of" debug.log | wc -l)"
-echo "- No event: $(grep -a "Character departed for .*'s court as entourage of .* (-)" debug.log | wc -l)"
-echo "Arrived as leader: $(grep -a "Character arrived at .*'s court as leader" debug.log | wc -l)"
-echo "Arrived as companion: $(grep -a "Character arrived at .*'s court as companion of" debug.log | wc -l)"
-echo "Arrived as entourage: $(grep -a "Character arrived at .*'s court as entourage of" debug.log | wc -l)"
+echo "Departed as leader: $(grep -a "Character departed for .*'s court as leader" debug.log | uniq | wc -l)"
+echo "Departed as companion: $(grep -a "Character departed for .*'s court as companion of" debug.log | uniq | wc -l)"
+echo "Departed as entourage: $(grep -a "Character departed for .*'s court as entourage of" debug.log | uniq | wc -l)"
+echo "- No event: $(grep -a "Character departed for .*'s court as entourage of .* (-)" debug.log | uniq | wc -l)"
+echo "Arrived as leader: $(grep -a "Character arrived at .*'s court as leader" debug.log | uniq | wc -l)"
+echo "Arrived as companion: $(grep -a "Character arrived at .*'s court as companion of" debug.log | uniq | wc -l)"
+echo "Arrived as entourage: $(grep -a "Character arrived at .*'s court as entourage of" debug.log | uniq | wc -l)"
 echo
 
 # Events
-echo "on_join_court: $(grep -a "on_join_court" debug.log | wc -l)"
-echo "on_leave_court: $(grep -a "on_leave_court" debug.log | wc -l)"
-echo "on_imprison: $(grep -a "on_imprison" debug.log | wc -l)"
-echo "on_release_from_prison: $(grep -a "on_release_from_prison" debug.log | wc -l)"
-echo "on_title_gain: $(grep -a "on_title_gain" debug.log | wc -l)"
-echo "on_title_lost: $(grep -a "on_title_lost" debug.log | wc -l)"
-echo "on_invalid_receiver: $(grep -a "on_invalid_receiver" debug.log | wc -l)"
-echo "on_invalid_destination: $(grep -a "on_invalid_destination" debug.log | wc -l)"
-echo "on_liege_event: $(grep -a "on_liege_event" debug.log | wc -l)"
-echo "on_courtier_event: $(grep -a "on_courtier_event" debug.log | wc -l)"
-echo "on_teleport: $(grep -a "on_teleport" debug.log | wc -l)"
-echo "on_invalid_location: $(grep -a "on_invalid_location" debug.log | wc -l)"
+echo "on_join_court: $(grep -a "on_join_court" debug.log | uniq | wc -l)"
+echo "on_leave_court: $(grep -a "on_leave_court" debug.log | uniq | wc -l)"
+echo "on_imprison: $(grep -a "on_imprison" debug.log | uniq | wc -l)"
+echo "on_release_from_prison: $(grep -a "on_release_from_prison" debug.log | uniq | wc -l)"
+echo "on_title_gain: $(grep -a "on_title_gain" debug.log | uniq | wc -l)"
+echo "on_title_lost: $(grep -a "on_title_lost" debug.log | uniq | wc -l)"
+echo "on_invalid_receiver: $(grep -a "on_invalid_receiver" debug.log | uniq | wc -l)"
+echo "on_invalid_destination: $(grep -a "on_invalid_destination" debug.log | uniq | wc -l)"
+echo "on_liege_event: $(grep -a "on_liege_event" debug.log | uniq | wc -l)"
+echo "on_courtier_event: $(grep -a "on_courtier_event" debug.log | uniq | wc -l)"
+echo "on_teleport: $(grep -a "on_teleport" debug.log | uniq | wc -l)"
+echo "on_invalid_location: $(grep -a "on_invalid_location" debug.log | uniq | wc -l)"
 echo
 
 # Rare (actions)
-echo "Aborting travel: $(grep -a "Aborting travel" debug.log | wc -l)"
-echo "Restoring location: $(grep -a "Restoring location" debug.log | wc -l)"
-echo "Changing travel leader: $(grep -a "Changing travel leader" debug.log | wc -l)"
-echo "Removing travel companion: $(grep -a "Removing travel companion" debug.log | wc -l)"
+echo "Aborting travel before starting: $(grep -a "Aborting travel before starting" debug.log | uniq | wc -l)"
+echo "Aborting travel: $(grep -a "Aborting travel (" debug.log | uniq | wc -l)"
+echo "Restoring location: $(grep -a "Restoring location" debug.log | uniq | wc -l)"
+echo "Changing travel leader: $(grep -a "Changing travel leader" debug.log | uniq | wc -l)"
+echo "Removing travel companion: $(grep -a "Removing travel companion" debug.log | uniq | wc -l)"
 echo
 
 # Rare (events)

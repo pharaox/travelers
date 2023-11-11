@@ -4,7 +4,10 @@
  travl_debug_msg_initialized: "[GetCurrentDate.GetStringShort]: Travelers mod initialized"
 
  travl_debug_msg_starting_travel: "$travl_debug_prefix$: Starting travel ($travl_travel_event$)"
+ travl_debug_msg_starting_travel_with_travel_leader: "$travl_debug_prefix$: Starting travel with travel leader ($travl_travel_event$)"
+ travl_debug_msg_recruited_as_travel_leader: "$travl_debug_prefix$: Recruited as travel leader"
  travl_debug_msg_adding_entourage_character: "$travl_debug_prefix$: Adding entourage character ($travl_travel_event$)"
+ travl_debug_msg_aborting_travel_before_starting: "$travl_debug_prefix$: Aborting travel before starting ($travl_travel_event$)" # Rare
  travl_debug_msg_aborting_travel: "$travl_debug_prefix$: Aborting travel ($travl_travel_event$)" # Rare
  travl_debug_msg_restoring_location: "$travl_debug_prefix$: Restoring location ($travl_location$)" # Rare
 

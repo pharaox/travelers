@@ -6,17 +6,17 @@
 	}
 
 	effect = {
-		var:travl_travel_sender ?= { save_scope_as = sender }
-		var:travl_travel_receiver ?= { save_scope_as = receiver }
-		var:travl_travel_leader ?= { save_scope_as = leader }
+		var:travl_travel_sender ?= { save_temporary_scope_as = sender }
+		var:travl_travel_receiver ?= { save_temporary_scope_as = receiver }
+		var:travl_travel_leader ?= { save_temporary_scope_as = leader }
 		scope:leader ?= {
 			travl_get_companions_effect = { COMPANIONS = companions }
 		}
 
 		# Ensure the character is at the current location
-		location = { save_scope_as = current_location }
+		location = { save_temporary_scope_as = current_location }
 		current_travel_plan ?= {
-			current_location = { save_scope_as = current_location }
+			current_location = { save_temporary_scope_as = current_location }
 		}
 		set_location = scope:current_location
 
@@ -67,17 +67,17 @@ travl_travel_on_arrival = {
 	}
 
 	effect = {
-		var:travl_travel_sender ?= { save_scope_as = sender }
-		var:travl_travel_receiver ?= { save_scope_as = receiver }
-		var:travl_travel_leader ?= { save_scope_as = leader }
+		var:travl_travel_sender ?= { save_temporary_scope_as = sender }
+		var:travl_travel_receiver ?= { save_temporary_scope_as = receiver }
+		var:travl_travel_leader ?= { save_temporary_scope_as = leader }
 		scope:leader ?= {
 			travl_get_companions_effect = { COMPANIONS = companions }
 		}
 
 		# Ensure the character is at the destination
-		location = { save_scope_as = current_location }
+		location = { save_temporary_scope_as = current_location }
 		current_travel_plan ?= {
-			final_destination_province = { save_scope_as = current_location }
+			final_destination_province = { save_temporary_scope_as = current_location }
 		}
 		set_location = scope:current_location
 
@@ -150,17 +150,17 @@ travl_on_travel_plan_movement = {
 	effect = {
 		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_moved }
 
-		var:travl_travel_sender ?= { save_scope_as = sender }
-		var:travl_travel_receiver ?= { save_scope_as = receiver }
-		var:travl_travel_leader ?= { save_scope_as = leader }
+		var:travl_travel_sender ?= { save_temporary_scope_as = sender }
+		var:travl_travel_receiver ?= { save_temporary_scope_as = receiver }
+		var:travl_travel_leader ?= { save_temporary_scope_as = leader }
 		scope:leader ?= {
 			travl_get_companions_effect = { COMPANIONS = companions }
 		}
 
 		# Ensure the character is at the current location
-		location = { save_scope_as = current_location }
+		location = { save_temporary_scope_as = current_location }
 		current_travel_plan ?= {
-			current_location = { save_scope_as = current_location }
+			current_location = { save_temporary_scope_as = current_location }
 		}
 		set_location = scope:current_location
 
