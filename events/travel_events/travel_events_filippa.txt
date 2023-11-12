@@ -7436,7 +7436,7 @@ travel_events.2020 = {
 		if = {
 			limit = {
 				faith = {
-					NOT = { has_doctrine = doctrine_witchcraft_accepted }
+					NOT = { has_doctrine_parameter = witchcraft_accepted }
 				}
 			}
 			add_piety = major_piety_loss
@@ -7479,7 +7479,7 @@ travel_events.2020 = {
 		if = {
 			limit = {
 				faith = {
-					NOT = { has_doctrine = doctrine_witchcraft_accepted }
+					NOT = { has_doctrine_parameter = witchcraft_accepted }
 				}
 			}
 			add_piety = massive_piety_loss
@@ -7537,7 +7537,7 @@ travel_events.2020 = {
 		if = {
 			limit = {
 				faith = {
-					NOT = { has_doctrine = doctrine_witchcraft_accepted }
+					NOT = { has_doctrine_parameter = witchcraft_accepted }
 				}
 			}
 			add_piety = massive_piety_loss
@@ -7616,7 +7616,7 @@ travel_events.2020 = {
 		if = {
 			limit = {
 				faith = {
-					NOT = { has_doctrine = doctrine_witchcraft_accepted }
+					NOT = { has_doctrine_parameter = witchcraft_accepted }
 				}
 			}
 			add_piety = major_piety_gain
@@ -8193,12 +8193,12 @@ travel_events.2022 = {
 				AND = {
 					NOT = { scope:county_liege = root }
 					scope:county_liege.faith = {
-						NOT = { has_doctrine = doctrine_witchcraft_accepted }
+						NOT = { has_doctrine_parameter = witchcraft_accepted }
 					}
 				}
 				AND = {
 					faith = {
-						NOT = { has_doctrine = doctrine_witchcraft_accepted }
+						NOT = { has_doctrine_parameter = witchcraft_accepted }
 					}
 				}
 			}
@@ -8208,7 +8208,7 @@ travel_events.2022 = {
 			limit = {
 				scope:county_liege = root
 				faith = {
-					NOT = { has_doctrine = doctrine_witchcraft_accepted }
+					NOT = { has_doctrine_parameter = witchcraft_accepted }
 				}
 			}
 			#Get reward
@@ -8220,7 +8220,7 @@ travel_events.2022 = {
 		if = {
 			limit = {
 				scope:county_liege.faith = {
-					NOT = { has_doctrine = doctrine_witchcraft_accepted }
+					NOT = { has_doctrine_parameter = witchcraft_accepted }
 				}
 			}
 			#Get reward
@@ -8315,11 +8315,11 @@ travel_events.2022 = {
 				AND = {
 					NOT = { scope:county_liege = root }
 					scope:county_liege.faith = {
-						NOT = { has_doctrine = doctrine_witchcraft_accepted }
+						NOT = { has_doctrine_parameter = witchcraft_accepted }
 					}
 				}
 				faith = {
-					NOT = { has_doctrine = doctrine_witchcraft_accepted }
+					NOT = { has_doctrine_parameter = witchcraft_accepted }
 				}
 			}
 		}
@@ -8328,7 +8328,7 @@ travel_events.2022 = {
 			limit = {
 				scope:county_liege = root
 				faith = {
-					NOT = { has_doctrine = doctrine_witchcraft_accepted }
+					NOT = { has_doctrine_parameter = witchcraft_accepted }
 				}
 			}
 			#Get reward
@@ -8356,14 +8356,14 @@ travel_events.2022 = {
 			limit = {
 				NOT = { scope:county_liege = root }
 				scope:county_liege.faith = {
-					NOT = { has_doctrine = doctrine_witchcraft_accepted }
+					NOT = { has_doctrine_parameter = witchcraft_accepted }
 				}
 			}
 			#Get reward
 			if = {
 				limit = {
 					faith = {
-						NOT = { has_doctrine = doctrine_witchcraft_accepted }
+						NOT = { has_doctrine_parameter = witchcraft_accepted }
 					}
 				}
 				add_piety = massive_piety_gain
@@ -10016,7 +10016,7 @@ travel_events.2028 = {
 		custom_tooltip = travel_events.2028.b.tt
 		remove_short_term_gold = medium_gold_value
 		add_character_flag = hired_architect
-		travl_add_courtier_effect = { COURTIER = scope:budding_architect }
+		travl_add_courtier_effect = { COURTIER = scope:budding_architect } # Travelers
 		if = {
 			limit = {
 				employs_court_position = royal_architect_court_position
@@ -11066,7 +11066,7 @@ travel_events.2032 = {
 		name = travel_events.2032.b
 		remove_short_term_gold = minor_gold_value
 		add_character_flag = hired_physician
-		travl_add_courtier_effect = { COURTIER = scope:herbalist_character }
+		travl_add_courtier_effect = { COURTIER = scope:herbalist_character } # Travelers
 		if = {
 			limit = {
 				employs_court_position = court_physician_court_position
@@ -13889,7 +13889,8 @@ travel_events.2040 = {
 							track = foot
 							value = tournament_hastiludes_xp_gain_major_value
 						}
-						dynasty = { add_dynasty_prestige = minor_dynasty_prestige_gain }
+						# Travelers: Adapted Unofficial Patch changes
+						dynasty ?= { add_dynasty_prestige = root.dynasty.minor_dynasty_prestige_gain }
 					}
     				else_if = {
     					limit = {
@@ -13903,7 +13904,8 @@ travel_events.2040 = {
     					add_martial_lifestyle_xp = major_lifestyle_xp
     				}
     				else = {
-    					dynasty = { add_dynasty_prestige = minor_dynasty_prestige_gain }
+						# Travelers: Adapted Unofficial Patch changes
+    					dynasty ?= { add_dynasty_prestige = root.dynasty.minor_dynasty_prestige_gain }
     				}
     				scope:2037_manhunt_prisoner = {
 		    			death = {

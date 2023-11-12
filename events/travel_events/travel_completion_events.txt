@@ -19,7 +19,7 @@ travel_completion_event.1000 = {
 		# are we home or somewhere abroad?
 		first_valid = {
 			triggered_desc = {
-				trigger = { location = root.default_location }
+					trigger = { location = root.default_location }
 				desc = travel_completion_event.1000.desc.home
 			}
 			# Travelers: Mention reaching final destination only for vanilla travel
@@ -76,7 +76,10 @@ travel_completion_event.1000 = {
 	}
 	theme = realm
 	override_background = { reference = terrain }
-	override_icon = "gfx/interface/icons/event_types/type_travel_stewardship.dds"
+	override_icon = {
+		trigger = { always = yes }
+		reference = "gfx/interface/icons/event_types/type_travel_stewardship.dds"
+	}
 	left_portrait = {
 		character = root
 		animation = happiness
@@ -165,8 +168,17 @@ travel_completion_event.1000 = {
 				limit = {
 					has_character_flag = travel_option_added_character
 				}
+				remove_character_flag = travel_option_added_character
 				select_and_move_to_pool_effect = yes
+				if = {
+					limit = { has_character_flag = in_pilgrimage_event_chain } # Travelers: Adapt Unofficial Patch changes
+					remove_character_flag = in_pilgrimage_event_chain #Unop: Fallback cleanup
+				}
 			}
+		}
+		if = {
+			limit = { has_character_flag = in_pilgrimage_event_chain } # Travelers: Adapt Unofficial Patch changes
+			remove_character_flag = in_pilgrimage_event_chain #Unop: Fallback cleanup
 		}
 	}
 

@@ -525,7 +525,7 @@ travel_events.1001 = {
 		trigger = {
 			scope:shoeless_peasant = { is_landed = no }
 		}
-		travl_add_courtier_effect = { COURTIER = scope:shoeless_peasant }
+		travl_add_courtier_effect = { COURTIER = scope:shoeless_peasant } # Travelers
 		root.current_travel_plan = {
 			add_companion = scope:shoeless_peasant
 		}
@@ -1206,7 +1206,7 @@ travel_events.1010 = {
 			target = scope:great_travel_leader_option
 			gold = high_skill_court_physician_cost
 		}
-		travl_add_courtier_effect = { COURTIER = scope:great_travel_leader_option }
+		travl_add_courtier_effect = { COURTIER = scope:great_travel_leader_option } # Travelers
 		if = {
 			limit = {
 				can_employ_court_position_type = travel_leader_court_position
@@ -1248,7 +1248,7 @@ travel_events.1010 = {
 			target = scope:good_travel_leader_option
 			gold = low_skill_court_physician_cost
 		}
-		travl_add_courtier_effect = { COURTIER = scope:good_travel_leader_option }
+		travl_add_courtier_effect = { COURTIER = scope:good_travel_leader_option } # Travelers
 		if = {
 			limit = {
 				can_appoint_char_to_court_position = {
@@ -1656,7 +1656,7 @@ travel_events.1020 = {
 			limit = {
 				NOT = { scope:temp_caravan_master_option_1 = { is_courtier_of = root } }
 			}
-			travl_add_courtier_effect = { COURTIER = scope:temp_caravan_master_option_1 }
+			travl_add_courtier_effect = { COURTIER = scope:temp_caravan_master_option_1 } # Travelers
 		}
 		if = {
 			limit = {
@@ -1693,7 +1693,7 @@ travel_events.1020 = {
 			limit = {
 				NOT = { scope:temp_caravan_master_option_2 = { is_courtier_of = root } }
 			}
-			travl_add_courtier_effect = { COURTIER = scope:temp_caravan_master_option_2 }
+			travl_add_courtier_effect = { COURTIER = scope:temp_caravan_master_option_2 } # Travelers
 		}
 		if = {
 			limit = {
@@ -1898,7 +1898,7 @@ travel_events.2200 = {
 				}
 				send_interface_toast = {
 					add_prestige = minor_prestige_gain
-					travl_add_courtier_effect = { COURTIER = scope:local_knight }
+					travl_add_courtier_effect = { COURTIER = scope:local_knight } # Travelers
 					root.current_travel_plan = {
 						add_companion = scope:local_knight
 					}
@@ -1983,7 +1983,7 @@ travel_events.2200 = {
 						}
 					}
 					root = {
-						travl_add_courtier_effect = { COURTIER = scope:local_knight }
+						travl_add_courtier_effect = { COURTIER = scope:local_knight } # Travelers
 						current_travel_plan = {
 							add_companion = scope:local_knight
 						}
