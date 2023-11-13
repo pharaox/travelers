@@ -28,3 +28,8 @@ This mod is compatible with all other mods, including total conversion mods such
 [/list]
 
 For more information, see the mod [url=https://github.com/pharaox/travelers/blob/main/README.md]README[/url].
+
+If you like this mod, you may also consider my other mods:
+[list]
+  [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2962238514]Search & Trade Artifacts[/url]
+[/list]
