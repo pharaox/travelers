@@ -1081,7 +1081,7 @@ travel_danger_events.3003 = { #Snowbound, all terrain, winter present
 					title = travel_danger_events.3003.a.success
 					left_icon = scope:maron_leader
 
-					travl_add_courtier_effect = { COURTIER = scope:maron_leader }
+					travl_add_courtier_effect = { COURTIER = scope:maron_leader } # Travelers
 					root.current_travel_plan = {
 						add_companion = scope:maron_leader
 					}

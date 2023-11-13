@@ -1273,7 +1273,7 @@ travel_danger_events.1009 = { # Occupied Territory: Good intentions
 	option = { # Join us!
 		name = travel_danger_events.1009.c
 
-		travl_add_courtier_effect = { COURTIER = scope:zombie }
+		travl_add_courtier_effect = { COURTIER = scope:zombie } # Travelers
 		current_travel_plan = {
 			add_companion = scope:zombie
 			if = {
