@@ -1,13 +1,24 @@
 # Changelog
 
+## Version 0.2.0
+
+### Compatibility
+
+* Adapted to CK3 1.11.0
+
 ## Version 0.1.0
 
 ### Interactions
 
-* Modified *Invite to Court* interaction (`invite_to_court_interaction`). Characters now travel to the court of their new liege after being recruited.
 * Added *Invite Characters to Court* convenience interaction (`travl_invite_courtiers_interaction`).
+
+### On_actions
+
+* Added travel to home on `on_join_court`, `on_leave_court`, `on_imprison`, `on_release_from_prison`, `on_title_gain`, `on_title_lost` on_actions.
+* Added a *teleport detector* and the `on_teleport` and `on_invalid_location` custom on_actions.
+* Added special handling for traveling imprisoned rulers.
 
 ### Miscellaneous
 
-* Added travel system for non-ruler characters.
-* Added dynamic pregnancy chances.
+* Adapted vanilla travel options and travel event files.
+* Added extensive debug logging.

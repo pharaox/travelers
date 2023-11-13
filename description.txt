@@ -1,0 +1,30 @@
+[h2]Overview[/h2]
+
+Ever wondered why hostages or wards must travel to your court, but spouses, invited courtiers, or prisoners can instantly teleport to it from hundreds of miles away? Or why you can magically teleport to your new realm capital together with all of your courtiers, guests, and prisoners?
+
+If you did, you no longer need to wait for Paradox to fix it. With this mod, characters always travel to their default location when it changes instead of teleporting, no matter if it changed due to marriage, invitation, imprisonment or release from prison, becoming a guest, becoming landed for the first time, or realm capital change.
+
+To ensure that important vanilla mechanics are not negatively affected, wandering and adventuring characters, as well those in an army are still able to teleport. Characters will also not interrupt any ongoing vanilla travel except in cases they would previously have teleported.
+
+Not only do they travel, but they often don't do it alone. When multiple characters in the same location start travel to the same destination, they form a group with a single leader and one or more companions. If the leader is a ruler, the other travelers may join their entourage. Otherwise, each character travels alone in vanilla terms (since non-ruler characters can't have entourages), but they all arrive together. In both cases, the player is informed about the departure or arrival with a single message that lists all members of the group.
+
+Since character homes may change mid-travel, such groups may lose members, change their destination, split, or disband altogether, but every character should eventually arrive at their correct home.
+
+While traveling, rulers and their entourage may get some of the vanilla travel and danger events. As a result, some of them may die or leave, and others may join. Rulers can also select a travel leader, add travel options, and get experience on arrival. Non-ruler characters currently don't get any travel events, since none are available in vanilla.
+
+Prisoners are a special case. Imprisoned rulers are assigned a "prison guard" travel leader, can't add travel options, don't get events or experience, and may only be joined by other imprisoned characters.
+
+Finally, this mod also adds an [b]Invite Characters to Court[/b] convenience interaction that lists all characters that would accept [b]Invite to Court[/b].
+
+[h2]Compatibility[/h2]
+
+The current version is compatible with CK3 1.11.
+
+This mod is compatible with all other mods, including total conversion mods such as AGOT and EK2, except for mods making similar changes to the travel system. I strongly recommend using also the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2871648329]Unofficial Patch[/url] mod as it fixes many vanilla travel issues. Put this mod after the Unofficial Patch in the load order.
+
+[h2]Links[/h2]
+[list]
+  [*] [url=https://github.com/pharaox/travelers]GitHub Repository[/url]
+[/list]
+
+For more information, see the mod [url=https://github.com/pharaox/travelers/blob/main/README.md]README[/url].
