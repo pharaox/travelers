@@ -22,6 +22,18 @@ The current version is compatible with CK3 1.11.
 
 This mod is compatible with all other mods, including total conversion mods such as AGOT and EK2, except for mods making similar changes to the travel system. I strongly recommend using also the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2871648329]Unofficial Patch[/url] mod as it fixes many vanilla travel issues. Put this mod after the Unofficial Patch in the load order.
 
+[h2]Performance[/h2]
+
+To achieve its goals, this mod introduces a [i]teleport detector[/i] that tracks the location of every non-teleporting character and triggers events on certain situations. This has a negative impact on the overall game performance that might be noticeable on lower-end machines. To avoid this, you can use game rules to make it slightly less accurate but much faster.
+[list]
+  [*] Disabling [b]Teleport Detector Events[/b] will result in no travel taking place in certain teleport or invalid location situations that contribute less than 10% of all travel caused by this mod.
+  [*] Increasing the [b]Teleport Detector Interval[/b] might result in incorrect travel in some rare cases (up to less than 0.5% of all travel caused by this mod).
+[/list]
+
+I measured that the slowest and most accurate setup is 65% slower than vanilla, while the fastest and least accurate is only 5-8% slower.
+
+As a recommendation, if you don't notice any performance issues, just leave the default settings. Otherwise, disable [b]Teleport Detector Events[/b] and optionally increase [b]Teleport Detector Interval[/b] until the issue is solved.
+
 [h2]Links[/h2]
 [list]
   [*] [url=https://github.com/pharaox/travelers]GitHub Repository[/url]

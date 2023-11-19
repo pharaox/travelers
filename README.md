@@ -84,6 +84,29 @@ Unlike rulers that travel to their own realm capital, imprisoned rulers travelin
 
 To make it easier for players to find targets for the **Invite to Court** interaction, this mod adds an **Invite Characters to Court** convenience interaction that lists all characters that would accept such an invitation. This interaction redirects to **Invite to Court** for the selected target so that players may see their reasons for accepting.
 
+## Performance
+
+The *teleport detector* mentioned previously tracks the location of every non-teleporting character and triggers the `on_teleport` and `on_invalid_location` on_actions whenever one of these situations is detected. To achieve this, it activates on a regular basis and checks most living characters. This has a negative impact on the overall game performance that might be noticeable on lower-end machines.
+
+By default, the teleport detector triggers the on_actions mentioned above and activates daily. This setup is the most accurate, but also the slowest. To avoid the performance strain on lower-end machines, you can use game rules to make it slightly less accurate but much faster:
+
+* The **Teleport Detector Events** game rule allows disabling the `on_teleport` and `on_invalid_location` on_actions. When they are disabled, the teleport detector is effectively a lightweight location tracker that only updates a single variable per character. As a result, all travel triggered by vanilla events will still be accurate, but no travel will take place when characters teleport due to other reasons, or when they find themselves in an invalid location. These situations contribute less than 10% of all travel caused by this mod.
+* The **Teleport Detector Interval** game rule allows specifying if the detector should activate every 1, 2, or 5 days. Increasing this interval will result in a significant performance gain, but might also result in incorrect travel in some rare cases (up to less than 0.5% of all travel caused by this mod).
+
+The following table contains the times in seconds for 1, 2, 5, and 10 game years and different game rule combinations, measured on my own computer with CK3 1.11.0.1 and the Travelers 0.2.1, on max speed, in observer mode, and using the 867 game start:
+
+| Setup | Events | Interval | 1y (s) | 2y (s) | 5y (s) | 10y (s) | Impact (%) |
+|---|---|---:|---:|---:|---:|---:|---:|
+| Vanilla | - | - | 11 | 22 | 56 | 119 | - |
+| Events, 1d | Yes | 1d | 16 | 33 | 88 | 196 | 60-65% |
+| No Events, 1d | No | 1d | 14 | 29 | 76 | 167 | 35-40% |
+| No Events, 2d | No | 2d | 13 | 26 | 67 | 145 | 18-20% |
+| No Events, 5d | No | 5d | 12 | 23 | 60 | 129 | 5-8% |
+
+As you can see, the slowest and most accurate setup is 65% slower than vanilla, while the fastest and least accurate is only 5-8% slower.
+
+As a recommendation, if you don't notice any performance issues, just leave the default settings. Otherwise, disable **Teleport Detector Events** and optionally increase **Teleport Detector Interval** until the issue is solved.
+
 ## Links
 
 * [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=xxx)

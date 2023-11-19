@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 0.2.1
+
+### Performance
+
+* Improved the teleport detector performance.
+* Improved location tracking accuracy by adding it to most events.
+* Added game rules to fine tune the teleport detector performance on lower-end machines.
+
 ## Version 0.2.0
 
 ### Compatibility
