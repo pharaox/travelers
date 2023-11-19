@@ -1,0 +1,7 @@
+﻿travl_debug_has_incorrect_saved_location = {
+	debug_only = yes
+	has_variable = travl_debug_location
+	has_variable = travl_location
+	NOT = { var:travl_location = var:travl_debug_location }
+	#var:travl_location_date < var:travl_debug_location_date
+}

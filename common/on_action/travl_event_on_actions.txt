@@ -1,7 +1,7 @@
 ﻿# Called from code after history generation
 # Empty scope
 on_game_start = {
-	on_actions = { travl_on_init }
+	on_actions = { travl_on_init } # travl_on_debug_init
 }
 
 travl_on_init = {
@@ -17,6 +17,18 @@ travl_on_init = {
 	}
 }
 
+travl_on_debug_init = {
+	trigger = {
+		NOT = { has_global_variable = travl_debug_initialized }
+	}
+	events = {
+		travl_debug.0001
+	}
+	effect = {
+		set_global_variable = travl_debug_initialized
+	}
+}
+
 # Characters getting married
 # root = Major partner of the marriage
 # scope:spouse = Minor partner of the marriage
@@ -26,11 +38,17 @@ on_marriage = {
 
 travl_on_marriage = {
 	effect = {
-		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_married_major }
-		travl_restore_location_effect = yes
-		scope:spouse = {
-			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_married_minor }
+		if = {
+			limit = { travl_is_teleporting_character_trigger = no }
+			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_married_major }
 			travl_restore_location_effect = yes
+		}
+		scope:spouse = {
+			if = {
+				limit = { travl_is_teleporting_character_trigger = no }
+				travl_debug_log_event_effect = { MSG = travl_debug_msg_character_married_minor }
+				travl_restore_location_effect = yes
+			}
 		}
 	}
 }
@@ -45,11 +63,17 @@ on_divorce = {
 
 travl_on_divorce = {
 	effect = {
-		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_divorced }
-		travl_restore_location_effect = yes
-		scope:spouse = {
-			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_was_divorced }
+		if = {
+			limit = { travl_is_teleporting_character_trigger = no }
+			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_divorced }
 			travl_restore_location_effect = yes
+		}
+		scope:spouse = {
+			if = {
+				limit = { travl_is_teleporting_character_trigger = no }
+				travl_debug_log_event_effect = { MSG = travl_debug_msg_character_was_divorced }
+				travl_restore_location_effect = yes
+			}
 		}
 	}
 }
@@ -63,11 +87,17 @@ on_concubinage = {
 
 travl_on_concubinage = {
 	effect = {
-		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_took_concubine }
-		travl_restore_location_effect = yes
-		scope:concubine = {
-			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_was_taken_concubine }
+		if = {
+			limit = { travl_is_teleporting_character_trigger = no }
+			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_took_concubine }
 			travl_restore_location_effect = yes
+		}
+		scope:concubine = {
+			if = {
+				limit = { travl_is_teleporting_character_trigger = no }
+				travl_debug_log_event_effect = { MSG = travl_debug_msg_character_was_taken_concubine }
+				travl_restore_location_effect = yes
+			}
 		}
 	}
 }
@@ -82,11 +112,17 @@ on_concubinage_end = {
 
 travl_on_concubinage_end = {
 	effect = {
-		travl_debug_log_event_effect = { MSG = travl_debug_msg_character_released_concubine }
-		travl_restore_location_effect = yes
-		scope:concubine = {
-			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_was_released_concubine }
+		if = {
+			limit = { travl_is_teleporting_character_trigger = no }
+			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_released_concubine }
 			travl_restore_location_effect = yes
+		}
+		scope:concubine = {
+			if = {
+				limit = { travl_is_teleporting_character_trigger = no }
+				travl_debug_log_event_effect = { MSG = travl_debug_msg_character_was_released_concubine }
+				travl_restore_location_effect = yes
+			}
 		}
 	}
 }
@@ -111,9 +147,11 @@ travl_on_join_court = {
 				SENDER = scope:old_employer
 				EVENT = flag:on_join_court
 			}
+			travl_set_location_effect = yes
 		}
 		else = {
 			travl_abort_travel_effect = { EVENT = flag:on_join_court }
+			travl_remove_location_effect = yes
 		}
 	}
 }
@@ -138,9 +176,11 @@ travl_on_leave_court = {
 				SENDER = scope:old_employer
 				EVENT = flag:on_leave_court
 			}
+			travl_set_location_effect = yes
 		}
 		else = {
 			travl_abort_travel_effect = { EVENT = flag:on_leave_court }
+			travl_remove_location_effect = yes
 		}
 	}
 }
@@ -161,9 +201,11 @@ travl_on_imprison = {
 				SENDER = this
 				EVENT = flag:on_imprison
 			}
+			travl_set_location_effect = yes
 		}
 		else = {
 			travl_abort_travel_effect = { EVENT = flag:on_imprison }
+			travl_remove_location_effect = yes
 		}
 	}
 }
@@ -184,9 +226,11 @@ travl_on_release_from_prison = {
 				SENDER = scope:imprisoner
 				EVENT = flag:on_release_from_prison
 			}
+			travl_set_location_effect = yes
 		}
 		else = {
 			travl_abort_travel_effect = { EVENT = flag:on_release_from_prison }
+			travl_remove_location_effect = yes
 		}
 	}
 }
@@ -209,9 +253,11 @@ travl_on_title_gain = {
 				SENDER = this
 				EVENT = flag:on_title_gain
 			}
+			travl_set_location_effect = yes
 		}
 		else = {
 			travl_abort_travel_effect = { EVENT = flag:on_title_gain }
+			travl_remove_location_effect = yes
 		}
 
 		travl_notify_courtiers_effect = yes
@@ -236,9 +282,11 @@ travl_on_title_lost = {
 				SENDER = this
 				EVENT = flag:on_title_lost
 			}
+			travl_set_location_effect = yes
 		}
 		else = {
 			travl_abort_travel_effect = { EVENT = flag:on_title_lost }
+			travl_remove_location_effect = yes
 		}
 
 		travl_notify_courtiers_effect = yes
@@ -264,9 +312,11 @@ travl_on_realm_capital_change = {
 					SENDER = this
 					EVENT = flag:on_realm_capital_change
 				}
+				travl_set_location_effect = yes
 			}
 			else = {
 				travl_abort_travel_effect = { EVENT = flag:on_realm_capital_change }
+				travl_remove_location_effect = yes
 			}
 
 			travl_notify_courtiers_effect = yes
@@ -284,9 +334,11 @@ travl_on_invalid_receiver = {
 				SENDER = this
 				EVENT = flag:on_invalid_receiver
 			}
+			travl_set_location_effect = yes
 		}
 		else = {
 			travl_abort_travel_effect = { EVENT = flag:on_invalid_receiver }
+			travl_remove_location_effect = yes
 		}
 	}
 }
@@ -301,9 +353,11 @@ travl_on_invalid_destination = {
 				SENDER = this
 				EVENT = flag:on_invalid_destination
 			}
+			travl_set_location_effect = yes
 		}
 		else = {
 			travl_abort_travel_effect = { EVENT = flag:on_invalid_destination }
+			travl_remove_location_effect = yes
 		}
 	}
 }
@@ -316,6 +370,8 @@ travl_on_liege_event = {
 			SENDER = this
 			EVENT = flag:on_liege_event
 		}
+
+		travl_set_location_effect = yes
 	}
 }
 
@@ -327,6 +383,8 @@ travl_on_courtier_event = {
 			SENDER = this
 			EVENT = flag:on_courtier_event
 		}
+
+		travl_set_location_effect = yes
 	}
 }
 

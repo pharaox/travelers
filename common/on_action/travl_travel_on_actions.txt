@@ -138,7 +138,7 @@ travl_travel_on_arrival = {
 
 # Arrival in any province during travel
 on_travel_plan_movement = {
-	on_actions = { travl_on_travel_plan_movement }
+	on_actions = { travl_on_travel_plan_movement travl_on_travel_plan_update_location }
 }
 
 travl_on_travel_plan_movement = {
@@ -210,60 +210,18 @@ travl_on_travel_plan_movement = {
 	}
 }
 
-# Starting a travel plan (starting to travel to the first destination)
-on_travel_plan_start = {
-	on_actions = { travl_on_travel_plan_start }
-}
-
-travl_on_travel_plan_start = {
-	trigger = {
-		has_variable = travl_travel_sender
-		has_variable = travl_travel_receiver
-	}
-
-	effect = {
-		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_started }
-	}
-}
-
-# Arrival in a destination province during travel (a travel plan can have multiple sequential destinations)
-on_travel_plan_arrival = {
-	on_actions = { travl_on_travel_plan_arrival }
-}
-
-travl_on_travel_plan_arrival = {
-	trigger = {
-		has_variable = travl_travel_sender
-		has_variable = travl_travel_receiver
-	}
-
-	effect = {
-		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_arrived }
-	}
-}
 
 # Completed a travel plan (arrived at final destination, or completed through script)
 # A travel plan ends either via 'on_travel_plan_complete' or 'on_travel_plan_abort'
 on_travel_plan_complete = {
-	on_actions = { travl_on_travel_plan_complete }
-}
-
-travl_on_travel_plan_complete = {
-	trigger = {
-		has_variable = travl_travel_sender
-		has_variable = travl_travel_receiver
-	}
-
-	effect = {
-		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_completed }
-	}
+	on_actions = { travl_on_travel_plan_update_location }
 }
 
 # Aborted a travel plan (travel plan was not completed, or aborted through script)
 # A travel plan ends either via 'on_travel_plan_complete' or 'on_travel_plan_abort'
 # This usually means everyone gets teleported to their default location after this.
 on_travel_plan_abort = {
-	on_actions = { travl_on_travel_plan_abort }
+	on_actions = { travl_on_travel_plan_abort travl_on_travel_plan_update_location }
 }
 
 travl_on_travel_plan_abort = {
@@ -289,16 +247,17 @@ travl_on_travel_plan_abort = {
 # been rerouted back home. (the travel plan doesn't end yet until they arrive home)
 # People in the travel plan were removed from associated activities.
 on_travel_plan_cancel = {
-	on_actions = { travl_on_travel_plan_cancel }
+	on_actions = { travl_on_travel_plan_update_location }
 }
 
-travl_on_travel_plan_cancel = {
-	trigger = {
-		has_variable = travl_travel_sender
-		has_variable = travl_travel_receiver
-	}
-
+travl_on_travel_plan_update_location = {
 	effect = {
-		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_cancelled }
+		travl_set_location_effect = yes
+		current_travel_plan ?= {
+			every_entourage_character = {
+				limit = { is_alive = yes }
+				travl_set_location_effect = yes
+			}
+		}
 	}
 }

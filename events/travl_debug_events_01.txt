@@ -1,0 +1,90 @@
+﻿namespace = travl_debug
+
+travl_debug.0001 = {
+	scope = none
+	hidden = yes
+
+	immediate = {
+		#travl_debug_log_effect = { MSG = travl_debug_msg_debug_event_fired }
+
+		if = {
+			limit = { debug_only = yes }
+
+			if = {
+				limit = {
+					OR = {
+						NOT = { has_global_variable = travl_debug_counter }
+						global_var:travl_debug_counter = travl_teleport_detector_interval_value
+					}
+				}
+				trigger_event = {
+					id = travl_travel.0001
+				}
+				set_global_variable = { name = travl_debug_counter value = 1 }
+			}
+			else = {
+				change_global_variable = { name = travl_debug_counter add = 1 }
+			}
+
+			every_living_character = {
+				# Track location of non-teleporting characters
+				if = {
+					limit = { travl_is_teleporting_character_trigger = no }
+
+					# Detect teleports
+					if = {
+						limit = {
+							has_variable = travl_debug_location
+							NOR = {
+								# Already at saved location
+								location = var:travl_debug_location
+
+								# Travelling and near their current location
+								travl_is_near_current_location_trigger = yes
+
+								# Baron at their capital
+								AND = {
+									is_landed = yes
+									highest_held_title_tier = tier_barony
+									location = capital_province
+								}
+							}
+						}
+
+						travl_debug_log_effect = { MSG = travl_debug_msg_debug_character_teleported }
+					}
+
+					# Detect invalid locations
+					if = {
+						limit = {
+							NOR = {
+								is_travelling = yes
+								location = default_location
+							}
+							var:travl_debug_location ?= location
+						}
+
+						travl_debug_log_effect = { MSG = travl_debug_msg_debug_invalid_character_location_detected }
+
+						if = {
+							limit = { has_game_rule = travl_teleport_detector_events_disabled }
+							set_location = default_location
+						}
+					}
+
+					set_variable = { name = travl_debug_location value = location }
+					#set_variable = { name = travl_debug_location_date value = current_date }
+				}
+				else = {
+					remove_variable = travl_debug_location
+					#remove_variable = travl_debug_location_date
+				}
+			}
+		}
+
+		trigger_event = {
+			id = travl_debug.0001
+			days = 1
+		}
+	}
+}

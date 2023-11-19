@@ -5,85 +5,82 @@ travl_travel.0001 = {
 	hidden = yes
 
 	immediate = {
-		ordered_living_character = {
-			order_by = highest_held_title_tier
-			max = 100000
-			check_range_bounds = no
+		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_event_fired }
 
-			# Track location of non-teleporting characters
-			if = {
-				limit = { travl_is_teleporting_character_trigger = no }
+		if = {
+			limit = { has_game_rule = travl_teleport_detector_events_enabled }
 
+			every_living_character = {
+				# Track location of non-teleporting characters
 				if = {
-					limit = { has_variable = travl_location }
+					limit = { travl_is_teleporting_character_trigger = no }
+
+					# Detect teleports
 					if = {
 						limit = {
-							NOT = { location = var:travl_location }
-						}
+							has_variable = travl_location
+							NOR = {
+								# Already at saved location
+								location = var:travl_location
 
-						if = {
-							limit = {
-								NOR = {
-									# Travelling and near their current location
-									travl_is_near_current_location_trigger = yes
+								# Travelling and near their current location
+								travl_is_near_current_location_trigger = yes
 
-									# Baron at their capital
-									AND = {
-										is_landed = yes
-										highest_held_title_tier = tier_barony
-										location = capital_province
-									}
+								# Baron at their capital
+								AND = {
+									is_landed = yes
+									highest_held_title_tier = tier_barony
+									location = capital_province
 								}
 							}
-
-							trigger_event = {
-								on_action = travl_on_teleport
-							}
 						}
 
-						set_variable = {
-							name = travl_location
-							value = location
+						trigger_event = {
+							on_action = travl_on_teleport
 						}
 					}
+
+					# Detect invalid locations
+					if = {
+						limit = {
+							NOR = {
+								is_travelling = yes
+								location = default_location
+							}
+							var:travl_location ?= location
+						}
+
+						trigger_event = {
+							on_action = travl_on_invalid_location
+						}
+					}
+
+					travl_set_location_effect = yes
 				}
 				else = {
-					set_variable = {
-						name = travl_location
-						value = location
-					}
-				}
-
-				# Determine receiver
-				travl_set_receiver_effect = yes
-
-				# Check current location
-				if = {
-					limit = {
-						exists = scope:receiver
-						exists = scope:receiver.capital_province
-						NOR = {
-							is_travelling = yes
-							location = scope:receiver.capital_province
-						}
-					}
-
-					trigger_event = {
-						on_action = travl_on_invalid_location
-					}
+					travl_remove_location_effect = yes
 				}
 			}
-			else = {
+		}
+		else = {
+			every_living_character = {
+				# Track location of non-teleporting characters
 				if = {
-					limit = { has_variable = travl_location }
-					remove_variable = travl_location
+					limit = { travl_is_teleporting_character_trigger = no }
+					travl_set_location_effect = yes
+				}
+				else = {
+					travl_remove_location_effect = yes
 				}
 			}
 		}
 
-		trigger_event = {
-			id = travl_travel.0001
-			days = 1
+		if = {
+			limit = { debug_only = no }
+			trigger_event = {
+				id = travl_travel.0001
+				days = travl_teleport_detector_interval_value
+			}
 		}
 	}
 }

@@ -1,0 +1,14 @@
+﻿travl_teleport_detector_interval_value = {
+	if = {
+		limit = { has_game_rule = travl_teleport_detector_interval_01 }
+		value = 1
+	}
+	else_if = {
+		limit = { has_game_rule = travl_teleport_detector_interval_02 }
+		value = 2
+	}
+	else_if = {
+		limit = { has_game_rule = travl_teleport_detector_interval_05 }
+		value = 5
+	}
+}

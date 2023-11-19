@@ -114,13 +114,13 @@ travl_is_joining_travel_trigger = {
 
 travl_is_near_saved_location_trigger = {
 	save_temporary_scope_as = character
-	OR = {
-		location = var:travl_location
-		AND = {
-			is_travelling = yes
-			location = {
+	var:travl_location ?= {
+		OR = {
+			this = scope:character.location
+			AND = {
+				scope:character = { is_travelling = yes }
 				any_neighboring_province = {
-					this = scope:character.var:travl_location
+					this = scope:character.location
 				}
 			}
 		}
