@@ -75,12 +75,12 @@ travl_travel.0001 = {
 			}
 		}
 
-		if = {
-			limit = { debug_only = no }
+		#if = {
+		#	limit = { debug_only = no }
 			trigger_event = {
 				id = travl_travel.0001
 				days = travl_teleport_detector_interval_value
 			}
-		}
+		#}
 	}
 }
