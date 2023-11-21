@@ -21,6 +21,7 @@ game_on_travel_plan_movement = {
 	# Used for loc in the travel completion event
 	# Variable cleanup in the completion event (travel_completion_event.1000)
 	effect = {
+		#travl_debug_log_event_effect = { MSG = travl_debug_msg_travel_on_action_fired EVENT = game_on_travel_plan_movement }
 		# Increase xp for traveler trait
 		traveler_progress_point_gain_effect = { CHANGE = 1 RANDOM_CHANGE = 1 }
 		# Increment the count of how many provinces the character has passed through
@@ -366,6 +367,7 @@ game_on_travel_plan_arrival = {
 		100 = travel_events.3020 #A warm welcome
 	}
 	effect = {
+		#travl_debug_log_event_effect = { MSG = travl_debug_msg_travel_on_action_fired EVENT = game_on_travel_plan_arrival }
 		# Achievements.
 		if = {
 			limit = { is_ai = no }
@@ -392,6 +394,7 @@ game_on_travel_plan_start = {
 		is_imprisoned = no # Travelers
 	}
 	effect = {
+		#travl_debug_log_event_effect = { MSG = travl_debug_msg_travel_on_action_fired EVENT = game_on_travel_plan_start }
 		if = {
 			limit = { is_ruler = yes }
 			set_variable = {
@@ -573,6 +576,7 @@ game_on_travel_plan_complete = {
 	}
 
 	effect = {
+		#travl_debug_log_event_effect = { MSG = travl_debug_msg_travel_on_action_fired EVENT = game_on_travel_plan_complete }
 		if = {
 			limit = {
 				exists = var:travel_plan_start_date
@@ -637,6 +641,7 @@ game_on_travel_plan_abort = {
 		travel_completion_event.1000
 	}
 	effect = {
+		#travl_debug_log_event_effect = { MSG = travl_debug_msg_travel_on_action_fired EVENT = game_on_travel_plan_abort }
 		if = {
 			limit = {
 				exists = var:travel_plan_start_date
@@ -658,6 +663,7 @@ game_on_travel_plan_cancel = {
 		is_imprisoned = no # Travelers
 	}
 	effect = {
+		#travl_debug_log_event_effect = { MSG = travl_debug_msg_travel_on_action_fired EVENT = game_on_travel_plan_cancel }
 		if = {
 			limit = {
 				has_character_flag = petition_liege_character_flag

@@ -4,7 +4,7 @@
  travl_debug_msg_initialized: "[GetCurrentDate.GetStringShort]: Travelers mod initialized"
 
  travl_debug_msg_debug_event_fired: "[GetCurrentDate.GetStringShort]: Debug event fired"
- travl_debug_msg_travel_event_fired: "[GetCurrentDate.GetStringShort]: Travel event fired"
+ travl_debug_msg_pulse_event_fired: "[GetCurrentDate.GetStringShort]: Pulse event fired"
 
  travl_debug_msg_starting_travel: "$travl_debug_prefix$: Starting travel ($travl_travel_event$)"
  travl_debug_msg_starting_travel_with_travel_leader: "$travl_debug_prefix$: Starting travel with travel leader ($travl_travel_event$)"
@@ -55,6 +55,9 @@
  travl_debug_msg_debug_character_teleported: "$travl_debug_prefix$: Character teleported ($travl_debug_location$)" # Rare
  travl_debug_msg_debug_invalid_character_location_detected: "$travl_debug_prefix$: Invalid character location detected ($travl_debug_location$)" # Rare
 
+ travl_debug_msg_travel_on_action_fired: "$travl_debug_prefix$: Travel on_action $travl_event$ fired ($travl_location$)"
+ travl_debug_msg_travel_event_fired: "$travl_debug_prefix$: Travel event $travl_event$ fired ($travl_location$)"
+
  travl_error_msg_starting_travel_to_non_default_location: "$travl_debug_prefix$: Starting travel to non-default location, receiver is [THIS.Var('receiver').Char.GetFullNameNoTooltip], default location is [THIS.Var('default_location').Province.GetNameNoTooltip]"
 
  travl_travel_receiver: "[THIS.Var('travl_travel_receiver').Char.GetFullNameNoTooltip]"
@@ -65,4 +68,5 @@
 
  travl_receiver: "[THIS.Var('receiver').Char.GetFullNameNoTooltip]"
  travl_owner: "[THIS.Var('owner').Char.GetFullNameNoTooltip]"
+ travl_event: "[THIS.Var('event').GetFlagName]"
 

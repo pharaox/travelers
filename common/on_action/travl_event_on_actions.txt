@@ -40,13 +40,13 @@ travl_on_marriage = {
 	effect = {
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
-			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_married_major }
+			travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_married_major }
 			travl_restore_location_effect = yes
 		}
 		scope:spouse = {
 			if = {
 				limit = { travl_is_teleporting_character_trigger = no }
-				travl_debug_log_event_effect = { MSG = travl_debug_msg_character_married_minor }
+				travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_married_minor }
 				travl_restore_location_effect = yes
 			}
 		}
@@ -65,13 +65,13 @@ travl_on_divorce = {
 	effect = {
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
-			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_divorced }
+			travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_divorced }
 			travl_restore_location_effect = yes
 		}
 		scope:spouse = {
 			if = {
 				limit = { travl_is_teleporting_character_trigger = no }
-				travl_debug_log_event_effect = { MSG = travl_debug_msg_character_was_divorced }
+				travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_was_divorced }
 				travl_restore_location_effect = yes
 			}
 		}
@@ -89,13 +89,13 @@ travl_on_concubinage = {
 	effect = {
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
-			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_took_concubine }
+			travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_took_concubine }
 			travl_restore_location_effect = yes
 		}
 		scope:concubine = {
 			if = {
 				limit = { travl_is_teleporting_character_trigger = no }
-				travl_debug_log_event_effect = { MSG = travl_debug_msg_character_was_taken_concubine }
+				travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_was_taken_concubine }
 				travl_restore_location_effect = yes
 			}
 		}
@@ -114,13 +114,13 @@ travl_on_concubinage_end = {
 	effect = {
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
-			travl_debug_log_event_effect = { MSG = travl_debug_msg_character_released_concubine }
+			travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_released_concubine }
 			travl_restore_location_effect = yes
 		}
 		scope:concubine = {
 			if = {
 				limit = { travl_is_teleporting_character_trigger = no }
-				travl_debug_log_event_effect = { MSG = travl_debug_msg_character_was_released_concubine }
+				travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_was_released_concubine }
 				travl_restore_location_effect = yes
 			}
 		}

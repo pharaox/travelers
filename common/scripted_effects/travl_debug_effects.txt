@@ -5,7 +5,7 @@
 	}
 }
 
-travl_debug_log_event_effect = {
+travl_debug_log_teleport_effect = {
 	if = {
 		limit = {
 			debug_only = yes
@@ -13,6 +13,16 @@ travl_debug_log_event_effect = {
 			travl_is_near_saved_location_trigger = no
 		}
 		debug_log = $MSG$
+	}
+}
+
+travl_debug_log_event_effect = {
+	if = {
+		limit = { debug_only = yes }
+
+		set_variable = { name = event value = flag:$EVENT$ }
+		debug_log = $MSG$
+		remove_variable = event
 	}
 }
 

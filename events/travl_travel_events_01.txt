@@ -5,7 +5,7 @@ travl_travel.0001 = {
 	hidden = yes
 
 	immediate = {
-		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_event_fired }
+		#travl_debug_log_effect = { MSG = travl_debug_msg_pulse_event_fired }
 
 		if = {
 			limit = { has_game_rule = travl_teleport_detector_events_enabled }
