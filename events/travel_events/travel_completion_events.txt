@@ -19,7 +19,7 @@ travel_completion_event.1000 = {
 		# are we home or somewhere abroad?
 		first_valid = {
 			triggered_desc = {
-					trigger = { location = root.default_location }
+				trigger = { location = root.default_location }
 				desc = travel_completion_event.1000.desc.home
 			}
 			# Travelers: Mention reaching final destination only for vanilla travel
