@@ -58,6 +58,8 @@
  travl_debug_msg_travel_on_action_fired: "$travl_debug_prefix$: Travel on_action $travl_event$ fired ($travl_location$)"
  travl_debug_msg_travel_event_fired: "$travl_debug_prefix$: Travel event $travl_event$ fired ($travl_location$)"
 
+ travl_debug_msg_delaying_on_join_court_event: "$travl_debug_prefix$: Delaying joining [THIS.Char.GetLiege.GetFullNameNoTooltip]'s court, travl_adding_courtier: [Select_CString(THIS.Var('travl_adding_courtier').IsSet, 'yes', 'no')] ($travl_location$)"
+
  travl_error_msg_starting_travel_to_non_default_location: "$travl_debug_prefix$: Starting travel to non-default location, receiver is [THIS.Var('receiver').Char.GetFullNameNoTooltip], default location is [THIS.Var('default_location').Province.GetNameNoTooltip]"
 
  travl_travel_receiver: "[THIS.Var('travl_travel_receiver').Char.GetFullNameNoTooltip]"

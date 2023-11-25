@@ -48,7 +48,11 @@
 			EVENT = $EVENT$
 		}
 	}
-	else = {
+	else_if = {
+		limit = {
+			NOT = { has_variable = travl_delayed_on_action }
+		}
+
 		# We are away from our saved location, and our current location is not the receiver's capital,
 		# so we teleported to the "wrong" location
 		# Restore our saved location without travel
@@ -114,12 +118,6 @@ travl_start_travel_effect = {
 						this = $RECEIVER$
 						travl_is_vanilla_bp2_traveler_trigger = yes
 					}
-				}
-
-				# Going to join travel owned by the receiver (e.g. due to vanilla event)
-				travl_is_joining_travel_trigger = {
-					OWNER = $RECEIVER$
-					EVENT = $EVENT$
 				}
 			}
 		}
@@ -613,17 +611,6 @@ travl_set_receiver_effect = {
 		limit = { exists = liege }
 		liege = { save_temporary_scope_as = receiver }
 	}
-}
-
-travl_add_courtier_effect = {
-	$COURTIER$ = {
-		set_variable = {
-			name = travl_adding_courtier
-			value = yes
-			days = 1
-		}
-	}
-	add_courtier = $COURTIER$
 }
 
 travl_notify_liege_effect = {

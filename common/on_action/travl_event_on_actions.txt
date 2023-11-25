@@ -46,8 +46,18 @@ travl_on_marriage = {
 		scope:spouse = {
 			if = {
 				limit = { travl_is_teleporting_character_trigger = no }
-				travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_married_minor }
-				travl_restore_location_effect = yes
+				if = {
+					limit = { has_variable = travl_delayed_on_action }
+					travl_travel_effect = {
+						SENDER = this
+						EVENT = flag:on_marriage
+					}
+					travl_set_location_effect = yes
+				}
+				else = {
+					travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_married_minor }
+					travl_restore_location_effect = yes
+				}
 			}
 		}
 	}
@@ -95,8 +105,18 @@ travl_on_concubinage = {
 		scope:concubine = {
 			if = {
 				limit = { travl_is_teleporting_character_trigger = no }
-				travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_was_taken_concubine }
-				travl_restore_location_effect = yes
+				if = {
+					limit = { has_variable = travl_delayed_on_action }
+					travl_travel_effect = {
+						SENDER = this
+						EVENT = flag:on_concubinage
+					}
+					travl_set_location_effect = yes
+				}
+				else = {
+					travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_was_taken_concubine }
+					travl_restore_location_effect = yes
+				}
 			}
 		}
 	}
@@ -143,10 +163,39 @@ travl_on_join_court = {
 
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
-			travl_travel_effect = {
-				SENDER = scope:old_employer
-				EVENT = flag:on_join_court
+
+			if = {
+				limit = {
+					travl_is_potentially_joining_travel_trigger = { OWNER = scope:new_employer }
+					NOT = { has_variable = travl_delayed_on_action }
+				}
+
+				# We could be joining a travel owned by scope:new_employer
+				# Delay the on_action to avoid starting a new travel if this is the case
+				#travl_debug_log_effect = { MSG = travl_debug_msg_delaying_on_join_court_event }
+				set_variable = { name = travl_delayed_on_action value = yes days = 2 }
+				trigger_event = {
+					on_action = travl_on_join_court
+					delayed = yes
+				}
 			}
+			else = {
+				if = {
+					limit = { has_variable = travl_delayed_on_action }
+					travl_travel_effect = {
+						SENDER = scope:old_employer
+						EVENT = flag:on_delayed_join_court
+					}
+				}
+				else = {
+					travl_travel_effect = {
+						SENDER = scope:old_employer
+						EVENT = flag:on_join_court
+					}
+				}
+				remove_variable = travl_delayed_on_action
+			}
+
 			travl_set_location_effect = yes
 		}
 		else = {
