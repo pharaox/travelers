@@ -415,12 +415,18 @@ travl_on_liege_event = {
 	effect = {
 		#travl_debug_log_effect = { MSG = travl_debug_msg_liege_event_happened }
 
-		travl_travel_effect = {
-			SENDER = this
-			EVENT = flag:on_liege_event
+		if = {
+			limit = { travl_is_teleporting_character_trigger = no }
+			travl_travel_effect = {
+				SENDER = this
+				EVENT = flag:on_liege_event
+			}
+			travl_set_location_effect = yes
 		}
-
-		travl_set_location_effect = yes
+		else = {
+			travl_abort_travel_effect = { EVENT = flag:on_liege_event }
+			travl_remove_location_effect = yes
+		}
 	}
 }
 
@@ -428,18 +434,26 @@ travl_on_courtier_event = {
 	effect = {
 		#travl_debug_log_effect = { MSG = travl_debug_msg_courtier_event_happened }
 
-		travl_travel_effect = {
-			SENDER = this
-			EVENT = flag:on_courtier_event
+		if = {
+			limit = { travl_is_teleporting_character_trigger = no }
+			travl_travel_effect = {
+				SENDER = this
+				EVENT = flag:on_courtier_event
+			}
+			travl_set_location_effect = yes
 		}
-
-		travl_set_location_effect = yes
+		else = {
+			travl_abort_travel_effect = { EVENT = flag:on_courtier_event }
+			travl_remove_location_effect = yes
+		}
 	}
 }
 
 travl_on_teleport = {
 	effect = {
 		#travl_debug_log_effect = { MSG = travl_debug_msg_character_teleported }
+
+		travl_notify_liege_effect = yes
 
 		travl_travel_effect = {
 			SENDER = this
@@ -451,6 +465,8 @@ travl_on_teleport = {
 travl_on_invalid_location = {
 	effect = {
 		#travl_debug_log_effect = { MSG = travl_debug_msg_invalid_character_location_detected }
+
+		travl_notify_liege_effect = yes
 
 		travl_travel_effect = {
 			SENDER = this
