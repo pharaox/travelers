@@ -33,15 +33,15 @@ add_to_entourage_court_and_activity_effect = {
 				$CHAR_TO_ADD$ = { is_pool_character = yes }
 			}
 			show_as_tooltip = { add_courtier = $CHAR_TO_ADD$ } #This already happens with add_companion
+			hidden_effect = { # This must go above activity effect, or they will try and make their own travel plan!
+				if = {
+					limit = { $CHAR_TO_ADD$ = { NOT = { exists = current_travel_plan } } }
+					$NEW_COURT_OWNER$.current_travel_plan ?= { add_companion = $CHAR_TO_ADD$ }
+				}
+			}
 			if = {
 				limit = { exists = involved_activity }
 				$CHAR_TO_ADD$ = { add_to_activity = $NEW_COURT_OWNER$.involved_activity }
-			}
-			hidden_effect = {
-				if = {
-					limit = { $CHAR_TO_ADD$ = { NOT = { exists = current_travel_plan } } }
-					current_travel_plan ?= { add_companion = $CHAR_TO_ADD$ }
-				}
 			}
 		}
 		#If the character is NOT a pool character
@@ -54,18 +54,18 @@ add_to_entourage_court_and_activity_effect = {
 				}
 				travl_add_courtier_effect = { COURTIER = $CHAR_TO_ADD$ }
 			}
+			hidden_effect = { # This must go above activity effect, or they will try and make their own travel plan!
+				if = {
+					limit = { $CHAR_TO_ADD$ = { NOT = { exists = current_travel_plan } } }
+					$NEW_COURT_OWNER$.current_travel_plan ?= { add_companion = $CHAR_TO_ADD$ }
+				}
+			}
 			if = {
 				limit = {
 					exists = involved_activity
 					$CHAR_TO_ADD$ = { can_join_activity = $NEW_COURT_OWNER$.involved_activity }
 				}
 				$CHAR_TO_ADD$ = { add_to_activity = $NEW_COURT_OWNER$.involved_activity }
-			}
-			hidden_effect = {
-				if = {
-					limit = { $CHAR_TO_ADD$ = { NOT = { exists = current_travel_plan } } }
-					current_travel_plan ?= { add_companion = $CHAR_TO_ADD$ }
-				}
 			}
 		}
 	}
@@ -81,15 +81,15 @@ recruit_to_entourage_court_and_activity_effect = {
 				$CHAR_TO_ADD$ = { is_pool_character = yes }
 			}
 			show_as_tooltip = { add_courtier = $CHAR_TO_ADD$ } #This already happens with add_companion
-			if = {
-				limit = { exists = involved_activity }
-				$CHAR_TO_ADD$ = { add_to_activity = $NEW_COURT_OWNER$.involved_activity }
-			}
-			hidden_effect = {
+			hidden_effect = { # This must go above activity effect, or they will try and make their own travel plan!
 				if = {
 					limit = { $CHAR_TO_ADD$ = { NOT = { exists = current_travel_plan } } }
 					current_travel_plan ?= { add_companion = $CHAR_TO_ADD$ }
 				}
+			}
+			if = {
+				limit = { exists = involved_activity }
+				$CHAR_TO_ADD$ = { add_to_activity = $NEW_COURT_OWNER$.involved_activity }
 			}
 		}
 		#If the character is NOT a pool character
@@ -102,15 +102,15 @@ recruit_to_entourage_court_and_activity_effect = {
 				}
 				travl_add_courtier_effect = { COURTIER = $CHAR_TO_ADD$ }
 			}
-			if = {
-				limit = { exists = involved_activity }
-				$CHAR_TO_ADD$ = { add_to_activity = $NEW_COURT_OWNER$.involved_activity }
-			}
-			hidden_effect = {
+			hidden_effect = { # This must go above activity effect, or they will try and make their own travel plan!
 				if = {
 					limit = { $CHAR_TO_ADD$ = { NOT = { exists = current_travel_plan } } }
 					current_travel_plan ?= { add_companion = $CHAR_TO_ADD$ }
 				}
+			}
+			if = {
+				limit = { exists = involved_activity }
+				$CHAR_TO_ADD$ = { add_to_activity = $NEW_COURT_OWNER$.involved_activity }
 			}
 		}
 	}
