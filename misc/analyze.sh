@@ -24,6 +24,9 @@ echo "on_liege_event: $(grep -a "on_liege_event" debug.log | uniq | wc -l)"
 echo "on_courtier_event: $(grep -a "on_courtier_event" debug.log | uniq | wc -l)"
 echo "on_teleport: $(grep -a "on_teleport" debug.log | uniq | wc -l)"
 echo "on_invalid_location: $(grep -a "on_invalid_location" debug.log | uniq | wc -l)"
+echo "on_marriage: $(grep -a "(on_marriage)" debug.log | uniq | wc -l)"
+echo "on_concubinage: $(grep -a "(on_concubinage)" debug.log | uniq | wc -l)"
+echo "on_delayed_join_court: $(grep -a "(on_delayed_join_court)" debug.log | uniq | wc -l)"
 echo
 
 # Rare (actions)
