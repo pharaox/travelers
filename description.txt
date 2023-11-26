@@ -20,7 +20,9 @@ Finally, this mod also adds an [b]Invite Characters to Court[/b] convenience int
 
 The current version is compatible with CK3 1.11.
 
-This mod is compatible with all other mods, including total conversion mods such as AGOT and EK2, except for mods making similar changes to the travel system. I strongly recommend using also the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2871648329]Unofficial Patch[/url] mod as it fixes many vanilla travel issues. Put this mod after the Unofficial Patch in the load order.
+This mod is compatible with most other mods, except for mods that make similar changes to the travel system, or modify the [b]travl_on_actions.txt[/b] and [b]travel_options.txt[/b] vanilla files. Unfortunately, the latter includes most total conversion mods. If you use such mods, put this mod before them in the load order - you may lose the special treatment of imprisoned rulers as a result, but everything else should work as expected.
+
+I strongly recommend using also the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2871648329]Unofficial Patch[/url] mod as it fixes many vanilla travel issues. Put this mod after Unofficial Patch in the load order.
 
 [h2]Performance[/h2]
 

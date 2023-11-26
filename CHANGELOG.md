@@ -1,5 +1,23 @@
 # Changelog
 
+## Version 0.3.0
+
+### Compatibility
+
+* Adapted to CK3 1.11.1
+* Introduced a different mechanism for avoiding travel for characters joining the entourage due to an event, and removed most changes to vanilla events.
+* Removed the changes to *Invite to Court* vanilla interaction.
+
+### Bug Fixes
+
+* Introduced a mechanism to auto-recover from pulse event losses.
+
+### Housekeeping
+
+* Removed unneeded changes to `travel_on_actions.txt`.
+* Removed the debug pulse event and related code.
+* Added a few more debug logs.
+
 ## Version 0.2.1
 
 ### Performance

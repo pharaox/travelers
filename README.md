@@ -22,7 +22,9 @@ Finally, this mod also adds an **Invite Characters to Court** convenience intera
 
 The current version is compatible with CK3 1.11.
 
-This mod is compatible with all other mods, including total conversion mods such as AGOT and EK2, except for mods making similar changes to the travel system. I strongly recommend using also the [Unofficial Patch](https://steamcommunity.com/sharedfiles/filedetails/?id=2871648329) mod as it fixes many vanilla travel issues. Put this mod after the Unofficial Patch in the load order.
+This mod is compatible with most other mods, except for mods that make similar changes to the travel system, or modify the `travl_on_actions.txt` and `travel_options.txt` vanilla files. Unfortunately, the latter includes most total conversion mods. If you use such mods, put this mod before them in the load order - you may lose the special treatment of imprisoned rulers as a result, but everything else should work as expected.
+
+I strongly recommend using also the [Unofficial Patch](https://steamcommunity.com/sharedfiles/filedetails/?id=2871648329) mod as it fixes many vanilla travel issues. Put this mod after Unofficial Patch in the load order.
 
 ## Features
 
@@ -51,6 +53,8 @@ Rather than changing a significant amount of vanilla code, this mod handles vani
 * `on_title_gain`
 * `on_title_lost`
 * `on_realm_capital_change` (newly introduced in CK3 1.11)
+* `on_marriage` (for the minor partner)
+* `on_concubinage` (for the concubine)
 
 The challenge with these on_actions is that they may be triggered before or after the character teleported. To ensure correct travel, this mod adds a *teleport detector* that saves the current location of every non-teleporting character on a daily basis, so it could be determined if the character teleported and if yes, from where they should start traveling.
 
@@ -116,21 +120,12 @@ As a recommendation, if you don't notice any performance issues, just leave the 
 
 The sections below list the changes made to existing vanilla objects in somewhat more detail for easier checking of compatibility with other mods.
 
-### Interactions (`character_interactions`)
-
-* `invite_to_court_interaction`: Fixed errors for non-existing scopes.
-
 ### On_actions (`on_action`)
 
 * `travel_on_actions.txt`:
-  * Refactored some of the `on_travel` on_actions so that they could be handled by mods for characters that are not matched by the vanilla triggers.
   * Disabled travel events for imprisoned ruler characters.
   * Made court physician or bodyguards join their liege's entourage only if they are both available and at the same location as the liege.
   * Ensured travel plan completion events are not triggered for traveling prisoners.
-
-### Effects (`scripted_effects`)
-
-* `add_to_court_and_entourage_effect`, `add_to_entourage_court_and_activity_effect`: Mark characters added to court by these effects with a special variable to prevent them from starting travel to home rather than joining their liege's entourage.
 
 ### Travel (`travel`)
 
@@ -142,5 +137,3 @@ The sections below list the changes made to existing vanilla objects in somewhat
 * `travel_completion_events.txt`:
   * Mention reaching final destination and reroute to home only for vanilla travel
   * Add description and option for aborted travel
-* `travel_events.txt`, `travel_events_filippa.txt`, `travel_danger_events.txt`, `travel_danger_events_klank.txt`: Mark characters added to court by these events with a special variable to prevent them from starting travel to home rather than joining their liege's entourage.
-* `travel_danger_events_joe.txt` Fix errors for non-existing scopes and ensure events fire only for traveling characters.
