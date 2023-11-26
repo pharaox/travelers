@@ -5,10 +5,15 @@ travl_travel.0001 = {
 	hidden = yes
 
 	immediate = {
-		#travl_debug_log_effect = { MSG = travl_debug_msg_pulse_event_fired }
+		travl_debug_log_effect = { MSG = travl_debug_msg_pulse_event_fired }
 
 		if = {
-			limit = { has_game_rule = travl_teleport_detector_events_enabled }
+			limit = {
+				has_game_rule = travl_teleport_detector_events_enabled
+				# If more than 10 days have passed since the last pulse event,
+				# assume saved locations are stale and don't trigger teleport detector events
+				travl_days_since_last_event_value <= 10
+			}
 
 			every_living_character = {
 				# Track location of non-teleporting characters
@@ -75,12 +80,11 @@ travl_travel.0001 = {
 			}
 		}
 
-		#if = {
-		#	limit = { debug_only = no }
-			trigger_event = {
-				id = travl_travel.0001
-				days = travl_teleport_detector_interval_value
-			}
-		#}
+		set_global_variable = { name = travl_last_event_date value = current_date }
+
+		trigger_event = {
+			id = travl_travel.0001
+			days = travl_teleport_detector_interval_value
+		}
 	}
 }

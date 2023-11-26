@@ -11,4 +11,18 @@
 		limit = { has_game_rule = travl_teleport_detector_interval_05 }
 		value = 5
 	}
+	else = {
+		value = 1
+	}
+}
+
+travl_days_since_last_event_value = {
+	if = {
+		limit = { exists = global_var:travl_last_event_date }
+		value = current_date
+		subtract = global_var:travl_last_event_date
+	}
+	else = {
+		value = 42 # must be bigger than 10
+	}
 }

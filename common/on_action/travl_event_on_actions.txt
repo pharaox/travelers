@@ -6,7 +6,10 @@ on_game_start = {
 
 travl_on_init = {
 	trigger = {
-		NOT = { has_global_variable = travl_initialized }
+		OR = {
+			NOT = { has_global_variable = travl_initialized }
+			travl_days_since_last_event_value > 10
+		}
 	}
 	events = {
 		travl_travel.0001
