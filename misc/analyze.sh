@@ -54,11 +54,15 @@ echo "Character released concubine: $(grep -a "Character released concubine" deb
 echo "Character was released as concubine: $(grep -a "Character was released as concubine" debug.log | wc -l)"
 echo
 
-# Rare (debug)
-echo "Restoring incorrect location: $(grep -a "Restoring incorrect location" debug.log | uniq | wc -l)"
-echo "Character teleported: $(grep -a "Character teleported" debug.log | uniq | wc -l)"
-echo "Invalid character location detected: $(grep -a "Invalid character location detected" debug.log | uniq | wc -l)"
+# Pulse events
+echo "Pulse event fired: $(grep -a "Pulse event fired" debug.log | wc -l)"
 echo
+
+# Rare (debug)
+#echo "Restoring incorrect location: $(grep -a "Restoring incorrect location" debug.log | uniq | wc -l)"
+#echo "Character teleported: $(grep -a "Character teleported" debug.log | uniq | wc -l)"
+#echo "Invalid character location detected: $(grep -a "Invalid character location detected" debug.log | uniq | wc -l)"
+#echo
 
 # Errors
 echo "Starting travel to non-default location: $(grep -a "Starting travel to non-default location" error.log | wc -l)"
