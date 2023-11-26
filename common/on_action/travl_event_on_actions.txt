@@ -1,7 +1,7 @@
 ﻿# Called from code after history generation
 # Empty scope
 on_game_start = {
-	on_actions = { travl_on_init } # travl_on_debug_init
+	on_actions = { travl_on_init }
 }
 
 travl_on_init = {
@@ -17,18 +17,6 @@ travl_on_init = {
 	effect = {
 		set_global_variable = travl_initialized
 		travl_debug_log_effect = { MSG = travl_debug_msg_initialized }
-	}
-}
-
-travl_on_debug_init = {
-	trigger = {
-		NOT = { has_global_variable = travl_debug_initialized }
-	}
-	events = {
-		travl_debug.0001
-	}
-	effect = {
-		set_global_variable = travl_debug_initialized
 	}
 }
 

@@ -37,10 +37,6 @@
 		# We are away from our saved location, and our current location is the receiver's capital,
 		# so we teleported to the "right" location
 		# Restore our saved location and travel from it to our current one
-		if = {
-			limit = { travl_debug_has_incorrect_saved_location = yes }
-			travl_debug_log_effect = { MSG = travl_debug_msg_restoring_incorrect_location }
-		}
 		set_location = var:travl_location
 		travl_start_travel_effect = {
 			SENDER = scope:sender
@@ -56,13 +52,7 @@
 		# We are away from our saved location, and our current location is not the receiver's capital,
 		# so we teleported to the "wrong" location
 		# Restore our saved location without travel
-		if = {
-			limit = { travl_debug_has_incorrect_saved_location = yes }
-			travl_debug_log_effect = { MSG = travl_debug_msg_restoring_incorrect_location }
-		}
-		else = {
-			travl_debug_log_effect = { MSG = travl_debug_msg_restoring_location }
-		}
+		travl_debug_log_effect = { MSG = travl_debug_msg_restoring_location }
 		set_location = var:travl_location
 	}
 }
@@ -74,13 +64,7 @@ travl_restore_location_effect = {
 			travl_is_near_saved_location_trigger = no
 		}
 
-		if = {
-			limit = { travl_debug_has_incorrect_saved_location = yes }
-			travl_debug_log_effect = { MSG = travl_debug_msg_restoring_incorrect_location }
-		}
-		else = {
-			travl_debug_log_effect = { MSG = travl_debug_msg_restoring_location }
-		}
+		travl_debug_log_effect = { MSG = travl_debug_msg_restoring_location }
 		set_location = var:travl_location
 	}
 }
@@ -531,12 +515,10 @@ travl_set_event_effect = {
 
 travl_set_location_effect = {
 	set_variable = { name = travl_location value = location }
-	#set_variable = { name = travl_location_date value = current_date }
 }
 
 travl_remove_location_effect = {
 	remove_variable = travl_location
-	#remove_variable = travl_location_date
 }
 
 travl_send_messages_effect = {

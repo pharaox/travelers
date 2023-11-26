@@ -3,7 +3,6 @@
 
  travl_debug_msg_initialized: "[GetCurrentDate.GetStringShort]: Travelers mod initialized"
 
- travl_debug_msg_debug_event_fired: "[GetCurrentDate.GetStringShort]: Debug event fired"
  travl_debug_msg_pulse_event_fired: "[GetCurrentDate.GetStringShort]: Pulse event fired"
 
  travl_debug_msg_starting_travel: "$travl_debug_prefix$: Starting travel ($travl_travel_event$)"
@@ -13,7 +12,6 @@
  travl_debug_msg_aborting_travel_before_starting: "$travl_debug_prefix$: Aborting travel before starting ($travl_travel_event$)" # Rare
  travl_debug_msg_aborting_travel: "$travl_debug_prefix$: Aborting travel ($travl_travel_event$)" # Rare
  travl_debug_msg_restoring_location: "$travl_debug_prefix$: Restoring location ($travl_location$)" # Rare
- travl_debug_msg_restoring_incorrect_location: "$travl_debug_prefix$: Restoring incorrect location ($travl_location$, $travl_debug_location$)" # Rare
 
  travl_debug_msg_changing_leader: "$travl_debug_prefix$: Changing travel leader" # Rare
  travl_debug_msg_removing_companion: "$travl_debug_prefix$: Removing travel companion" # Rare
@@ -52,9 +50,6 @@
  travl_debug_msg_character_teleported: "$travl_debug_prefix$: Character teleported ($travl_location$)"
  travl_debug_msg_invalid_character_location_detected: "$travl_debug_prefix$: Invalid character location detected ($travl_location$)"
 
- travl_debug_msg_debug_character_teleported: "$travl_debug_prefix$: Character teleported ($travl_debug_location$)" # Rare
- travl_debug_msg_debug_invalid_character_location_detected: "$travl_debug_prefix$: Invalid character location detected ($travl_debug_location$)" # Rare
-
  travl_debug_msg_travel_on_action_fired: "$travl_debug_prefix$: Travel on_action $travl_event$ fired ($travl_location$)"
  travl_debug_msg_travel_event_fired: "$travl_debug_prefix$: Travel event $travl_event$ fired ($travl_location$)"
 
@@ -66,7 +61,6 @@
  travl_travel_leader: "[THIS.Var('travl_travel_leader').Char.GetFullNameNoTooltip]"
  travl_travel_event: "[THIS.Var('travl_travel_event').GetFlagName]"
  travl_location: "[THIS.Var('travl_location').Province.GetNameNoTooltip]"
- travl_debug_location: "[THIS.Var('travl_debug_location').Province.GetNameNoTooltip]"
 
  travl_receiver: "[THIS.Var('receiver').Char.GetFullNameNoTooltip]"
  travl_owner: "[THIS.Var('owner').Char.GetFullNameNoTooltip]"
