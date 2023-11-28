@@ -87,6 +87,13 @@ travl_is_vanilla_bp2_traveler_trigger = {
 	}
 }
 
+travl_is_vanilla_activity_traveler_trigger = {
+	exists = involved_activity
+	current_travel_plan ?= {
+		travel_plan_activity = prev.involved_activity
+	}
+}
+
 travl_is_potentially_joining_travel_trigger = {
 	is_travelling = no
 	$OWNER$ = {

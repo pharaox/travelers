@@ -95,12 +95,14 @@ travl_start_travel_effect = {
 				# In the receiver's entourage
 				travl_is_in_travel_entourage_of_trigger = { OWNER = $RECEIVER$ }
 
-				# Vanilla travel owner, and either the receiver or a hostage, guardian, ward, or adoptee
+				# Vanilla travel owner, and either the receiver, a hostage, guardian, ward, or adoptee,
+				# or traveling because of a vanilla activity
 				AND = {
 					travl_is_vanilla_travel_owner_trigger = yes
 					OR = {
 						this = $RECEIVER$
 						travl_is_vanilla_bp2_traveler_trigger = yes
+						travl_is_vanilla_activity_traveler_trigger = yes
 					}
 				}
 			}
