@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 0.3.1
+
+### Bug Fixes
+
+* Prevented starting mod travel if the owner is involved in an activity.
+  * Fixed Grand Weddings becoming invalidated in some cases.
+
 ## Version 0.3.0
 
 ### Compatibility
