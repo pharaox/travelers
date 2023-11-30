@@ -498,7 +498,10 @@ travl_remove_leader_and_companions_effect = {
 
 travl_get_companions_effect = {
 	if = {
-		limit = { has_variable_list = travl_travel_companions }
+		limit = {
+			is_alive = yes
+			has_variable_list = travl_travel_companions
+		}
 		every_in_list = {
 			variable = travl_travel_companions
 			limit = { is_alive = yes }
