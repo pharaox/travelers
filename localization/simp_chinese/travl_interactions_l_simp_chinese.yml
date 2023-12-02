@@ -2,7 +2,7 @@
  # travl_invite_courtiers_interaction
  travl_invite_courtiers_interaction: "Invite Characters to Court"
  travl_invite_courtiers_interaction_desc: "Invite characters to move to your [court|E], where they will be your [courtiers|E]"
- recipient_secondary_travl_invite_courtiers_interaction: "Recipient"
+ recipient_secondary_travl_invite_courtiers_interaction: "$INTERACTION_RECIPIENT$"
 
  # Message titles
  travl_msg_departed_for_court: "Departed for Court"
