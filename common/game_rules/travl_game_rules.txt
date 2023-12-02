@@ -1,4 +1,10 @@
-﻿travl_teleport_detector_events = {
+﻿travl_travel_messages = {
+	default = travl_travel_messages_enabled
+	travl_travel_messages_disabled = {}
+	travl_travel_messages_enabled = {}
+}
+
+travl_teleport_detector_events = {
 	default = travl_teleport_detector_events_enabled
 	travl_teleport_detector_events_disabled = {}
 	travl_teleport_detector_events_enabled = {}

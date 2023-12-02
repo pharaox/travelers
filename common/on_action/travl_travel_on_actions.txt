@@ -21,7 +21,10 @@
 		set_location = scope:current_location
 
 		if = {
-			limit = { scope:leader ?= this }
+			limit = {
+				has_game_rule = travl_travel_messages_enabled
+				scope:leader ?= this
+			}
 
 			# Get all travelers (leader, companions, and their entourages)
 			travl_get_travelers_effect = {
@@ -82,7 +85,10 @@ travl_travel_on_arrival = {
 		set_location = scope:current_location
 
 		if = {
-			limit = { scope:leader ?= this }
+			limit = {
+				has_game_rule = travl_travel_messages_enabled
+				scope:leader ?= this
+			}
 
 			# Ensure companions arrive as well
 			every_in_list = {
