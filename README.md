@@ -114,6 +114,7 @@ As a recommendation, if you don't notice any performance issues, just leave the 
 ## Links
 
 * [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=xxx)
+* [Travelers Compatch for Super Compatch (by @cuomo860)](https://steamcommunity.com/sharedfiles/filedetails/?id=3098184700) (WIP)
 * [GitHub Repository](https://github.com/pharaox/travelers)
 
 ## Changes to Vanilla

@@ -1,5 +1,24 @@
 # Changelog
 
+## Version 0.3.2
+
+### Game Rules
+
+* Added a game rule to enable or disable travel messages.
+
+### Localization
+
+* Added English localization for all languages.
+* Translated French and Russian localization strings.
+
+### Compatibility
+
+* Enabled compatibility with PoW and FF mods needed for the Travelers Compatch mod.
+
+### Bug Fixes
+
+* Fixed rare errors in `error.log` for dead travel leaders.
+
 ## Version 0.3.1
 
 ### Bug Fixes

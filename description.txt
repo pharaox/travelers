@@ -38,6 +38,7 @@ As a recommendation, if you don't notice any performance issues, just leave the 
 
 [h2]Links[/h2]
 [list]
+  [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3098184700]Travelers Compatch for Super Compatch (by @cuomo860)[/url] (WIP)
   [*] [url=https://github.com/pharaox/travelers]GitHub Repository[/url]
 [/list]
 
