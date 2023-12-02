@@ -1,9 +1,26 @@
 ﻿travl_is_teleporting_character_trigger = {
+	OR = {
+		travl_is_vanilla_teleporting_character_trigger = yes
+		travl_is_PoW_teleporting_character_trigger = yes
+	}
+}
+
+travl_is_vanilla_teleporting_character_trigger = {
 	is_imprisoned = no
 	OR = {
 		is_pool_character = yes
 		is_in_army = yes
 		has_variable = gone_adventuring
+	}
+}
+
+travl_is_PoW_teleporting_character_trigger = {
+	has_global_variable = PoW_is_loaded
+	OR = {
+		is_in_prison_type = prisoner_of_war
+		has_variable = PoW_prison_location
+		has_variable = PoW
+		has_variable = PoW_transfer
 	}
 }
 
@@ -91,6 +108,17 @@ travl_is_vanilla_activity_traveler_trigger = {
 	exists = involved_activity
 	current_travel_plan ?= {
 		travel_plan_activity = prev.involved_activity
+	}
+}
+
+travl_is_PoW_traveler_trigger = {
+	has_global_variable = PoW_is_loaded
+	current_travel_plan ?= {
+		OR = {
+			has_variable = PoW_gather_commanders
+			has_variable = PoW_prisoner_transit
+			has_variable = PoW_prisoner_release
+		}
 	}
 }
 

@@ -11,7 +11,9 @@
  travl_debug_msg_adding_entourage_character: "$travl_debug_prefix$: Adding entourage character ($travl_travel_event$)"
  travl_debug_msg_aborting_travel_before_starting: "$travl_debug_prefix$: Aborting travel before starting ($travl_travel_event$)" # Rare
  travl_debug_msg_aborting_travel: "$travl_debug_prefix$: Aborting travel ($travl_travel_event$)" # Rare
+ travl_debug_msg_aborting_travel_for_PoW_character: "$travl_debug_prefix$: Aborting travel for PoW character ($travl_travel_event$)" # Rare
  travl_debug_msg_restoring_location: "$travl_debug_prefix$: Restoring location ($travl_location$)" # Rare
+ travl_debug_msg_restoring_location_for_PoW_character: "$travl_debug_prefix$: Restoring location for PoW character ($travl_location$)" # Rare
 
  travl_debug_msg_changing_leader: "$travl_debug_prefix$: Changing travel leader" # Rare
  travl_debug_msg_removing_companion: "$travl_debug_prefix$: Removing travel companion" # Rare
