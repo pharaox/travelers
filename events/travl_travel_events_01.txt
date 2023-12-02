@@ -24,10 +24,9 @@ travl_travel.0001 = {
 					if = {
 						limit = {
 							has_variable = travl_location
-							NOR = {
-								# Already at saved location
-								location = var:travl_location
+							NOT = { var:travl_location = location }
 
+							NOR = {
 								# Travelling and near their current location
 								travl_is_near_current_location_trigger = yes
 
@@ -48,11 +47,16 @@ travl_travel.0001 = {
 					# Detect invalid locations
 					if = {
 						limit = {
+							has_variable = travl_location
+							var:travl_location = location
+
 							NOR = {
-								is_travelling = yes
+								# At their default location
 								location = default_location
+
+								# Travelling
+								is_travelling = yes
 							}
-							var:travl_location ?= location
 						}
 
 						trigger_event = {
