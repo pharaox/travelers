@@ -1,13 +1,13 @@
 ﻿l_russian:
  # travl_invite_courtiers_interaction
- travl_invite_courtiers_interaction: "Invite Characters to Court"
- travl_invite_courtiers_interaction_desc: "Invite characters to move to your [court|E], where they will be your [courtiers|E]"
- recipient_secondary_travl_invite_courtiers_interaction: "Recipient"
+ travl_invite_courtiers_interaction: "Пригласить персонажей ко двору"
+ travl_invite_courtiers_interaction_desc: "Пригласить персонажей к своему [Concept( 'court', 'двору' )|E], где они станут вашими [Concept( 'courtiers', 'придворными' )|E]"
+ recipient_secondary_travl_invite_courtiers_interaction: "$INTERACTION_RECIPIENT$"
 
  # Message titles
- travl_msg_departed_for_court: "Departed for Court"
- travl_msg_arrived_at_court: "Arrived at Court"
+ travl_msg_departed_for_court: "Отправление ко двору"
+ travl_msg_arrived_at_court: "Прибытие ко двору"
 
  # Message tooltips
- travl_departed_for_court_tt: "[CHARACTER.GetShortUIName] departed for [TARGET_CHARACTER.GetShortUINamePossessive] court"
- travl_arrived_at_court_tt: "[CHARACTER.GetShortUIName] arrived at [TARGET_CHARACTER.GetShortUINamePossessive] court"
+ travl_departed_for_court_tt: "[CHARACTER.GetShortUIName] [Select_CString(CHARACTER.IsFemale, 'отправилась', 'отправился' )] ко двору [Select_CString(TARGET_CHARACTER.IsLocalPlayer, '', 'персонажа ' )][TARGET_CHARACTER.GetNamePossessiveOrMy][Select_CString(TARGET_CHARACTER.IsLocalPlayer, 'его персонажа', '' )]"
+ travl_arrived_at_court_tt: "[CHARACTER.GetShortUIName] [Select_CString(CHARACTER.IsFemale, 'прибыла', 'прибыл' )] ко двору [Select_CString(TARGET_CHARACTER.IsLocalPlayer, '', 'персонажа ' )][TARGET_CHARACTER.GetNamePossessiveOrMy][Select_CString(TARGET_CHARACTER.IsLocalPlayer, 'его персонажа', '' )]"

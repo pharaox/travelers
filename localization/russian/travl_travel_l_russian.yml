@@ -1,5 +1,5 @@
 ﻿l_russian:
- travl_is_imprisoned_modifier: "Imprisoned"
- travl_is_imprisoned_modifier_desc: "You are imprisoned and traveling to your prison location"
+ travl_is_imprisoned_modifier: "В заключении"
+ travl_is_imprisoned_modifier_desc: "Вы находитесь в тюрьме и едете к месту своей тюрьмы"
 
- travl_travel_leader_recruited.t: "Travel Leader Assigned"
+ travl_travel_leader_recruited.t: "Назначен лидер путешествия"
