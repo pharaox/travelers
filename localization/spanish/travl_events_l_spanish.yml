@@ -1,0 +1,3 @@
+﻿l_spanish:
+ travel_completion_event.1000.desc.aborted: "It no longer makes sense to continue my journey to [final_destination_province.GetName]. I may take a moment of respite, "
+ travel_completion_event.1000.c: "Where will the road take me this time?"

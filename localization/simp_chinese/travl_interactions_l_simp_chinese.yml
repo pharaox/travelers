@@ -1,0 +1,13 @@
+﻿l_simp_chinese:
+ # travl_invite_courtiers_interaction
+ travl_invite_courtiers_interaction: "Invite Characters to Court"
+ travl_invite_courtiers_interaction_desc: "Invite characters to move to your [court|E], where they will be your [courtiers|E]"
+ recipient_secondary_travl_invite_courtiers_interaction: "Recipient"
+
+ # Message titles
+ travl_msg_departed_for_court: "Departed for Court"
+ travl_msg_arrived_at_court: "Arrived at Court"
+
+ # Message tooltips
+ travl_departed_for_court_tt: "[CHARACTER.GetShortUIName] departed for [TARGET_CHARACTER.GetShortUINamePossessive] court"
+ travl_arrived_at_court_tt: "[CHARACTER.GetShortUIName] arrived at [TARGET_CHARACTER.GetShortUINamePossessive] court"

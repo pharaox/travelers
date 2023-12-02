@@ -1,0 +1,20 @@
+﻿l_spanish:
+ rule_travl_travel_messages: "#P Travelers:#! Travel Messages"
+ setting_travl_travel_messages_disabled: "Disabled"
+ setting_travl_travel_messages_disabled_desc: "Departure and arrival messages for characters of interest are disabled."
+ setting_travl_travel_messages_enabled: "Enabled"
+ setting_travl_travel_messages_enabled_desc: "Departure and arrival messages for characters of interest are enabled."
+
+ rule_travl_teleport_detector_events: "#P Travelers:#! Teleport Detector Events"
+ setting_travl_teleport_detector_events_disabled: "Disabled"
+ setting_travl_teleport_detector_events_disabled_desc: "Teleport Detector events are disabled (faster, some travel doesn't take place)."
+ setting_travl_teleport_detector_events_enabled: "Enabled"
+ setting_travl_teleport_detector_events_enabled_desc: "Teleport Detector events are enabled (slower, all travel takes place)."
+
+ rule_travl_teleport_detector_interval: "#P Travelers:#! Teleport Detector Interval"
+ setting_travl_teleport_detector_interval_01: "1 day"
+ setting_travl_teleport_detector_interval_01_desc: "Teleport Detector activates every day (slowest, most accurate)."
+ setting_travl_teleport_detector_interval_02: "2 days"
+ setting_travl_teleport_detector_interval_02_desc: "Teleport Detector activates every second day (faster, less accurate)."
+ setting_travl_teleport_detector_interval_05: "5 days"
+ setting_travl_teleport_detector_interval_05_desc: "Teleport Detector activates every 5th day (fastest, least accurate)."
