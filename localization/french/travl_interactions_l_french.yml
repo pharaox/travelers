@@ -1,13 +1,13 @@
 ﻿l_french:
  # travl_invite_courtiers_interaction
- travl_invite_courtiers_interaction: "Invite Characters to Court"
- travl_invite_courtiers_interaction_desc: "Invite characters to move to your [court|E], where they will be your [courtiers|E]"
- recipient_secondary_travl_invite_courtiers_interaction: "Recipient"
+ travl_invite_courtiers_interaction: "Inviter des personnages à la Cour"
+ travl_invite_courtiers_interaction_desc: "Invitez les personnages à se déplacer dans votre [court|E], où ils seront vos [courtiers|E]"
+ recipient_secondary_travl_invite_courtiers_interaction: "$INTERACTION_RECIPIENT$"
 
  # Message titles
- travl_msg_departed_for_court: "Departed for Court"
- travl_msg_arrived_at_court: "Arrived at Court"
+ travl_msg_departed_for_court: "Parti pour la Cour"
+ travl_msg_arrived_at_court: "Arrivée à la Cour"
 
  # Message tooltips
- travl_departed_for_court_tt: "[CHARACTER.GetShortUIName] departed for [TARGET_CHARACTER.GetShortUINamePossessive] court"
- travl_arrived_at_court_tt: "[CHARACTER.GetShortUIName] arrived at [TARGET_CHARACTER.GetShortUINamePossessive] court"
+ travl_departed_for_court_tt: "[CHARACTER.Custom('FR_le_Char_U_Pi')|U][CHARACTER.GetShortUIName] est parti pour la Cour [TARGET_CHARACTER.Custom('FR_du_Char_U_Pi')][TARGET_CHARACTER.GetShortUIName]"
+ travl_arrived_at_court_tt: "[CHARACTER.Custom('FR_le_Char_U_Pi')|U][CHARACTER.GetShortUIName] est arrivé à la Cour [TARGET_CHARACTER.Custom('FR_du_Char_U_Pi')][TARGET_CHARACTER.GetShortUIName]"

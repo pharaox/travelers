@@ -1,5 +1,5 @@
 ﻿l_french:
- travl_is_imprisoned_modifier: "Imprisoned"
- travl_is_imprisoned_modifier_desc: "You are imprisoned and traveling to your prison location"
+ travl_is_imprisoned_modifier: "Emprisonné"
+ travl_is_imprisoned_modifier_desc: "Vous êtes emprisonné et vous vous rendez à votre prison"
 
- travl_travel_leader_recruited.t: "Travel Leader Assigned"
+ travl_travel_leader_recruited.t: "Chef du voyage assigné"
