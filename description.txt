@@ -24,6 +24,10 @@ This mod is compatible with most other mods, except for mods that make similar c
 
 I strongly recommend using also the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2871648329]Unofficial Patch[/url] mod as it fixes many vanilla travel issues. Put this mod after Unofficial Patch in the load order.
 
+[h2]Localization[/h2]
+
+This mod is currently available in English, French, and Russian. For other languages, it uses the original English text as a placeholder.
+
 [h2]Performance[/h2]
 
 To achieve its goals, this mod introduces a [i]teleport detector[/i] that tracks the location of every non-teleporting character and triggers events on certain situations. This has a negative impact on the overall game performance that might be noticeable on lower-end machines. To avoid this, you can use game rules to make it slightly less accurate but much faster.

@@ -26,6 +26,10 @@ This mod is compatible with most other mods, except for mods that make similar c
 
 I strongly recommend using also the [Unofficial Patch](https://steamcommunity.com/sharedfiles/filedetails/?id=2871648329) mod as it fixes many vanilla travel issues. Put this mod after Unofficial Patch in the load order.
 
+## Localization
+
+This mod is currently available in English, French, and Russian. For other languages, it uses the original English text as a placeholder.
+
 ## Features
 
 ### Character Travel
