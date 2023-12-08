@@ -1,23 +1,10 @@
 ﻿# Arrival in any province during travel
 on_travel_plan_movement = {
-	on_actions = {
-		vanilla_on_travel_plan_movement
-	}
-}
-
-vanilla_on_travel_plan_movement = {
 	# It should be more likely to fire a danger event if it's valid for the given province
 	trigger = {
 		is_landed = yes
 		is_adult = yes
 		is_imprisoned = no # Travelers
-		# Travelers-FF
-		trigger_if = {
-			limit = { has_global_variable = FF_is_loaded }
-			current_travel_plan ?= {
-				NOT = {	has_variable = FF_vanilla_on_travel_plan_movement_blocker }
-			}
-		}
 	}
 
 	on_actions = {
@@ -355,12 +342,6 @@ travel_event_tombola = {
 
 # Arrival in a destination province during travel (a travel plan can have multiple sequential destinations)
 on_travel_plan_arrival = {
-	on_actions = {
-		vanilla_on_travel_plan_arrival
-	}
-}
-
-vanilla_on_travel_plan_arrival = {
 	trigger = {
 		NOR = {
 			AND = {
@@ -372,13 +353,6 @@ vanilla_on_travel_plan_arrival = {
 			has_character_flag = in_pilgrimage_event_chain
 		}
 		is_imprisoned = no # Travelers
-		# Travelers-FF
-		trigger_if = {
-			limit = { has_global_variable = FF_is_loaded }
-			current_travel_plan ?= {
-				NOT = {	has_variable = FF_vanilla_on_travel_plan_arrival_blocker }
-			}
-		}
 	}
 	random_events = {
 		100 = 0
@@ -396,12 +370,6 @@ vanilla_on_travel_plan_arrival = {
 
 # Starting a travel plan (starting to travel to the first destination)
 on_travel_plan_start = {
-	on_actions = {
-		vanilla_on_travel_plan_start
-	}
-}
-
-vanilla_on_travel_plan_start = {
 	trigger = {
 		OR = {
 			is_ruler = yes
@@ -412,13 +380,6 @@ vanilla_on_travel_plan_start = {
 		}
 		NOT = { has_character_flag = recently_invalidated_hostage }
 		is_imprisoned = no # Travelers
-		# Travelers-FF
-		trigger_if = {
-			limit = { has_global_variable = FF_is_loaded }
-			current_travel_plan ?= {
-				NOT = {	has_variable = FF_vanilla_on_travel_plan_start_blocker }
-			}
-		}
 	}
 	effect = {
 		#travl_debug_log_event_effect = { MSG = travl_debug_msg_travel_on_action_fired EVENT = on_travel_plan_start }
@@ -585,24 +546,11 @@ vanilla_on_travel_plan_start = {
 # Completed a travel plan (arrived at final destination, or completed through script)
 # A travel plan ends either via 'on_travel_plan_complete' or 'on_travel_plan_abort'
 on_travel_plan_complete = {
-	on_actions = {
-		vanilla_on_travel_plan_complete
-	}
-}
-
-vanilla_on_travel_plan_complete = {
 	trigger = {
 		is_ruler = yes
 		is_imprisoned = no # Travelers
 		current_travel_plan ?= {
 			NOT = { has_travel_plan_modifier = travl_is_imprisoned_modifier }
-		}
-		# Travelers-FF
-		trigger_if = {
-			limit = { has_global_variable = FF_is_loaded }
-			current_travel_plan ?= {
-				NOT = {	has_variable = FF_vanilla_on_travel_plan_complete_blocker }
-			}
 		}
 	}
 	first_valid = {
@@ -662,24 +610,11 @@ vanilla_on_travel_plan_complete = {
 # A travel plan ends either via 'on_travel_plan_complete' or 'on_travel_plan_abort'
 # This usually means everyone gets teleported to their default location after this.
 on_travel_plan_abort = {
-	on_actions = {
-		vanilla_on_travel_plan_abort
-	}
-}
-
-vanilla_on_travel_plan_abort = {
 	trigger = {
 		is_ruler = yes
 		is_imprisoned = no # Travelers
 		current_travel_plan ?= {
 			NOT = { has_travel_plan_modifier = travl_is_imprisoned_modifier }
-		}
-		# Travelers-FF
-		trigger_if = {
-			limit = { has_global_variable = FF_is_loaded }
-			current_travel_plan ?= {
-				NOT = {	has_variable = FF_vanilla_on_travel_plan_abort_blocker }
-			}
 		}
 	}
 	events = {
@@ -700,12 +635,6 @@ vanilla_on_travel_plan_abort = {
 # been rerouted back home. (the travel plan doesn't end yet until they arrive home)
 # People in the travel plan were removed from associated activities.
 on_travel_plan_cancel = {
-	on_actions = {
-		vanilla_on_travel_plan_cancel
-	}
-}
-
-vanilla_on_travel_plan_cancel = {
 	trigger = {
 		is_imprisoned = no # Travelers
 	}
@@ -857,23 +786,10 @@ on_travel_activity_estimated_arrival_too_late = {
 # scope:travel_plan - The travel plan
 # scope:old_travel_leader - The now removed leader.
 on_travel_leader_removed = {
-	on_actions = {
-		vanilla_on_travel_leader_removed
-	}
-}
-
-vanilla_on_travel_leader_removed = {
 	trigger = {
 		is_landed = yes
 		is_imprisoned = no # Travelers
 		NOT = { exists = current_travel_plan.travel_leader }
-		# Travelers-FF
-		trigger_if = {
-			limit = { has_global_variable = FF_is_loaded }
-			current_travel_plan ?= {
-				NOT = {	has_variable = FF_vanilla_on_travel_leader_removed_blocker }
-			}
-		}
 	}
 	events = {
 		travel_events.1020 # Provides the option to employ a new travel leader from your entourage or your current location

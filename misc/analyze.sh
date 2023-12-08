@@ -31,10 +31,8 @@ echo
 
 # Rare (actions)
 echo "Aborting travel before starting: $(grep -a "Aborting travel before starting" debug.log | uniq | wc -l)"
-echo "Aborting travel: $(grep -a "Aborting travel [(f]" debug.log | uniq | wc -l)"
-echo "- PoW character: $(grep -a "Aborting travel for PoW character" debug.log | uniq | wc -l)"
+echo "Aborting travel: $(grep -a "Aborting travel (" debug.log | uniq | wc -l)"
 echo "Restoring location: $(grep -a "Restoring location" debug.log | uniq | wc -l)"
-echo "- PoW character: $(grep -a "Restoring location for PoW character" debug.log | uniq | wc -l)"
 echo "Changing travel leader: $(grep -a "Changing travel leader" debug.log | uniq | wc -l)"
 echo "Removing travel companion: $(grep -a "Removing travel companion" debug.log | uniq | wc -l)"
 echo
