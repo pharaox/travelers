@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.3.3
+
+### Compatibility
+
+* Reverted changes for compatibility with PoW and FF mods since they were causing crashes during load on Windows.
+
+### Bug Fixes
+
+* Fixed crashes during load on Windows.
+
 ## Version 0.3.2
 
 ### Game Rules
