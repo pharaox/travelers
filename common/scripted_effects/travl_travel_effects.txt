@@ -52,7 +52,11 @@
 		# We are away from our saved location, and our current location is not the receiver's capital,
 		# so we teleported to the "wrong" location
 		# Restore our saved location without travel
-		travl_debug_log_effect = { MSG = travl_debug_msg_restoring_location }
+		travl_debug_log_conditional_effect = {
+			TRIGGER = travl_is_PoW_traveler_trigger
+			MSGT = travl_debug_msg_restoring_location_for_PoW_character
+			MSGF = travl_debug_msg_restoring_location
+		}
 		set_location = var:travl_location
 	}
 }
@@ -64,7 +68,11 @@ travl_restore_location_effect = {
 			travl_is_near_saved_location_trigger = no
 		}
 
-		travl_debug_log_effect = { MSG = travl_debug_msg_restoring_location }
+		travl_debug_log_conditional_effect = {
+			TRIGGER = travl_is_PoW_traveler_trigger
+			MSGT = travl_debug_msg_restoring_location_for_PoW_character
+			MSGF = travl_debug_msg_restoring_location
+		}
 		set_location = var:travl_location
 	}
 }
@@ -96,13 +104,14 @@ travl_start_travel_effect = {
 				travl_is_in_travel_entourage_of_trigger = { OWNER = $RECEIVER$ }
 
 				# Vanilla travel owner, and either the receiver, a hostage, guardian, ward, or adoptee,
-				# or traveling because of a vanilla activity
+				# traveling because of a vanilla activity, or a PoW traveler
 				AND = {
 					travl_is_vanilla_travel_owner_trigger = yes
 					OR = {
 						this = $RECEIVER$
 						travl_is_vanilla_bp2_traveler_trigger = yes
 						travl_is_vanilla_activity_traveler_trigger = yes
+						travl_is_PoW_traveler_trigger = yes
 					}
 				}
 			}
@@ -294,7 +303,11 @@ travl_abort_travel_effect = {
 		}
 
 		travl_set_event_effect = { EVENT = $EVENT$ }
-		travl_debug_log_effect = { MSG = travl_debug_msg_aborting_travel }
+		travl_debug_log_conditional_effect = {
+			TRIGGER = travl_is_PoW_teleporting_character_trigger
+			MSGT = travl_debug_msg_aborting_travel_for_PoW_character
+			MSGF = travl_debug_msg_aborting_travel
+		}
 
 		# Suppress events, we'll update leader and companions manually
 		set_variable = {

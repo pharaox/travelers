@@ -1,0 +1,7 @@
+﻿FF_is_loaded = {
+	always = no
+}
+
+PoW_is_loaded = {
+	always = no
+}
