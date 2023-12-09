@@ -26,16 +26,6 @@ travl_debug_log_event_effect = {
 	}
 }
 
-travl_debug_log_conditional_effect = {
-	if = {
-		limit = { $TRIGGER$ = yes }
-		travl_debug_log_effect = { MSG = $MSGT$ }
-	}
-	else = {
-		travl_debug_log_effect = { MSG = $MSGF$ }
-	}
-}
-
 travl_debug_log_1_effect = {
 	if = {
 		limit = { debug_only = yes }

@@ -95,12 +95,33 @@ travl_is_vanilla_travel_owner_trigger = {
 	NOT = { has_variable = travl_travel_receiver }
 }
 
-travl_is_vanilla_bp2_traveler_trigger = {
+travl_is_vanilla_traveler_trigger = {
 	OR = {
+		# Travel owner involved in an activity
+		travl_is_vanilla_activity_traveler_trigger = yes
+
+		# Hostage, guardian, ward, or adoptee traveling to their temporary home
 		has_variable = hostage_travelling_to_warden
 		has_variable = guardian_travelling_to_ward
 		has_variable = ward_travelling_to_guardian
 		has_variable = adoptee_travelling_to_adopter
+
+		# Character traveling to their rites location (bp2_decision.0002)
+		# Available for landed characters and their children
+		has_variable = chosen_rite_memory
+
+		# Hostage traveling to request aid (bp2_yearly.6200)
+		has_variable = hostage_aid_request_gold
+		has_variable = hostage_aid_request_chaperone
+
+		# Vassal traveling to their liege (petition_liege_decision, pay_homage_decision)
+		# Only available for landed characters
+		#has_variable = petition_type
+		#has_variable = homage_type
+
+		# Character traveling to their meditation location (religious_decision.0201)
+		# Only available for landed characters
+		#has_variable = meditation_location
 	}
 }
 
@@ -108,6 +129,7 @@ travl_is_vanilla_activity_traveler_trigger = {
 	exists = involved_activity
 	current_travel_plan ?= {
 		travel_plan_activity = prev.involved_activity
+		travel_plan_owner = prev
 	}
 }
 

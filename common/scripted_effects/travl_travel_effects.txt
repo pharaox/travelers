@@ -49,14 +49,25 @@
 			NOT = { has_variable = travl_delayed_on_action }
 		}
 
+		# Write debug log message
+		if = {
+			limit = { debug_only = yes }
+			if = {
+				limit = { travl_is_vanilla_traveler_trigger = yes }
+				travl_debug_log_effect = { MSG = travl_debug_msg_restoring_location_for_vanilla_traveler }
+			}
+			else_if = {
+				limit = { travl_is_PoW_traveler_trigger = yes }
+				travl_debug_log_effect = { MSG = travl_debug_msg_restoring_location_for_PoW_traveler }
+			}
+			else = {
+				travl_debug_log_effect = { MSG = travl_debug_msg_restoring_location }
+			}
+		}
+
 		# We are away from our saved location, and our current location is not the receiver's capital,
 		# so we teleported to the "wrong" location
 		# Restore our saved location without travel
-		travl_debug_log_conditional_effect = {
-			TRIGGER = travl_is_PoW_traveler_trigger
-			MSGT = travl_debug_msg_restoring_location_for_PoW_character
-			MSGF = travl_debug_msg_restoring_location
-		}
 		set_location = var:travl_location
 	}
 }
@@ -68,11 +79,22 @@ travl_restore_location_effect = {
 			travl_is_near_saved_location_trigger = no
 		}
 
-		travl_debug_log_conditional_effect = {
-			TRIGGER = travl_is_PoW_traveler_trigger
-			MSGT = travl_debug_msg_restoring_location_for_PoW_character
-			MSGF = travl_debug_msg_restoring_location
+		# Write debug log message
+		if = {
+			limit = { debug_only = yes }
+			if = {
+				limit = { travl_is_vanilla_traveler_trigger = yes }
+				travl_debug_log_effect = { MSG = travl_debug_msg_restoring_location_for_vanilla_traveler }
+			}
+			else_if = {
+				limit = { travl_is_PoW_traveler_trigger = yes }
+				travl_debug_log_effect = { MSG = travl_debug_msg_restoring_location_for_PoW_traveler }
+			}
+			else = {
+				travl_debug_log_effect = { MSG = travl_debug_msg_restoring_location }
+			}
 		}
+
 		set_location = var:travl_location
 	}
 }
@@ -103,14 +125,12 @@ travl_start_travel_effect = {
 				# In the receiver's entourage
 				travl_is_in_travel_entourage_of_trigger = { OWNER = $RECEIVER$ }
 
-				# Vanilla travel owner, and either the receiver, a hostage, guardian, ward, or adoptee,
-				# traveling because of a vanilla activity, or a PoW traveler
+				# Vanilla travel owner, and either the receiver, a vanilla traveler, or a PoW traveler
 				AND = {
 					travl_is_vanilla_travel_owner_trigger = yes
 					OR = {
 						this = $RECEIVER$
-						travl_is_vanilla_bp2_traveler_trigger = yes
-						travl_is_vanilla_activity_traveler_trigger = yes
+						travl_is_vanilla_traveler_trigger = yes
 						travl_is_PoW_traveler_trigger = yes
 					}
 				}
@@ -132,8 +152,10 @@ travl_start_travel_effect = {
 			}
 		}
 
+		# Write debug log message
 		if = {
 			limit = {
+				debug_only = yes
 				current_travel_plan ?= {
 					travel_plan_owner = {
 						is_alive = yes
@@ -143,7 +165,14 @@ travl_start_travel_effect = {
 				}
 			}
 
-			travl_debug_log_effect = { MSG = travl_debug_msg_aborting_travel_before_starting }
+			travl_debug_log_effect = { MSG = travl_debug_msg_aborting_travel_to_start_travel }
+		}
+		if = {
+			limit = {
+				debug_only = yes
+				travl_is_vanilla_traveler_trigger = yes
+			}
+			travl_debug_log_effect = { MSG = travl_debug_msg_aborting_vanilla_travel_to_start_travel }
 		}
 
 		# Suppress events, we'll update leader and companions manually
@@ -156,6 +185,9 @@ travl_start_travel_effect = {
 		# Remove travel variables
 		travl_remove_sender_and_receiver_effect = yes
 		travl_remove_leader_or_companion_effect = yes
+
+		# Remove vanilla travel variables
+		travl_remove_vanilla_travel_variables_effect = yes
 
 		# Send added entourage characters to pool
 		travl_send_added_characters_to_pool_effect = yes
@@ -303,10 +335,17 @@ travl_abort_travel_effect = {
 		}
 
 		travl_set_event_effect = { EVENT = $EVENT$ }
-		travl_debug_log_conditional_effect = {
-			TRIGGER = travl_is_PoW_teleporting_character_trigger
-			MSGT = travl_debug_msg_aborting_travel_for_PoW_character
-			MSGF = travl_debug_msg_aborting_travel
+
+		# Write debug log message
+		if = {
+			limit = { debug_only = yes }
+			if = {
+				limit = { travl_is_PoW_teleporting_character_trigger = yes }
+				travl_debug_log_effect = { MSG = travl_debug_msg_aborting_travel_for_PoW_character }
+			}
+			else = {
+				travl_debug_log_effect = { MSG = travl_debug_msg_aborting_travel }
+			}
 		}
 
 		# Suppress events, we'll update leader and companions manually
@@ -537,6 +576,15 @@ travl_set_location_effect = {
 
 travl_remove_location_effect = {
 	remove_variable = travl_location
+}
+
+travl_remove_vanilla_travel_variables_effect = {
+	# Hostage, guardian, or ward returning home
+	remove_variable ?= short_hostage_duration
+	remove_variable ?= long_hostage_duration
+	remove_variable ?= hostage_duration
+	remove_variable ?= ward_educated
+	remove_variable ?= guardian_educated
 }
 
 travl_send_messages_effect = {
