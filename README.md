@@ -24,6 +24,10 @@ The current version is compatible with CK3 1.11.
 
 This mod is compatible with most other mods, except for mods that make similar changes to the travel system, or modify the `travl_on_actions.txt` and `travel_options.txt` vanilla files. Unfortunately, the latter includes most total conversion mods. If you use such mods, put this mod before them in the load order - you may lose the special treatment of imprisoned rulers as a result, but everything else should work as expected.
 
+This mod is now also compatible with [Prisoners of War](https://steamcommunity.com/workshop/filedetails/?id=2511247871). For best experience, use the compatch by @cuomo860, see [Links](#links). With PoW, prisoners of war attach to the commander who captured them instead of traveling to the prison on their own. Put this mod after PoW in the load order.
+
+This mod also supports changing its game rules mid-game with the [Gamerule Gadget](https://steamcommunity.com/sharedfiles/filedetails/?id=2826829936) mod.
+
 I strongly recommend using also the [Unofficial Patch](https://steamcommunity.com/sharedfiles/filedetails/?id=2871648329) mod as it fixes many vanilla travel issues. Put this mod after Unofficial Patch in the load order.
 
 ## Localization
@@ -42,7 +46,7 @@ This mod makes characters travel to their default location (also called their "h
 * Becoming landed for the first time
 * Realm capital change due to a variety of reasons such as manual change, loss in conquest, inheritance, or being granted a better title
 
-To ensure that important vanilla mechanics are not negatively affected, wandering and adventuring characters, as well those in an army are still able to teleport. Characters will also not interrupt any ongoing vanilla travel except in cases they would previously have teleported.
+To ensure that important vanilla mechanics are not negatively affected, wandering and adventuring characters, as well those in an army are still able to teleport. Characters will also not interrupt most ongoing vanilla travel, such as traveling landed characters, characters traveling due to being involved in an activity, or unlanded characters traveling for a special purpose, e.g. wards traveling to their guardian's court. Unlanded characters returning home outside of an activity might interrupt their travel if their home changed, and head to their new home.
 
 The character home and therefore their travel destination is always the realm capital of a landed character who acts as *receiver*. This may be their jailor (if they are imprisoned), the character itself (if they are landed), or else their warden (if they are a hostage), host (if they are a guest), or liege (if they are a courtier). In some situations, another character, usually residing at the travel origin may act as *sender*. If the player is either a sender or a receiver, they will get a message informing them about the departure or arrival. These messages can be enabled or disabled via the **Travel Messages** game rule.
 
@@ -114,6 +118,8 @@ The following table contains the times in seconds for 1, 2, 5, and 10 game years
 As you can see, the slowest and most accurate setup is 65% slower than vanilla, while the fastest and least accurate is only 5-8% slower.
 
 As a recommendation, if you don't notice any performance issues, just leave the default settings. Otherwise, disable **Teleport Detector Events** and optionally increase **Teleport Detector Interval** until the issue is solved.
+
+The **Invite Courtiers** interaction might also become slow if the number of characters that would accept **Invite to Court** is large enough (hundreds). To avoid this, you can use the **Invite Courtiers Interaction Range** game rule to reduce the range this interaction uses to look for characters.
 
 ## Links
 

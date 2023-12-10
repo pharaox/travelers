@@ -1,5 +1,24 @@
 # Changelog
 
+## Version 0.3.4
+
+### Game Rules
+
+* Added a game rule to reduce the *Invite Courtiers* interaction range in order to improve performance.
+* Added the `GG_can_change_rule` flag to all game rules so they could be changed mid-game with the Gamerule Gadget mod.
+
+### Compatibility
+
+* Enabled compatibility with Prisoners of War (PoW) mod, without crashes this time.
+
+### Bug Fixes
+
+* Fixed a few rare cases where Travelers would interrupt vanilla travel of unlanded characters started by certain decisions and events.
+
+### Housekeeping
+
+* Added more debug logs to detect anomalies with vanilla and PoW travelers.
+
 ## Version 0.3.3
 
 ### Compatibility

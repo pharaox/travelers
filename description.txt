@@ -22,6 +22,10 @@ The current version is compatible with CK3 1.11.
 
 This mod is compatible with most other mods, except for mods that make similar changes to the travel system, or modify the [b]travl_on_actions.txt[/b] and [b]travel_options.txt[/b] vanilla files. Unfortunately, the latter includes most total conversion mods. If you use such mods, put this mod before them in the load order - you may lose the special treatment of imprisoned rulers as a result, but everything else should work as expected.
 
+This mod is now also compatible with [url=https://steamcommunity.com/workshop/filedetails/?id=2511247871]Prisoners of War[/url]. For best experience, use the compatch by @cuomo860, see [b]Links[/b] below. With PoW, prisoners of war attach to the commander who captured them instead of traveling to the prison on their own. Put this mod after PoW in the load order.
+
+This mod also supports changing its game rules mid-game with the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2826829936]Gamerule Gadget[/url] mod.
+
 I strongly recommend using also the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2871648329]Unofficial Patch[/url] mod as it fixes many vanilla travel issues. Put this mod after Unofficial Patch in the load order.
 
 [h2]Localization[/h2]
@@ -39,6 +43,8 @@ To achieve its goals, this mod introduces a [i]teleport detector[/i] that tracks
 I measured that the slowest and most accurate setup is 65% slower than vanilla, while the fastest and least accurate is only 5-8% slower.
 
 As a recommendation, if you don't notice any performance issues, just leave the default settings. Otherwise, disable [b]Teleport Detector Events[/b] and optionally increase [b]Teleport Detector Interval[/b] until the issue is solved.
+
+The [b]Invite Courtiers[/b] interaction might also become slow if the number of characters that would accept [b]Invite to Court[/b] is large enough (hundreds). To avoid this, you can use the [b]Invite Courtiers Interaction Range[/b] game rule to reduce the range this interaction uses to look for characters.
 
 [h2]Links[/h2]
 [list]
