@@ -4,6 +4,16 @@
 	travl_travel_messages_enabled = {}
 }
 
+travl_interaction_range = {
+	default = travl_interaction_range_all
+	travl_interaction_range_small = {}
+	travl_interaction_range_medium = {}
+	travl_interaction_range_large = {}
+	travl_interaction_range_huge = {}
+	travl_interaction_range_massive = {}
+	travl_interaction_range_all = {}
+}
+
 travl_teleport_detector_events = {
 	default = travl_teleport_detector_events_enabled
 	travl_teleport_detector_events_disabled = {}

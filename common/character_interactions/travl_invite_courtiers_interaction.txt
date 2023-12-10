@@ -11,6 +11,17 @@ travl_invite_courtiers_interaction = {
 			limit = {
 				is_ai = yes
 				in_diplomatic_range = scope:actor
+				trigger_if = {
+					limit = {
+						NOT = { has_game_rule = travl_interaction_range_all }
+					}
+					location = {
+						squared_distance = {
+							target = scope:actor.capital_province
+							value <= scope:actor.travl_interaction_range_value
+						}
+					}
+				}
 				save_temporary_scope_as = recruitee
 				scope:actor = {
 					is_character_interaction_potentially_accepted = {

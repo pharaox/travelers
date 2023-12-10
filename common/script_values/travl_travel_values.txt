@@ -26,3 +26,29 @@ travl_days_since_last_event_value = {
 		value = 42 # must be bigger than 10
 	}
 }
+
+travl_interaction_range_value = {
+	if = {
+		limit = { has_game_rule = travl_interaction_range_small }
+		value = squared_distance_small
+	}
+	else_if = {
+		limit = { has_game_rule = travl_interaction_range_medium }
+		value = squared_distance_medium
+	}
+	else_if = {
+		limit = { has_game_rule = travl_interaction_range_large }
+		value = squared_distance_large
+	}
+	else_if = {
+		limit = { has_game_rule = travl_interaction_range_huge }
+		value = squared_distance_huge
+	}
+	else_if = {
+		limit = { has_game_rule = travl_interaction_range_massive }
+		value = squared_distance_almost_massive
+	}
+	else = {
+		value = squared_distance_massive
+	}
+}
