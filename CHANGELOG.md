@@ -4,7 +4,7 @@
 
 ### Game Rules
 
-* Added a game rule to reduce the *Invite Courtiers* interaction range in order to improve performance.
+* Added a game rule to reduce the *Invite Characters to Court* interaction range in order to improve performance.
 * Added the `GG_can_change_rule` flag to all game rules so they could be changed mid-game with the Gamerule Gadget mod.
 
 ### Compatibility

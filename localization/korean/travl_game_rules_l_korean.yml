@@ -7,7 +7,7 @@
  setting_travl_travel_messages_enabled: "Enabled"
  setting_travl_travel_messages_enabled_desc: "Departure and arrival messages for characters of interest are enabled."
 
- rule_travl_interaction_range: "#P Travelers:#! Invite Courtiers Interaction Range"
+ rule_travl_interaction_range: "#P Travelers:#! Invite Characters to Court Range"
  setting_travl_interaction_range_small: "#high Small#!"
  setting_travl_interaction_range_small_desc: "Characters in diplomatic range and located within 150 map-pixels are listed (fastest)."
  setting_travl_interaction_range_medium: "#high Medium#!"
