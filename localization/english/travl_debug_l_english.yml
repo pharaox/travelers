@@ -59,6 +59,10 @@
 
  travl_debug_msg_delaying_on_join_court_event: "$travl_debug_prefix$: Delaying joining [THIS.Char.GetLiege.GetFullNameNoTooltip]'s court, travl_adding_courtier: [Select_CString(THIS.Var('travl_adding_courtier').IsSet, 'yes', 'no')] ($travl_location$)"
 
+ travl_setting_current_location_on_departure: "$travl_debug_prefix$: Setting current location on departure ($travl_location$)"
+ travl_setting_current_location_on_arrival: "$travl_debug_prefix$: Setting current location on arrival ($travl_location$)"
+ travl_setting_current_location_on_movement: "$travl_debug_prefix$: Setting current location on movement ($travl_location$)"
+
  travl_error_msg_starting_travel_to_non_default_location: "$travl_debug_prefix$: Starting travel to non-default location, receiver is [THIS.Var('receiver').Char.GetFullNameNoTooltip], default location is [THIS.Var('default_location').Province.GetNameNoTooltip]"
 
  travl_travel_receiver: "[THIS.Var('travl_travel_receiver').Char.GetFullNameNoTooltip]"

@@ -15,7 +15,7 @@ travl_invite_courtiers_interaction = {
 					limit = {
 						NOT = { has_game_rule = travl_interaction_range_all }
 					}
-					location = {
+					location ?= {
 						squared_distance = {
 							target = scope:actor.capital_province
 							value <= scope:actor.travl_interaction_range_value

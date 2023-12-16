@@ -2,6 +2,7 @@
 	OR = {
 		travl_is_vanilla_teleporting_character_trigger = yes
 		travl_is_PoW_teleporting_character_trigger = yes
+		NOT = { exists = location }
 	}
 }
 

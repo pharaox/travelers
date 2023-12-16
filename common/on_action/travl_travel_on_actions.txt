@@ -14,11 +14,17 @@
 		}
 
 		# Ensure the character is at the current location
-		location = { save_temporary_scope_as = current_location }
 		current_travel_plan ?= {
 			current_location = { save_temporary_scope_as = current_location }
 		}
-		set_location = scope:current_location
+		if = {
+			limit = {
+				exists = scope:current_location
+				NOT = { location ?= scope:current_location }
+			}
+			#travl_debug_log_effect = { MSG = travl_setting_current_location_on_departure }
+			set_location = scope:current_location
+		}
 
 		if = {
 			limit = {
@@ -78,11 +84,17 @@ travl_travel_on_arrival = {
 		}
 
 		# Ensure the character is at the destination
-		location = { save_temporary_scope_as = current_location }
 		current_travel_plan ?= {
 			final_destination_province = { save_temporary_scope_as = current_location }
 		}
-		set_location = scope:current_location
+		if = {
+			limit = {
+				exists = scope:current_location
+				NOT = { location ?= scope:current_location }
+			}
+			#travl_debug_log_effect = { MSG = travl_setting_current_location_on_arrival }
+			set_location = scope:current_location
+		}
 
 		if = {
 			limit = {
@@ -164,11 +176,17 @@ travl_on_travel_plan_movement = {
 		}
 
 		# Ensure the character is at the current location
-		location = { save_temporary_scope_as = current_location }
 		current_travel_plan ?= {
 			current_location = { save_temporary_scope_as = current_location }
 		}
-		set_location = scope:current_location
+		if = {
+			limit = {
+				exists = scope:current_location
+				NOT = { location ?= scope:current_location }
+			}
+			#travl_debug_log_effect = { MSG = travl_setting_current_location_on_movement }
+			set_location = scope:current_location
+		}
 
 		if = {
 			limit = { scope:leader ?= this }
