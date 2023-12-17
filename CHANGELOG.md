@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.3.5
+
+### Bug Fixes
+
+* Fixed errors in `error.log` for characters without a location reported by players.
+
 ## Version 0.3.4
 
 ### Game Rules

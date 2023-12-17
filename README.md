@@ -1,5 +1,7 @@
 # Travelers
 
+[Subscribe on Steam](https://steamcommunity.com/sharedfiles/filedetails/?id=3082182371)
+
 ## Overview
 
 Ever wondered why hostages or wards must travel to your court, but spouses, invited courtiers, or prisoners can instantly teleport to it from hundreds of miles away? Or why you can magically teleport to your new realm capital together with all of your courtiers, guests, and prisoners?
@@ -92,7 +94,7 @@ Unlike rulers, non-ruler characters currently don't get any travel events, since
 
 Unlike rulers that travel to their own realm capital, imprisoned rulers traveling to their jailor's capital are assigned a "prison guard" travel leader, can't add travel options, don't get events or experience, and may only be joined by other imprisoned characters. I may add some special events also for imprisoned characters in future versions of this mod.
 
-### Invite Courtiers Interaction
+### Invite Characters to Court Interaction
 
 To make it easier for players to find targets for the **Invite to Court** interaction, this mod adds an **Invite Characters to Court** convenience interaction that lists all characters that would accept such an invitation. This interaction redirects to **Invite to Court** for the selected target so that players may see their reasons for accepting.
 
@@ -119,12 +121,12 @@ As you can see, the slowest and most accurate setup is 65% slower than vanilla, 
 
 As a recommendation, if you don't notice any performance issues, just leave the default settings. Otherwise, disable **Teleport Detector Events** and optionally increase **Teleport Detector Interval** until the issue is solved.
 
-The **Invite Courtiers** interaction might also become slow if the number of characters that would accept **Invite to Court** is large enough (hundreds). To avoid this, you can use the **Invite Courtiers Interaction Range** game rule to reduce the range this interaction uses to look for characters.
+The **Invite Characters to Court** interaction might also become slow if the number of characters that would accept **Invite to Court** is large enough (hundreds). To avoid this, you can use the **Invite Characters to Court Range** game rule to reduce the range this interaction uses to look for characters.
 
 ## Links
 
 * [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=xxx)
-* [Travelers Compatch for Super Compatch (by @cuomo860)](https://steamcommunity.com/sharedfiles/filedetails/?id=3098184700) (WIP)
+* [Travelers and Prisoners of War Compatch (by @cuomo860)](https://steamcommunity.com/sharedfiles/filedetails/?id=3098184700) (WIP)
 * [GitHub Repository](https://github.com/pharaox/travelers)
 
 ## Changes to Vanilla
