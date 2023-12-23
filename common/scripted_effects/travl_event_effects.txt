@@ -1,0 +1,96 @@
+﻿travl_event_apply_outcome_effect = {
+	travl_debug_log_effect = { MSG = travl_debug_msg_$EVENT$_$OUTCOME$ }
+
+	# Send messages to potential recipients
+	hidden_effect = {
+		travl_send_event_messages_effect = {
+			RECIPIENTS = $RECIPIENTS$
+			TRAVELERS = $TRAVELERS$
+			TITLE = travl_msg_$EVENT$_t
+			TEXT = travl_msg_$EVENT$_$OUTCOME$
+		}
+	}
+
+	# Apply character effects
+	every_in_list = {
+		list = $TRAVELERS$
+		travl_event_apply_character_effect = yes
+	}
+}
+
+travl_send_event_messages_effect = {
+	if = {
+		limit = { has_game_rule = travl_travel_messages_enabled }
+
+		save_temporary_scope_as = character
+		every_in_list = {
+			list = $RECIPIENTS$
+			send_interface_message = {
+				type = event_generic_neutral
+				title = $TITLE$
+				right_icon = scope:character
+
+				scope:character = {
+					custom_tooltip = $TEXT$
+				}
+
+				show_as_tooltip = {
+					every_in_list = {
+						list = $TRAVELERS$
+						travl_event_apply_character_effect = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+travl_event_apply_character_effect = {
+	if = {
+		limit = { has_variable = travl_event_effect }
+
+		# Apply event effect
+		switch = {
+			trigger = var:travl_event_effect
+			flag:kill = {
+				travl_debug_log_effect = { MSG = travl_debug_msg_event_character_killed }
+				death = {
+					killer = var:travl_event_character
+					death_reason = death_fight
+				}
+			}
+			flag:maim = {
+				travl_debug_log_effect = { MSG = travl_debug_msg_event_character_maimed }
+				add_trait = maimed
+			}
+			flag:wound = {
+				travl_debug_log_effect = { MSG = travl_debug_msg_event_character_wounded }
+				increase_wounds_effect = { REASON = fight }
+			}
+			flag:add_prestige = {
+				travl_debug_log_effect = { MSG = travl_debug_msg_event_character_gained_prestige }
+				add_prestige = var:travl_event_value
+			}
+			flag:remove_prestige = {
+				travl_debug_log_effect = { MSG = travl_debug_msg_event_character_lost_prestige }
+				add_prestige = { value = var:travl_event_value multiply = -1 }
+			}
+			flag:add_gold = {
+				travl_debug_log_effect = { MSG = travl_debug_msg_event_character_gained_gold }
+				add_short_term_gold = var:travl_event_value
+			}
+			flag:remove_gold = {
+				travl_debug_log_effect = { MSG = travl_debug_msg_event_character_lost_gold }
+				remove_short_term_gold = var:travl_event_value
+			}
+		}
+
+		# Remove event variables
+		if = {
+			limit = { is_alive = yes }
+			remove_variable = travl_event_effect
+			remove_variable = travl_event_character
+			remove_variable = travl_event_value
+		}
+	}
+}

@@ -1,3 +1,29 @@
 ﻿l_english:
  travel_completion_event.1000.desc.aborted: "It no longer makes sense to continue my journey to [final_destination_province.GetName]. I may take a moment of respite, "
  travel_completion_event.1000.c: "Where will the road take me this time?"
+
+ # Event texts
+ # travel_danger.0001 Bandits
+ travl_travel_danger.0001.t: "$travel_danger_prefix$ Bandits"
+ travl_travel_danger.0001.desc: "We encounter bandits on the road."
+ travl_travel_danger.0001.a: "Fight them"
+ travl_travel_danger.0001.a.success: "You manage to defeat the bandits"
+ travl_travel_danger.0001.a.failure: "You fail to defeat bandits"
+ travl_travel_danger.0001.b: "Persuade them to let us pass"
+ travl_travel_danger.0001.b.success: "You manage to persuade the bandits"
+ travl_travel_danger.0001.b.failure: "You fail to persuade the bandits"
+ travl_travel_danger.0001.c: "Pay them off"
+ travl_travel_danger.0001.d: "We are at their mercy..."
+
+ # Message titles
+ travl_msg_travel_danger_0001_t: "$travel_danger_prefix$ Bandits"
+
+ # Message tooltips
+ # travel_danger.0001 Bandits
+ travl_msg_travel_danger_0001_prefix: "[THIS.Char.GetShortUIName|U] encountered bandits on the road"
+ travl_msg_travel_danger_0001_a_success: "$travl_msg_travel_danger_0001_prefix$, but managed to defeat them in the ensuing fight."
+ travl_msg_travel_danger_0001_a_failure: "$travl_msg_travel_danger_0001_prefix$ and failed to defeat them in the ensuing fight."
+ travl_msg_travel_danger_0001_b_success: "$travl_msg_travel_danger_0001_prefix$, but managed to persuade them to let [THIS.Char.GetHerHim] pass."
+ travl_msg_travel_danger_0001_b_failure: "$travl_msg_travel_danger_0001_prefix$ and failed to persuade them to let [THIS.Char.GetHerHim] pass."
+ travl_msg_travel_danger_0001_c: "$travl_msg_travel_danger_0001_prefix$ and paid them off with gold."
+ travl_msg_travel_danger_0001_d: "$travl_msg_travel_danger_0001_prefix$ and was attacked and robbed by them."
