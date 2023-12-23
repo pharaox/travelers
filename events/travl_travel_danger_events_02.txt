@@ -1,0 +1,215 @@
+﻿namespace = travl_travel_danger
+
+scripted_effect travl_travel_danger_0002_outcome_effect = {
+	# Setup character effects
+	travl_travel_danger_0002_$OUTCOME$_effect = yes
+
+	# Send messages to potential recipients and apply character effects
+	travl_event_apply_outcome_effect = {
+		EVENT = travel_danger_0002
+		OUTCOME = $OUTCOME$
+		RECIPIENTS = recipients
+		TRAVELERS = travelers
+	}
+}
+
+scripted_effect travl_travel_danger_0002_a_success_effect = {
+}
+
+scripted_effect travl_travel_danger_0002_a_failure_effect = {
+	scope:missing_companion = {
+		travl_travel_danger_0002_failure_effect = yes
+	}
+}
+
+scripted_effect travl_travel_danger_0002_b_effect = {
+	scope:missing_companion = {
+		travl_travel_danger_0002_failure_effect = yes
+	}
+}
+
+scripted_effect travl_travel_danger_0002_failure_effect = {
+	set_variable = { name = travl_event_effect value = flag:kill }
+	if = {
+		limit = {
+			root.location = {
+				travel_danger_type = {
+					travel_plan = root.current_travel_plan
+					terrain = wetlands
+				}
+			}
+		}
+		set_variable = { name = travl_event_death_reason value = flag:death_lost_in_the_bog }
+	}
+	else = {
+		set_variable = { name = travl_event_death_reason value = flag:death_lost_in_the_forest }
+	}
+}
+
+# Danger: Missing Companion (Wetlands / Forest / Taiga)
+travl_travel_danger.0002 = {
+	type = character_event
+	title = travl_travel_danger.0002.t
+	desc = travl_travel_danger.0002.desc
+	#hidden = yes
+
+	theme = travel_danger
+	left_portrait = {
+		character = scope:bandit
+		animation = aggressive_axe
+	}
+
+	trigger = {
+		# Travel leader
+		has_variable = travl_travel_leader
+		var:travl_travel_leader = root
+
+		# At least one companion
+		has_variable_list = travl_travel_companions
+		any_in_list = {
+			variable = travl_travel_companions
+			is_available_travelling = yes
+			is_landed = no
+		}
+
+		# Available, traveling, adult, on land, and unlanded
+		is_available_travelling_adult = yes
+		is_location_valid_for_travel_event_on_land = yes
+		is_landed = no
+
+		# Danger types
+		location = {
+			OR = {
+				travel_danger_type = {
+					travel_plan = root.current_travel_plan
+					terrain = wetlands
+				}
+				travel_danger_type = {
+					travel_plan = root.current_travel_plan
+					terrain = forest
+				}
+				travel_danger_type = {
+					travel_plan = root.current_travel_plan
+					terrain = taiga
+				}
+				travel_danger_type = {
+					travel_plan = root.current_travel_plan
+					terrain = jungle
+				}
+			}
+		}
+	}
+
+	immediate = {
+		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_danger_0002_t }
+
+		var:travl_travel_sender = { save_temporary_scope_as = sender }
+		var:travl_travel_receiver = { save_temporary_scope_as = receiver }
+		travl_get_companions_effect = { COMPANIONS = companions }
+
+		# Get all relevant travelers (leader and all unlanded companions)
+		add_to_list = travelers
+		every_in_list = {
+			list = companions
+			limit = { is_landed = no }
+			add_to_list = travelers
+		}
+
+		# Get message recipients (sender and / or recieiver)
+		travl_get_message_recipients_effect = {
+			SENDER = scope:sender
+			RECEIVER = scope:receiver
+			RECIPIENTS = recipients
+		}
+
+		# Add the player as a recipient (debug-only)
+		if = {
+			limit = { debug_only = yes }
+			random_player = { add_to_list = recipients }
+		}
+
+		# Pick missing companion
+		random_in_list = {
+			list = companions
+			limit = {
+				is_available_travelling = yes
+				is_landed = no
+			}
+			save_scope_as = missing_companion
+		}
+
+		# Find relevant travelers
+		ordered_in_list = {
+			list = travelers
+			limit = {
+				NOT = { this = scope:missing_companion }
+				is_available_travelling_adult = yes
+				stewardship >= low_skill_rating
+			}
+			order_by = stewardship
+			save_scope_as = stewardship_character
+		}
+
+		traveler_danger_xp_effect = {
+			MIN = 3
+			MAX = 6
+		}
+	}
+
+	# Search for them (stewardship challenge)
+	option = {
+		name = travl_travel_danger.0002.a
+
+		trigger = {
+			exists = scope:stewardship_character
+		}
+
+		scope:stewardship_character = {
+			duel = {
+				skill = stewardship
+				value = high_skill_rating
+				50 = {
+					desc = travl_travel_danger.0002.a.success
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 3.5
+						min = -49
+					}
+					root = {
+						travl_travel_danger_0002_outcome_effect = { OUTCOME = a_success }
+					}
+				}
+				50 = {
+					desc = travl_travel_danger.0002.a.failure
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -3.5
+						min = -49
+					}
+					root = {
+						travl_travel_danger_0002_outcome_effect = { OUTCOME = a_failure }
+					}
+				}
+			}
+		}
+
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				who = scope:stewardship_character
+				ai_compassion = 1
+			}
+		}
+	}
+
+	# Leave them
+	option = {
+		name = travl_travel_danger.0002.b
+
+		travl_travel_danger_0002_outcome_effect = { OUTCOME = b }
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}

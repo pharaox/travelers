@@ -14,9 +14,17 @@
  travl_travel_danger.0001.b.failure: "You fail to persuade the bandits"
  travl_travel_danger.0001.c: "Pay them off"
  travl_travel_danger.0001.d: "We are at their mercy..."
+ # travel_danger.0002 Missing Companion
+ travl_travel_danger.0002.t: "$travel_danger_prefix$ Missing Companion"
+ travl_travel_danger.0002.desc: "One of our companions went missing."
+ travl_travel_danger.0002.a: "Search for them"
+ travl_travel_danger.0002.a.success: "You manage to find the missing companion"
+ travl_travel_danger.0002.a.failure: "You fail to find the missing companion"
+ travl_travel_danger.0002.b: "Leave them"
 
  # Message titles
- travl_msg_travel_danger_0001_t: "$travel_danger_prefix$ Bandits"
+ travl_msg_travel_danger_0001_t: "$travl_travel_danger.0001.t$"
+ travl_msg_travel_danger_0002_t: "$travl_travel_danger.0002.t$"
 
  # Message tooltips
  # travel_danger.0001 Bandits
@@ -27,3 +35,8 @@
  travl_msg_travel_danger_0001_b_failure: "$travl_msg_travel_danger_0001_prefix$ and failed to persuade them to let [THIS.Char.GetHerHim] pass."
  travl_msg_travel_danger_0001_c: "$travl_msg_travel_danger_0001_prefix$ and paid them off with gold."
  travl_msg_travel_danger_0001_d: "$travl_msg_travel_danger_0001_prefix$ and was attacked and robbed by them."
+ # travel_danger.0002 Missing Companion
+ travl_msg_travel_danger_0002_prefix: "One of [THIS.Char.GetShortUINamePossessive|U] companions, [missing_companion.GetShortUIName], went missing"
+ travl_msg_travel_danger_0002_a_success: "$travl_msg_travel_danger_0002_prefix$, but [THIS.Char.GetSheHe] managed to find [missing_companion.GetHerHim]."
+ travl_msg_travel_danger_0002_a_failure: "$travl_msg_travel_danger_0002_prefix$, and [THIS.Char.GetSheHe] failed to find [missing_companion.GetHerHim]."
+ travl_msg_travel_danger_0002_b: "$travl_msg_travel_danger_0002_prefix$, and [THIS.Char.GetSheHe] left [missing_companion.GetHerHim]."

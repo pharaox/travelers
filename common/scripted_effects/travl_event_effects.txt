@@ -53,10 +53,18 @@ travl_event_apply_character_effect = {
 		switch = {
 			trigger = var:travl_event_effect
 			flag:kill = {
-				travl_debug_log_effect = { MSG = travl_debug_msg_event_character_killed }
-				death = {
-					killer = var:travl_event_character
-					death_reason = death_fight
+				travl_debug_log_effect = { MSG = travl_debug_msg_event_character_died }
+				switch = {
+					trigger = var:travl_event_death_reason
+					flag:death_fight = {
+						death = { death_reason = death_fight killer = var:travl_event_character }
+					}
+					flag:death_lost_in_the_bog = {
+						death = { death_reason = death_lost_in_the_bog }
+					}
+					flag:death_lost_in_the_forest = {
+						death = { death_reason = death_lost_in_the_forest }
+					}
 				}
 			}
 			flag:maim = {
@@ -91,6 +99,7 @@ travl_event_apply_character_effect = {
 			remove_variable = travl_event_effect
 			remove_variable = travl_event_character
 			remove_variable = travl_event_value
+			remove_variable = travl_event_death_reason
 		}
 	}
 }

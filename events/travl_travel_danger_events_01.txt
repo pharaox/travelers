@@ -25,6 +25,7 @@ scripted_effect travl_travel_danger_0001_a_failure_effect = {
 		random_list = {
 			25 = {
 				set_variable = { name = travl_event_effect value = flag:kill }
+				set_variable = { name = travl_event_death_reason value = flag:death_fight }
 				set_variable = { name = travl_event_character value = scope:bandit }
 			}
 			25 = {
@@ -90,6 +91,7 @@ scripted_effect travl_travel_danger_0001_failure_effect = {
 	random_list = {
 		10 = {
 			set_variable = { name = travl_event_effect value = flag:kill }
+			set_variable = { name = travl_event_death_reason value = flag:death_fight }
 			set_variable = { name = travl_event_character value = scope:bandit }
 		}
 		10 = {
@@ -131,13 +133,16 @@ travl_travel_danger.0001 = {
 	}
 
 	trigger = {
+		# Travel leader
 		has_variable = travl_travel_leader
 		var:travl_travel_leader = root
 
+		# Available, traveling, adult, on land, and unlanded
 		is_available_travelling_adult = yes
 		is_location_valid_for_travel_event_on_land = yes
 		is_landed = no
 
+		# Danger types
 		location = {
 			OR = {
 				travel_danger_type = {
@@ -152,6 +157,7 @@ travl_travel_danger.0001 = {
 			}
 		}
 
+		# Cooldown between bandit events
 		NOR = {
 			has_character_flag = had_travel_danger_event_1002_bandit_event_recently
 			has_character_flag = had_travel_event_1003_bandit_event_recently
@@ -165,15 +171,10 @@ travl_travel_danger.0001 = {
 
 		var:travl_travel_sender = { save_temporary_scope_as = sender }
 		var:travl_travel_receiver = { save_temporary_scope_as = receiver }
-		var:travl_travel_leader = {
-			save_temporary_scope_as = leader
-			travl_get_companions_effect = { COMPANIONS = companions }
-		}
+		travl_get_companions_effect = { COMPANIONS = companions }
 
 		# Get all relevant travelers (leader and all unlanded companions)
-		scope:leader = {
-			add_to_list = travelers
-		}
+		add_to_list = travelers
 		every_in_list = {
 			list = companions
 			limit = { is_landed = no }
