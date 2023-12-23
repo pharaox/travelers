@@ -125,7 +125,7 @@ The **Invite Characters to Court** interaction might also become slow if the num
 
 ## Links
 
-* [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=xxx)
+* [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3082182371)
 * [Travelers and Prisoners of War Compatch (by @cuomo860)](https://steamcommunity.com/sharedfiles/filedetails/?id=3098184700) (WIP)
 * [GitHub Repository](https://github.com/pharaox/travelers)
 
