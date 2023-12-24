@@ -46,10 +46,69 @@ travl_send_event_messages_effect = {
 }
 
 travl_event_apply_character_effect = {
+	# Gain traveler danger XP
+	if = {
+		limit = { has_variable = travl_event_xp }
+		travl_debug_log_effect = { MSG = travl_debug_msg_event_character_gained_traveler_xp }
+		if = {
+			limit = { NOT = { has_trait = lifestyle_traveler } }
+			add_trait = lifestyle_traveler
+		}
+		switch = {
+			trigger = var:travl_event_xp
+			flag:minor = {
+				traveler_danger_xp_effect = { MIN = 1 MAX = 3 }
+			}
+			flag:medium = {
+				traveler_danger_xp_effect = { MIN = 3 MAX = 6 }
+			}
+			flag:major = {
+				traveler_danger_xp_effect = { MIN = 6 MAX = 10 }
+			}
+		}
+	}
+
+	# Delay travel plan
+	if = {
+		limit = { has_variable = travl_event_delay }
+		travl_debug_log_effect = { MSG = travl_debug_msg_event_character_travel_delayed }
+		switch = {
+			trigger = var:travl_event_delay
+			flag:minor = {
+				current_travel_plan = {
+					delay_travel_plan = { days = 5 }
+				}
+			}
+			flag:medium = {
+				current_travel_plan = {
+					delay_travel_plan = { days = 20 }
+				}
+			}
+			flag:major = {
+				current_travel_plan = {
+					delay_travel_plan = { days = 100 }
+				}
+			}
+		}
+	}
+
+	# Add travel plan modifier
+	if = {
+		limit = { has_variable = travl_event_modifier }
+		travl_debug_log_effect = { MSG = travl_debug_msg_event_character_travel_modified }
+		switch = {
+			trigger = var:travl_event_modifier
+			flag:travel_guide_modifier = {
+				current_travel_plan = {
+					add_travel_plan_modifier = travel_guide_modifier
+				}
+			}
+		}
+	}
+
+	# Apply character effect
 	if = {
 		limit = { has_variable = travl_event_effect }
-
-		# Apply event effect
 		switch = {
 			trigger = var:travl_event_effect
 			flag:kill = {
@@ -92,14 +151,17 @@ travl_event_apply_character_effect = {
 				remove_short_term_gold = var:travl_event_value
 			}
 		}
+	}
 
-		# Remove event variables
-		if = {
-			limit = { is_alive = yes }
-			remove_variable = travl_event_effect
-			remove_variable = travl_event_character
-			remove_variable = travl_event_value
-			remove_variable = travl_event_death_reason
-		}
+	# Remove event variables
+	if = {
+		limit = { is_alive = yes }
+		remove_variable = travl_event_effect
+		remove_variable = travl_event_character
+		remove_variable = travl_event_value
+		remove_variable = travl_event_death_reason
+		remove_variable = travl_event_xp
+		remove_variable = travl_event_delay
+		remove_variable = travl_event_modifier
 	}
 }

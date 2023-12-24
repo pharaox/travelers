@@ -2,7 +2,7 @@
  travel_completion_event.1000.desc.aborted: "It no longer makes sense to continue my journey to [final_destination_province.GetName]. I may take a moment of respite, "
  travel_completion_event.1000.c: "Where will the road take me this time?"
 
- # Event texts
+ # Event texts (hidden events, no need to translate)
  # travel_danger.0001 Bandits
  travl_travel_danger.0001.t: "$travel_danger_prefix$ Bandits"
  travl_travel_danger.0001.desc: "We encounter bandits on the road."
@@ -21,10 +21,21 @@
  travl_travel_danger.0002.a.success: "You manage to find the missing companion"
  travl_travel_danger.0002.a.failure: "You fail to find the missing companion"
  travl_travel_danger.0002.b: "Leave them"
+ # travel_danger.0003 Lost
+ travl_travel_danger.0003.t: "$travel_danger_prefix$ Lost"
+ travl_travel_danger.0003.desc: "We lost our way."
+ travl_travel_danger.0003.a: "Try to find the way"
+ travl_travel_danger.0003.a.success: "You manage to find the way"
+ travl_travel_danger.0003.a.failure: "You fail to find the way"
+ travl_travel_danger.0003.b: "Find a local guide"
+ travl_travel_danger.0003.b.success: "You manage to find a local guide"
+ travl_travel_danger.0003.b.failure: "You fail to find a local guide"
+ travl_travel_danger.0003.c: "Push forward"
 
  # Message titles
- travl_msg_travel_danger_0001_t: "$travl_travel_danger.0001.t$"
- travl_msg_travel_danger_0002_t: "$travl_travel_danger.0002.t$"
+ travl_msg_travel_danger_0001_t: "$travel_danger_prefix$ Bandits"
+ travl_msg_travel_danger_0002_t: "$travel_danger_prefix$ Missing Companion"
+ travl_msg_travel_danger_0003_t: "$travel_danger_prefix$ Lost"
 
  # Message tooltips
  # travel_danger.0001 Bandits
@@ -40,3 +51,10 @@
  travl_msg_travel_danger_0002_a_success: "$travl_msg_travel_danger_0002_prefix$, but [THIS.Char.GetSheHe] managed to find [missing_companion.GetHerHim]."
  travl_msg_travel_danger_0002_a_failure: "$travl_msg_travel_danger_0002_prefix$, and [THIS.Char.GetSheHe] failed to find [missing_companion.GetHerHim]."
  travl_msg_travel_danger_0002_b: "$travl_msg_travel_danger_0002_prefix$, and [THIS.Char.GetSheHe] left [missing_companion.GetHerHim]."
+ # travel_danger.0003 Lost
+ travl_msg_travel_danger_0003_prefix: "[THIS.Char.GetShortUIName|U] lost [THIS.Char.GetHerHis] way"
+ travl_msg_travel_danger_0003_a_success: "$travl_msg_travel_danger_0003_prefix$, but managed to find the correct path."
+ travl_msg_travel_danger_0003_a_failure: "$travl_msg_travel_danger_0003_prefix$ and failed to find the correct path."
+ travl_msg_travel_danger_0003_b_success: "$travl_msg_travel_danger_0003_prefix$, but managed to find an experienced local guide."
+ travl_msg_travel_danger_0003_b_failure: "$travl_msg_travel_danger_0003_prefix$ and failed to find an experienced local guide."
+ travl_msg_travel_danger_0003_c: "$travl_msg_travel_danger_0003_prefix$ and pushed mindlessly forward."

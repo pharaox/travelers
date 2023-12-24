@@ -124,12 +124,16 @@ travl_travel_danger.0001 = {
 	type = character_event
 	title = travl_travel_danger.0001.t
 	desc = travl_travel_danger.0001.desc
+	theme = travel_danger
 	#hidden = yes
 
-	theme = travel_danger
 	left_portrait = {
+		character = root
+		animation = worry
+	}
+	right_portrait = {
 		character = scope:bandit
-		animation = aggressive_axe
+		animation = marshal
 	}
 
 	trigger = {
@@ -151,9 +155,12 @@ travl_travel_danger.0001 = {
 				}
 				travel_danger_type = {
 					travel_plan = root.current_travel_plan
+					terrain = desert_mountains
+				}
+				travel_danger_type = {
+					travel_plan = root.current_travel_plan
 					type = county_control
 				}
-				is_riverside_province = yes
 			}
 		}
 
@@ -162,9 +169,10 @@ travl_travel_danger.0001 = {
 			has_character_flag = had_travel_danger_event_1002_bandit_event_recently
 			has_character_flag = had_travel_event_1003_bandit_event_recently
 			has_character_flag = had_travel_event_3070_bandit_event_recently
-			has_character_flag = travl_had_travel_danger_0001_recently
 		}
 	}
+
+	cooldown = { years = 2 }
 
 	immediate = {
 		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_danger_0001_t }
@@ -257,11 +265,6 @@ travl_travel_danger.0001 = {
 		traveler_danger_xp_effect = {
 			MIN = 3
 			MAX = 6
-		}
-
-		add_character_flag = {
-			flag = travl_had_travel_danger_0001_recently
-			years = 5
 		}
 	}
 

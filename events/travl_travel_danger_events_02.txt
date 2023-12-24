@@ -46,17 +46,20 @@ scripted_effect travl_travel_danger_0002_failure_effect = {
 	}
 }
 
-# Danger: Missing Companion (Wetlands / Forest / Taiga)
+# Danger: Missing Companion
 travl_travel_danger.0002 = {
 	type = character_event
 	title = travl_travel_danger.0002.t
 	desc = travl_travel_danger.0002.desc
+	theme = travel_danger
 	#hidden = yes
 
-	theme = travel_danger
 	left_portrait = {
-		character = scope:bandit
-		animation = aggressive_axe
+		character = root
+		animation = worry
+	}
+	right_portrait = {
+		character = scope:missing_companion
 	}
 
 	trigger = {
@@ -99,6 +102,8 @@ travl_travel_danger.0002 = {
 			}
 		}
 	}
+
+	cooldown = { months = 1 }
 
 	immediate = {
 		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_danger_0002_t }

@@ -157,6 +157,19 @@ travl_travel_on_arrival = {
 			}
 		}
 
+		# Maybe gain the traveler trait if adult and unlanded
+		if = {
+			limit = {
+				is_adult = yes
+				is_landed = no
+				NOT = { has_trait = lifestyle_traveler }
+			}
+			random_list = {
+				20 = { add_trait = lifestyle_traveler }
+				80 = {}
+			}
+		}
+
 		# Remove travel variables
 		travl_remove_sender_and_receiver_effect = yes
 		travl_remove_leader_and_companions_effect = yes
@@ -250,8 +263,9 @@ travl_on_travel_plan_movement = {
 			value = 80
 		}
 		100 = 0
-		50 = travl_travel_danger.0001 # Danger: Bandits
+		100 = travl_travel_danger.0001 # Danger: Bandits
 		100 = travl_travel_danger.0002 # Danger: Missing Companion
+		100 = travl_travel_danger.0003 # Danger: Lost
 	}
 }
 

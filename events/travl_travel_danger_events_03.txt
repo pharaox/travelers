@@ -1,0 +1,308 @@
+﻿namespace = travl_travel_danger
+
+scripted_effect travl_travel_danger_0003_outcome_effect = {
+	# Setup character effects
+	travl_travel_danger_0003_$OUTCOME$_effect = yes
+
+	# Send messages to potential recipients and apply character effects
+	travl_event_apply_outcome_effect = {
+		EVENT = travel_danger_0003
+		OUTCOME = $OUTCOME$
+		RECIPIENTS = recipients
+		TRAVELERS = travelers
+	}
+}
+
+scripted_effect travl_travel_danger_0003_a_success_effect = {
+	scope:learning_character = {
+		set_variable = { name = travl_event_effect value = flag:add_prestige }
+		set_variable = { name = travl_event_value value = miniscule_prestige_value }
+		set_variable = { name = travl_event_xp value = flag:major }
+	}
+}
+
+scripted_effect travl_travel_danger_0003_a_failure_effect = {
+	scope:learning_character = {
+		set_variable = { name = travl_event_effect value = flag:remove_prestige }
+		set_variable = { name = travl_event_value value = minor_prestige_value }
+	}
+	every_in_list = {
+		list = travelers
+		travl_travel_danger_0003_failure_effect = yes
+	}
+}
+
+scripted_effect travl_travel_danger_0003_b_success_effect = {
+	every_in_list = {
+		list = travelers
+		set_variable = { name = travl_event_modifier value = flag:travel_guide_modifier }
+	}
+}
+
+scripted_effect travl_travel_danger_0003_b_failure_effect = {
+	every_in_list = {
+		list = travelers
+		travl_travel_danger_0003_failure_effect = yes
+	}
+}
+
+scripted_effect travl_travel_danger_0003_c_effect = {
+	every_in_list = {
+		list = travelers
+		travl_travel_danger_0003_failure_effect = yes
+	}
+}
+
+scripted_effect travl_travel_danger_0003_failure_effect = {
+	random_list = {
+		70 = {
+			set_variable = { name = travl_event_delay value = flag:medium }
+		}
+		30 = {
+			set_variable = { name = travl_event_delay value = flag:minor }
+		}
+	}
+}
+
+# Danger: Lost
+travl_travel_danger.0003 = {
+	type = character_event
+	title = travl_travel_danger.0003.t
+	desc = travl_travel_danger.0003.desc
+	theme = travel_danger
+	#hidden = yes
+
+	left_portrait = {
+		character = root
+		animation = worry
+	}
+	right_portrait = {
+		character = scope:guide
+	}
+
+	trigger = {
+		# Travel leader
+		has_variable = travl_travel_leader
+		var:travl_travel_leader = root
+
+		# Available, traveling, adult, on land, and unlanded
+		is_available_travelling_adult = yes
+		is_location_valid_for_travel_event_on_land = yes
+		is_landed = no
+
+		# Danger types
+		location = {
+			OR = {
+				travel_danger_type = {
+					travel_plan = root.current_travel_plan
+					terrain = forest
+				}
+				travel_danger_type = {
+					travel_plan = root.current_travel_plan
+					terrain = taiga
+				}
+				travel_danger_type = {
+					travel_plan = root.current_travel_plan
+					terrain = jungle
+				}
+			}
+		}
+
+		# Can get lost in this type of terrain
+		NOR = {
+			has_trait = forest_fighter
+			has_trait = jungle_stalker
+		}
+
+		# Cooldown between lost events
+		NOR = {
+			has_character_flag = had_1006_travel_danger_lost_event_recently
+			has_character_flag = had_2006_lost_pilgrimage_event_recently
+		}
+	}
+
+	cooldown = { months = 3 }
+
+	immediate = {
+		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_danger_0003_t }
+
+		var:travl_travel_sender = { save_temporary_scope_as = sender }
+		var:travl_travel_receiver = { save_temporary_scope_as = receiver }
+		travl_get_companions_effect = { COMPANIONS = companions }
+
+		# Get all relevant travelers (leader and all unlanded companions)
+		add_to_list = travelers
+		every_in_list = {
+			list = companions
+			limit = { is_landed = no }
+			add_to_list = travelers
+		}
+
+		# Get message recipients (sender and / or recieiver)
+		travl_get_message_recipients_effect = {
+			SENDER = scope:sender
+			RECEIVER = scope:receiver
+			RECIPIENTS = recipients
+		}
+
+		# Add the player as a recipient (debug-only)
+		if = {
+			limit = { debug_only = yes }
+			random_player = { add_to_list = recipients }
+		}
+
+		# Find or create a guide character
+		random_pool_character = {
+			province = root.location
+			limit = {
+				is_available_ai_adult = yes
+				stewardship >= low_skill_rating
+			}
+			save_scope_as = guide
+		}
+		if = {
+			limit = {
+				NOT = { exists = scope:guide }
+			}
+			create_character = {
+				location = root.location
+				template = guide_character
+				save_scope_as = guide
+			}
+			scope:bandit = {
+				move_to_pool = yes
+			}
+		}
+
+		# Find relevant travelers
+		ordered_in_list = {
+			list = travelers
+			limit = {
+				is_available_travelling_adult = yes
+				learning >= low_skill_rating
+			}
+			order_by = learning
+			save_scope_as = learning_character
+		}
+		ordered_in_list = {
+			list = travelers
+			limit = {
+				is_available_travelling_adult = yes
+				stewardship >= low_skill_rating
+			}
+			order_by = stewardship
+			save_scope_as = stewardship_character
+		}
+
+		traveler_danger_xp_effect = {
+			MIN = 3
+			MAX = 6
+		}
+	}
+
+	# Try to find the way (learning challenge)
+	option = {
+		name = travl_travel_danger.0003.a
+
+		trigger = {
+			exists = scope:learning_character
+		}
+
+		scope:learning_character = {
+			duel = {
+				skill = learning
+				value = high_skill_rating
+				50 = {
+					desc = travl_travel_danger.0003.a.success
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 3.5
+						min = -49
+					}
+					root = {
+						travl_travel_danger_0003_outcome_effect = { OUTCOME = a_success }
+					}
+				}
+				50 = {
+					desc = travl_travel_danger.0003.a.failure
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -3.5
+						min = -49
+					}
+					root = {
+						travl_travel_danger_0003_outcome_effect = { OUTCOME = a_failure }
+					}
+				}
+			}
+		}
+
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				who = scope:learning_character
+				ai_rationality = -1
+			}
+		}
+	}
+
+	# Find a local guide (stewardhip challenge)
+	option = {
+		name = travl_travel_danger.0003.b
+
+		trigger = {
+			exists = scope:stewardship_character
+			current_travel_plan = {
+				NOT = { has_travel_plan_modifier = travel_guide_modifier }
+			}
+		}
+
+		scope:stewardship_character = {
+			duel = {
+				skill = stewardship
+				target = scope:guide
+				50 = {
+					desc = travl_travel_danger.0003.b.success
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 3.5
+						min = -49
+					}
+					root = {
+						travl_travel_danger_0003_outcome_effect = { OUTCOME = b_success }
+					}
+				}
+				50 = {
+					desc = travl_travel_danger.0003.b.failure
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -3.5
+						min = -49
+					}
+					root = {
+						travl_travel_danger_0003_outcome_effect = { OUTCOME = b_failure }
+					}
+				}
+			}
+		}
+
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				who = scope:stewardship_character
+				ai_rationality = 1
+			}
+		}
+	}
+
+	# Push forward
+	option = {
+		name = travl_travel_danger.0003.c
+
+		travl_travel_danger_0003_outcome_effect = { OUTCOME = c }
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
