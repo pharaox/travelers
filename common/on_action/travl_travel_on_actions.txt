@@ -266,6 +266,7 @@ travl_on_travel_plan_movement = {
 		100 = travl_travel_danger.0001 # Danger: Bandits
 		100 = travl_travel_danger.0002 # Danger: Missing Companion
 		100 = travl_travel_danger.0003 # Danger: Lost
+		100 = travl_travel_danger.0004 # Danger: Out of Water
 	}
 }
 

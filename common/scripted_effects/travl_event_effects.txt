@@ -95,7 +95,7 @@ travl_event_apply_character_effect = {
 	# Add travel plan modifier
 	if = {
 		limit = { has_variable = travl_event_modifier }
-		travl_debug_log_effect = { MSG = travl_debug_msg_event_character_travel_modified }
+		travl_debug_log_effect = { MSG = travl_debug_msg_event_character_travel_added_modifier }
 		switch = {
 			trigger = var:travl_event_modifier
 			flag:travel_guide_modifier = {
@@ -103,6 +103,15 @@ travl_event_apply_character_effect = {
 					add_travel_plan_modifier = travel_guide_modifier
 				}
 			}
+		}
+	}
+
+	# Add travel plan waypoint
+	if = {
+		limit = { has_variable = travl_event_waypoint }
+		travl_debug_log_effect = { MSG = travl_debug_msg_event_character_travel_added_waypoint }
+		current_travel_plan = {
+			add_travel_waypoint = prev.var:travl_event_waypoint
 		}
 	}
 
@@ -123,6 +132,9 @@ travl_event_apply_character_effect = {
 					}
 					flag:death_lost_in_the_forest = {
 						death = { death_reason = death_lost_in_the_forest }
+					}
+					flag:death_thirst = {
+						death = { death_reason = death_thirst }
 					}
 				}
 			}
@@ -163,5 +175,6 @@ travl_event_apply_character_effect = {
 		remove_variable = travl_event_xp
 		remove_variable = travl_event_delay
 		remove_variable = travl_event_modifier
+		remove_variable = travl_event_waypoint
 	}
 }

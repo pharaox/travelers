@@ -85,6 +85,14 @@
  travl_debug_msg_travel_danger_0003_b_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0003_t$ event option b failure"
  travl_debug_msg_travel_danger_0003_c: "$travl_debug_prefix$: $travl_msg_travel_danger_0003_t$ event option c"
 
+ travl_debug_msg_travel_danger_0004_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0004_t$ event fired"
+ travl_debug_msg_travel_danger_0004_a: "$travl_debug_prefix$: $travl_msg_travel_danger_0004_t$ event option a"
+ travl_debug_msg_travel_danger_0004_b_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0004_t$ event option b success"
+ travl_debug_msg_travel_danger_0004_b_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0004_t$ event option b failure"
+ travl_debug_msg_travel_danger_0004_c_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0004_t$ event option c success"
+ travl_debug_msg_travel_danger_0004_c_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0004_t$ event option c failure"
+ travl_debug_msg_travel_danger_0004_d: "$travl_debug_prefix$: $travl_msg_travel_danger_0004_t$ event option d"
+
  travl_debug_msg_event_character_died: "$travl_debug_prefix$: Character died, reason: $travl_event_death_reason$, killer: $travl_event_character$"
  travl_debug_msg_event_character_maimed: "$travl_debug_prefix$: Character maimed"
  travl_debug_msg_event_character_wounded: "$travl_debug_prefix$: Character wounded"
@@ -94,7 +102,8 @@
  travl_debug_msg_event_character_lost_gold: "$travl_debug_prefix$: Character lost $travl_event_value$ gold"
  travl_debug_msg_event_character_gained_traveler_xp: "$travl_debug_prefix$: Character gained $travl_event_xp$ traveler XP"
  travl_debug_msg_event_character_travel_delayed: "$travl_debug_prefix$: Character travel delayed by a $travl_event_delay$ delay"
- travl_debug_msg_event_character_travel_modified: "$travl_debug_prefix$: Character travel modified, modifier: $travl_event_modifier$"
+ travl_debug_msg_event_character_travel_added_modifier: "$travl_debug_prefix$: Character travel added $travl_event_modifier$ modifier"
+ travl_debug_msg_event_character_travel_added_waypoint: "$travl_debug_prefix$: Character travel added $travl_event_waypoint$ as waypoint"
 
  travl_travel_receiver: "[THIS.Var('travl_travel_receiver').Char.GetFullNameNoTooltip]"
  travl_travel_leader: "[THIS.Var('travl_travel_leader').Char.GetFullNameNoTooltip]"
@@ -111,3 +120,4 @@
  travl_event_xp: "[THIS.Var('travl_event_xp').GetFlagName]"
  travl_event_delay: "[THIS.Var('travl_event_delay').GetFlagName]"
  travl_event_modifier: "[THIS.Var('travl_event_modifier').GetFlagName]"
+ travl_event_waypoint: "[THIS.Var('travl_event_waypoint').Province.GetNameNoTooltip]"

@@ -31,11 +31,23 @@
  travl_travel_danger.0003.b.success: "You manage to find a local guide"
  travl_travel_danger.0003.b.failure: "You fail to find a local guide"
  travl_travel_danger.0003.c: "Push forward"
+ # travel_danger.0004 Out of Water
+ travl_travel_danger.0004.t: "$travel_danger_prefix$ Out of Water"
+ travl_travel_danger.0004.desc: "We have run out of water."
+ travl_travel_danger.0004.a: "Go to a nearby oasis"
+ travl_travel_danger.0004.b: "Quench your companions thirst with an inspiring speech"
+ travl_travel_danger.0004.b.success: "You manage to inspire your companions"
+ travl_travel_danger.0004.b.failure: "You fail to inspire your companions"
+ travl_travel_danger.0004.c: "Interrogate a companion about a secret water supply"
+ travl_travel_danger.0004.c.success: "You manage to find water from interrogation"
+ travl_travel_danger.0004.c.failure: "You fail to find water from interrogation"
+ travl_travel_danger.0004.d: "There is nothing we can do..."
 
  # Message titles
  travl_msg_travel_danger_0001_t: "$travel_danger_prefix$ Bandits"
  travl_msg_travel_danger_0002_t: "$travel_danger_prefix$ Missing Companion"
  travl_msg_travel_danger_0003_t: "$travel_danger_prefix$ Lost"
+ travl_msg_travel_danger_0004_t: "$travel_danger_prefix$ Out of Water"
 
  # Message tooltips
  # travel_danger.0001 Bandits
@@ -58,3 +70,11 @@
  travl_msg_travel_danger_0003_b_success: "$travl_msg_travel_danger_0003_prefix$, but managed to find an experienced local guide."
  travl_msg_travel_danger_0003_b_failure: "$travl_msg_travel_danger_0003_prefix$ and failed to find an experienced local guide."
  travl_msg_travel_danger_0003_c: "$travl_msg_travel_danger_0003_prefix$ and pushed mindlessly forward."
+ # travel_danger.0004 Out of Water
+ travl_msg_travel_danger_0004_prefix: "[THIS.Char.GetShortUIName|U] ran out of water while crossing a desert"
+ travl_msg_travel_danger_0004_a: "$travl_msg_travel_danger_0004_prefix$ and had to stop at a nearby oasis."
+ travl_msg_travel_danger_0004_b_success: "$travl_msg_travel_danger_0004_prefix$, but managed to inspire [THIS.Char.GetHerHis] companions with hope."
+ travl_msg_travel_danger_0004_b_failure: "$travl_msg_travel_danger_0004_prefix$ and failed to inspire [THIS.Char.GetHerHis] companions with hope."
+ travl_msg_travel_danger_0004_c_success: "$travl_msg_travel_danger_0004_prefix$, but managed to find water by interrogating [water_hider.GetShortUIName]."
+ travl_msg_travel_danger_0004_c_failure: "$travl_msg_travel_danger_0004_prefix$ and failed to find water by interrogating [water_hider.GetShortUIName]."
+ travl_msg_travel_danger_0004_d: "$travl_msg_travel_danger_0004_prefix$ and suffered greatly from thirst."

@@ -1,0 +1,310 @@
+﻿namespace = travl_travel_danger
+
+scripted_effect travl_travel_danger_0004_outcome_effect = {
+	# Setup character effects
+	travl_travel_danger_0004_$OUTCOME$_effect = yes
+
+	# Send messages to potential recipients and apply character effects
+	travl_event_apply_outcome_effect = {
+		EVENT = travel_danger_0004
+		OUTCOME = $OUTCOME$
+		RECIPIENTS = recipients
+		TRAVELERS = travelers
+	}
+}
+
+scripted_effect travl_travel_danger_0004_a_effect = {
+	every_in_list = {
+		list = travelers
+		set_variable = { name = travl_event_waypoint value = scope:oasis_province }
+	}
+}
+
+scripted_effect travl_travel_danger_0004_b_success_effect = {
+	scope:diplomacy_character = {
+		set_variable = { name = travl_event_effect value = flag:add_prestige }
+		set_variable = { name = travl_event_value value = miniscule_prestige_value }
+	}
+}
+
+scripted_effect travl_travel_danger_0004_b_failure_effect = {
+	scope:diplomacy_character = {
+		set_variable = { name = travl_event_effect value = flag:remove_prestige }
+		set_variable = { name = travl_event_value value = minor_prestige_value }
+	}
+	every_in_list = {
+		list = travelers
+		travl_travel_danger_0004_failure_effect = yes
+	}
+}
+
+scripted_effect travl_travel_danger_0004_c_success_effect = {
+	root = {
+		set_variable = { name = travl_event_effect value = flag:add_prestige }
+		set_variable = { name = travl_event_value value = miniscule_prestige_value }
+	}
+	scope:water_hider = {
+		set_variable = { name = travl_event_effect value = flag:remove_prestige }
+		set_variable = { name = travl_event_value value = minor_prestige_value }
+	}
+}
+
+scripted_effect travl_travel_danger_0004_c_failure_effect = {
+	root = {
+		set_variable = { name = travl_event_effect value = flag:remove_prestige }
+		set_variable = { name = travl_event_value value = minor_prestige_value }
+	}
+	every_in_list = {
+		list = travelers
+		travl_travel_danger_0004_failure_effect = yes
+	}
+}
+
+scripted_effect travl_travel_danger_0004_d_effect = {
+	every_in_list = {
+		list = travelers
+		travl_travel_danger_0004_failure_effect = yes
+	}
+}
+
+scripted_effect travl_travel_danger_0004_failure_effect = {
+	random_list = {
+		10 = {
+			set_variable = { name = travl_event_effect value = flag:kill }
+			set_variable = { name = travl_event_death_reason value = flag:death_thirst }
+		}
+		90 = {}
+	}
+}
+
+# Danger: Out of Water
+travl_travel_danger.0004 = {
+	type = character_event
+	title = travl_travel_danger.0004.t
+	desc = travl_travel_danger.0004.desc
+	theme = travel_danger
+	#hidden = yes
+
+	left_portrait = {
+		character = root
+		animation = pain
+	}
+
+	trigger = {
+		# Travel leader
+		has_variable = travl_travel_leader
+		var:travl_travel_leader = root
+
+		# Available, traveling, adult, on land, and unlanded
+		is_available_travelling_adult = yes
+		is_location_valid_for_travel_event_on_land = yes
+		is_landed = no
+
+		# Danger types
+		location = {
+			OR = {
+				travel_danger_type = {
+					travel_plan = root.current_travel_plan
+					terrain = desert
+				}
+				travel_danger_type = {
+					travel_plan = root.current_travel_plan
+					terrain = desert_mountains
+				}
+				travel_danger_type = {
+					travel_plan = root.current_travel_plan
+					terrain = drylands
+				}
+				travel_danger_type = {
+					travel_plan = root.current_travel_plan
+					terrain = steppe
+				}
+			}
+		}
+
+		# Is not an expert this type of terrain
+		NOR = {
+			has_trait = desert_warrior
+			has_trait = open_terrain_expert
+		}
+
+		# Culture is not nomadic
+		culture = {
+			NOR = {
+				has_cultural_tradition = tradition_saharan_nomads
+				has_cultural_tradition = tradition_desert_nomads
+			}
+		}
+	}
+
+	cooldown = { months = 1 }
+
+	immediate = {
+		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_danger_0004_t }
+
+		var:travl_travel_sender = { save_temporary_scope_as = sender }
+		var:travl_travel_receiver = { save_temporary_scope_as = receiver }
+		travl_get_companions_effect = { COMPANIONS = companions }
+
+		# Get all relevant travelers (leader and all unlanded companions)
+		add_to_list = travelers
+		every_in_list = {
+			list = companions
+			limit = { is_landed = no }
+			add_to_list = travelers
+		}
+
+		# Get message recipients (sender and / or recieiver)
+		travl_get_message_recipients_effect = {
+			SENDER = scope:sender
+			RECEIVER = scope:receiver
+			RECIPIENTS = recipients
+		}
+
+		# Add the player as a recipient (debug-only)
+		if = {
+			limit = { debug_only = yes }
+			random_player = { add_to_list = recipients }
+		}
+
+		# Pick water hider
+		random_in_list = {
+			list = companions
+			limit = {
+				is_available_travelling_adult = yes
+				is_landed = no
+			}
+			save_scope_as = water_hider
+		}
+
+		# Find relevant travelers
+		ordered_in_list = {
+			list = travelers
+			limit = {
+				is_available_travelling_adult = yes
+				diplomacy >= low_skill_rating
+			}
+			order_by = diplomacy
+			save_scope_as = diplomacy_character
+		}
+
+		# Find oasis province
+		location = {
+			random_neighboring_province = {
+				limit = { terrain = oasis }
+				save_scope_as = oasis_province
+			}
+		}
+
+		traveler_danger_xp_effect = {
+			MIN = 3
+			MAX = 6
+		}
+	}
+
+	# Go to a nearby oasis
+	option = {
+		name = travl_travel_danger.0004.a
+
+		trigger = {
+			exists = scope:oasis_province
+		}
+
+		travl_travel_danger_0004_outcome_effect = { OUTCOME = a }
+
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_rationality = 1
+			}
+		}
+	}
+
+	# Quench our thirst with an inspiring speech (diplomacy challenge)
+	option = {
+		name = travl_travel_danger.0004.b
+
+		trigger = {
+			list_size = {
+				name = travelers
+				value > 1
+			}
+			exists = scope:diplomacy_character
+		}
+
+		scope:diplomacy_character = {
+			duel = {
+				skill = diplomacy
+				value = decent_skill_rating
+				50 = {
+					desc = travl_travel_danger.0004.b.success
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 3.5
+						min = -49
+					}
+					root = {
+						travl_travel_danger_0004_outcome_effect = { OUTCOME = b_success }
+					}
+				}
+				50 = {
+					desc = travl_travel_danger.0004.b.failure
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -3.5
+						min = -49
+					}
+					root = {
+						travl_travel_danger_0004_outcome_effect = { OUTCOME = b_failure }
+					}
+				}
+			}
+		}
+
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				who = scope:diplomacy_character
+				ai_zeal = 1
+			}
+		}
+	}
+
+	# Interrogate a companion about a secret water supply (random chance)
+	option = {
+		name = travl_travel_danger.0004.c
+
+		trigger = {
+			exists = scope:water_hider
+		}
+
+		random_list = {
+			50 = {
+				desc = travl_travel_danger.0004.c.success
+				travl_travel_danger_0004_outcome_effect = { OUTCOME = c_success }
+			}
+			50 = {
+				desc = travl_travel_danger.0004.c.failure
+				travl_travel_danger_0004_outcome_effect = { OUTCOME = c_failure }
+			}
+		}
+
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_vengefulness = 1
+			}
+		}
+	}
+
+	# There is nothing we can do...
+	option = {
+		name = travl_travel_danger.0004.d
+
+		travl_travel_danger_0004_outcome_effect = { OUTCOME = d }
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}

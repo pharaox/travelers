@@ -108,7 +108,7 @@ travl_travel_danger.0003 = {
 			}
 		}
 
-		# Can get lost in this type of terrain
+		# Is not an expert this type of terrain
 		NOR = {
 			has_trait = forest_fighter
 			has_trait = jungle_stalker
