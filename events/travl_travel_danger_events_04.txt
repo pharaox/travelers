@@ -16,21 +16,19 @@ scripted_effect travl_travel_danger_0004_outcome_effect = {
 scripted_effect travl_travel_danger_0004_a_effect = {
 	every_in_list = {
 		list = travelers
-		set_variable = { name = travl_event_waypoint value = scope:oasis_province }
+		travl_event_add_travel_waypoint_effect = { VALUE = scope:oasis_province }
 	}
 }
 
 scripted_effect travl_travel_danger_0004_b_success_effect = {
 	scope:diplomacy_character = {
-		set_variable = { name = travl_event_effect value = flag:add_prestige }
-		set_variable = { name = travl_event_value value = miniscule_prestige_value }
+		travl_event_add_prestige_effect = { VALUE = miniscule_prestige_value }
 	}
 }
 
 scripted_effect travl_travel_danger_0004_b_failure_effect = {
 	scope:diplomacy_character = {
-		set_variable = { name = travl_event_effect value = flag:remove_prestige }
-		set_variable = { name = travl_event_value value = minor_prestige_value }
+		travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
 	}
 	every_in_list = {
 		list = travelers
@@ -40,19 +38,16 @@ scripted_effect travl_travel_danger_0004_b_failure_effect = {
 
 scripted_effect travl_travel_danger_0004_c_success_effect = {
 	root = {
-		set_variable = { name = travl_event_effect value = flag:add_prestige }
-		set_variable = { name = travl_event_value value = miniscule_prestige_value }
+		travl_event_add_prestige_effect = { VALUE = miniscule_prestige_value }
 	}
 	scope:water_hider = {
-		set_variable = { name = travl_event_effect value = flag:remove_prestige }
-		set_variable = { name = travl_event_value value = minor_prestige_value }
+		travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
 	}
 }
 
 scripted_effect travl_travel_danger_0004_c_failure_effect = {
 	root = {
-		set_variable = { name = travl_event_effect value = flag:remove_prestige }
-		set_variable = { name = travl_event_value value = minor_prestige_value }
+		travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
 	}
 	every_in_list = {
 		list = travelers
@@ -70,8 +65,7 @@ scripted_effect travl_travel_danger_0004_d_effect = {
 scripted_effect travl_travel_danger_0004_failure_effect = {
 	random_list = {
 		10 = {
-			set_variable = { name = travl_event_effect value = flag:kill }
-			set_variable = { name = travl_event_death_reason value = flag:death_thirst }
+			travl_event_death_effect = { REASON = flag:death_thirst KILLER = this }
 		}
 		90 = {}
 	}

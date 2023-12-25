@@ -29,7 +29,6 @@ scripted_effect travl_travel_danger_0002_b_effect = {
 }
 
 scripted_effect travl_travel_danger_0002_failure_effect = {
-	set_variable = { name = travl_event_effect value = flag:kill }
 	if = {
 		limit = {
 			root.location = {
@@ -39,10 +38,10 @@ scripted_effect travl_travel_danger_0002_failure_effect = {
 				}
 			}
 		}
-		set_variable = { name = travl_event_death_reason value = flag:death_lost_in_the_bog }
+		travl_event_death_effect = { REASON = flag:death_lost_in_the_bog KILLER = this }
 	}
 	else = {
-		set_variable = { name = travl_event_death_reason value = flag:death_lost_in_the_forest }
+		travl_event_death_effect = { REASON = flag:death_lost_in_the_forest KILLER = this }
 	}
 }
 

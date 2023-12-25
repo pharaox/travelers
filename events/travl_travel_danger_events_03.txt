@@ -15,16 +15,14 @@ scripted_effect travl_travel_danger_0003_outcome_effect = {
 
 scripted_effect travl_travel_danger_0003_a_success_effect = {
 	scope:learning_character = {
-		set_variable = { name = travl_event_effect value = flag:add_prestige }
-		set_variable = { name = travl_event_value value = miniscule_prestige_value }
-		set_variable = { name = travl_event_xp value = flag:major }
+		travl_event_add_prestige_effect = { VALUE = miniscule_prestige_value }
+		travl_event_add_traveler_xp_effect = { VALUE = flag:major }
 	}
 }
 
 scripted_effect travl_travel_danger_0003_a_failure_effect = {
 	scope:learning_character = {
-		set_variable = { name = travl_event_effect value = flag:remove_prestige }
-		set_variable = { name = travl_event_value value = minor_prestige_value }
+		travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
 	}
 	every_in_list = {
 		list = travelers
@@ -35,7 +33,7 @@ scripted_effect travl_travel_danger_0003_a_failure_effect = {
 scripted_effect travl_travel_danger_0003_b_success_effect = {
 	every_in_list = {
 		list = travelers
-		set_variable = { name = travl_event_modifier value = flag:travel_guide_modifier }
+		travl_event_add_travel_modifier_effect = { VALUE = flag:travel_guide_modifier }
 	}
 }
 
@@ -56,10 +54,10 @@ scripted_effect travl_travel_danger_0003_c_effect = {
 scripted_effect travl_travel_danger_0003_failure_effect = {
 	random_list = {
 		70 = {
-			set_variable = { name = travl_event_delay value = flag:medium }
+			travl_event_delay_travel_effect = { VALUE = flag:medium }
 		}
 		30 = {
-			set_variable = { name = travl_event_delay value = flag:minor }
+			travl_event_delay_travel_effect = { VALUE = flag:minor }
 		}
 	}
 }

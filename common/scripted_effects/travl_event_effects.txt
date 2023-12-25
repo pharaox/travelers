@@ -1,4 +1,49 @@
-﻿travl_event_apply_outcome_effect = {
+﻿travl_event_add_prestige_effect = {
+	set_variable = { name = travl_event_prestige value = $VALUE$ }
+}
+
+travl_event_remove_prestige_effect = {
+	set_variable = { name = travl_event_prestige value = { value = $VALUE$ multiply = -1 } }
+}
+
+travl_event_add_gold_effect = {
+	set_variable = { name = travl_event_gold value = $VALUE$ }
+}
+
+travl_event_remove_gold_effect = {
+	set_variable = { name = travl_event_gold value = { value = $VALUE$ multiply = -1 } }
+}
+
+travl_event_add_trait_effect = {
+	set_variable = { name = travl_event_trait value = $TRAIT$ }
+}
+
+travl_event_wound_effect = {
+	set_variable = { name = travl_event_wound value = $REASON$ }
+}
+
+travl_event_add_traveler_xp_effect = {
+	set_variable = { name = travl_event_xp value = $VALUE$ }
+}
+
+travl_event_delay_travel_effect = {
+	set_variable = { name = travl_event_delay value = $VALUE$ }
+}
+
+travl_event_add_travel_modifier_effect = {
+	set_variable = { name = travl_event_modifier value = $VALUE$ }
+}
+
+travl_event_add_travel_waypoint_effect = {
+	set_variable = { name = travl_event_waypoint value = $VALUE$ }
+}
+
+travl_event_death_effect = {
+	set_variable = { name = travl_event_death value = $REASON$ }
+	set_variable = { name = travl_event_killer value = $KILLER$ }
+}
+
+travl_event_apply_outcome_effect = {
 	travl_debug_log_effect = { MSG = travl_debug_msg_$EVENT$_$OUTCOME$ }
 
 	# Send messages to potential recipients
@@ -46,6 +91,58 @@ travl_send_event_messages_effect = {
 }
 
 travl_event_apply_character_effect = {
+	# Gain or lose prestige
+	if = {
+		limit = { has_variable = travl_event_prestige }
+		if = {
+			limit = { var:travl_event_prestige > 0 }
+			travl_debug_log_effect = { MSG = travl_debug_msg_event_character_gained_prestige }
+			add_prestige = var:travl_event_prestige
+		}
+		else = {
+			travl_debug_log_effect = { MSG = travl_debug_msg_event_character_lost_prestige }
+			add_prestige = var:travl_event_prestige
+		}
+	}
+
+	# Gain or lose gold
+	if = {
+		limit = { has_variable = travl_event_gold }
+		if = {
+			limit = { var:travl_event_gold > 0 }
+			travl_debug_log_effect = { MSG = travl_debug_msg_event_character_gained_gold }
+			add_short_term_gold = var:travl_event_gold
+		}
+		else = {
+			travl_debug_log_effect = { MSG = travl_debug_msg_event_character_lost_gold }
+			remove_short_term_gold = { value = var:travl_event_gold multiply = -1 }
+		}
+	}
+
+	# Injure (maimed, etc.)
+	if = {
+		limit = { has_variable = travl_event_trait }
+		travl_debug_log_effect = { MSG = travl_debug_msg_event_character_injured }
+		switch = {
+			trigger = var:travl_event_trait
+			flag:maimed = {
+				add_trait = maimed
+			}
+		}
+	}
+
+	# Increase wounds
+	if = {
+		limit = { has_variable = travl_event_wound }
+		travl_debug_log_effect = { MSG = travl_debug_msg_event_character_wounded }
+		switch = {
+			trigger = var:travl_event_wound
+			flag:fight = {
+				increase_wounds_effect = { REASON = fight }
+			}
+		}
+	}
+
 	# Gain traveler danger XP
 	if = {
 		limit = { has_variable = travl_event_xp }
@@ -115,52 +212,23 @@ travl_event_apply_character_effect = {
 		}
 	}
 
-	# Apply character effect
+	# Death (must be last)
 	if = {
-		limit = { has_variable = travl_event_effect }
+		limit = { has_variable = travl_event_death }
+		travl_debug_log_effect = { MSG = travl_debug_msg_event_character_died }
 		switch = {
-			trigger = var:travl_event_effect
-			flag:kill = {
-				travl_debug_log_effect = { MSG = travl_debug_msg_event_character_died }
-				switch = {
-					trigger = var:travl_event_death_reason
-					flag:death_fight = {
-						death = { death_reason = death_fight killer = var:travl_event_character }
-					}
-					flag:death_lost_in_the_bog = {
-						death = { death_reason = death_lost_in_the_bog }
-					}
-					flag:death_lost_in_the_forest = {
-						death = { death_reason = death_lost_in_the_forest }
-					}
-					flag:death_thirst = {
-						death = { death_reason = death_thirst }
-					}
-				}
+			trigger = var:travl_event_death
+			flag:death_fight = {
+				death = { death_reason = death_fight killer = var:travl_event_killer }
 			}
-			flag:maim = {
-				travl_debug_log_effect = { MSG = travl_debug_msg_event_character_maimed }
-				add_trait = maimed
+			flag:death_lost_in_the_bog = {
+				death = { death_reason = death_lost_in_the_bog }
 			}
-			flag:wound = {
-				travl_debug_log_effect = { MSG = travl_debug_msg_event_character_wounded }
-				increase_wounds_effect = { REASON = fight }
+			flag:death_lost_in_the_forest = {
+				death = { death_reason = death_lost_in_the_forest }
 			}
-			flag:add_prestige = {
-				travl_debug_log_effect = { MSG = travl_debug_msg_event_character_gained_prestige }
-				add_prestige = var:travl_event_value
-			}
-			flag:remove_prestige = {
-				travl_debug_log_effect = { MSG = travl_debug_msg_event_character_lost_prestige }
-				add_prestige = { value = var:travl_event_value multiply = -1 }
-			}
-			flag:add_gold = {
-				travl_debug_log_effect = { MSG = travl_debug_msg_event_character_gained_gold }
-				add_short_term_gold = var:travl_event_value
-			}
-			flag:remove_gold = {
-				travl_debug_log_effect = { MSG = travl_debug_msg_event_character_lost_gold }
-				remove_short_term_gold = var:travl_event_value
+			flag:death_thirst = {
+				death = { death_reason = death_thirst }
 			}
 		}
 	}
@@ -168,13 +236,15 @@ travl_event_apply_character_effect = {
 	# Remove event variables
 	if = {
 		limit = { is_alive = yes }
-		remove_variable = travl_event_effect
-		remove_variable = travl_event_character
-		remove_variable = travl_event_value
-		remove_variable = travl_event_death_reason
+		remove_variable = travl_event_prestige
+		remove_variable = travl_event_gold
+		remove_variable = travl_event_trait
+		remove_variable = travl_event_wound
 		remove_variable = travl_event_xp
 		remove_variable = travl_event_delay
 		remove_variable = travl_event_modifier
 		remove_variable = travl_event_waypoint
+		remove_variable = travl_event_death
+		remove_variable = travl_event_killer
 	}
 }

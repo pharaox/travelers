@@ -15,8 +15,7 @@ scripted_effect travl_travel_danger_0001_outcome_effect = {
 
 scripted_effect travl_travel_danger_0001_a_success_effect = {
 	scope:prowess_character = {
-		set_variable = { name = travl_event_effect value = flag:add_prestige }
-		set_variable = { name = travl_event_value value = miniscule_prestige_value }
+		travl_event_add_prestige_effect = { VALUE = miniscule_prestige_value }
 	}
 }
 
@@ -24,59 +23,41 @@ scripted_effect travl_travel_danger_0001_a_failure_effect = {
 	scope:prowess_character = {
 		random_list = {
 			25 = {
-				set_variable = { name = travl_event_effect value = flag:kill }
-				set_variable = { name = travl_event_death_reason value = flag:death_fight }
-				set_variable = { name = travl_event_character value = scope:bandit }
+				travl_event_death_effect = { REASON = flag:death_fight KILLER = scope:bandit }
 			}
 			25 = {
-				set_variable = { name = travl_event_effect value = flag:maim }
+				travl_event_add_trait_effect = { TRAIT = flag:maimed }
 			}
 			50 = {
-				set_variable = { name = travl_event_effect value = flag:wound }
+				travl_event_wound_effect = { REASON = flag:fight }
 			}
 		}
 	}
 	every_in_list = {
 		list = travelers
-		limit = { NOT = { this = scope:prowess_character } }
 		travl_travel_danger_0001_failure_effect = yes
 	}
 }
 
 scripted_effect travl_travel_danger_0001_b_success_effect = {
 	scope:diplomacy_character = {
-		set_variable = { name = travl_event_effect value = flag:add_prestige }
-		set_variable = { name = travl_event_value value = miniscule_prestige_value }
+		travl_event_add_prestige_effect = { VALUE = miniscule_prestige_value }
 	}
 }
 
 scripted_effect travl_travel_danger_0001_b_failure_effect = {
 	scope:diplomacy_character = {
-		random_list = {
-			25 = {
-				set_variable = { name = travl_event_effect value = flag:wound }
-			}
-			25 = {
-				set_variable = { name = travl_event_effect value = flag:remove_prestige }
-				set_variable = { name = travl_event_value value = medium_prestige_value }
-			}
-			50 = {
-				set_variable = { name = travl_event_effect value = flag:remove_prestige }
-				set_variable = { name = travl_event_value value = minor_prestige_value }
-			}
-		}
+		travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
 	}
 	every_in_list = {
 		list = travelers
-		limit = { NOT = { this = scope:diplomacy_character } }
 		travl_travel_danger_0001_failure_effect = yes
 	}
 }
 
 scripted_effect travl_travel_danger_0001_c_effect = {
 	scope:gold_character = {
-		set_variable = { name = travl_event_effect value = flag:remove_gold }
-		set_variable = { name = travl_event_value value = minor_gold_value }
+		travl_event_remove_gold_effect = { VALUE = minor_gold_value }
 	}
 }
 
@@ -90,31 +71,25 @@ scripted_effect travl_travel_danger_0001_d_effect = {
 scripted_effect travl_travel_danger_0001_failure_effect = {
 	random_list = {
 		10 = {
-			set_variable = { name = travl_event_effect value = flag:kill }
-			set_variable = { name = travl_event_death_reason value = flag:death_fight }
-			set_variable = { name = travl_event_character value = scope:bandit }
+			travl_event_death_effect = { REASON = flag:death_fight KILLER = scope:bandit }
 		}
 		10 = {
-			set_variable = { name = travl_event_effect value = flag:maim }
+			travl_event_add_trait_effect = { TRAIT = flag:maimed }
 		}
 		20 = {
-			set_variable = { name = travl_event_effect value = flag:wound }
+			travl_event_wound_effect = { REASON = flag:fight }
 		}
 		10 = {
-			set_variable = { name = travl_event_effect value = flag:remove_prestige }
-			set_variable = { name = travl_event_value value = medium_prestige_value }
+			travl_event_remove_prestige_effect = { VALUE = medium_prestige_value }
 		}
 		20 = {
-			set_variable = { name = travl_event_effect value = flag:remove_prestige }
-			set_variable = { name = travl_event_value value = minor_prestige_value }
+			travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
 		}
 		10 = {
-			set_variable = { name = travl_event_effect value = flag:remove_gold }
-			set_variable = { name = travl_event_value value = minor_gold_value }
+			travl_event_remove_gold_effect = { VALUE = minor_gold_value }
 		}
 		20 = {
-			set_variable = { name = travl_event_effect value = flag:remove_gold }
-			set_variable = { name = travl_event_value value = tiny_gold_value }
+			travl_event_remove_gold_effect = { VALUE = tiny_gold_value }
 		}
 	}
 }
