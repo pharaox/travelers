@@ -30,14 +30,12 @@ scripted_effect travl_travel_danger_0004_b_failure_effect = {
 	scope:diplomacy_character = {
 		travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
 	}
-	every_in_list = {
-		list = travelers
-		travl_travel_danger_0004_failure_effect = yes
-	}
+	travl_travel_danger_0004_failure_effect = yes
 }
 
 scripted_effect travl_travel_danger_0004_c_success_effect = {
 	root = {
+		travl_event_add_stress_effect = { TRAIT = flag:trusting VALUE = flag:major }
 		travl_event_add_prestige_effect = { VALUE = miniscule_prestige_value }
 	}
 	scope:water_hider = {
@@ -47,27 +45,25 @@ scripted_effect travl_travel_danger_0004_c_success_effect = {
 
 scripted_effect travl_travel_danger_0004_c_failure_effect = {
 	root = {
+		travl_event_add_stress_effect = { TRAIT = flag:trusting VALUE = flag:major }
 		travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
 	}
-	every_in_list = {
-		list = travelers
-		travl_travel_danger_0004_failure_effect = yes
-	}
+	travl_travel_danger_0004_failure_effect = yes
 }
 
 scripted_effect travl_travel_danger_0004_d_effect = {
-	every_in_list = {
-		list = travelers
-		travl_travel_danger_0004_failure_effect = yes
-	}
+	travl_travel_danger_0004_failure_effect = yes
 }
 
 scripted_effect travl_travel_danger_0004_failure_effect = {
-	random_list = {
-		10 = {
-			travl_event_death_effect = { REASON = flag:death_thirst KILLER = this }
+	every_in_list = {
+		list = travelers
+		random_list = {
+			10 = {
+				travl_event_death_effect = { REASON = flag:death_thirst KILLER = this }
+			}
+			90 = {}
 		}
-		90 = {}
 	}
 }
 
@@ -286,7 +282,7 @@ travl_travel_danger.0004 = {
 		ai_chance = {
 			base = 100
 			ai_value_modifier = {
-				ai_vengefulness = 1
+				ai_honor = -1
 			}
 		}
 	}

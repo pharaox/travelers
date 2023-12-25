@@ -33,10 +33,7 @@ scripted_effect travl_travel_danger_0001_a_failure_effect = {
 			}
 		}
 	}
-	every_in_list = {
-		list = travelers
-		travl_travel_danger_0001_failure_effect = yes
-	}
+	travl_travel_danger_0001_failure_effect = yes
 }
 
 scripted_effect travl_travel_danger_0001_b_success_effect = {
@@ -49,10 +46,7 @@ scripted_effect travl_travel_danger_0001_b_failure_effect = {
 	scope:diplomacy_character = {
 		travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
 	}
-	every_in_list = {
-		list = travelers
-		travl_travel_danger_0001_failure_effect = yes
-	}
+	travl_travel_danger_0001_failure_effect = yes
 }
 
 scripted_effect travl_travel_danger_0001_c_effect = {
@@ -62,34 +56,34 @@ scripted_effect travl_travel_danger_0001_c_effect = {
 }
 
 scripted_effect travl_travel_danger_0001_d_effect = {
-	every_in_list = {
-		list = travelers
-		travl_travel_danger_0001_failure_effect = yes
-	}
+	travl_travel_danger_0001_failure_effect = yes
 }
 
 scripted_effect travl_travel_danger_0001_failure_effect = {
-	random_list = {
-		10 = {
-			travl_event_death_effect = { REASON = flag:death_fight KILLER = scope:bandit }
-		}
-		10 = {
-			travl_event_add_trait_effect = { TRAIT = flag:maimed }
-		}
-		20 = {
-			travl_event_wound_effect = { REASON = flag:fight }
-		}
-		10 = {
-			travl_event_remove_prestige_effect = { VALUE = medium_prestige_value }
-		}
-		20 = {
-			travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
-		}
-		10 = {
-			travl_event_remove_gold_effect = { VALUE = minor_gold_value }
-		}
-		20 = {
-			travl_event_remove_gold_effect = { VALUE = tiny_gold_value }
+	every_in_list = {
+		list = travelers
+		random_list = {
+			10 = {
+				travl_event_death_effect = { REASON = flag:death_fight KILLER = scope:bandit }
+			}
+			10 = {
+				travl_event_add_trait_effect = { TRAIT = flag:maimed }
+			}
+			20 = {
+				travl_event_wound_effect = { REASON = flag:fight }
+			}
+			10 = {
+				travl_event_remove_prestige_effect = { VALUE = medium_prestige_value }
+			}
+			20 = {
+				travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
+			}
+			10 = {
+				travl_event_remove_gold_effect = { VALUE = minor_gold_value }
+			}
+			20 = {
+				travl_event_remove_gold_effect = { VALUE = tiny_gold_value }
+			}
 		}
 	}
 }

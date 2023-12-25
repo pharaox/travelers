@@ -6,6 +6,14 @@ travl_event_remove_prestige_effect = {
 	set_variable = { name = travl_event_prestige value = { value = $VALUE$ multiply = -1 } }
 }
 
+travl_event_add_piety_effect = {
+	set_variable = { name = travl_event_piety value = $VALUE$ }
+}
+
+travl_event_remove_piety_effect = {
+	set_variable = { name = travl_event_piety value = { value = $VALUE$ multiply = -1 } }
+}
+
 travl_event_add_gold_effect = {
 	set_variable = { name = travl_event_gold value = $VALUE$ }
 }
@@ -20,6 +28,15 @@ travl_event_add_trait_effect = {
 
 travl_event_wound_effect = {
 	set_variable = { name = travl_event_wound value = $REASON$ }
+}
+
+travl_event_add_stress_effect = {
+	set_variable = { name = travl_event_stress_gain_trait value = $TRAIT$ }
+	set_variable = { name = travl_event_stress_gain_value value = $VALUE$ }
+}
+
+travl_event_visit_court_effect = {
+	set_variable = { name = travl_event_host value = $HOST$ }
 }
 
 travl_event_add_traveler_xp_effect = {
@@ -105,6 +122,20 @@ travl_event_apply_character_effect = {
 		}
 	}
 
+	# Gain or lose piety
+	if = {
+		limit = { has_variable = travl_event_piety }
+		if = {
+			limit = { var:travl_event_piety > 0 }
+			travl_debug_log_effect = { MSG = travl_debug_msg_event_character_gained_piety }
+			add_piety = var:travl_event_piety
+		}
+		else = {
+			travl_debug_log_effect = { MSG = travl_debug_msg_event_character_lost_piety }
+			add_piety = var:travl_event_piety
+		}
+	}
+
 	# Gain or lose gold
 	if = {
 		limit = { has_variable = travl_event_gold }
@@ -143,6 +174,42 @@ travl_event_apply_character_effect = {
 		}
 	}
 
+	# Stress impact
+	if = {
+		limit = { has_variable = travl_event_stress_gain_trait }
+		travl_debug_log_effect = { MSG = travl_debug_msg_event_character_gained_stress }
+		switch = {
+			trigger = var:travl_event_stress_gain_value
+			flag:massive = {
+				travl_event_apply_stress_impact_effect = { VALUE = massive_stress_impact_gain }
+			}
+			flag:major = {
+				travl_event_apply_stress_impact_effect = { VALUE = major_stress_impact_gain }
+			}
+			flag:medium = {
+				travl_event_apply_stress_impact_effect = { VALUE = medium_stress_impact_gain }
+			}
+		}
+	}
+
+	# Start travel to host (must be before travel plan changes)
+	if = {
+		limit = { has_variable = travl_event_host }
+		travl_debug_log_effect = { MSG = travl_debug_msg_event_character_joined_travel }
+		custom_tooltip = {
+			text = travl_they_got_a_visitor_tt
+			var:travl_event_host = {
+				add_visiting_courtier = prev
+			}
+		}
+		set_location = root.location
+		travl_travel_effect = {
+			SENDER = this
+			EVENT = flag:travel_event
+		}
+		travl_set_location_effect = yes
+	}
+
 	# Gain traveler danger XP
 	if = {
 		limit = { has_variable = travl_event_xp }
@@ -172,17 +239,17 @@ travl_event_apply_character_effect = {
 		switch = {
 			trigger = var:travl_event_delay
 			flag:minor = {
-				current_travel_plan = {
+				current_travel_plan ?= {
 					delay_travel_plan = { days = 5 }
 				}
 			}
 			flag:medium = {
-				current_travel_plan = {
+				current_travel_plan ?= {
 					delay_travel_plan = { days = 20 }
 				}
 			}
 			flag:major = {
-				current_travel_plan = {
+				current_travel_plan ?= {
 					delay_travel_plan = { days = 100 }
 				}
 			}
@@ -196,7 +263,7 @@ travl_event_apply_character_effect = {
 		switch = {
 			trigger = var:travl_event_modifier
 			flag:travel_guide_modifier = {
-				current_travel_plan = {
+				current_travel_plan ?= {
 					add_travel_plan_modifier = travel_guide_modifier
 				}
 			}
@@ -207,7 +274,7 @@ travl_event_apply_character_effect = {
 	if = {
 		limit = { has_variable = travl_event_waypoint }
 		travl_debug_log_effect = { MSG = travl_debug_msg_event_character_travel_added_waypoint }
-		current_travel_plan = {
+		current_travel_plan ?= {
 			add_travel_waypoint = prev.var:travl_event_waypoint
 		}
 	}
@@ -237,14 +304,54 @@ travl_event_apply_character_effect = {
 	if = {
 		limit = { is_alive = yes }
 		remove_variable = travl_event_prestige
+		remove_variable = travl_event_piety
 		remove_variable = travl_event_gold
 		remove_variable = travl_event_trait
 		remove_variable = travl_event_wound
+		remove_variable = travl_event_stress_gain_trait
+		remove_variable = travl_event_stress_gain_value
+		remove_variable = travl_event_host
 		remove_variable = travl_event_xp
 		remove_variable = travl_event_delay
 		remove_variable = travl_event_modifier
 		remove_variable = travl_event_waypoint
 		remove_variable = travl_event_death
 		remove_variable = travl_event_killer
+	}
+}
+
+travl_event_apply_stress_impact_effect = {
+	switch = {
+		trigger = var:travl_event_stress_gain_trait
+		flag:brave = {
+			stress_impact = { brave = $VALUE$ }
+		}
+		flag:craven = {
+			stress_impact = { craven = $VALUE$ }
+		}
+		flag:forgiving = {
+			stress_impact = { forgiving = $VALUE$ }
+		}
+		flag:vengeful = {
+			stress_impact = { vengeful = $VALUE$ }
+		}
+		flag:generous = {
+			stress_impact = { generous = $VALUE$ }
+		}
+		flag:greedy = {
+			stress_impact = { greedy = $VALUE$ }
+		}
+		flag:trusting = {
+			stress_impact = { trusting = $VALUE$ }
+		}
+		flag:paranoid = {
+			stress_impact = { paranoid = $VALUE$ }
+		}
+		flag:compassionate = {
+			stress_impact = { compassionate = $VALUE$ }
+		}
+		flag:callous = {
+			stress_impact = { callous = $VALUE$ }
+		}
 	}
 }

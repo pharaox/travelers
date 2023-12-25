@@ -24,13 +24,14 @@ scripted_effect travl_travel_danger_0003_a_failure_effect = {
 	scope:learning_character = {
 		travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
 	}
-	every_in_list = {
-		list = travelers
-		travl_travel_danger_0003_failure_effect = yes
-	}
+	travl_travel_danger_0003_failure_effect = yes
 }
 
 scripted_effect travl_travel_danger_0003_b_success_effect = {
+	scope:guide = {
+		travl_event_visit_court_effect = { HOST = root.var:travl_travel_receiver }
+		add_to_list = travelers
+	}
 	every_in_list = {
 		list = travelers
 		travl_event_add_travel_modifier_effect = { VALUE = flag:travel_guide_modifier }
@@ -38,26 +39,26 @@ scripted_effect travl_travel_danger_0003_b_success_effect = {
 }
 
 scripted_effect travl_travel_danger_0003_b_failure_effect = {
-	every_in_list = {
-		list = travelers
-		travl_travel_danger_0003_failure_effect = yes
-	}
+	travl_travel_danger_0003_failure_effect = yes
 }
 
 scripted_effect travl_travel_danger_0003_c_effect = {
-	every_in_list = {
-		list = travelers
-		travl_travel_danger_0003_failure_effect = yes
-	}
+	travl_travel_danger_0003_failure_effect = yes
 }
 
 scripted_effect travl_travel_danger_0003_failure_effect = {
 	random_list = {
 		70 = {
-			travl_event_delay_travel_effect = { VALUE = flag:medium }
+			every_in_list = {
+				list = travelers
+				travl_event_delay_travel_effect = { VALUE = flag:medium }
+			}
 		}
 		30 = {
-			travl_event_delay_travel_effect = { VALUE = flag:minor }
+			every_in_list = {
+				list = travelers
+				travl_event_delay_travel_effect = { VALUE = flag:minor }
+			}
 		}
 	}
 }
@@ -167,7 +168,7 @@ travl_travel_danger.0003 = {
 				template = guide_character
 				save_scope_as = guide
 			}
-			scope:bandit = {
+			scope:guide = {
 				move_to_pool = yes
 			}
 		}

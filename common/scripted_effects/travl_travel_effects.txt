@@ -386,9 +386,9 @@ travl_add_leader_or_companion_effect = {
 			limit = {
 				travl_is_travelling_to_receiver_trigger = { RECEIVER = scope:receiver1 }
 				var:travl_travel_leader ?= this
-				current_travel_plan ?= {
-					days_travelled <= 1
-				}
+				#current_travel_plan ?= {
+				#	days_travelled <= 1
+				#}
 			}
 			save_temporary_scope_as = leader1
 		}

@@ -17,31 +17,32 @@ scripted_effect travl_travel_danger_0002_a_success_effect = {
 }
 
 scripted_effect travl_travel_danger_0002_a_failure_effect = {
-	scope:missing_companion = {
-		travl_travel_danger_0002_failure_effect = yes
-	}
+	travl_travel_danger_0002_failure_effect = yes
 }
 
 scripted_effect travl_travel_danger_0002_b_effect = {
-	scope:missing_companion = {
-		travl_travel_danger_0002_failure_effect = yes
+	root = {
+		travl_event_add_stress_effect = { TRAIT = flag:compassionate VALUE = flag:major }
 	}
+	travl_travel_danger_0002_failure_effect = yes
 }
 
 scripted_effect travl_travel_danger_0002_failure_effect = {
-	if = {
-		limit = {
-			root.location = {
-				travel_danger_type = {
-					travel_plan = root.current_travel_plan
-					terrain = wetlands
+	scope:missing_companion = {
+		if = {
+			limit = {
+				root.location = {
+					travel_danger_type = {
+						travel_plan = root.current_travel_plan
+						terrain = wetlands
+					}
 				}
 			}
+			travl_event_death_effect = { REASON = flag:death_lost_in_the_bog KILLER = this }
 		}
-		travl_event_death_effect = { REASON = flag:death_lost_in_the_bog KILLER = this }
-	}
-	else = {
-		travl_event_death_effect = { REASON = flag:death_lost_in_the_forest KILLER = this }
+		else = {
+			travl_event_death_effect = { REASON = flag:death_lost_in_the_forest KILLER = this }
+		}
 	}
 }
 

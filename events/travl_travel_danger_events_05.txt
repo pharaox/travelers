@@ -1,0 +1,401 @@
+﻿namespace = travl_travel_danger
+
+scripted_effect travl_travel_danger_0005_outcome_effect = {
+	# Setup character effects
+	travl_travel_danger_$X$005_$OUTCOME$_effect = yes
+
+	# Send messages to potential recipients and apply character effects
+	travl_event_apply_outcome_effect = {
+		EVENT = travel_danger_$X$005
+		OUTCOME = $OUTCOME$
+		RECIPIENTS = recipients
+		TRAVELERS = travelers
+	}
+}
+
+scripted_effect travl_travel_danger_0005_a_effect = {
+	scope:zombie = {
+		travl_event_death_effect = { REASON = flag:death_fight KILLER = root }
+		add_to_list = travelers
+	}
+}
+
+scripted_effect travl_travel_danger_0005_b_effect = {
+}
+
+scripted_effect travl_travel_danger_1005_a_effect = {
+	scope:gold_character = {
+		travl_event_remove_gold_effect = { VALUE = tiny_gold_value }
+		travl_event_add_piety_effect = { VALUE = minor_piety_value }
+		travl_event_add_stress_effect = { TRAIT = flag:greedy VALUE = flag:medium }
+	}
+	scope:zombie = {
+		travl_event_add_gold_effect = { VALUE = tiny_gold_value }
+		add_to_list = travelers
+	}
+}
+
+scripted_effect travl_travel_danger_1005_b_effect = {
+	root = {
+		travl_event_add_stress_effect = { TRAIT = flag:paranoid VALUE = flag:major }
+	}
+	scope:zombie = {
+		travl_event_visit_court_effect = { HOST = root.var:travl_travel_receiver }
+		add_to_list = travelers
+	}
+	every_in_list = {
+		list = travelers
+		travl_event_add_travel_modifier_effect = { VALUE = flag:travel_guide_modifier }
+	}
+}
+
+scripted_effect travl_travel_danger_1005_c_effect = {
+	root = {
+		travl_event_add_stress_effect = { TRAIT = flag:compassionate VALUE = flag:major }
+	}
+}
+
+scripted_effect travl_travel_danger_2005_a_success_effect = {
+	scope:zombie = {
+		travl_event_wound_effect = { REASON = flag:fight }
+		add_to_list = travelers
+	}
+}
+
+scripted_effect travl_travel_danger_2005_a_failure_effect = {
+	scope:prowess_character = {
+		travl_event_wound_effect = { REASON = flag:fight }
+	}
+}
+
+scripted_effect travl_travel_danger_2005_b_effect = {
+	root = {
+		travl_event_add_stress_effect = { TRAIT = flag:brave VALUE = flag:major }
+	}
+	random_in_list = {
+		list = travelers
+		travl_event_wound_effect = { REASON = flag:fight }
+	}
+}
+
+# Danger: Aftermath
+travl_travel_danger.0005 = {
+	type = character_event
+	title = travl_travel_danger.0005.t
+	desc = travl_travel_danger.0005.desc
+	theme = travel_danger
+	#hidden = yes
+
+	left_portrait = {
+		character = root
+		animation = shock
+	}
+	right_portrait = {
+		character = scope:zombie
+		animation = anger
+		outfit_tags = { beggar_rags }
+	}
+
+	trigger = {
+		# Travel leader
+		has_variable = travl_travel_leader
+		var:travl_travel_leader = root
+
+		# Available, traveling, adult, on land, and unlanded
+		is_available_travelling_adult = yes
+		is_location_valid_for_travel_event_on_land = yes
+		is_landed = no
+
+		# Danger types
+		location = {
+			OR = {
+				travel_danger_type = {
+					travel_plan = root.current_travel_plan
+					type = occupation
+				}
+				travel_danger_type = {
+					travel_plan = root.current_travel_plan
+					type = siege
+				}
+				travel_danger_type = {
+					travel_plan = root.current_travel_plan
+					type = raid
+				}
+				travel_danger_type = {
+					travel_plan = root.current_travel_plan
+					type = army
+				}
+				travel_danger_type = {
+					travel_plan = root.current_travel_plan
+					type = battle
+				}
+			}
+		}
+
+		# Available pool character
+		any_pool_character = {
+			province = root.location
+			is_available_ai_adult = yes
+		}
+	}
+
+	cooldown = { months = 1 }
+
+	immediate = {
+		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_danger_0005_t }
+
+		var:travl_travel_sender = { save_temporary_scope_as = sender }
+		var:travl_travel_receiver = { save_temporary_scope_as = receiver }
+		travl_get_companions_effect = { COMPANIONS = companions }
+
+		# Get all relevant travelers (leader and all unlanded companions)
+		add_to_list = travelers
+		every_in_list = {
+			list = companions
+			limit = { is_landed = no }
+			add_to_list = travelers
+		}
+
+		# Get message recipients (sender and / or recieiver)
+		travl_get_message_recipients_effect = {
+			SENDER = scope:sender
+			RECEIVER = scope:receiver
+			RECIPIENTS = recipients
+		}
+
+		# Add the player as a recipient (debug-only)
+		if = {
+			limit = { debug_only = yes }
+			random_player = { add_to_list = recipients }
+		}
+
+		# Find zombie character
+		random_pool_character = {
+			province = root.location
+			limit = {
+				is_available_ai_adult = yes
+			}
+			increase_wounds_no_death_effect = { REASON = battle }
+			save_scope_as = zombie
+		}
+
+		# Find relevant travelers
+		ordered_in_list = {
+			list = travelers
+			limit = {
+				is_available_travelling_adult = yes
+				prowess >= low_skill_rating
+			}
+			order_by = prowess
+			save_scope_as = prowess_character
+		}
+		ordered_in_list = {
+			list = travelers
+			limit = {
+				is_available_travelling_adult = yes
+				gold >= tiny_gold_value
+			}
+			order_by = gold
+			save_scope_as = gold_character
+		}
+
+		traveler_danger_xp_effect = {
+			MIN = 3
+			MAX = 6
+		}
+	}
+
+	# Stop them
+	option = {
+		name = travl_travel_danger.0005.a
+
+		travl_travel_danger_0005_outcome_effect = { X = 0 OUTCOME = a }
+
+		ai_chance = {
+			base = 50
+			ai_value_modifier = {
+				ai_compassion = -0.5
+			}
+		}
+	}
+
+	# Let them come
+	option = {
+		name = travl_travel_danger.0005.b
+
+		random_list = {
+			50 = {
+				# They have good intentions
+				custom_tooltip = travl_travel_danger.0005.b.good
+				ai_value_modifier = {
+					who = scope:zombie
+					ai_vengefulness = -0.5
+				}
+				travl_travel_danger_0005_b_effect = yes
+				trigger_event = travl_travel_danger.1005
+			}
+			50 = {
+				# They have bad intentions
+				custom_tooltip = travl_travel_danger.0005.b.bad
+				ai_value_modifier = {
+					who = scope:zombie
+					ai_vengefulness = 0.5
+				}
+				travl_travel_danger_0005_b_effect = yes
+				trigger_event = travl_travel_danger.2005
+			}
+		}
+
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_boldness = 1
+			}
+		}
+	}
+}
+
+# Danger: Aftermath, Good Intentions
+travl_travel_danger.1005 = {
+	type = character_event
+	title = travl_travel_danger.1005.t
+	desc = travl_travel_danger.1005.desc
+	theme = travel_danger
+	#hidden = yes
+
+	left_portrait = {
+		character = root
+		animation = worry
+	}
+	right_portrait = {
+		character = scope:zombie
+		animation = sadness
+		outfit_tags = { beggar_rags }
+	}
+
+	# Give them gold
+	option = {
+		name = travl_travel_danger.1005.a
+
+		trigger = {
+			exists = scope:gold_character
+		}
+
+		travl_travel_danger_0005_outcome_effect = { X = 1 OUTCOME = a }
+
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				who = scope:gold_character
+				ai_greed = -0.5
+				ai_compassion = 0.5
+			}
+		}
+	}
+
+	# Let them join us
+	option = {
+		name = travl_travel_danger.1005.b
+
+		travl_travel_danger_0005_outcome_effect = { X = 1 OUTCOME = b }
+
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_sociability = 0.5
+				ai_compassion = 0.5
+			}
+		}
+	}
+
+	# Not my problem
+	option = {
+		name = travl_travel_danger.1005.c
+
+		travl_travel_danger_0005_outcome_effect = { X = 1 OUTCOME = c }
+
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_compassion = -0.5
+				ai_honor = -0.5
+			}
+		}
+	}
+}
+
+# Danger: Aftermath, Bad Intentions
+travl_travel_danger.2005 = {
+	type = character_event
+	title = travl_travel_danger.2005.t
+	desc = travl_travel_danger.2005.desc
+	theme = travel_danger
+	#hidden = yes
+
+	left_portrait = {
+		character = root
+		animation = worry
+	}
+	right_portrait = {
+		character = scope:zombie
+		animation = fear
+		outfit_tags = { beggar_rags }
+	}
+
+	# Fend them off
+	option = {
+		name = travl_travel_danger.2005.a
+
+		trigger = {
+			exists = scope:prowess_character
+		}
+
+		scope:prowess_character = {
+			duel = {
+				skill = prowess
+				target = scope:zombie
+				50 = {
+					desc = travl_travel_danger.2005.a.success
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 3.5
+						min = -49
+					}
+					root = {
+						travl_travel_danger_0005_outcome_effect = { X = 2 OUTCOME = a_success }
+					}
+				}
+				50 = {
+					desc = travl_travel_danger.2005.a.failure
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -3.5
+						min = -49
+					}
+					root = {
+						travl_travel_danger_0005_outcome_effect = { X = 2 OUTCOME = a_failure }
+					}
+				}
+			}
+		}
+
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				who = scope:prowess_character
+				ai_boldness = 1
+			}
+		}
+	}
+
+	# Run away from them
+	option = {
+		name = travl_travel_danger.2005.b
+
+		travl_travel_danger_0005_outcome_effect = { X = 2 OUTCOME = b }
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
