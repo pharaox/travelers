@@ -171,6 +171,9 @@ travl_event_apply_character_effect = {
 			flag:fight = {
 				increase_wounds_effect = { REASON = fight }
 			}
+			flag:avalanche = {
+				increase_wounds_effect = { REASON = avalanche }
+			}
 		}
 	}
 
@@ -300,6 +303,9 @@ travl_event_apply_character_effect = {
 			flag:death_sea_storm = {
 				death = { death_reason = death_sea_storm }
 			}
+			flag:death_avalanche = {
+				death = { death_reason = death_avalanche }
+			}
 		}
 	}
 
@@ -350,11 +356,17 @@ travl_event_apply_stress_impact_effect = {
 		flag:paranoid = {
 			stress_impact = { paranoid = $VALUE$ }
 		}
+		flag:zealous = {
+			stress_impact = { zealous = $VALUE$ }
+		}
+		flag:cynical = {
+			stress_impact = { cynical = $VALUE$ }
+		}
 		flag:compassionate = {
 			stress_impact = { compassionate = $VALUE$ }
 		}
 		flag:callous = {
-			stress_impact = { callous = $VALUE$ }
+			stress_impact = { callous = $VALUE$ sadistic = $VALUE$ }
 		}
 	}
 }

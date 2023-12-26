@@ -1,0 +1,309 @@
+﻿namespace = travl_travel_danger
+
+scripted_effect travl_travel_danger_0008_outcome_effect = {
+	# Setup character effects
+	travl_travel_danger_0008_$OUTCOME$_effect = yes
+
+	# Send messages to potential recipients and apply character effects
+	travl_event_apply_outcome_effect = {
+		EVENT = travel_danger_0008
+		OUTCOME = $OUTCOME$
+		RECIPIENTS = recipients
+		TRAVELERS = travelers
+	}
+}
+
+scripted_effect travl_travel_danger_0008_a_success_effect = {
+	scope:diplomacy_character = {
+		travl_event_add_stress_effect = { TRAIT = flag:paranoid VALUE = flag:medium }
+		travl_event_add_prestige_effect = { VALUE = miniscule_prestige_value }
+	}
+	scope:maron_leader = {
+		travl_event_visit_court_effect = { HOST = root.var:travl_travel_receiver }
+		add_to_list = travelers
+	}
+	every_in_list = {
+		list = travelers
+		travl_event_add_travel_modifier_effect = { VALUE = flag:travel_guide_modifier }
+	}
+}
+
+scripted_effect travl_travel_danger_0008_a_failure_effect = {
+	scope:diplomacy_character = {
+		travl_event_add_stress_effect = { TRAIT = flag:paranoid VALUE = flag:medium }
+		travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
+	}
+	travl_travel_danger_0008_failure_effect = yes
+}
+
+scripted_effect travl_travel_danger_0008_b_effect = {
+	scope:gold_character = {
+		travl_event_add_stress_effect = { TRAIT = flag:greedy VALUE = flag:medium }
+		travl_event_remove_gold_effect = { VALUE = minor_gold_value }
+	}
+	scope:maron_leader = {
+		travl_event_visit_court_effect = { HOST = root.var:travl_travel_receiver }
+		add_to_list = travelers
+	}
+	every_in_list = {
+		list = travelers
+		travl_event_add_travel_modifier_effect = { VALUE = flag:travel_guide_modifier }
+	}
+}
+
+scripted_effect travl_travel_danger_0008_c_effect = {
+	travl_travel_danger_0008_failure_effect = yes
+}
+
+scripted_effect travl_travel_danger_0008_failure_effect = {
+	random_list = {
+		30 = {
+			every_in_list = {
+				list = travelers
+				travl_event_delay_travel_effect = { VALUE = flag:minor }
+			}
+		}
+		70 = {
+			every_in_list = {
+				list = travelers
+				travl_event_delay_travel_effect = { VALUE = flag:medium }
+			}
+		}
+	}
+}
+
+# Danger: Snowbound
+travl_travel_danger.0008 = {
+	type = character_event
+	title = travl_travel_danger.0008.t
+	desc = travl_travel_danger.0008.desc
+	theme = travel_danger
+	#hidden = yes
+
+	override_background = {
+		reference = ep2_hunt_snowy_forest
+	}
+	left_portrait = {
+		character = root
+		animation = disbelief
+	}
+	right_portrait = {
+		character = scope:maron_leader
+		animation = personality_greedy
+	}
+
+	trigger = {
+		# Travel leader
+		has_variable = travl_travel_leader
+		var:travl_travel_leader = root
+
+		# Available, traveling, adult, on land, and unlanded
+		is_available_travelling_adult = yes
+		is_location_valid_for_travel_event_on_land = yes
+		is_landed = no
+
+		# Has winter
+		location_has_winter_trigger = yes
+
+		# Is not an expert in this type of weather
+		NOT = { has_trait = winter_soldier }
+
+		# Culture is not adapted to winter
+		culture = {
+			NOR = {
+				has_cultural_tradition = tradition_winter_warriors
+				has_cultural_tradition = tradition_himalayan_settlers
+			}
+		}
+	}
+
+	weight_multiplier = {
+		base = 1
+		modifier = {
+			location = {
+				has_province_modifier = winter_harsh_modifier
+			}
+			factor = 2
+		}
+		modifier = {
+			location.county.development_level > bad_development_level
+			factor = 0.5
+		}
+		modifier = {
+			location.county.development_level > medium_development_level
+			factor = 0.5
+		}
+		modifier = {
+			location.county.development_level > good_development_level
+			factor = 0.5
+		}
+	}
+
+	cooldown = { months = 1 }
+
+	immediate = {
+		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_danger_0008_t }
+
+		var:travl_travel_sender = { save_temporary_scope_as = sender }
+		var:travl_travel_receiver = { save_temporary_scope_as = receiver }
+		travl_get_companions_effect = { COMPANIONS = companions }
+
+		# Get all relevant travelers (leader and all unlanded companions)
+		add_to_list = travelers
+		every_in_list = {
+			list = companions
+			limit = { is_landed = no }
+			add_to_list = travelers
+		}
+
+		# Get message recipients (sender and / or recieiver)
+		travl_get_message_recipients_effect = {
+			SENDER = scope:sender
+			RECEIVER = scope:receiver
+			RECIPIENTS = recipients
+		}
+
+		# Add the player as a recipient (debug-only)
+		if = {
+			limit = { debug_only = yes }
+			random_player = { add_to_list = recipients }
+		}
+
+		# Find or create maron leader character
+		random_pool_character = {
+			province = root.location
+			limit = {
+				is_available_ai_adult = yes
+				culture = root.location.culture
+				has_trait = winter_soldier
+			}
+			save_scope_as = maron_leader
+		}
+		if = {
+			limit = {
+				NOT = { exists = scope:maron_leader }
+			}
+			create_character = {
+				location = root.location
+				template = new_warrior_character
+				culture = root.location.culture
+				faith = root.location.faith
+				gender_female_chance = root_soldier_female_chance
+				after_creation = {
+					add_trait = winter_soldier
+				}
+				save_scope_as = maron_leader
+			}
+			scope:maron_leader = {
+				move_to_pool = yes
+			}
+		}
+
+		# Find relevant travelers
+		ordered_in_list = {
+			list = travelers
+			limit = {
+				is_available_travelling_adult = yes
+				diplomacy >= low_skill_rating
+			}
+			order_by = diplomacy
+			save_scope_as = diplomacy_character
+		}
+		ordered_in_list = {
+			list = travelers
+			limit = {
+				is_available_travelling_adult = yes
+				gold >= minor_gold_value
+			}
+			order_by = gold
+			save_scope_as = gold_character
+		}
+
+		traveler_danger_xp_effect = {
+			MIN = 3
+			MAX = 6
+		}
+	}
+
+	# Persuade them to help us for free (diplomacy challenge)
+	option = {
+		name = travl_travel_danger.0008.a
+
+		trigger = {
+			exists = scope:diplomacy_character
+		}
+
+		scope:diplomacy_character = {
+			duel = {
+				skill = diplomacy
+				value = high_skill_rating
+				50 = {
+					desc = travl_travel_danger.0008.a.success
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 3.5
+						min = -49
+					}
+					root = {
+						travl_travel_danger_0008_outcome_effect = { OUTCOME = a_success }
+					}
+				}
+				50 = {
+					desc = travl_travel_danger.0008.a.failure
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -3.5
+						min = -49
+					}
+					root = {
+						travl_travel_danger_0008_outcome_effect = { OUTCOME = a_failure }
+					}
+				}
+			}
+		}
+
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				who = scope:diplomacy_character
+				ai_sociability = 0.5 # stress: paranoid
+				ai_boldness = 0.5
+			}
+		}
+	}
+
+	# Pay them to help us
+	option = {
+		name = travl_travel_danger.0008.b
+
+		trigger = {
+			exists = scope:gold_character
+		}
+
+		travl_travel_danger_0008_outcome_effect = { OUTCOME = b }
+
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				who = scope:gold_character
+				ai_greed = -0.5 # stress: greedy
+				ai_rationality = 0.5
+			}
+		}
+	}
+
+	# Try to manage on our own
+	option = {
+		name = travl_travel_danger.0008.c
+
+		travl_travel_danger_0008_outcome_effect = { OUTCOME = c }
+
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_rationality = -0.5
+				ai_energy = 0.5
+			}
+		}
+	}
+}

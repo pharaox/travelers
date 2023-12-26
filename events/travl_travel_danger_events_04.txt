@@ -22,12 +22,14 @@ scripted_effect travl_travel_danger_0004_a_effect = {
 
 scripted_effect travl_travel_danger_0004_b_success_effect = {
 	scope:diplomacy_character = {
+		travl_event_add_stress_effect = { TRAIT = flag:cynical VALUE = flag:medium }
 		travl_event_add_prestige_effect = { VALUE = miniscule_prestige_value }
 	}
 }
 
 scripted_effect travl_travel_danger_0004_b_failure_effect = {
 	scope:diplomacy_character = {
+		travl_event_add_stress_effect = { TRAIT = flag:cynical VALUE = flag:medium }
 		travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
 	}
 	travl_travel_danger_0004_failure_effect = yes
@@ -255,7 +257,8 @@ travl_travel_danger.0004 = {
 			base = 100
 			ai_value_modifier = {
 				who = scope:diplomacy_character
-				ai_zeal = 1
+				ai_zeal = 0.5 # stress: cynical
+				ai_sociability = 0.5
 			}
 		}
 	}
@@ -282,7 +285,8 @@ travl_travel_danger.0004 = {
 		ai_chance = {
 			base = 100
 			ai_value_modifier = {
-				ai_honor = -1
+				ai_sociability = -0.5 # stress: trusting
+				ai_honor = -0.5
 			}
 		}
 	}

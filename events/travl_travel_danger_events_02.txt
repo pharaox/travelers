@@ -14,9 +14,15 @@ scripted_effect travl_travel_danger_0002_outcome_effect = {
 }
 
 scripted_effect travl_travel_danger_0002_a_success_effect = {
+	scope:stewardship_character = {
+		travl_event_add_stress_effect = { TRAIT = flag:callous VALUE = flag:medium }
+	}
 }
 
 scripted_effect travl_travel_danger_0002_a_failure_effect = {
+	scope:stewardship_character = {
+		travl_event_add_stress_effect = { TRAIT = flag:callous VALUE = flag:medium }
+	}
 	travl_travel_danger_0002_failure_effect = yes
 }
 
@@ -202,7 +208,8 @@ travl_travel_danger.0002 = {
 			base = 100
 			ai_value_modifier = {
 				who = scope:stewardship_character
-				ai_compassion = 1
+				ai_compassion = 0.5 # stress: callous / sadistic
+				ai_honor = 0.5
 			}
 		}
 	}
@@ -214,7 +221,11 @@ travl_travel_danger.0002 = {
 		travl_travel_danger_0002_outcome_effect = { OUTCOME = b }
 
 		ai_chance = {
-			base = 1
+			base = 100
+			ai_value_modifier = {
+				ai_compassion = -0.5 # stress: compassionate
+				ai_honor = -0.5
+			}
 		}
 	}
 }

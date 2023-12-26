@@ -102,7 +102,7 @@ travl_travel_danger.0006 = {
 		}
 	}
 
-	# Leave them
+	# We die
 	option = {
 		name = travl_travel_danger.0006.a
 

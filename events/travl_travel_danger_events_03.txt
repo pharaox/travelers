@@ -28,6 +28,9 @@ scripted_effect travl_travel_danger_0003_a_failure_effect = {
 }
 
 scripted_effect travl_travel_danger_0003_b_success_effect = {
+	scope:stewardship_character = {
+		travl_event_add_stress_effect = { TRAIT = flag:paranoid VALUE = flag:medium }
+	}
 	scope:guide = {
 		travl_event_visit_court_effect = { HOST = root.var:travl_travel_receiver }
 		add_to_list = travelers
@@ -39,6 +42,9 @@ scripted_effect travl_travel_danger_0003_b_success_effect = {
 }
 
 scripted_effect travl_travel_danger_0003_b_failure_effect = {
+	scope:stewardship_character = {
+		travl_event_add_stress_effect = { TRAIT = flag:paranoid VALUE = flag:medium }
+	}
 	travl_travel_danger_0003_failure_effect = yes
 }
 
@@ -240,7 +246,8 @@ travl_travel_danger.0003 = {
 			base = 100
 			ai_value_modifier = {
 				who = scope:learning_character
-				ai_rationality = -1
+				ai_rationality = -0.5
+				ai_energy = 0.5
 			}
 		}
 	}
@@ -289,7 +296,8 @@ travl_travel_danger.0003 = {
 			base = 100
 			ai_value_modifier = {
 				who = scope:stewardship_character
-				ai_rationality = 1
+				ai_sociability = 0.5 # stress: paranoid
+				ai_rationality = 0.5
 			}
 		}
 	}

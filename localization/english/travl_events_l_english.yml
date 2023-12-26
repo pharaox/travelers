@@ -60,10 +60,25 @@
  travl_travel_danger.2005.a.success: "You manage to fend [zombie.GetHerHim] off"
  travl_travel_danger.2005.a.failure: "You fail to fend [zombie.GetHerHim] off"
  travl_travel_danger.2005.b: "Run away from [zombie.GetHerHim]"
- # travel_danger.0005 Sea Storm
+ # travel_danger.0006 Sea Storm
  travl_travel_danger.0006.t: "$travel_danger_prefix$ Sea Storm"
  travl_travel_danger.0006.desc: "A terrible sea storm engulfs us. I watch in horror as sailors are thrown into the black depths, and a huge wave rolls over the ship."
  travl_travel_danger.0006.a: "Arghghghghgh!"
+ # travel_danger.0007 Avalanche
+ travl_travel_danger.0007.t: "$travel_danger_prefix$ Avalanche"
+ travl_travel_danger.0007.desc: "One of our companions was buried under the snow by an avalanche."
+ travl_travel_danger.0007.a: "Try to rescue them"
+ travl_travel_danger.0007.a.success: "You manage to rescue the avalanche victim"
+ travl_travel_danger.0007.a.failure: "You fail to rescue the avalanche victim"
+ travl_travel_danger.0007.b: "Don't try to rescue them"
+ # travel_danger.0008 Snowbound
+ travl_travel_danger.0008.t: "$travel_danger_prefix$ Snowbound"
+ travl_travel_danger.0008.desc: "We are stuck in the snow, with the road ahead completely impassable. Some locals are offering to help us for a price."
+ travl_travel_danger.0008.a: "Persuade them to help us for free"
+ travl_travel_danger.0008.a.success: "You manage to persuade the locals"
+ travl_travel_danger.0008.a.failure: "You fail to persuade the locals"
+ travl_travel_danger.0008.b: "Pay them to help us"
+ travl_travel_danger.0008.c: "Try to manage on our own"
 
  # Message titles
  travl_msg_travel_danger_0001_t: "$travel_danger_prefix$ Bandits"
@@ -74,6 +89,8 @@
  travl_msg_travel_danger_1005_t: "$travl_msg_travel_danger_0005_t$, Good Intentions"
  travl_msg_travel_danger_2005_t: "$travl_msg_travel_danger_0005_t$, Bad Intentions"
  travl_msg_travel_danger_0006_t: "$travel_danger_prefix$ Sea Storm"
+ travl_msg_travel_danger_0007_t: "$travel_danger_prefix$ Avalanche"
+ travl_msg_travel_danger_0008_t: "$travel_danger_prefix$ Snowbound"
 
  # Message tooltips
  # travel_danger.0001 Bandits
@@ -117,6 +134,17 @@
  travl_msg_travel_danger_2005_b: "$travl_msg_travel_danger_0005_prefix$, $travl_msg_travel_danger_2005_prefix$, they ran away from [zombie.GetHerHim]."
  # travel_danger.0006 Sea Storm
  travl_msg_travel_danger_0006_a: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions were caught in a terrible storm at sea and nobody has heard of them since."
+ # travel_danger.0007 Avalanche
+ travl_msg_travel_danger_0007_prefix: "One of [THIS.Char.GetShortUINamePossessive|U] companions, [avalanche_victim.GetShortUIName], was buried under the snow by an avalanche"
+ travl_msg_travel_danger_0007_a_success: "$travl_msg_travel_danger_0007_prefix$, but $travl_this_or_prowess_character$ managed to rescue [avalanche_victim.GetHerHim]."
+ travl_msg_travel_danger_0007_a_failure: "$travl_msg_travel_danger_0007_prefix$, and $travl_this_or_prowess_character$ failed to rescue [avalanche_victim.GetHerHim]."
+ travl_msg_travel_danger_0007_b: "$travl_msg_travel_danger_0007_prefix$, and they did not even try to rescue [avalanche_victim.GetHerHim]."
+ # travel_danger.0008 Snowbound
+ travl_msg_travel_danger_0008_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions got stuck after a heavy snowfall"
+ travl_msg_travel_danger_0008_a_success: "$travl_msg_travel_danger_0008_prefix$, but $travl_this_or_diplomacy_character$ managed to convince some locals to help them."
+ travl_msg_travel_danger_0008_a_failure: "$travl_msg_travel_danger_0008_prefix$, and $travl_this_or_diplomacy_character$ failed to convince some locals to help them."
+ travl_msg_travel_danger_0008_b: "$travl_msg_travel_danger_0008_prefix$, and $travl_this_or_gold_character$ paid some locals to help them."
+ travl_msg_travel_danger_0008_c: "$travl_msg_travel_danger_0008_prefix$ and did not accept the help offered by some locals."
 
  travl_this_or_diplomacy_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, diplomacy_character.GetID), THIS.Char.GetSheHe, diplomacy_character.GetShortUIName)]"
  travl_this_or_stewardship_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, stewardship_character.GetID), THIS.Char.GetSheHe, stewardship_character.GetShortUIName)]"

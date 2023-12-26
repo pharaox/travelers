@@ -14,6 +14,9 @@ scripted_effect travl_travel_danger_0005_outcome_effect = {
 }
 
 scripted_effect travl_travel_danger_0005_a_effect = {
+	root = {
+		travl_event_add_stress_effect = { TRAIT = flag:compassionate VALUE = flag:major }
+	}
 	scope:zombie = {
 		travl_event_death_effect = { REASON = flag:death_fight KILLER = root }
 		add_to_list = travelers
@@ -21,13 +24,16 @@ scripted_effect travl_travel_danger_0005_a_effect = {
 }
 
 scripted_effect travl_travel_danger_0005_b_effect = {
+	root = {
+		travl_event_add_stress_effect = { TRAIT = flag:craven VALUE = flag:major }
+	}
 }
 
 scripted_effect travl_travel_danger_1005_a_effect = {
 	scope:gold_character = {
+		travl_event_add_stress_effect = { TRAIT = flag:greedy VALUE = flag:medium }
 		travl_event_remove_gold_effect = { VALUE = tiny_gold_value }
 		travl_event_add_piety_effect = { VALUE = minor_piety_value }
-		travl_event_add_stress_effect = { TRAIT = flag:greedy VALUE = flag:medium }
 	}
 	scope:zombie = {
 		travl_event_add_gold_effect = { VALUE = tiny_gold_value }
@@ -56,6 +62,9 @@ scripted_effect travl_travel_danger_1005_c_effect = {
 }
 
 scripted_effect travl_travel_danger_2005_a_success_effect = {
+	scope:prowess_character = {
+		travl_event_add_stress_effect = { TRAIT = flag:craven VALUE = flag:major }
+	}
 	scope:zombie = {
 		travl_event_wound_effect = { REASON = flag:fight }
 		add_to_list = travelers
@@ -64,6 +73,7 @@ scripted_effect travl_travel_danger_2005_a_success_effect = {
 
 scripted_effect travl_travel_danger_2005_a_failure_effect = {
 	scope:prowess_character = {
+		travl_event_add_stress_effect = { TRAIT = flag:craven VALUE = flag:major }
 		travl_event_wound_effect = { REASON = flag:fight }
 	}
 }
@@ -74,7 +84,12 @@ scripted_effect travl_travel_danger_2005_b_effect = {
 	}
 	random_in_list = {
 		list = travelers
-		travl_event_wound_effect = { REASON = flag:fight }
+		random_list = {
+			50 = {
+				travl_event_wound_effect = { REASON = flag:fight }
+			}
+			50 = {}
+		}
 	}
 }
 
@@ -214,7 +229,8 @@ travl_travel_danger.0005 = {
 		ai_chance = {
 			base = 50
 			ai_value_modifier = {
-				ai_compassion = -0.5
+				ai_compassion = -0.25 # stress: compassionate
+				ai_boldness = -0.25
 			}
 		}
 	}
@@ -249,7 +265,8 @@ travl_travel_danger.0005 = {
 		ai_chance = {
 			base = 100
 			ai_value_modifier = {
-				ai_boldness = 1
+				ai_boldness = 0.5 # stress: craven
+				ai_compassion = 0.5
 			}
 		}
 	}
@@ -287,7 +304,7 @@ travl_travel_danger.1005 = {
 			base = 100
 			ai_value_modifier = {
 				who = scope:gold_character
-				ai_greed = -0.5
+				ai_greed = -0.5 # stress: greedy
 				ai_compassion = 0.5
 			}
 		}
@@ -302,7 +319,7 @@ travl_travel_danger.1005 = {
 		ai_chance = {
 			base = 100
 			ai_value_modifier = {
-				ai_sociability = 0.5
+				ai_sociability = 0.5 # stress: paranoid
 				ai_compassion = 0.5
 			}
 		}
@@ -317,7 +334,7 @@ travl_travel_danger.1005 = {
 		ai_chance = {
 			base = 100
 			ai_value_modifier = {
-				ai_compassion = -0.5
+				ai_compassion = -0.5 # stress: compassionate
 				ai_honor = -0.5
 			}
 		}
@@ -383,7 +400,8 @@ travl_travel_danger.2005 = {
 			base = 100
 			ai_value_modifier = {
 				who = scope:prowess_character
-				ai_boldness = 1
+				ai_boldness = 0.5 # stress: craven
+				ai_vengefulness = 0.5
 			}
 		}
 	}
@@ -395,7 +413,11 @@ travl_travel_danger.2005 = {
 		travl_travel_danger_0005_outcome_effect = { X = 2 OUTCOME = b }
 
 		ai_chance = {
-			base = 1
+			base = 100
+			ai_value_modifier = {
+				ai_boldness = -0.5 # stress: brave
+				ai_honor = -0.5
+			}
 		}
 	}
 }

@@ -264,11 +264,13 @@ travl_on_travel_plan_movement = {
 		}
 		100 = 0
 		100 = travl_travel_danger.0001 # Danger: Bandits
-		100 = travl_travel_danger.0002 # Danger: Missing Companion
+		200 = travl_travel_danger.0002 # Danger: Missing Companion
 		100 = travl_travel_danger.0003 # Danger: Lost
-		100 = travl_travel_danger.0004 # Danger: Out of Water
-		300 = travl_travel_danger.0005 # Danger: Aftermath
+		 50 = travl_travel_danger.0004 # Danger: Out of Water
+		200 = travl_travel_danger.0005 # Danger: Aftermath
 		 20 = travl_travel_danger.0006 # Danger: Sea Storm
+		200 = travl_travel_danger.0007 # Danger: Avalanche
+		100 = travl_travel_danger.0008 # Danger: Snowbound
 	}
 }
 

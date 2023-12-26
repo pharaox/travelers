@@ -15,12 +15,14 @@ scripted_effect travl_travel_danger_0001_outcome_effect = {
 
 scripted_effect travl_travel_danger_0001_a_success_effect = {
 	scope:prowess_character = {
+		travl_event_add_stress_effect = { TRAIT = flag:craven VALUE = flag:major }
 		travl_event_add_prestige_effect = { VALUE = miniscule_prestige_value }
 	}
 }
 
 scripted_effect travl_travel_danger_0001_a_failure_effect = {
 	scope:prowess_character = {
+		travl_event_add_stress_effect = { TRAIT = flag:craven VALUE = flag:major }
 		random_list = {
 			25 = {
 				travl_event_death_effect = { REASON = flag:death_fight KILLER = scope:bandit }
@@ -51,6 +53,7 @@ scripted_effect travl_travel_danger_0001_b_failure_effect = {
 
 scripted_effect travl_travel_danger_0001_c_effect = {
 	scope:gold_character = {
+		travl_event_add_stress_effect = { TRAIT = flag:greedy VALUE = flag:medium }
 		travl_event_remove_gold_effect = { VALUE = minor_gold_value }
 	}
 }
@@ -278,7 +281,8 @@ travl_travel_danger.0001 = {
 			base = 100
 			ai_value_modifier = {
 				who = scope:prowess_character
-				ai_boldness = 1
+				ai_boldness = 0.5 # stress: craven
+				ai_vengefulness = 0.5
 			}
 		}
 	}
@@ -324,7 +328,8 @@ travl_travel_danger.0001 = {
 			base = 100
 			ai_value_modifier = {
 				who = scope:diplomacy_character
-				ai_rationality = 1
+				ai_sociability = 0.5
+				ai_boldness = 0.5
 			}
 		}
 	}
@@ -343,7 +348,8 @@ travl_travel_danger.0001 = {
 			base = 100
 			ai_value_modifier = {
 				who = scope:gold_character
-				ai_greed = -1
+				ai_greed = -0.5 # stress: greedy
+				ai_rationality = 0.5
 			}
 		}
 	}
