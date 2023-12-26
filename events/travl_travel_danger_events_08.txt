@@ -80,9 +80,7 @@ travl_travel_danger.0008 = {
 	theme = travel_danger
 	#hidden = yes
 
-	override_background = {
-		reference = ep2_hunt_snowy_forest
-	}
+	override_background = { reference = ep2_hunt_snowy_forest }
 	left_portrait = {
 		character = root
 		animation = disbelief
@@ -299,10 +297,10 @@ travl_travel_danger.0008 = {
 		travl_travel_danger_0008_outcome_effect = { OUTCOME = c }
 
 		ai_chance = {
-			base = 100
+			base = 50
 			ai_value_modifier = {
-				ai_rationality = -0.5
-				ai_energy = 0.5
+				ai_rationality = -0.25
+				ai_energy = 0.25
 			}
 		}
 	}

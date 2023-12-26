@@ -79,6 +79,20 @@
  travl_travel_danger.0008.a.failure: "You fail to persuade the locals"
  travl_travel_danger.0008.b: "Pay them to help us"
  travl_travel_danger.0008.c: "Try to manage on our own"
+ # travel_danger.0009 Ripped Sails
+ travl_travel_danger.0009.t: "$travel_danger_prefix$ Ripped Sails"
+ travl_travel_danger.0009.desc: "We are caught in a white squall. Our mast has fallen overboard and our sails are torn."
+ travl_travel_danger.0009.a: "Raise makeshift sails"
+ travl_travel_danger.0009.a.success: "You manage to make the ship sail again"
+ travl_travel_danger.0009.a.failure: "You fail to make the ship sail again"
+ travl_travel_danger.0009.b: "Wait for somebody to find us"
+ # travel_danger.0010 Brush Fire
+ travl_travel_danger.0010.t: "$travel_danger_prefix$ Brush Fire"
+ travl_travel_danger.0010.desc: "A lightning strike has ignited a quickly expanding brush fire, and it is spreading toward us."
+ travl_travel_danger.0010.a: "Try to put it out"
+ travl_travel_danger.0010.a.success: "You manage to quell the fire"
+ travl_travel_danger.0010.a.failure: "You fail to quell the fire"
+ travl_travel_danger.0010.b: "Run"
 
  # Message titles
  travl_msg_travel_danger_0001_t: "$travel_danger_prefix$ Bandits"
@@ -91,6 +105,8 @@
  travl_msg_travel_danger_0006_t: "$travel_danger_prefix$ Sea Storm"
  travl_msg_travel_danger_0007_t: "$travel_danger_prefix$ Avalanche"
  travl_msg_travel_danger_0008_t: "$travel_danger_prefix$ Snowbound"
+ travl_msg_travel_danger_0009_t: "$travel_danger_prefix$ Ripped Sails"
+ travl_msg_travel_danger_0010_t: "$travel_danger_prefix$ Brush Fire"
 
  # Message tooltips
  # travel_danger.0001 Bandits
@@ -145,8 +161,19 @@
  travl_msg_travel_danger_0008_a_failure: "$travl_msg_travel_danger_0008_prefix$, and $travl_this_or_diplomacy_character$ failed to convince some locals to help them."
  travl_msg_travel_danger_0008_b: "$travl_msg_travel_danger_0008_prefix$, and $travl_this_or_gold_character$ paid some locals to help them."
  travl_msg_travel_danger_0008_c: "$travl_msg_travel_danger_0008_prefix$ and did not accept the help offered by some locals."
+ # travel_danger.0009 Ripped Sails
+ travl_msg_travel_danger_0009_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions lost their sails after being caught in a white squall"
+ travl_msg_travel_danger_0009_a_success: "$travl_msg_travel_danger_0009_prefix$, but $travl_this_or_learning_character$ managed to make the ship sail again with makeshift sails."
+ travl_msg_travel_danger_0009_a_failure: "$travl_msg_travel_danger_0009_prefix$, and $travl_this_or_learning_character$ failed to make the ship sail again with makeshift sails."
+ travl_msg_travel_danger_0009_b: "$travl_msg_travel_danger_0009_prefix$ and drifted slowly with the wind until a passing ship offered assistance."
+ # travel_danger.0010 Brush Fire
+ travl_msg_travel_danger_0010_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions were surprised by a quickly expanding brush fire"
+ travl_msg_travel_danger_0010_a_success: "$travl_msg_travel_danger_0010_prefix$, but $travl_this_or_martial_character$ managed to put it out."
+ travl_msg_travel_danger_0010_a_failure: "$travl_msg_travel_danger_0010_prefix$, and $travl_this_or_martial_character$ failed to put it out."
+ travl_msg_travel_danger_0010_b: "$travl_msg_travel_danger_0010_prefix$ and ran away from it to save their lives."
 
  travl_this_or_diplomacy_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, diplomacy_character.GetID), THIS.Char.GetSheHe, diplomacy_character.GetShortUIName)]"
+ travl_this_or_martial_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, martial_character.GetID), THIS.Char.GetSheHe, martial_character.GetShortUIName)]"
  travl_this_or_stewardship_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, stewardship_character.GetID), THIS.Char.GetSheHe, stewardship_character.GetShortUIName)]"
  travl_this_or_learning_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, learning_character.GetID), THIS.Char.GetSheHe, learning_character.GetShortUIName)]"
  travl_this_or_prowess_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, prowess_character.GetID), THIS.Char.GetSheHe, prowess_character.GetShortUIName)]"

@@ -221,10 +221,10 @@ travl_travel_danger.0002 = {
 		travl_travel_danger_0002_outcome_effect = { OUTCOME = b }
 
 		ai_chance = {
-			base = 100
+			base = 50
 			ai_value_modifier = {
-				ai_compassion = -0.5 # stress: compassionate
-				ai_honor = -0.5
+				ai_compassion = -0.25 # stress: compassionate
+				ai_honor = -0.25
 			}
 		}
 	}

@@ -117,6 +117,16 @@
  travl_debug_msg_travel_danger_0008_b: "$travl_debug_prefix$: $travl_msg_travel_danger_0008_t$ event option b"
  travl_debug_msg_travel_danger_0008_c: "$travl_debug_prefix$: $travl_msg_travel_danger_0008_t$ event option c"
 
+ travl_debug_msg_travel_danger_0009_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0009_t$ event fired"
+ travl_debug_msg_travel_danger_0009_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0009_t$ event option a success"
+ travl_debug_msg_travel_danger_0009_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0009_t$ event option a failure"
+ travl_debug_msg_travel_danger_0009_b: "$travl_debug_prefix$: $travl_msg_travel_danger_0009_t$ event option b"
+
+ travl_debug_msg_travel_danger_0010_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0010_t$ event fired"
+ travl_debug_msg_travel_danger_0010_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0010_t$ event option a success"
+ travl_debug_msg_travel_danger_0010_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0010_t$ event option a failure"
+ travl_debug_msg_travel_danger_0010_b: "$travl_debug_prefix$: $travl_msg_travel_danger_0010_t$ event option b"
+
  travl_debug_msg_event_character_gained_prestige: "$travl_debug_prefix$: Character gained [THIS.Var('travl_event_prestige').GetValue] prestige"
  travl_debug_msg_event_character_lost_prestige: "$travl_debug_prefix$: Character lost [THIS.Var('travl_event_prestige').GetValue] prestige"
  travl_debug_msg_event_character_gained_piety: "$travl_debug_prefix$: Character gained [THIS.Var('travl_event_piety').GetValue] piety"

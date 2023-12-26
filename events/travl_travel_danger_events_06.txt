@@ -39,7 +39,7 @@ travl_travel_danger.0006 = {
 		has_variable = travl_travel_leader
 		var:travl_travel_leader = root
 
-		# Available, traveling, adult, on land, and unlanded
+		# Available, traveling, adult, and unlanded
 		is_available_travelling_adult = yes
 		is_landed = no
 
