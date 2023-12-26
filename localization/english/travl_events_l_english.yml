@@ -23,7 +23,7 @@
  travl_travel_danger.0002.b: "Leave them"
  # travel_danger.0003 Lost
  travl_travel_danger.0003.t: "$travel_danger_prefix$ Lost"
- travl_travel_danger.0003.desc: "We lost our way."
+ travl_travel_danger.0003.desc: "We have lost our way."
  travl_travel_danger.0003.a: "Try to find the way"
  travl_travel_danger.0003.a.success: "You manage to find the way"
  travl_travel_danger.0003.a.failure: "You fail to find the way"
@@ -44,7 +44,7 @@
  travl_travel_danger.0004.d: "There is nothing we can do..."
  # travel_danger.0005 Aftermath
  travl_travel_danger.0005.t: "$travel_danger_prefix$ Aftermath"
- travl_travel_danger.0005.desc: "We encountered a wretched [zombie.GetWomanMan] while traveling through occupied territory."
+ travl_travel_danger.0005.desc: "We encounter a wretched [zombie.GetWomanMan] while traveling through an area ravaged by war."
  travl_travel_danger.0005.a: "Stop [zombie.GetHerHim]"
  travl_travel_danger.0005.b: "Let [zombie.GetHerHim] come"
  travl_travel_danger.0005.b.good: "[zombie.GetSheHe] has good intentions"
@@ -60,6 +60,10 @@
  travl_travel_danger.2005.a.success: "You manage to fend [zombie.GetHerHim] off"
  travl_travel_danger.2005.a.failure: "You fail to fend [zombie.GetHerHim] off"
  travl_travel_danger.2005.b: "Run away from [zombie.GetHerHim]"
+ # travel_danger.0005 Sea Storm
+ travl_travel_danger.0006.t: "$travel_danger_prefix$ Sea Storm"
+ travl_travel_danger.0006.desc: "A terrible sea storm engulfs us. I watch in horror as sailors are thrown into the black depths, and a huge wave rolls over the ship."
+ travl_travel_danger.0006.a: "Arghghghghgh!"
 
  # Message titles
  travl_msg_travel_danger_0001_t: "$travel_danger_prefix$ Bandits"
@@ -69,6 +73,7 @@
  travl_msg_travel_danger_0005_t: "$travel_danger_prefix$ Aftermath"
  travl_msg_travel_danger_1005_t: "$travl_msg_travel_danger_0005_t$, Good Intentions"
  travl_msg_travel_danger_2005_t: "$travl_msg_travel_danger_0005_t$, Bad Intentions"
+ travl_msg_travel_danger_0006_t: "$travel_danger_prefix$ Sea Storm"
 
  # Message tooltips
  # travel_danger.0001 Bandits
@@ -110,6 +115,8 @@
  travl_msg_travel_danger_2005_a_success: "$travl_msg_travel_danger_0005_prefix$, $travl_msg_travel_danger_2005_prefix$, $travl_this_or_prowess_character$ managed to fend [zombie.GetHerHim] off."
  travl_msg_travel_danger_2005_a_failure: "$travl_msg_travel_danger_0005_prefix$, $travl_msg_travel_danger_2005_prefix$, $travl_this_or_prowess_character$ failed to fend [zombie.GetHerHim] off."
  travl_msg_travel_danger_2005_b: "$travl_msg_travel_danger_0005_prefix$, $travl_msg_travel_danger_2005_prefix$, they ran away from [zombie.GetHerHim]."
+ # travel_danger.0006 Sea Storm
+ travl_msg_travel_danger_0006_a: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions were caught in a terrible storm at sea and nobody has heard of them since."
 
  travl_this_or_diplomacy_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, diplomacy_character.GetID), THIS.Char.GetSheHe, diplomacy_character.GetShortUIName)]"
  travl_this_or_stewardship_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, stewardship_character.GetID), THIS.Char.GetSheHe, stewardship_character.GetShortUIName)]"

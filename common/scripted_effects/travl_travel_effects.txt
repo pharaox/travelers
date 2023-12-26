@@ -522,19 +522,22 @@ travl_remove_sender_and_receiver_effect = {
 }
 
 travl_set_leader_and_companions_effect = {
-	set_variable = {
-		name = travl_travel_leader
-		value = $LEADER$
-		years = 2
-	}
-	clear_variable_list = travl_travel_companions
-	save_temporary_scope_as = character
-	every_in_list = {
-		list = $COMPANIONS$
-		scope:character = {
-			add_to_variable_list = {
-				name = travl_travel_companions
-				target = prev
+	if = {
+		limit = { is_alive = yes }
+		set_variable = {
+			name = travl_travel_leader
+			value = $LEADER$
+			years = 2
+		}
+		clear_variable_list = travl_travel_companions
+		save_temporary_scope_as = character
+		every_in_list = {
+			list = $COMPANIONS$
+			scope:character = {
+				add_to_variable_list = {
+					name = travl_travel_companions
+					target = prev
+				}
 			}
 		}
 	}
