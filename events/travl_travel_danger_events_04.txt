@@ -188,6 +188,9 @@ travl_travel_danger.0004 = {
 			}
 		}
 
+		# Save location
+		location = { save_scope_as = location }
+
 		traveler_danger_xp_effect = {
 			MIN = 3
 			MAX = 6

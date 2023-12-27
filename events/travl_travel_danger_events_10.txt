@@ -51,7 +51,7 @@ scripted_effect travl_travel_danger_0010_failure_effect = {
 	}
 }
 
-# Danger: Ripped Sails
+# Danger: Brush Fire
 travl_travel_danger.0010 = {
 	type = character_event
 	title = travl_travel_danger.0010.t
@@ -129,6 +129,9 @@ travl_travel_danger.0010 = {
 			order_by = martial
 			save_scope_as = martial_character
 		}
+
+		# Save location
+		location = { save_scope_as = location }
 
 		traveler_danger_xp_effect = {
 			MIN = 3

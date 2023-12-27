@@ -1,64 +1,71 @@
 ﻿namespace = travl_travel_danger
 
-scripted_effect travl_travel_danger_0009_outcome_effect = {
+scripted_effect travl_travel_danger_0011_outcome_effect = {
 	# Setup character effects
-	travl_travel_danger_0009_$OUTCOME$_effect = yes
+	travl_travel_danger_0011_$OUTCOME$_effect = yes
 
 	# Send messages to potential recipients and apply character effects
 	travl_event_apply_outcome_effect = {
-		EVENT = travel_danger_0009
+		EVENT = travel_danger_0011
 		OUTCOME = $OUTCOME$
 		RECIPIENTS = recipients
 		TRAVELERS = travelers
 	}
 }
 
-scripted_effect travl_travel_danger_0009_a_success_effect = {
+scripted_effect travl_travel_danger_0011_a_success_effect = {
 	scope:learning_character = {
 		travl_event_add_prestige_effect = { VALUE = miniscule_prestige_value }
 	}
+	travl_travel_danger_0011_success_effect = yes
 }
 
-scripted_effect travl_travel_danger_0009_a_failure_effect = {
+scripted_effect travl_travel_danger_0011_a_failure_effect = {
 	scope:learning_character = {
 		travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
 	}
-	travl_travel_danger_0009_failure_effect = yes
+	travl_travel_danger_0011_failure_effect = yes
 }
 
-scripted_effect travl_travel_danger_0009_b_effect = {
-	travl_travel_danger_0009_failure_effect = yes
+scripted_effect travl_travel_danger_0011_b_effect = {
+	travl_travel_danger_0011_failure_effect = yes
 }
 
-scripted_effect travl_travel_danger_0009_failure_effect = {
-	random_list = {
-		30 = {
-			every_in_list = {
-				list = travelers
-				travl_event_delay_travel_effect = { VALUE = flag:minor }
+scripted_effect travl_travel_danger_0011_success_effect = {
+	every_in_list = {
+		list = travelers
+		random_list = {
+			30 = {
+				travl_event_add_modifier_effect = { VALUE = flag:drained_by_mosquitoes_modifier }
 			}
-		}
-		70 = {
-			every_in_list = {
-				list = travelers
-				travl_event_delay_travel_effect = { VALUE = flag:medium }
-			}
+			70 = {}
 		}
 	}
 }
 
-# Danger: Ripped Sails
-travl_travel_danger.0009 = {
+scripted_effect travl_travel_danger_0011_failure_effect = {
+	every_in_list = {
+		list = travelers
+		random_list = {
+			70 = {
+				travl_event_add_modifier_effect = { VALUE = flag:drained_by_mosquitoes_modifier }
+			}
+			30 = {}
+		}
+	}
+}
+
+# Danger: Mosquitoes
+travl_travel_danger.0011 = {
 	type = character_event
-	title = travl_travel_danger.0009.t
-	desc = travl_travel_danger.0009.desc
+	title = travl_travel_danger.0011.t
+	desc = travl_travel_danger.0011.desc
 	theme = travel_danger
 	#hidden = yes
 
-	override_background = { reference = ocean }
 	left_portrait = {
 		character = root
-		animation = fear
+		animation = stress
 	}
 
 	trigger = {
@@ -68,6 +75,7 @@ travl_travel_danger.0009 = {
 
 		# Available, traveling, adult, and unlanded
 		is_available_travelling_adult = yes
+		is_location_valid_for_travel_event_on_land = yes
 		is_landed = no
 
 		# Danger types
@@ -75,33 +83,35 @@ travl_travel_danger.0009 = {
 			OR = {
 				travel_danger_type = {
 					travel_plan = root.current_travel_plan
-					terrain = sea
+					terrain = wetlands
 				}
 				travel_danger_type = {
 					travel_plan = root.current_travel_plan
-					terrain = coastal_sea
+					terrain = floodplains
+				}
+				travel_danger_type = {
+					travel_plan = root.current_travel_plan
+					terrain = forest
+				}
+				travel_danger_type = {
+					travel_plan = root.current_travel_plan
+					terrain = taiga
+				}
+				travel_danger_type = {
+					travel_plan = root.current_travel_plan
+					terrain = jungle
 				}
 			}
 		}
 
-		# Is not an expert in this type of terrain
-		NOT = { has_trait = forder }
-
-		# Culture is not adapted to winter
-		culture = {
-			NOR = {
-				has_cultural_tradition = tradition_seafaring
-				has_cultural_tradition = tradition_fishermen
-				has_cultural_tradition = tradition_maritime_mercantilism
-				has_cultural_tradition = tradition_fp1_coastal_warriors
-			}
-		}
+		# Doesn't have winter
+		NOT = { location_has_winter_trigger = yes }
 	}
 
 	cooldown = { months = 1 }
 
 	immediate = {
-		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_danger_0009_t }
+		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_danger_0011_t }
 
 		var:travl_travel_sender = { save_temporary_scope_as = sender }
 		var:travl_travel_receiver = { save_temporary_scope_as = receiver }
@@ -148,9 +158,9 @@ travl_travel_danger.0009 = {
 		}
 	}
 
-	# Raise makeshift sails (learning challenge)
+	# Try to find a remedy (learning challenge)
 	option = {
-		name = travl_travel_danger.0009.a
+		name = travl_travel_danger.0011.a
 
 		trigger = {
 			exists = scope:learning_character
@@ -161,25 +171,33 @@ travl_travel_danger.0009 = {
 				skill = learning
 				value = high_skill_rating
 				50 = {
-					desc = travl_travel_danger.0009.a.success
+					desc = travl_travel_danger.0011.a.success
 					compare_modifier = {
 						value = scope:duel_value
 						multiplier = 3.5
 						min = -49
 					}
+					modifier = {
+						OR = {
+							has_trait = lifestyle_physician
+							has_trait = lifestyle_herbalist
+							has_trait = witch
+						}
+						add = 100
+					}
 					root = {
-						travl_travel_danger_0009_outcome_effect = { OUTCOME = a_success }
+						travl_travel_danger_0011_outcome_effect = { OUTCOME = a_success }
 					}
 				}
 				50 = {
-					desc = travl_travel_danger.0009.a.failure
+					desc = travl_travel_danger.0011.a.failure
 					compare_modifier = {
 						value = scope:duel_value
 						multiplier = -3.5
 						min = -49
 					}
 					root = {
-						travl_travel_danger_0009_outcome_effect = { OUTCOME = a_failure }
+						travl_travel_danger_0011_outcome_effect = { OUTCOME = a_failure }
 					}
 				}
 			}
@@ -189,24 +207,19 @@ travl_travel_danger.0009 = {
 			base = 100
 			ai_value_modifier = {
 				who = scope:learning_character
-				ai_rationality = 0.5
-				ai_energy = 0.5
+				ai_rationality = 1
 			}
 		}
 	}
 
-	# Wait for somebody to find us
+	# Push through
 	option = {
-		name = travl_travel_danger.0009.b
+		name = travl_travel_danger.0011.b
 
-		travl_travel_danger_0009_outcome_effect = { OUTCOME = b }
+		travl_travel_danger_0011_outcome_effect = { OUTCOME = b }
 
 		ai_chance = {
-			base = 50
-			ai_value_modifier = {
-				ai_rationality = -0.25
-				ai_energy = -0.25
-			}
+			base = 1
 		}
 	}
 }

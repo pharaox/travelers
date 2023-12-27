@@ -217,6 +217,9 @@ travl_travel_danger.0008 = {
 			save_scope_as = gold_character
 		}
 
+		# Save location
+		location = { save_scope_as = location }
+
 		traveler_danger_xp_effect = {
 			MIN = 3
 			MAX = 6

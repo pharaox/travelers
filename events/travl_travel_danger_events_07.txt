@@ -87,18 +87,18 @@ travl_travel_danger.0007 = {
 		is_landed = no
 
 		# Danger types
-		#location = {
-		#	OR = {
-		#		travel_danger_type = {
-		#			travel_plan = root.current_travel_plan
-		#			terrain = mountains
-		#		}
-		#		travel_danger_type = {
-		#			travel_plan = root.current_travel_plan
-		#			terrain = desert_mountains
-		#		}
-		#	}
-		#}
+		location = {
+			OR = {
+				travel_danger_type = {
+					travel_plan = root.current_travel_plan
+					terrain = mountains
+				}
+				travel_danger_type = {
+					travel_plan = root.current_travel_plan
+					terrain = desert_mountains
+				}
+			}
+		}
 
 		# Has winter
 		location_has_winter_trigger = yes
@@ -170,6 +170,9 @@ travl_travel_danger.0007 = {
 			order_by = prowess
 			save_scope_as = prowess_character
 		}
+
+		# Save location
+		location = { save_scope_as = location }
 
 		traveler_danger_xp_effect = {
 			MIN = 6

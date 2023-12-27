@@ -93,6 +93,13 @@
  travl_travel_danger.0010.a.success: "You manage to quell the fire"
  travl_travel_danger.0010.a.failure: "You fail to quell the fire"
  travl_travel_danger.0010.b: "Run"
+ # travel_danger.0011 Mosquitoes
+ travl_travel_danger.0011.t: "$travel_danger_prefix$ Mosquitoes"
+ travl_travel_danger.0011.desc: "We find ourselves harassed by mosquitoes."
+ travl_travel_danger.0011.a: "Try to use a local herb as a remedy"
+ travl_travel_danger.0011.a.success: "You manage to use a local herb as a remedy"
+ travl_travel_danger.0011.a.failure: "You fail use a local herb as a remedy"
+ travl_travel_danger.0011.b: "Push through"
 
  # Message titles
  travl_msg_travel_danger_0001_t: "$travel_danger_prefix$ Bandits"
@@ -107,10 +114,11 @@
  travl_msg_travel_danger_0008_t: "$travel_danger_prefix$ Snowbound"
  travl_msg_travel_danger_0009_t: "$travel_danger_prefix$ Ripped Sails"
  travl_msg_travel_danger_0010_t: "$travel_danger_prefix$ Brush Fire"
+ travl_msg_travel_danger_0011_t: "$travel_danger_prefix$ Mosquitoes"
 
  # Message tooltips
  # travel_danger.0001 Bandits
- travl_msg_travel_danger_0001_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions encountered bandits on the road"
+ travl_msg_travel_danger_0001_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions encountered bandits on the road in [location.GetName]"
  travl_msg_travel_danger_0001_a_success: "$travl_msg_travel_danger_0001_prefix$, but $travl_this_or_prowess_character$ managed to defeat them in the ensuing fight."
  travl_msg_travel_danger_0001_a_failure: "$travl_msg_travel_danger_0001_prefix$, and $travl_this_or_prowess_character$ failed to defeat them in the ensuing fight."
  travl_msg_travel_danger_0001_b_success: "$travl_msg_travel_danger_0001_prefix$, but $travl_this_or_diplomacy_character$ managed to persuade them to let them pass."
@@ -118,19 +126,19 @@
  travl_msg_travel_danger_0001_c: "$travl_msg_travel_danger_0001_prefix$, and $travl_this_or_gold_character$ paid them off with gold."
  travl_msg_travel_danger_0001_d: "$travl_msg_travel_danger_0001_prefix$ and were attacked and robbed by them."
  # travel_danger.0002 Missing Companion
- travl_msg_travel_danger_0002_prefix: "One of [THIS.Char.GetShortUINamePossessive|U] companions, [missing_companion.GetShortUIName], went missing"
+ travl_msg_travel_danger_0002_prefix: "One of [THIS.Char.GetShortUINamePossessive|U] companions, [missing_companion.GetShortUIName], went missing in the [location.Custom('GetTerrainTypePlural')] of [location.GetName]"
  travl_msg_travel_danger_0002_a_success: "$travl_msg_travel_danger_0002_prefix$, but $travl_this_or_stewardship_character$ managed to find [missing_companion.GetHerHim]."
  travl_msg_travel_danger_0002_a_failure: "$travl_msg_travel_danger_0002_prefix$, and $travl_this_or_stewardship_character$ failed to find [missing_companion.GetHerHim]."
  travl_msg_travel_danger_0002_b: "$travl_msg_travel_danger_0002_prefix$, and they left [missing_companion.GetHerHim]."
  # travel_danger.0003 Lost
- travl_msg_travel_danger_0003_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions lost their way"
+ travl_msg_travel_danger_0003_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions lost their way in the [location.Custom('GetTerrainTypePlural')] of [location.GetName]"
  travl_msg_travel_danger_0003_a_success: "$travl_msg_travel_danger_0003_prefix$, but $travl_this_or_learning_character$ managed to find the correct path."
  travl_msg_travel_danger_0003_a_failure: "$travl_msg_travel_danger_0003_prefix$, and $travl_this_or_learning_character$ failed to find the correct path."
  travl_msg_travel_danger_0003_b_success: "$travl_msg_travel_danger_0003_prefix$, but $travl_this_or_stewardship_character$ managed to find an experienced local guide."
  travl_msg_travel_danger_0003_b_failure: "$travl_msg_travel_danger_0003_prefix$, and $travl_this_or_stewardship_character$ failed to find an experienced local guide."
  travl_msg_travel_danger_0003_c: "$travl_msg_travel_danger_0003_prefix$ and pushed mindlessly forward."
  # travel_danger.0004 Out of Water
- travl_msg_travel_danger_0004_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions ran out of water while crossing a desert"
+ travl_msg_travel_danger_0004_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions ran out of water while crossing the [location.Custom('GetTerrainTypePlural')] of [location.GetName]"
  travl_msg_travel_danger_0004_a: "$travl_msg_travel_danger_0004_prefix$ and had to stop at a nearby oasis."
  travl_msg_travel_danger_0004_b_success: "$travl_msg_travel_danger_0004_prefix$, but $travl_this_or_diplomacy_character$ managed to inspire them with hope."
  travl_msg_travel_danger_0004_b_failure: "$travl_msg_travel_danger_0004_prefix$, and $travl_this_or_diplomacy_character$ failed to inspire them with hope."
@@ -138,7 +146,7 @@
  travl_msg_travel_danger_0004_c_failure: "$travl_msg_travel_danger_0004_prefix$, and [THIS.Char.GetSheHe] failed to find water by interrogating [water_hider.GetShortUIName]."
  travl_msg_travel_danger_0004_d: "$travl_msg_travel_danger_0004_prefix$ and suffered greatly from thirst."
  # travel_danger.0005 Aftermath
- travl_msg_travel_danger_0005_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions encountered a wretched [zombie.GetWomanMan] while traveling through an area ravaged by war"
+ travl_msg_travel_danger_0005_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions encountered a wretched [zombie.GetWomanMan] while passing through the war-ravaged area of [location.GetName]"
  travl_msg_travel_danger_0005_a: "$travl_msg_travel_danger_0005_prefix$ and killed [zombie.GetHerHim]."
  travl_msg_travel_danger_1005_prefix: "and when [zombie.GetSheHe] asked them for help"
  travl_msg_travel_danger_1005_a: "$travl_msg_travel_danger_0005_prefix$, $travl_msg_travel_danger_1005_prefix$, $travl_this_or_gold_character$ gave [zombie.GetHerHim] gold."
@@ -149,28 +157,33 @@
  travl_msg_travel_danger_2005_a_failure: "$travl_msg_travel_danger_0005_prefix$, $travl_msg_travel_danger_2005_prefix$, $travl_this_or_prowess_character$ failed to fend [zombie.GetHerHim] off."
  travl_msg_travel_danger_2005_b: "$travl_msg_travel_danger_0005_prefix$, $travl_msg_travel_danger_2005_prefix$, they ran away from [zombie.GetHerHim]."
  # travel_danger.0006 Sea Storm
- travl_msg_travel_danger_0006_a: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions were caught in a terrible storm at sea and nobody has heard of them since."
+ travl_msg_travel_danger_0006_a: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions were caught in a terrible storm in the [location.GetName] and nobody has heard of them since."
  # travel_danger.0007 Avalanche
- travl_msg_travel_danger_0007_prefix: "One of [THIS.Char.GetShortUINamePossessive|U] companions, [avalanche_victim.GetShortUIName], was buried under the snow by an avalanche"
+ travl_msg_travel_danger_0007_prefix: "One of [THIS.Char.GetShortUINamePossessive|U] companions, [avalanche_victim.GetShortUIName], was buried under the snow by an avalanche in the [location.Custom('GetTerrainTypePlural')] of [location.GetName]"
  travl_msg_travel_danger_0007_a_success: "$travl_msg_travel_danger_0007_prefix$, but $travl_this_or_prowess_character$ managed to rescue [avalanche_victim.GetHerHim]."
  travl_msg_travel_danger_0007_a_failure: "$travl_msg_travel_danger_0007_prefix$, and $travl_this_or_prowess_character$ failed to rescue [avalanche_victim.GetHerHim]."
  travl_msg_travel_danger_0007_b: "$travl_msg_travel_danger_0007_prefix$, and they did not even try to rescue [avalanche_victim.GetHerHim]."
  # travel_danger.0008 Snowbound
- travl_msg_travel_danger_0008_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions got stuck after a heavy snowfall"
+ travl_msg_travel_danger_0008_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions got stuck after a heavy snowfall in [location.GetName]"
  travl_msg_travel_danger_0008_a_success: "$travl_msg_travel_danger_0008_prefix$, but $travl_this_or_diplomacy_character$ managed to convince some locals to help them."
  travl_msg_travel_danger_0008_a_failure: "$travl_msg_travel_danger_0008_prefix$, and $travl_this_or_diplomacy_character$ failed to convince some locals to help them."
  travl_msg_travel_danger_0008_b: "$travl_msg_travel_danger_0008_prefix$, and $travl_this_or_gold_character$ paid some locals to help them."
  travl_msg_travel_danger_0008_c: "$travl_msg_travel_danger_0008_prefix$ and did not accept the help offered by some locals."
  # travel_danger.0009 Ripped Sails
- travl_msg_travel_danger_0009_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions lost their sails after being caught in a white squall"
+ travl_msg_travel_danger_0009_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions lost their sails to a white squall in the [location.GetName]"
  travl_msg_travel_danger_0009_a_success: "$travl_msg_travel_danger_0009_prefix$, but $travl_this_or_learning_character$ managed to make the ship sail again with makeshift sails."
  travl_msg_travel_danger_0009_a_failure: "$travl_msg_travel_danger_0009_prefix$, and $travl_this_or_learning_character$ failed to make the ship sail again with makeshift sails."
  travl_msg_travel_danger_0009_b: "$travl_msg_travel_danger_0009_prefix$ and drifted slowly with the wind until a passing ship offered assistance."
  # travel_danger.0010 Brush Fire
- travl_msg_travel_danger_0010_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions were surprised by a quickly expanding brush fire"
+ travl_msg_travel_danger_0010_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions were surprised by a brush fire in the [location.Custom('GetTerrainTypePlural')] of [location.GetName]"
  travl_msg_travel_danger_0010_a_success: "$travl_msg_travel_danger_0010_prefix$, but $travl_this_or_martial_character$ managed to put it out."
  travl_msg_travel_danger_0010_a_failure: "$travl_msg_travel_danger_0010_prefix$, and $travl_this_or_martial_character$ failed to put it out."
  travl_msg_travel_danger_0010_b: "$travl_msg_travel_danger_0010_prefix$ and ran away from it to save their lives."
+ # travel_danger.0011 Mosquitoes
+ travl_msg_travel_danger_0011_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions were harassed by mosquitoes in the [location.Custom('GetTerrainTypePlural')] of [location.GetName]"
+ travl_msg_travel_danger_0011_a_success: "$travl_msg_travel_danger_0011_prefix$, but $travl_this_or_learning_character$ managed to use a local herb as a remedy."
+ travl_msg_travel_danger_0011_a_failure: "$travl_msg_travel_danger_0011_prefix$, and $travl_this_or_learning_character$ failed to use a local herb as a remedy."
+ travl_msg_travel_danger_0011_b: "$travl_msg_travel_danger_0011_prefix$ and pushed through as best as they could."
 
  travl_this_or_diplomacy_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, diplomacy_character.GetID), THIS.Char.GetSheHe, diplomacy_character.GetShortUIName)]"
  travl_this_or_martial_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, martial_character.GetID), THIS.Char.GetSheHe, martial_character.GetShortUIName)]"
