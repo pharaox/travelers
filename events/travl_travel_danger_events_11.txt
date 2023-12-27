@@ -177,6 +177,7 @@ travl_travel_danger.0011 = {
 						multiplier = 3.5
 						min = -49
 					}
+					# Automatic succes if they are physician, herbalist, or witch
 					modifier = {
 						OR = {
 							has_trait = lifestyle_physician

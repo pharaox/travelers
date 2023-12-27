@@ -115,10 +115,7 @@ travl_travel_danger.0004 = {
 		}
 
 		# Is not an expert this type of terrain
-		NOR = {
-			has_trait = desert_warrior
-			has_trait = open_terrain_expert
-		}
+		travl_event_is_location_terrain_expert_trigger = no
 
 		# Culture is not nomadic
 		culture = {

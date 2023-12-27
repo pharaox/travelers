@@ -114,10 +114,7 @@ travl_travel_danger.0003 = {
 		}
 
 		# Is not an expert this type of terrain
-		NOR = {
-			has_trait = forest_fighter
-			has_trait = jungle_stalker
-		}
+		travl_event_is_location_terrain_expert_trigger = no
 
 		# Cooldown between lost events
 		NOR = {

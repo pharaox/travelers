@@ -107,6 +107,16 @@
  travl_travel_danger.0012.a.success: "You manage to kill the beast"
  travl_travel_danger.0012.a.failure: "You fail to kill the beast"
  travl_travel_danger.0012.b: "Run"
+ # travel_danger.0013 Spoiled Food
+ travl_travel_danger.0013.t: "$travel_danger_prefix$ Spoiled Food"
+ travl_travel_danger.0013.desc: "Our food supplies are all but useless, having been poorly stored."
+ travl_travel_danger.0013.a: "Forage"
+ travl_travel_danger.0013.a.success: "You manage to find food by foraging"
+ travl_travel_danger.0013.a.failure: "You fail to find food by foraging"
+ travl_travel_danger.0013.b: "Steal from the locals"
+ travl_travel_danger.0013.b.success: "You manage to steal food from the locals"
+ travl_travel_danger.0013.b.failure: "You fail steal food from the locals"
+ travl_travel_danger.0013.c: "Eat what we have"
 
  # Message titles
  travl_msg_travel_danger_0001_t: "$travel_danger_prefix$ Bandits"
@@ -123,6 +133,7 @@
  travl_msg_travel_danger_0010_t: "$travel_danger_prefix$ Brush Fire"
  travl_msg_travel_danger_0011_t: "$travel_danger_prefix$ Mosquitoes"
  travl_msg_travel_danger_0012_t: "$travel_danger_prefix$ Beast Attack"
+ travl_msg_travel_danger_0013_t: "$travel_danger_prefix$ Spoiled Food"
 
  # Message tooltips
  # travel_danger.0001 Bandits
@@ -197,10 +208,18 @@
  travl_msg_travel_danger_0012_a_success: "$travl_msg_travel_danger_0012_prefix$, but $travl_this_or_prowess_character$ managed to kill it."
  travl_msg_travel_danger_0012_a_failure: "$travl_msg_travel_danger_0012_prefix$, and $travl_this_or_prowess_character$ failed to kill it."
  travl_msg_travel_danger_0012_b: "$travl_msg_travel_danger_0012_prefix$ and ran for their lives in terror."
+ # travel_danger.0013 Spoiled Food
+ travl_msg_travel_danger_0013_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions found their food supplies spoiled in [location.GetName]"
+ travl_msg_travel_danger_0013_a_success: "$travl_msg_travel_danger_0013_prefix$, but $travl_this_or_learning_character$ managed to find food by foraging."
+ travl_msg_travel_danger_0013_a_failure: "$travl_msg_travel_danger_0013_prefix$, and $travl_this_or_learning_character$ failed to find food by foraging."
+ travl_msg_travel_danger_0013_b_success: "$travl_msg_travel_danger_0013_prefix$, but $travl_this_or_intrigue_character$ managed to steal food from the locals."
+ travl_msg_travel_danger_0013_b_failure: "$travl_msg_travel_danger_0013_prefix$, and $travl_this_or_intrigue_character$ failed to steal food from the locals."
+ travl_msg_travel_danger_0013_c: "$travl_msg_travel_danger_0013_prefix$ and just ate them, risking disease."
 
  travl_this_or_diplomacy_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, diplomacy_character.GetID), THIS.Char.GetSheHe, diplomacy_character.GetShortUIName)]"
  travl_this_or_martial_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, martial_character.GetID), THIS.Char.GetSheHe, martial_character.GetShortUIName)]"
  travl_this_or_stewardship_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, stewardship_character.GetID), THIS.Char.GetSheHe, stewardship_character.GetShortUIName)]"
+ travl_this_or_intrigue_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, intrigue_character.GetID), THIS.Char.GetSheHe, intrigue_character.GetShortUIName)]"
  travl_this_or_learning_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, learning_character.GetID), THIS.Char.GetSheHe, learning_character.GetShortUIName)]"
  travl_this_or_prowess_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, prowess_character.GetID), THIS.Char.GetSheHe, prowess_character.GetShortUIName)]"
  travl_this_or_gold_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, gold_character.GetID), THIS.Char.GetSheHe, gold_character.GetShortUIName)]"

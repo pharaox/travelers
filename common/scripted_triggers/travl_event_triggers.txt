@@ -1,0 +1,48 @@
+﻿travl_event_is_location_terrain_expert_trigger = {
+	OR = {
+		AND = {
+			location = {
+				OR = {
+					terrain = forest
+					terrain = taiga
+				}
+			}
+			has_trait = forest_fighter
+		}
+		AND = {
+			location = {
+				OR = {
+					terrain = farmlands
+					terrain = plains
+					terrain = steppe
+				}
+			}
+			has_trait = open_terrain_expert
+		}
+		AND = {
+			location = {
+				OR = {
+					terrain = hills
+					terrain = mountains
+					terrain = wetlands
+				}
+			}
+			has_trait = rough_terrain_expert
+		}
+		AND = {
+			location = {
+				OR = {
+					terrain = desert
+					terrain = desert_mountains
+					terrain = drylands
+					terrain = oasis
+				}
+			}
+			has_trait = desert_warrior
+		}
+		AND = {
+			location = { terrain = jungle }
+			has_trait = jungle_stalker
+		}
+	}
+}

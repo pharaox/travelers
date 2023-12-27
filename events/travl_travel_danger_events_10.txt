@@ -77,11 +77,9 @@ travl_travel_danger.0010 = {
 
 		# Danger types
 		location = {
-			OR = {
-				travel_danger_type = {
-					travel_plan = root.current_travel_plan
-					terrain = hills
-				}
+			travel_danger_type = {
+				travel_plan = root.current_travel_plan
+				terrain = hills
 			}
 		}
 

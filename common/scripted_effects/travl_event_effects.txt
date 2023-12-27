@@ -35,6 +35,10 @@ travl_event_animal_wound_effect = {
 	set_variable = { name = travl_event_animal_wound value = yes }
 }
 
+travl_event_disease_effect = {
+	set_variable = { name = travl_event_disease value = $DISEASE$ }
+}
+
 travl_event_add_stress_effect = {
 	set_variable = { name = travl_event_stress_gain_trait value = $TRAIT$ }
 	set_variable = { name = travl_event_stress_gain_value value = $VALUE$ }
@@ -200,6 +204,18 @@ travl_event_apply_character_effect = {
 		}
 	}
 
+	# Contract disease
+	if = {
+		limit = { has_variable = travl_event_disease }
+		travl_debug_log_effect = { MSG = travl_debug_msg_event_character_diseased }
+		switch = {
+			trigger = var:travl_event_disease
+			flag:ill = {
+				contract_disease_effect = { DISEASE = ill TREATMENT_EVENT = yes }
+			}
+		}
+	}
+
 	# Stress impact
 	if = {
 		limit = { has_variable = travl_event_stress_gain_trait }
@@ -344,6 +360,9 @@ travl_event_apply_character_effect = {
 			flag:death_fire = {
 				death = { death_reason = death_fire }
 			}
+			flag:death_poisonous_forage = {
+				death = { death_reason = death_poisonous_forage }
+			}
 			fallback = {
 				if = {
 					limit = { has_variable = travl_event_animal_death }
@@ -362,6 +381,7 @@ travl_event_apply_character_effect = {
 		remove_variable = travl_event_trait
 		remove_variable = travl_event_wound
 		remove_variable = travl_event_animal_wound
+		remove_variable = travl_event_disease
 		remove_variable = travl_event_stress_gain_trait
 		remove_variable = travl_event_stress_gain_value
 		remove_variable = travl_event_modifier

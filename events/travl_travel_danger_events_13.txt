@@ -1,0 +1,330 @@
+﻿namespace = travl_travel_danger
+
+scripted_effect travl_travel_danger_0013_outcome_effect = {
+	# Setup character effects
+	travl_travel_danger_0013_$OUTCOME$_effect = yes
+
+	# Send messages to potential recipients and apply character effects
+	travl_event_apply_outcome_effect = {
+		EVENT = travel_danger_0013
+		OUTCOME = $OUTCOME$
+		RECIPIENTS = recipients
+		TRAVELERS = travelers
+	}
+}
+
+scripted_effect travl_travel_danger_0013_a_success_effect = {
+	scope:learning_character = {
+		travl_event_add_prestige_effect = { VALUE = miniscule_prestige_value }
+	}
+}
+
+scripted_effect travl_travel_danger_0013_a_failure_effect = {
+	scope:learning_character = {
+		travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
+		random_list = {
+			10 = {
+				travl_event_death_effect = { REASON = flag:death_poisonous_forage KILLER = this }
+			}
+			20 = {
+				travl_event_disease_effect = { DISEASE = flag:ill }
+			}
+			70 = {}
+		}
+	}
+	travl_travel_danger_0013_failure_effect = yes
+}
+
+scripted_effect travl_travel_danger_0013_b_success_effect = {
+	scope:intrigue_character = {
+		travl_event_add_stress_effect = { TRAIT = flag:just VALUE = flag:major }
+		travl_event_add_prestige_effect = { VALUE = miniscule_prestige_value }
+	}
+}
+
+scripted_effect travl_travel_danger_0013_b_failure_effect = {
+	scope:intrigue_character = {
+		travl_event_add_stress_effect = { TRAIT = flag:just VALUE = flag:major }
+		travl_event_remove_piety_effect = { VALUE = minor_piety_value }
+		random = {
+			chance = 50
+			travl_event_wound_effect = { REASON = flag:fight }
+		}
+	}
+	travl_travel_danger_0013_failure_effect = yes
+}
+
+scripted_effect travl_travel_danger_0013_c_effect = {
+	travl_travel_danger_0013_failure_effect = yes
+}
+
+scripted_effect travl_travel_danger_0013_failure_effect = {
+	every_in_list = {
+		list = travelers
+		random = {
+			chance = 50
+			modifier = {
+				has_trait = strong
+				add = -10
+			}
+			modifier = {
+				has_trait = physique_good_1
+				add = -5
+			}
+			modifier = {
+				has_trait = physique_good_2
+				add = -10
+			}
+			modifier = {
+				has_trait = physique_good_3
+				add = -15
+			}
+			travl_event_disease_effect = { DISEASE = flag:ill }
+		}
+	}
+}
+
+scripted_trigger travl_travel_danger_0013_is_easy_forage_location_trigger = {
+	location = {
+		OR = {
+			terrain = sea
+			terrain = coastal_sea
+			terrain = farmlands
+		}
+	}
+}
+
+scripted_trigger travl_travel_danger_0013_is_difficult_forage_location_trigger = {
+	location = {
+		OR = {
+			terrain = jungle
+			terrain = mountains
+			terrain = desert
+			terrain = desert_mountains
+		}
+	}
+}
+
+# Danger: Spoiled Food
+travl_travel_danger.0013 = {
+	type = character_event
+	title = travl_travel_danger.0013.t
+	desc = travl_travel_danger.0013.desc
+	theme = travel_danger
+	#hidden = yes
+
+	left_portrait = {
+		character = root
+		animation = disapproval
+	}
+
+	trigger = {
+		# Travel leader
+		has_variable = travl_travel_leader
+		var:travl_travel_leader = root
+
+		# Available, traveling, adult, and unlanded
+		is_available_travelling_adult = yes
+		is_landed = no
+
+		# No holding (sparsely inhabited)
+		location = { has_holding = no }
+
+		# Is not a logistician
+		NOT = { has_trait = logistician }
+
+		# Already traveled for some time
+		current_travel_plan.days_travelled >= 15
+	}
+
+	cooldown = { months = 6 }
+
+	immediate = {
+		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_danger_0013_t }
+
+		var:travl_travel_sender = { save_temporary_scope_as = sender }
+		var:travl_travel_receiver = { save_temporary_scope_as = receiver }
+		travl_get_companions_effect = { COMPANIONS = companions }
+
+		# Get all relevant travelers (leader and all unlanded companions)
+		add_to_list = travelers
+		every_in_list = {
+			list = companions
+			limit = { is_landed = no }
+			add_to_list = travelers
+		}
+
+		# Get message recipients (sender and / or recieiver)
+		travl_get_message_recipients_effect = {
+			SENDER = scope:sender
+			RECEIVER = scope:receiver
+			RECIPIENTS = recipients
+		}
+
+		# Add the player as a recipient (debug-only)
+		if = {
+			limit = { debug_only = yes }
+			random_player = { add_to_list = recipients }
+		}
+
+		# Find relevant travelers
+		ordered_in_list = {
+			list = travelers
+			limit = {
+				is_available_travelling_adult = yes
+				learning >= low_skill_rating
+			}
+			order_by = learning
+			save_scope_as = learning_character
+		}
+		ordered_in_list = {
+			list = travelers
+			limit = {
+				is_available_travelling_adult = yes
+				intrigue >= low_skill_rating
+			}
+			order_by = intrigue
+			save_scope_as = intrigue_character
+		}
+
+		# Save location
+		location = { save_scope_as = location }
+
+		traveler_danger_xp_effect = {
+			MIN = 3
+			MAX = 6
+		}
+	}
+
+	# Forage (learning challenge)
+	option = {
+		name = travl_travel_danger.0013.a
+
+		trigger = {
+			exists = scope:learning_character
+		}
+
+		scope:learning_character = {
+			duel = {
+				skill = learning
+				value = decent_skill_rating
+				50 = {
+					desc = travl_travel_danger.0013.a.success
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 3.5
+						min = -49
+					}
+					# Easier to forage in certain locations, or if they are a terrain expert or a hunter
+					modifier = {
+						travl_travel_danger_0013_is_easy_forage_location_trigger = yes
+						add = 25
+					}
+					modifier = {
+						travl_travel_danger_0013_is_difficult_forage_location_trigger = yes
+						add = -25
+					}
+					modifier = {
+						travl_event_is_location_terrain_expert_trigger = yes
+						add = 25
+					}
+					modifier = {
+						has_trait = lifestyle_hunter
+						add = 25
+					}
+					root = {
+						travl_travel_danger_0013_outcome_effect = { OUTCOME = a_success }
+					}
+				}
+				50 = {
+					desc = travl_travel_danger.0013.a.failure
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -3.5
+						min = -49
+					}
+					root = {
+						travl_travel_danger_0013_outcome_effect = { OUTCOME = a_failure }
+					}
+				}
+			}
+		}
+
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				who = scope:learning_character
+				ai_rationality = 0.5
+				ai_energy = 0.5
+			}
+		}
+	}
+
+	# Steal from the locals (intrigue challenge)
+	option = {
+		name = travl_travel_danger.0013.b
+
+		trigger = {
+			exists = scope:intrigue_character
+			is_location_valid_for_travel_event_on_land = yes
+		}
+
+		scope:intrigue_character = {
+			duel = {
+				skill = intrigue
+				value = decent_skill_rating
+				50 = {
+					desc = travl_travel_danger.0013.b.success
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 3.5
+						min = -49
+					}
+					# Easier to steal if there is no province owner
+					modifier = {
+						NOT = { exists = location.province_owner }
+						add = 25
+					}
+					root = {
+						travl_travel_danger_0013_outcome_effect = { OUTCOME = b_success }
+					}
+				}
+				50 = {
+					desc = travl_travel_danger.0013.b.failure
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -3.5
+						min = -49
+					}
+					root = {
+						travl_travel_danger_0013_outcome_effect = { OUTCOME = b_failure }
+					}
+				}
+			}
+		}
+
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				who = scope:intrigue_character
+				ai_honor = -0.5 # stress: just
+				ai_boldness = 0.5
+			}
+		}
+	}
+
+	# Eat what we have
+	option = {
+		name = travl_travel_danger.0013.c
+
+		travl_travel_danger_0013_outcome_effect = { OUTCOME = c }
+
+		ai_chance = {
+			base = 50
+			ai_value_modifier = {
+				ai_rationality = -0.25
+				ai_boldness = 0.25
+			}
+		}
+	}
+}
