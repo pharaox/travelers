@@ -213,6 +213,9 @@ travl_event_apply_character_effect = {
 			flag:ill = {
 				contract_disease_effect = { DISEASE = ill TREATMENT_EVENT = yes }
 			}
+			flag:consumption = {
+				contract_disease_effect = { DISEASE = consumption TREATMENT_EVENT = yes }
+			}
 		}
 	}
 

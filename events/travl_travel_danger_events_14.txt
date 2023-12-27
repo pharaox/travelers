@@ -1,37 +1,44 @@
 ﻿namespace = travl_travel_danger
 
-scripted_effect travl_travel_danger_0006_outcome_effect = {
+scripted_effect travl_travel_danger_0014_outcome_effect = {
 	# Setup character effects
-	travl_travel_danger_0006_$OUTCOME$_effect = yes
+	travl_travel_danger_0014_$OUTCOME$_effect = yes
 
 	# Send messages to potential recipients and apply character effects
 	travl_event_apply_outcome_effect = {
-		EVENT = travel_danger_0006
+		EVENT = travel_danger_0014
 		OUTCOME = $OUTCOME$
 		RECIPIENTS = recipients
 		TRAVELERS = travelers
 	}
 }
 
-scripted_effect travl_travel_danger_0006_a_effect = {
+scripted_effect travl_travel_danger_0014_a_effect = {
 	every_in_list = {
 		list = travelers
-		travl_event_death_effect = { REASON = flag:death_sea_storm KILLER = this }
+		random_list = {
+			50 = {
+				travl_event_disease_effect = { DISEASE = flag:ill }
+			}
+			20 = {
+				travl_event_disease_effect = { DISEASE = flag:consumption }
+			}
+			30 = {}
+		}
 	}
 }
 
-# Danger: Sea Storm
-travl_travel_danger.0006 = {
+# Danger: Sickness
+travl_travel_danger.0014 = {
 	type = character_event
-	title = travl_travel_danger.0006.t
-	desc = travl_travel_danger.0006.desc
+	title = travl_travel_danger.0014.t
+	desc = travl_travel_danger.0014.desc
 	theme = travel_danger
 	#hidden = yes
 
-	override_background = { reference = ocean }
 	left_portrait = {
 		character = root
-		animation = fear
+		animation = sick
 	}
 
 	trigger = {
@@ -41,6 +48,7 @@ travl_travel_danger.0006 = {
 
 		# Available, traveling, adult, and unlanded
 		is_available_travelling_adult = yes
+		is_location_valid_for_travel_event_on_land = yes
 		is_landed = no
 
 		# Danger types
@@ -48,12 +56,13 @@ travl_travel_danger.0006 = {
 			OR = {
 				travel_danger_type = {
 					travel_plan = root.current_travel_plan
-					terrain = sea
+					terrain = wetlands
 				}
 				travel_danger_type = {
 					travel_plan = root.current_travel_plan
-					terrain = coastal_sea
+					terrain = jungle
 				}
+				has_province_modifier = disease_spreading_modifier
 			}
 		}
 
@@ -61,23 +70,10 @@ travl_travel_danger.0006 = {
 		current_travel_plan.days_travelled >= 15
 	}
 
-	weight_multiplier = {
-		base = 1
-		modifier = {
-			location = {
-				travel_danger_type = {
-					travel_plan = root.current_travel_plan
-					terrain = coastal_sea
-				}
-			}
-			factor = 0.5
-		}
-	}
-
-	cooldown = { months = 1 }
+	cooldown = { months = 6 }
 
 	immediate = {
-		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_danger_0006_t }
+		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_danger_0014_t }
 
 		var:travl_travel_sender = { save_temporary_scope_as = sender }
 		var:travl_travel_receiver = { save_temporary_scope_as = receiver }
@@ -108,11 +104,11 @@ travl_travel_danger.0006 = {
 		location = { save_scope_as = location }
 	}
 
-	# We die
+	# We must press on...
 	option = {
-		name = travl_travel_danger.0006.a
+		name = travl_travel_danger.0014.a
 
-		travl_travel_danger_0006_outcome_effect = { OUTCOME = a }
+		travl_travel_danger_0014_outcome_effect = { OUTCOME = a }
 
 		ai_chance = {
 			base = 100

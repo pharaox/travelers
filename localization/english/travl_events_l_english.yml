@@ -117,6 +117,10 @@
  travl_travel_danger.0013.b.success: "You manage to steal food from the locals"
  travl_travel_danger.0013.b.failure: "You fail steal food from the locals"
  travl_travel_danger.0013.c: "Eat what we have"
+ # travel_danger.0014 Sickness
+ travl_travel_danger.0014.t: "$travel_danger_prefix$ Sickness"
+ travl_travel_danger.0014.desc: "Some of us begin to feel weak, lagging behind the rest of the party... There is something wrong..."
+ travl_travel_danger.0014.a: "We must press on..."
 
  # Message titles
  travl_msg_travel_danger_0001_t: "$travel_danger_prefix$ Bandits"
@@ -134,6 +138,7 @@
  travl_msg_travel_danger_0011_t: "$travel_danger_prefix$ Mosquitoes"
  travl_msg_travel_danger_0012_t: "$travel_danger_prefix$ Beast Attack"
  travl_msg_travel_danger_0013_t: "$travel_danger_prefix$ Spoiled Food"
+ travl_msg_travel_danger_0014_t: "$travel_danger_prefix$ Sickness"
 
  # Message tooltips
  # travel_danger.0001 Bandits
@@ -215,6 +220,8 @@
  travl_msg_travel_danger_0013_b_success: "$travl_msg_travel_danger_0013_prefix$, but $travl_this_or_intrigue_character$ managed to steal food from the locals."
  travl_msg_travel_danger_0013_b_failure: "$travl_msg_travel_danger_0013_prefix$, and $travl_this_or_intrigue_character$ failed to steal food from the locals."
  travl_msg_travel_danger_0013_c: "$travl_msg_travel_danger_0013_prefix$ and just ate them, risking disease."
+ # travel_danger.0014 Sickness
+ travl_msg_travel_danger_0014_a: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions got sick while traveling through the [location.Custom('GetTerrainTypePlural')] of [location.GetName]."
 
  travl_this_or_diplomacy_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, diplomacy_character.GetID), THIS.Char.GetSheHe, diplomacy_character.GetShortUIName)]"
  travl_this_or_martial_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, martial_character.GetID), THIS.Char.GetSheHe, martial_character.GetShortUIName)]"

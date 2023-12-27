@@ -270,12 +270,13 @@ travl_on_travel_plan_movement = {
 		200 = travl_travel_danger.0005 # Danger: Aftermath
 		 20 = travl_travel_danger.0006 # Danger: Sea Storm
 		200 = travl_travel_danger.0007 # Danger: Avalanche
-		100 = travl_travel_danger.0008 # Danger: Snowbound
+		 50 = travl_travel_danger.0008 # Danger: Snowbound
 		100 = travl_travel_danger.0009 # Danger: Ripped Sails
 		 50 = travl_travel_danger.0010 # Danger: Brush Fire
 		 50 = travl_travel_danger.0011 # Danger: Mosquitoes
 		100 = travl_travel_danger.0012 # Danger: Beast Attack
 		 20 = travl_travel_danger.0013 # Danger: Spoiled Food
+		200 = travl_travel_danger.0014 # Danger: Sickness
 	}
 }
 
