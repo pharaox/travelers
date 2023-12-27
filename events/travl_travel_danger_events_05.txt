@@ -64,6 +64,7 @@ scripted_effect travl_travel_danger_1005_c_effect = {
 scripted_effect travl_travel_danger_2005_a_success_effect = {
 	scope:prowess_character = {
 		travl_event_add_stress_effect = { TRAIT = flag:craven VALUE = flag:major }
+		travl_event_add_prestige_effect = { VALUE = miniscule_prestige_value }
 	}
 	scope:zombie = {
 		travl_event_wound_effect = { REASON = flag:fight }

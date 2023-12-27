@@ -30,6 +30,11 @@ travl_event_wound_effect = {
 	set_variable = { name = travl_event_wound value = $REASON$ }
 }
 
+travl_event_animal_wound_effect = {
+	set_variable = { name = travl_event_wound value = $ANIMAL_TYPE$ }
+	set_variable = { name = travl_event_animal_wound value = yes }
+}
+
 travl_event_add_stress_effect = {
 	set_variable = { name = travl_event_stress_gain_trait value = $TRAIT$ }
 	set_variable = { name = travl_event_stress_gain_value value = $VALUE$ }
@@ -62,6 +67,11 @@ travl_event_add_travel_waypoint_effect = {
 travl_event_death_effect = {
 	set_variable = { name = travl_event_death value = $REASON$ }
 	set_variable = { name = travl_event_killer value = $KILLER$ }
+}
+
+travl_event_animal_death_effect = {
+	set_variable = { name = travl_event_death value = $ANIMAL_TYPE$ }
+	set_variable = { name = travl_event_animal_death value = yes }
 }
 
 travl_event_apply_outcome_effect = {
@@ -180,6 +190,12 @@ travl_event_apply_character_effect = {
 			}
 			flag:burned = {
 				increase_wounds_effect = { REASON = burned }
+			}
+			fallback = {
+				if = {
+					limit = { has_variable = travl_event_animal_wound }
+					hunt_animal_wound_effect = { VARIABLE = var:travl_event_wound }
+				}
 			}
 		}
 	}
@@ -328,6 +344,12 @@ travl_event_apply_character_effect = {
 			flag:death_fire = {
 				death = { death_reason = death_fire }
 			}
+			fallback = {
+				if = {
+					limit = { has_variable = travl_event_animal_death }
+					hunt_animal_death_effect = { VAR = var:travl_event_death }
+				}
+			}
 		}
 	}
 
@@ -339,6 +361,7 @@ travl_event_apply_character_effect = {
 		remove_variable = travl_event_gold
 		remove_variable = travl_event_trait
 		remove_variable = travl_event_wound
+		remove_variable = travl_event_animal_wound
 		remove_variable = travl_event_stress_gain_trait
 		remove_variable = travl_event_stress_gain_value
 		remove_variable = travl_event_modifier
@@ -348,6 +371,7 @@ travl_event_apply_character_effect = {
 		remove_variable = travl_event_travel_modifier
 		remove_variable = travl_event_travel_waypoint
 		remove_variable = travl_event_death
+		remove_variable = travl_event_animal_death
 		remove_variable = travl_event_killer
 	}
 }

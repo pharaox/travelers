@@ -16,7 +16,7 @@ scripted_effect travl_travel_danger_0001_outcome_effect = {
 scripted_effect travl_travel_danger_0001_a_success_effect = {
 	scope:prowess_character = {
 		travl_event_add_stress_effect = { TRAIT = flag:craven VALUE = flag:major }
-		travl_event_add_prestige_effect = { VALUE = miniscule_prestige_value }
+		travl_event_add_prestige_effect = { VALUE = minor_prestige_value }
 	}
 }
 

@@ -274,6 +274,7 @@ travl_on_travel_plan_movement = {
 		100 = travl_travel_danger.0009 # Danger: Ripped Sails
 		100 = travl_travel_danger.0010 # Danger: Brush Fire
 		100 = travl_travel_danger.0011 # Danger: Mosquitoes
+		100 = travl_travel_danger.0012 # Danger: Beast Attack
 	}
 }
 

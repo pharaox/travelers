@@ -100,6 +100,13 @@
  travl_travel_danger.0011.a.success: "You manage to use a local herb as a remedy"
  travl_travel_danger.0011.a.failure: "You fail use a local herb as a remedy"
  travl_travel_danger.0011.b: "Push through"
+ # travel_danger.0012 Beast Attack
+ travl_travel_danger.0012.t: "$travel_danger_prefix$ Beast Attack"
+ travl_travel_danger.0012.desc: "We are attacked by a fearsome beast."
+ travl_travel_danger.0012.a: "Fight it"
+ travl_travel_danger.0012.a.success: "You manage to kill the beast"
+ travl_travel_danger.0012.a.failure: "You fail to kill the beast"
+ travl_travel_danger.0012.b: "Run"
 
  # Message titles
  travl_msg_travel_danger_0001_t: "$travel_danger_prefix$ Bandits"
@@ -115,6 +122,7 @@
  travl_msg_travel_danger_0009_t: "$travel_danger_prefix$ Ripped Sails"
  travl_msg_travel_danger_0010_t: "$travel_danger_prefix$ Brush Fire"
  travl_msg_travel_danger_0011_t: "$travel_danger_prefix$ Mosquitoes"
+ travl_msg_travel_danger_0012_t: "$travel_danger_prefix$ Beast Attack"
 
  # Message tooltips
  # travel_danger.0001 Bandits
@@ -178,12 +186,17 @@
  travl_msg_travel_danger_0010_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions were surprised by a brush fire in the [location.Custom('GetTerrainTypePlural')] of [location.GetName]"
  travl_msg_travel_danger_0010_a_success: "$travl_msg_travel_danger_0010_prefix$, but $travl_this_or_martial_character$ managed to put it out."
  travl_msg_travel_danger_0010_a_failure: "$travl_msg_travel_danger_0010_prefix$, and $travl_this_or_martial_character$ failed to put it out."
- travl_msg_travel_danger_0010_b: "$travl_msg_travel_danger_0010_prefix$ and ran away from it to save their lives."
+ travl_msg_travel_danger_0010_b: "$travl_msg_travel_danger_0010_prefix$ and ran for their lives in dismay."
  # travel_danger.0011 Mosquitoes
  travl_msg_travel_danger_0011_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions were harassed by mosquitoes in the [location.Custom('GetTerrainTypePlural')] of [location.GetName]"
  travl_msg_travel_danger_0011_a_success: "$travl_msg_travel_danger_0011_prefix$, but $travl_this_or_learning_character$ managed to use a local herb as a remedy."
  travl_msg_travel_danger_0011_a_failure: "$travl_msg_travel_danger_0011_prefix$, and $travl_this_or_learning_character$ failed to use a local herb as a remedy."
  travl_msg_travel_danger_0011_b: "$travl_msg_travel_danger_0011_prefix$ and pushed through as best as they could."
+ # travel_danger.0012 Beast Attack
+ travl_msg_travel_danger_0012_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions were attacked by a fearsome [THIS.Char.Custom('GetAnimalType')] in the [location.Custom('GetTerrainTypePlural')] of [location.GetName]"
+ travl_msg_travel_danger_0012_a_success: "$travl_msg_travel_danger_0012_prefix$, but $travl_this_or_prowess_character$ managed to kill it."
+ travl_msg_travel_danger_0012_a_failure: "$travl_msg_travel_danger_0012_prefix$, and $travl_this_or_prowess_character$ failed to kill it."
+ travl_msg_travel_danger_0012_b: "$travl_msg_travel_danger_0012_prefix$ and ran for their lives in terror."
 
  travl_this_or_diplomacy_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, diplomacy_character.GetID), THIS.Char.GetSheHe, diplomacy_character.GetShortUIName)]"
  travl_this_or_martial_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, martial_character.GetID), THIS.Char.GetSheHe, martial_character.GetShortUIName)]"
