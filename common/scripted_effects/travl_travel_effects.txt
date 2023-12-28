@@ -315,6 +315,8 @@ travl_start_travel_effect = {
 							add_visiting_courtier = prev
 						}
 
+						travl_set_event_effect = { EVENT = flag:travel_leader }
+
 						# Set travel variables for the recruited travel leader
 						travl_set_sender_and_receiver_effect = {
 							SENDER = $SENDER$
