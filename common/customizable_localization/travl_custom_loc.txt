@@ -1,0 +1,24 @@
+﻿travl_character_traveling_tooltip_companions = {
+	type = character
+
+	text = {
+		setup_scope = { travl_get_companion_scopes_effect = yes }
+		trigger = { exists = scope:companion4 }
+		localization_key = travl_companions_4
+	}
+	text = {
+		trigger = { exists = scope:companion3 }
+		localization_key = travl_companions_3
+	}
+	text = {
+		trigger = { exists = scope:companion2 }
+		localization_key = travl_companions_2
+	}
+	text = {
+		trigger = { exists = scope:companion1 }
+		localization_key = travl_companions_1
+	}
+	text = {
+		localization_key = travl_companions_empty
+	}
+}

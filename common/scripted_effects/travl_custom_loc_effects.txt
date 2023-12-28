@@ -1,0 +1,33 @@
+﻿travl_get_companion_scopes_effect = {
+	if = {
+		limit = { exists = var:travl_travel_leader }
+
+		if = {
+			limit = { NOT = { var:travl_travel_leader = this } }
+			var:travl_travel_leader = { save_scope_as = companion1 }
+		}
+
+		var:travl_travel_leader = {
+			travl_get_companions_effect = { COMPANIONS = companions }
+		}
+		every_in_list = {
+			list = companions
+			limit = { NOT = { this = prev } }
+			if = {
+				limit = { NOT = { exists = scope:companion1 } }
+				save_scope_as = companion1
+			}
+			else_if = {
+				limit = { NOT = { exists = scope:companion2 } }
+				save_scope_as = companion2
+			}
+			else_if = {
+				limit = { NOT = { exists = scope:companion3 } }
+				save_scope_as = companion3
+			}
+			else = {
+				save_scope_as = companion4
+			}
+		}
+	}
+}

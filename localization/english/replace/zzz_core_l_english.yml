@@ -1,0 +1,2 @@
+﻿l_english:
+ CHARACTER_TRAVELING_TOOLTIP: "#T Traveling#!\n[traveling|E] towards [Character.GetTravelPlan.GetData.GetNextDestination.GetProvince.GetName] [SelectLocalization(Character.GetTravelPlan.GetData.GetActivity.IsValid, 'CHARACTER_TRAVELING_ACTIVITY_TOOLTIP_ADDITION', '')]$travl_character_traveling_tooltip_companions$"

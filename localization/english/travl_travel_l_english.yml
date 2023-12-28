@@ -3,3 +3,11 @@
  travl_is_imprisoned_modifier_desc: "You are imprisoned and traveling to your prison location"
 
  travl_travel_leader_recruited.t: "Travel Leader Assigned"
+
+ travl_character_traveling_tooltip_companions: "[Character.Custom('travl_character_traveling_tooltip_companions'))]"
+ travl_together_with: "together with"
+ travl_companions_1: "$travl_together_with$ [SCOPE.sC('companion1').GetUIName]"
+ travl_companions_2: "$travl_together_with$ [SCOPE.sC('companion1').GetUIName] and [SCOPE.sC('companion2').GetUIName]"
+ travl_companions_3: "$travl_together_with$ [SCOPE.sC('companion1').GetUIName], [SCOPE.sC('companion2').GetUIName], and [SCOPE.sC('companion3').GetUIName]"
+ travl_companions_4: "$travl_together_with$ [SCOPE.sC('companion1').GetUIName], [SCOPE.sC('companion2').GetUIName], [SCOPE.sC('companion3').GetUIName], and others"
+ travl_companions_empty: ""
