@@ -33,6 +33,7 @@ echo
 echo "Aborting travel to start travel: $(grep -a "Aborting travel to start travel" debug.log | uniq | wc -l)"
 echo "Aborting vanilla travel to start travel: $(grep -a "Aborting vanilla travel to start travel" debug.log | uniq | wc -l)"
 echo "Aborting travel: $(grep -a "Aborting travel [(f]" debug.log | uniq | wc -l)"
+echo "- for prison guard: $(grep -a "Aborting travel for prison guard" debug.log | uniq | wc -l)"
 echo "- for PoW character: $(grep -a "Aborting travel for PoW character" debug.log | uniq | wc -l)"
 echo "Restoring location: $(grep -a "Restoring location" debug.log | uniq | wc -l)"
 echo "- for vanilla traveler: $(grep -a "Restoring location for vanilla traveler" debug.log | uniq | wc -l)"
@@ -60,6 +61,25 @@ echo
 
 # Pulse events
 echo "Pulse event fired: $(grep -a "Pulse event fired" debug.log | wc -l)"
+echo
+
+# Danger events
+echo "Danger: Bandits event fired: $(grep -a "Danger: Bandits event" debug.log | wc -l)"
+echo "Danger: Missing Companion event fired: $(grep -a "Danger: Missing Companion event" debug.log | wc -l)"
+echo "Danger: Lost event fired: $(grep -a "Danger: Lost event" debug.log | wc -l)"
+echo "Danger: Out of Water event fired: $(grep -a "Danger: Out of Water event" debug.log | wc -l)"
+echo "Danger: Aftermath event fired: $(grep -a "Danger: Aftermath.* event" debug.log | wc -l)"
+echo "Danger: Sea Storm event fired: $(grep -a "Danger: Sea Storm event" debug.log | wc -l)"
+echo "Danger: Avalanche event fired: $(grep -a "Danger: Avalanche event" debug.log | wc -l)"
+echo "Danger: Snowbound event fired: $(grep -a "Danger: Snowbound event" debug.log | wc -l)"
+echo "Danger: Ripped Sails event fired: $(grep -a "Danger: Ripped Sails event" debug.log | wc -l)"
+echo "Danger: Brush Fire event fired: $(grep -a "Danger: Brush Fire event" debug.log | wc -l)"
+echo "Danger: Mosquitoes event fired: $(grep -a "Danger: Mosquitoes event" debug.log | wc -l)"
+echo "Danger: Beast Attack event fired: $(grep -a "Danger: Beast Attack event" debug.log | wc -l)"
+echo "Danger: Spoiled Food event fired: $(grep -a "Danger: Spoiled Food event" debug.log | wc -l)"
+echo "Danger: Sickness event fired: $(grep -a "Danger: Sickness event" debug.log | wc -l)"
+echo "Total danger events: $(grep -a "Danger: .* event" debug.log | wc -l)"
+echo "Character died: $(grep -a "Character died" debug.log | wc -l)"
 echo
 
 # Rare (debug)
