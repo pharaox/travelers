@@ -213,13 +213,6 @@ travl_start_travel_effect = {
 			}
 			$RECEIVER$ = { save_temporary_scope_as = travel_owner }
 		}
-		else_if = {
-			limit = {
-				is_imprisoned = yes
-				liege ?= { is_at_same_location = prev }
-			}
-			liege = { save_temporary_scope_as = travel_owner }
-		}
 
 		if = {
 			limit = {
@@ -267,15 +260,27 @@ travl_start_travel_effect = {
 			travl_add_leader_or_companion_effect = yes
 
 			# Recruit travel leader
-			travl_recruit_travel_leader_effect = yes
+			# for rulers or non-ruler leaders under special conditions, e.g. imprisoned
+			if = {
+				limit = {
+					OR = {
+						is_ruler = yes
+						var:travl_travel_leader ?= this
+					}
+				}
+				travl_recruit_travel_leader_effect = yes
+				scope:travel_leader ?= {
+					travl_debug_log_effect = { MSG = travl_debug_msg_recruited_as_travel_leader }
+				}
+			}
 
 			if = {
-				limit = { exists = scope:travel_leader }
+				limit = {
+					exists = scope:travel_leader
+					is_ruler = yes
+				}
 
 				#travl_debug_log_effect = { MSG = travl_debug_msg_starting_travel_with_travel_leader }
-				#scope:travel_leader = {
-				#	travl_debug_log_effect = { MSG = travl_debug_msg_recruited_as_travel_leader }
-				#}
 
 				# Start new travel plan with travel leader
 				start_travel_plan = {
@@ -298,6 +303,45 @@ travl_start_travel_effect = {
 				}
 			}
 			else = {
+				if = {
+					limit = {
+						exists = scope:travel_leader
+						var:travl_travel_leader ?= this
+					}
+
+					scope:travel_leader = {
+						# Make the recruited travel leader visit the receiver's court
+						$RECEIVER$ = {
+							add_visiting_courtier = prev
+						}
+
+						# Set travel variables for the recruited travel leader
+						travl_set_sender_and_receiver_effect = {
+							SENDER = $SENDER$
+							RECEIVER = $RECEIVER$
+						}
+
+						# Set the recruited travel leader as the new leader
+						prev = { add_to_temporary_list = new_companions }
+						travl_set_as_leader_effect = { COMPANIONS = new_companions }
+
+						# Set location to the original leader location
+						set_location = prev.location
+
+						#travl_debug_log_effect = { MSG = travl_debug_msg_starting_travel_for_travel_leader }
+
+						# Start new travel plan for the recruited travel leader
+						start_travel_plan = {
+							destination = $RECEIVER$.capital_province
+							return_trip = no
+							players_use_planner = no
+							on_start_on_action = travl_travel_on_departure
+							on_arrival_on_action = travl_travel_on_arrival
+							on_arrival_destinations = last
+						}
+					}
+				}
+
 				#travl_debug_log_effect = { MSG = travl_debug_msg_starting_travel }
 
 				# Start new travel plan
@@ -410,25 +454,26 @@ travl_add_leader_or_companion_effect = {
 
 	# Update leader and companions for all characters
 	scope:leader1 ?= {
-		travl_set_leader_and_companions_effect = {
-			LEADER = this
-			COMPANIONS = companions1
-		}
-		every_in_list = {
-			list = companions1
-			travl_set_leader_and_companions_effect = {
-				LEADER = prev
-				COMPANIONS = none
-			}
-		}
+		travl_set_as_leader_effect = { COMPANIONS = companions1 }
 	}
 }
 
 travl_remove_leader_or_companion_effect = {
 	# Get leader and companions
 	var:travl_travel_leader ?= { save_temporary_scope_as = leader2 }
-	scope:leader2 ?= {
+	if = {
+		limit = { scope:leader2 ?= this }
+		# If this is the leader, it's safe to get companions without is_alive check
 		travl_get_companions_effect = { COMPANIONS = companions2 }
+	}
+	else = {
+		# Otherwise, check that the leader is alive before getting the companions
+		scope:leader2 ?= {
+			if = {
+				limit = { is_alive = yes }
+				travl_get_companions_effect = { COMPANIONS = companions2 }
+			}
+		}
 	}
 
 	if = {
@@ -460,17 +505,7 @@ travl_remove_leader_or_companion_effect = {
 
 	# Update leader and companions for remaining characters
 	scope:leader2 ?= {
-		travl_set_leader_and_companions_effect = {
-			LEADER = this
-			COMPANIONS = companions2
-		}
-		every_in_list = {
-			list = companions2
-			travl_set_leader_and_companions_effect = {
-				LEADER = prev
-				COMPANIONS = none
-			}
-		}
+		travl_set_as_leader_effect = { COMPANIONS = companions2 }
 	}
 
 	# Remove leader and companions for this character
@@ -521,6 +556,20 @@ travl_remove_sender_and_receiver_effect = {
 	}
 }
 
+travl_set_as_leader_effect = {
+	travl_set_leader_and_companions_effect = {
+		LEADER = this
+		COMPANIONS = $COMPANIONS$
+	}
+	every_in_list = {
+		list = $COMPANIONS$
+		travl_set_leader_and_companions_effect = {
+			LEADER = prev
+			COMPANIONS = none
+		}
+	}
+}
+
 travl_set_leader_and_companions_effect = {
 	if = {
 		limit = { is_alive = yes }
@@ -553,10 +602,7 @@ travl_remove_leader_and_companions_effect = {
 
 travl_get_companions_effect = {
 	if = {
-		limit = {
-			is_alive = yes
-			has_variable_list = travl_travel_companions
-		}
+		limit = { has_variable_list = travl_travel_companions }
 		every_in_list = {
 			variable = travl_travel_companions
 			limit = { is_alive = yes }
@@ -725,7 +771,6 @@ travl_recruit_travel_leader_effect = {
 	clear_saved_scope = travel_leader
 	if = {
 		limit = {
-			is_ruler = yes
 			is_imprisoned = yes
 			exists = imprisoner
 		}
@@ -766,6 +811,10 @@ travl_recruit_travel_leader_effect = {
 				save_temporary_scope_as = travel_leader
 			}
 		}
+
+		scope:travel_leader = {
+			add_character_modifier = travl_prison_guard_modifier
+		}
 	}
 
 	if = {
@@ -778,12 +827,36 @@ travl_recruit_travel_leader_effect = {
 }
 
 travl_send_added_characters_to_pool_effect = {
+	# Send added characters to pool
+	if = {
+		limit = { has_character_flag = travel_option_added_character }
+		select_and_move_to_pool_effect = yes
+	}
 	current_travel_plan ?= {
 		every_entourage_character = {
-			limit = {
-				has_character_flag = travel_option_added_character
-			}
+			limit = { has_character_flag = travel_option_added_character }
 			select_and_move_to_pool_effect = yes
+		}
+	}
+
+	# Remove special modifiers
+	travl_get_prison_guard_effect = yes
+	scope:prison_guard ?= {
+		remove_character_modifier = travl_prison_guard_modifier
+	}
+}
+
+travl_get_prison_guard_effect = {
+	if = {
+		limit = { has_character_modifier = travl_prison_guard_modifier }
+		save_temporary_scope_as = prison_guard
+	}
+	else = {
+		current_travel_plan ?= {
+			random_entourage_character = {
+				limit = { has_character_modifier = travl_prison_guard_modifier }
+				save_temporary_scope_as = prison_guard
+			}
 		}
 	}
 }

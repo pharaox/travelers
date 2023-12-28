@@ -1,4 +1,15 @@
-﻿travl_event_add_prestige_effect = {
+﻿travl_event_get_main_character_effect = {
+	travl_get_prison_guard_effect = yes
+	if = {
+		limit = { exists = scope:prison_guard }
+		scope:prison_guard = { save_scope_as = main_character }
+	}
+	else = {
+		save_scope_as = main_character
+	}
+}
+
+travl_event_add_prestige_effect = {
 	set_variable = { name = travl_event_prestige value = $VALUE$ }
 }
 

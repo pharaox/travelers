@@ -111,7 +111,8 @@ travl_travel_danger.0011 = {
 	cooldown = { months = 1 }
 
 	immediate = {
-		#travl_debug_log_effect = { MSG = travl_debug_msg_travel_danger_0011_t }
+		travl_event_get_main_character_effect = yes
+		travl_debug_log_travel_event_effect = { MSG = travl_debug_msg_travel_danger_0011_t }
 
 		var:travl_travel_sender = { save_temporary_scope_as = sender }
 		var:travl_travel_receiver = { save_temporary_scope_as = receiver }

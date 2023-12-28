@@ -255,6 +255,22 @@ travl_on_travel_plan_movement = {
 					}
 				}
 			}
+
+			# Abort travel for prison guards with no prisoners
+			if = {
+				limit = {
+					has_character_modifier = travl_prison_guard_modifier
+					any_in_list = {
+						list = companions
+						count = 0
+					}
+				}
+
+				travl_debug_log_effect = { MSG = travl_debug_msg_aborting_travel_for_prison_guard }
+				current_travel_plan ?= {
+					abort_travel_plan = yes
+				}
+			}
 		}
 	}
 

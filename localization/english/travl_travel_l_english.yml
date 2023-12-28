@@ -2,6 +2,9 @@
  travl_is_imprisoned_modifier: "Imprisoned"
  travl_is_imprisoned_modifier_desc: "You are imprisoned and traveling to your prison location"
 
+ travl_prison_guard_modifier: "Prison Guard"
+ travl_prison_guard_modifier_desc: "This character is guarding traveling prisoners"
+
  travl_travel_leader_recruited.t: "Travel Leader Assigned"
 
  travl_character_traveling_tooltip_companions: "[Character.Custom('travl_character_traveling_tooltip_companions'))]"

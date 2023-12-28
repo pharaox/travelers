@@ -2,3 +2,9 @@
 	icon = prison_negative
 	travel_safety = 10
 }
+
+travl_prison_guard_modifier = {
+	icon = prison_positive
+	diplomacy = -1
+	prowess = 1
+}
