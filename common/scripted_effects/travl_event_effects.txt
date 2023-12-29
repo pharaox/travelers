@@ -1,15 +1,4 @@
-﻿travl_event_get_main_character_effect = {
-	travl_get_prison_guard_effect = yes
-	if = {
-		limit = { exists = scope:prison_guard }
-		scope:prison_guard = { save_scope_as = main_character }
-	}
-	else = {
-		save_scope_as = main_character
-	}
-}
-
-travl_event_add_prestige_effect = {
+﻿travl_event_add_prestige_effect = {
 	set_variable = { name = travl_event_prestige value = $VALUE$ }
 }
 
@@ -449,5 +438,43 @@ travl_event_apply_stress_impact_effect = {
 		flag:callous = {
 			stress_impact = { callous = $VALUE$ sadistic = $VALUE$ }
 		}
+	}
+}
+
+travl_event_get_travelers_effect = {
+	travl_get_companions_effect = { COMPANIONS = companions }
+
+	# Add leader and all non-ruler or imprisoned ruler companions and their entourages
+	add_to_list = $TRAVELERS$
+	every_in_list = {
+		list = companions
+		limit = {
+			OR = {
+				is_ruler = no
+				is_imprisoned = yes
+			}
+		}
+		add_to_list = $TRAVELERS$
+		current_travel_plan.travel_leader ?= {
+			add_to_list = $TRAVELERS$
+		}
+	}
+}
+
+travl_event_get_message_recipients_effect = {
+	var:travl_travel_sender = { save_temporary_scope_as = sender }
+	var:travl_travel_receiver = { save_temporary_scope_as = receiver }
+
+	# Get standard recipients (sender and / or recieiver)
+	travl_get_message_recipients_effect = {
+		SENDER = scope:sender
+		RECEIVER = scope:receiver
+		RECIPIENTS = $RECIPIENTS$
+	}
+
+	# Add the player as a recipient (debug-only)
+	if = {
+		limit = { debug_only = yes }
+		random_player = { add_to_list = $RECIPIENTS$ }
 	}
 }

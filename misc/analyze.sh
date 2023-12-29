@@ -27,6 +27,8 @@ echo "on_invalid_location: $(grep -a "on_invalid_location" debug.log | uniq | wc
 echo "on_marriage: $(grep -a "(on_marriage)" debug.log | uniq | wc -l)"
 echo "on_concubinage: $(grep -a "(on_concubinage)" debug.log | uniq | wc -l)"
 echo "on_delayed_join_court: $(grep -a "(on_delayed_join_court)" debug.log | uniq | wc -l)"
+echo "escort: $(grep -a "(escort)" debug.log | uniq | wc -l)"
+echo "travel_event: $(grep -a "(travel_event)" debug.log | uniq | wc -l)"
 echo
 
 # Rare (actions)
@@ -40,6 +42,8 @@ echo "- for vanilla traveler: $(grep -a "Restoring location for vanilla traveler
 echo "- for PoW traveler: $(grep -a "Restoring location for PoW traveler" debug.log | uniq | wc -l)"
 echo "Changing travel leader: $(grep -a "Changing travel leader" debug.log | uniq | wc -l)"
 echo "Removing travel companion: $(grep -a "Removing travel companion" debug.log | uniq | wc -l)"
+echo "Freeing prisoner: $(grep -a "Freeing prisoner" debug.log | uniq | wc -l)"
+echo "Creating prison guard character: $(grep -a "Creating prison guard character" debug.log | uniq | wc -l)"
 echo
 
 # Rare (events)
@@ -78,7 +82,8 @@ echo "Danger: Mosquitoes event fired: $(grep -a "Danger: Mosquitoes event" debug
 echo "Danger: Beast Attack event fired: $(grep -a "Danger: Beast Attack event" debug.log | wc -l)"
 echo "Danger: Spoiled Food event fired: $(grep -a "Danger: Spoiled Food event" debug.log | wc -l)"
 echo "Danger: Sickness event fired: $(grep -a "Danger: Sickness event" debug.log | wc -l)"
-echo "Total danger events: $(grep -a "Danger: .* event" debug.log | wc -l)"
+echo "Total danger events: $(grep -a "Danger: .* event option" debug.log | wc -l)"
+echo "- for prison guard: $(grep -a "Danger: .* event fired for prison guard" debug.log | wc -l)"
 echo "Character died: $(grep -a "Character died" debug.log | wc -l)"
 echo
 

@@ -6,9 +6,11 @@
  travl_debug_msg_pulse_event_fired: "[GetCurrentDate.GetStringShort]: Pulse event fired"
 
  travl_debug_msg_starting_travel: "$travl_debug_prefix$: Starting travel ($travl_travel_event$)"
+ travl_debug_msg_starting_travel_for_escort: "$travl_debug_prefix$: Starting travel for escort ($travl_travel_event$)"
  travl_debug_msg_starting_travel_with_travel_leader: "$travl_debug_prefix$: Starting travel with travel leader ($travl_travel_event$)"
- travl_debug_msg_starting_travel_for_travel_leader: "$travl_debug_prefix$: Starting travel for recruited travel leader ($travl_travel_event$)"
+ travl_debug_msg_recruited_as_escort: "$travl_debug_prefix$: Recruited as escort"
  travl_debug_msg_recruited_as_travel_leader: "$travl_debug_prefix$: Recruited as travel leader"
+ travl_debug_msg_moving_added_character_back_to_pool: "$travl_debug_prefix$: Moving added character back to pool"
  travl_debug_msg_adding_entourage_character: "$travl_debug_prefix$: Adding entourage character ($travl_travel_event$)"
  travl_debug_msg_aborting_travel_to_start_travel: "$travl_debug_prefix$: Aborting travel to start travel ($travl_travel_event$)" # Rare
  travl_debug_msg_aborting_vanilla_travel_to_start_travel: "$travl_debug_prefix$: Aborting vanilla travel to start travel ($travl_travel_event$)" # Rare
@@ -18,6 +20,10 @@
  travl_debug_msg_restoring_location: "$travl_debug_prefix$: Restoring location ($travl_location$)" # Rare
  travl_debug_msg_restoring_location_for_vanilla_traveler: "$travl_debug_prefix$: Restoring location for vanilla traveler ($travl_location$)" # Rare
  travl_debug_msg_restoring_location_for_PoW_traveler: "$travl_debug_prefix$: Restoring location for PoW traveler ($travl_location$)" # Rare
+
+ travl_debug_msg_freeing_prisoner: "$travl_debug_prefix$: Freeing prisoner" # Rare
+
+ travl_debug_msg_creating_prison_guard_character: "$travl_debug_prefix$: Creating prison guard character" # Rare
 
  travl_debug_msg_changing_leader: "$travl_debug_prefix$: Changing travel leader" # Rare
  travl_debug_msg_removing_companion: "$travl_debug_prefix$: Removing travel companion" # Rare

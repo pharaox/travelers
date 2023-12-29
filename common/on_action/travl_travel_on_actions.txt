@@ -174,8 +174,8 @@ travl_travel_on_arrival = {
 		travl_remove_sender_and_receiver_effect = yes
 		travl_remove_leader_and_companions_effect = yes
 
-		# Send added entourage characters to pool
-		travl_send_added_characters_to_pool_effect = yes
+		# Move added characters back to pool
+		travl_move_added_characters_to_pool_effect = yes
 	}
 }
 
@@ -255,22 +255,6 @@ travl_on_travel_plan_movement = {
 					}
 				}
 			}
-
-			# Abort travel for prison guards with no prisoners
-			if = {
-				limit = {
-					has_character_modifier = travl_prison_guard_modifier
-					any_in_list = {
-						list = companions
-						count = 0
-					}
-				}
-
-				travl_debug_log_effect = { MSG = travl_debug_msg_aborting_travel_for_prison_guard }
-				current_travel_plan ?= {
-					abort_travel_plan = yes
-				}
-			}
 		}
 	}
 
@@ -324,8 +308,8 @@ travl_on_travel_plan_abort = {
 		travl_remove_sender_and_receiver_effect = yes
 		travl_remove_leader_or_companion_effect = yes
 
-		# Send added entourage characters to pool
-		travl_send_added_characters_to_pool_effect = yes
+		# Move added characters back to pool
+		travl_move_added_characters_to_pool_effect = yes
 	}
 }
 
@@ -344,6 +328,18 @@ travl_on_travel_plan_update_location = {
 				limit = { is_alive = yes }
 				travl_set_location_effect = yes
 			}
+		}
+	}
+}
+
+on_travel_leader_removed = {
+	on_actions = { travl_on_travel_leader_removed }
+}
+
+travl_on_travel_leader_removed = {
+	effect = {
+		scope:old_travel_leader ?= {
+			travl_move_added_character_to_pool_effect = yes
 		}
 	}
 }

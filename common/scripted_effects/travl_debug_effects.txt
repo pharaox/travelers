@@ -28,7 +28,8 @@ travl_debug_log_event_effect = {
 
 travl_debug_log_travel_event_effect = {
 	if = {
-		limit = { exists = scope:prison_guard }
+		limit = { has_character_modifier = travl_prison_guard_modifier }
+		save_temporary_scope_as = prison_guard
 		travl_debug_log_1_effect = { MSG = $MSG$ NAME1 = prison_guard TYPE1 = flag:character }
 	}
 	else = {

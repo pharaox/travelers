@@ -107,33 +107,11 @@ travl_travel_danger.0012 = {
 	cooldown = { months = 1 }
 
 	immediate = {
-		travl_event_get_main_character_effect = yes
 		travl_debug_log_travel_event_effect = { MSG = travl_debug_msg_travel_danger_0012_t }
 
-		var:travl_travel_sender = { save_temporary_scope_as = sender }
-		var:travl_travel_receiver = { save_temporary_scope_as = receiver }
-		travl_get_companions_effect = { COMPANIONS = companions }
-
-		# Get all relevant travelers (leader and all unlanded companions)
-		add_to_list = travelers
-		every_in_list = {
-			list = companions
-			limit = { is_landed = no }
-			add_to_list = travelers
-		}
-
-		# Get message recipients (sender and / or recieiver)
-		travl_get_message_recipients_effect = {
-			SENDER = scope:sender
-			RECEIVER = scope:receiver
-			RECIPIENTS = recipients
-		}
-
-		# Add the player as a recipient (debug-only)
-		if = {
-			limit = { debug_only = yes }
-			random_player = { add_to_list = recipients }
-		}
+		# Get travelers and message recipients
+		travl_event_get_travelers_effect = { TRAVELERS = travelers }
+		travl_event_get_message_recipients_effect = { RECIPIENTS = recipients }
 
 		# Find a ferocious local animal
 		save_scope_as = big_local_game
