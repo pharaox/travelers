@@ -265,7 +265,7 @@ travl_start_travel_effect = {
 
 				travl_recruit_escort_effect = yes
 				scope:escort ?= {
-					travl_debug_log_effect = { MSG = travl_debug_msg_recruited_as_escort }
+					#travl_debug_log_effect = { MSG = travl_debug_msg_recruited_as_escort }
 
 					# Make the escort visit the receiver's court
 					$RECEIVER$ = {
@@ -306,9 +306,9 @@ travl_start_travel_effect = {
 				limit = { is_ruler = yes }
 
 				travl_recruit_travel_leader_effect = yes
-				scope:travel_leader ?= {
-					travl_debug_log_effect = { MSG = travl_debug_msg_recruited_as_travel_leader }
-				}
+				#scope:travel_leader ?= {
+				#	travl_debug_log_effect = { MSG = travl_debug_msg_recruited_as_travel_leader }
+				#}
 			}
 
 			if = {
@@ -890,7 +890,7 @@ travl_move_vanilla_added_character_to_pool_effect = {
 travl_move_added_character_to_pool_effect = {
 	if = {
 		limit = { has_character_flag = travl_added_character }
-		travl_debug_log_effect = { MSG = travl_debug_msg_moving_added_character_back_to_pool }
+		#travl_debug_log_effect = { MSG = travl_debug_msg_moving_added_character_back_to_pool }
 		if = {
 			limit = { has_character_modifier = travl_prison_guard_modifier }
 			remove_character_modifier = travl_prison_guard_modifier
