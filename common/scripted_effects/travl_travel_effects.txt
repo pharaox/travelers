@@ -481,7 +481,7 @@ travl_remove_leader_or_companion_effect = {
 		}
 
 		travl_debug_log_effect = { MSG = travl_debug_msg_changing_leader }
-		save_temporary_scope_as = old_leader
+		save_scope_as = old_leader
 
 		# Set random companion as leader
 		random_in_list = {
@@ -494,7 +494,7 @@ travl_remove_leader_or_companion_effect = {
 		limit = { is_in_list = companions2 }
 
 		travl_debug_log_effect = { MSG = travl_debug_msg_removing_companion }
-		save_temporary_scope_as = old_companion
+		save_scope_as = old_companion
 
 		# Remove character as companion
 		remove_from_list = companions2
@@ -508,35 +508,19 @@ travl_remove_leader_or_companion_effect = {
 	# Remove leader and companions for this character
 	travl_remove_leader_and_companions_effect = yes
 
-	# Trigger an event for the remaining travelers
-	if = {
-		limit = { exists = scope:old_leader }
-		travl_trigger_leader_and_companions_event_effect = {
-			LEADER = scope:leader2
-			COMPANIONS = companions2
-			ON_ACTION = travl_on_leader_changed
+	# Trigger an event for the new leader
+	scope:leader2 ?= {
+		if = {
+			limit = { exists = scope:old_leader }
+			trigger_event = {
+				on_action = travl_on_leader_changed
+			}
 		}
-	}
-	else_if = {
-		limit = { exists = scope:old_companion }
-		travl_trigger_leader_and_companions_event_effect = {
-			LEADER = scope:leader2
-			COMPANIONS = companions2
-			ON_ACTION = travl_on_companion_removed
-		}
-	}
-}
-
-travl_trigger_leader_and_companions_event_effect = {
-	$LEADER$ ?= {
-		trigger_event = {
-			on_action = $ON_ACTION$
-		}
-	}
-	every_in_list = {
-		list = $COMPANIONS$
-		trigger_event = {
-			on_action = $ON_ACTION$
+		else_if = {
+			limit = { exists = scope:old_companion }
+			trigger_event = {
+				on_action = travl_on_companion_removed
+			}
 		}
 	}
 }
@@ -705,6 +689,40 @@ travl_send_messages_effect = {
 				}
 			}
 		}
+	}
+}
+
+travl_escape_from_prison_effect = {
+	if = {
+		limit = { has_game_rule = travl_travel_messages_enabled }
+
+		save_temporary_scope_as = character
+		every_in_list = {
+			list = $RECIPIENTS$
+			send_interface_message = {
+				type = event_generic_neutral
+				title = travl_msg_escaped_from_prison
+				right_icon = scope:character
+
+				show_as_tooltip = {
+					every_in_list = {
+						list = $PRISONERS$
+						release_from_prison = yes
+					}
+				}
+			}
+		}
+	}
+
+	ordered_in_list = {
+		list = $PRISONERS$
+		order_by = highest_held_title_tier
+		max = 100
+		check_range_bounds = no
+
+		travl_debug_log_effect = { MSG = travl_debug_msg_freeing_prisoner }
+		imprisoner ?= { save_temporary_scope_as = imprisoner }
+		escape_from_prison_effect = yes
 	}
 }
 

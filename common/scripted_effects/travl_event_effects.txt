@@ -444,7 +444,7 @@ travl_event_apply_stress_impact_effect = {
 travl_event_get_travelers_effect = {
 	travl_get_companions_effect = { COMPANIONS = companions }
 
-	# Add leader and all non-ruler or imprisoned ruler companions and their entourages
+	# Add leader, non-ruler companions, and imprisoned ruler companions and their travel leaders
 	add_to_list = $TRAVELERS$
 	every_in_list = {
 		list = companions
@@ -458,6 +458,21 @@ travl_event_get_travelers_effect = {
 		current_travel_plan.travel_leader ?= {
 			add_to_list = $TRAVELERS$
 		}
+	}
+}
+
+travl_event_get_prisoners_effect = {
+	travl_get_companions_effect = { COMPANIONS = companions }
+
+	# Add leader if imprisoned and all imprisoned companions
+	if = {
+		limit = { is_imprisoned = yes }
+		add_to_list = $PRISONERS$
+	}
+	ordered_in_list = {
+		list = companions
+		limit = { is_imprisoned = yes }
+		add_to_list = $PRISONERS$
 	}
 }
 

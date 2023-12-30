@@ -466,45 +466,6 @@ travl_on_invalid_location = {
 	}
 }
 
-travl_on_leader_changed = {
-	effect = {
-		# Free traveling prisoners without a prison guard
-		if = {
-			limit = {
-				is_imprisoned = yes
-				var:travl_travel_leader ?= {
-					NOT = { has_character_modifier = travl_prison_guard_modifier }
-				}
-			}
-
-			travl_debug_log_effect = { MSG = travl_debug_msg_freeing_prisoner }
-			release_from_prison = yes
-		}
-	}
-}
-
-travl_on_companion_removed = {
-	effect = {
-		# Abort travel for prison guards without prisoners
-		if = {
-			limit = {
-				var:travl_travel_leader ?= this
-				has_character_modifier = travl_prison_guard_modifier
-				any_in_list = {
-					variable = travl_travel_companions
-					is_alive = yes
-					count = 0
-				}
-			}
-
-			travl_debug_log_effect = { MSG = travl_debug_msg_aborting_travel_for_prison_guard }
-			current_travel_plan ?= {
-				abort_travel_plan = yes
-			}
-		}
-	}
-}
-
 # called when a siege completes. Does *not* fire on reoccupation by province order
 # root is the occupant
 # scope:barony is the barony title that got occupied
