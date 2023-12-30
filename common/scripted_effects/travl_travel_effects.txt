@@ -206,26 +206,29 @@ travl_start_travel_effect = {
 		set_location = scope:current_location
 
 		# Determine travel owner
+		save_temporary_scope_as = traveler
 		clear_saved_scope = travel_owner
-		if = {
-			limit = {
-				$RECEIVER$ = { is_at_same_location = prev }
+		$RECEIVER$ = {
+			if = {
+				limit = {
+					travl_is_travelling_to_receiver_trigger = { RECEIVER = $RECEIVER$ }
+					OR = {
+						location = scope:traveler.location
+						current_travel_plan ?= {
+							current_location = scope:traveler.location
+							days_travelled <= 1
+						}
+					}
+				}
+				save_temporary_scope_as = travel_owner
 			}
-			$RECEIVER$ = { save_temporary_scope_as = travel_owner }
 		}
 
 		if = {
 			limit = {
 				is_ruler = no
 				is_travelling = no
-				scope:travel_owner ?= {
-					is_ruler = yes
-					is_at_same_location = prev
-					travl_is_travelling_to_receiver_trigger = { RECEIVER = $RECEIVER$ }
-					current_travel_plan ?= {
-						days_travelled <= 1
-					}
-				}
+				exists = scope:travel_owner
 			}
 
 			#travl_debug_log_effect = { MSG = travl_debug_msg_adding_entourage_character }
@@ -417,7 +420,7 @@ travl_abort_travel_effect = {
 }
 
 travl_add_leader_or_companion_effect = {
-	var:travl_travel_receiver ?= { save_temporary_scope_as = receiver1 }
+	var:travl_travel_receiver = { save_temporary_scope_as = receiver1 }
 
 	# Find an existing travel leader in the current location
 	location = {
@@ -425,11 +428,28 @@ travl_add_leader_or_companion_effect = {
 			limit = {
 				travl_is_travelling_to_receiver_trigger = { RECEIVER = scope:receiver1 }
 				var:travl_travel_leader ?= this
-				#current_travel_plan ?= {
-				#	days_travelled <= 1
-				#}
 			}
 			save_temporary_scope_as = leader1
+		}
+	}
+	if = {
+		limit = { NOT = { exists = scope:leader1 } }
+
+		# As a fallback, find an existing travel leader in the receiver's capital province
+		# This may happen if they have been teleported there after starting their travel
+		save_temporary_scope_as = traveler
+		scope:receiver1.capital_province = {
+			random_character_in_location = {
+				limit = {
+					travl_is_travelling_to_receiver_trigger = { RECEIVER = scope:receiver1 }
+					var:travl_travel_leader ?= this
+					current_travel_plan ?= {
+						current_location = scope:traveler.location
+						days_travelled <= 1
+					}
+				}
+				save_temporary_scope_as = leader1
+			}
 		}
 	}
 
@@ -669,7 +689,10 @@ travl_get_message_recipients_effect = {
 
 travl_send_messages_effect = {
 	if = {
-		limit = { has_game_rule = travl_travel_messages_enabled }
+		limit = {
+			has_game_rule = travl_travel_messages_enabled
+			list_size = { name = $TRAVELERS$ value > 0 }
+		}
 
 		save_temporary_scope_as = character
 		every_in_list = {
@@ -840,31 +863,22 @@ travl_recruit_travel_leader_effect = {
 
 travl_recruit_prison_guard_effect = {
 	# Try to find a suitable pool character, or else create a new one
+	clear_saved_scope = prison_guard
+	random_pool_character = {
+		province = imprisoner.capital_province
+		limit = {
+			is_available_ai_adult = yes
+			is_ruler = no
+			has_no_particular_noble_roots_trigger = yes
+			martial >= low_skill_rating
+			prowess >= mediocre_skill_rating
+		}
+		save_temporary_scope_as = prison_guard
+	}
 	if = {
 		limit = {
-			exists = imprisoner.capital_province
-			any_pool_character = {
-				province = imprisoner.capital_province
-				is_available_ai_adult = yes
-				has_no_particular_noble_roots_trigger = yes
-				martial >= average_skill_rating
-				prowess >= mediocre_skill_rating
-				has_trait = education_martial
-			}
+			NOT = { exists = scope:prison_guard }
 		}
-		random_pool_character = {
-			province = imprisoner.capital_province
-			limit = {
-				is_available_ai_adult = yes
-				has_no_particular_noble_roots_trigger = yes
-				martial >= average_skill_rating
-				prowess >= mediocre_skill_rating
-				has_trait = education_martial
-			}
-			save_temporary_scope_as = prison_guard
-		}
-	}
-	else = {
 		travl_debug_log_effect = { MSG = travl_debug_msg_creating_prison_guard_character }
 		create_character = {
 			location = root.location
@@ -875,10 +889,12 @@ travl_recruit_prison_guard_effect = {
 			gender_female_chance = root_soldier_female_chance # TODO
 			save_temporary_scope_as = prison_guard
 		}
+		scope:prison_guard = {
+			move_to_pool = yes
+		}
 	}
 
 	scope:prison_guard = {
-		move_to_pool = yes
 		add_character_flag = travl_added_character
 		add_character_modifier = {
 			modifier = travl_prison_guard_modifier

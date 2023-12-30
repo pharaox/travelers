@@ -162,7 +162,12 @@ travl_is_near_saved_location_trigger = {
 		OR = {
 			this = scope:character.location
 			AND = {
-				scope:character = { is_travelling = yes }
+				scope:character = {
+					is_travelling = yes
+					current_travel_plan ?= {
+						current_location = scope:character.location
+					}
+				}
 				any_neighboring_province = {
 					this = scope:character.location
 				}

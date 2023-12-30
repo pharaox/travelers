@@ -2,7 +2,6 @@
 	trigger = {
 		has_variable = travl_travel_sender
 		has_variable = travl_travel_receiver
-		has_variable = travl_travel_event
 	}
 
 	effect = {
@@ -38,6 +37,13 @@
 				TRAVELERS = travelers
 			}
 
+			# Filter only new travelers
+			every_in_list = {
+				list = travelers
+				limit = { NOT = { has_variable = travl_departed } }
+				add_to_temporary_list = new_travelers
+			}
+
 			# Get message recipients (sender and / or recieiver)
 			travl_get_message_recipients_effect = {
 				SENDER = scope:sender
@@ -48,7 +54,7 @@
 			# Send departure messages
 			travl_send_messages_effect = {
 				RECIPIENTS = recipients
-				TRAVELERS = travelers
+				TRAVELERS = new_travelers
 				TITLE = travl_msg_departed_for_court
 				TEXT = travl_departed_for_court_tt
 				OBJECT = scope:receiver
@@ -56,20 +62,36 @@
 		}
 
 		if = {
-			limit = { scope:leader ?= this }
-			travl_debug_log_effect = { MSG = travl_debug_msg_character_departed_leader }
+			limit = { NOT = { has_variable = travl_departed } }
+
+			if = {
+				limit = { scope:leader ?= this }
+				travl_debug_log_effect = { MSG = travl_debug_msg_character_departed_leader }
+			}
+			else = {
+				travl_debug_log_effect = { MSG = travl_debug_msg_character_departed_companion }
+			}
+
+			# Trigger travl_travel_on_departure for a second time
+			# to send notifications for travelers joining on the next day
+			trigger_event = {
+				on_action = travl_travel_on_departure
+				delayed = yes
+			}
+
+			set_variable = { name = travl_departed value = yes days = 2 }
 		}
-		else = {
-			travl_debug_log_effect = { MSG = travl_debug_msg_character_departed_companion }
-		}
+
 		current_travel_plan ?= {
 			travel_plan_owner = { save_temporary_scope_as = owner }
 			every_entourage_character = {
+				limit = { NOT = { has_variable = travl_departed } }
 				travl_debug_log_2_effect = {
 					MSG = travl_debug_msg_character_departed_entourage
 					NAME1 = receiver TYPE1 = flag:character
 					NAME2 = owner TYPE2 = flag:character
 				}
+				set_variable = { name = travl_departed value = yes days = 2 }
 			}
 		}
 	}
@@ -291,7 +313,7 @@ on_travel_plan_complete = {
 # A travel plan ends either via 'on_travel_plan_complete' or 'on_travel_plan_abort'
 # This usually means everyone gets teleported to their default location after this.
 on_travel_plan_abort = {
-	on_actions = { travl_on_travel_plan_abort travl_on_travel_plan_update_location }
+	on_actions = { travl_on_travel_plan_abort }
 }
 
 travl_on_travel_plan_abort = {
