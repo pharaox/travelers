@@ -33,13 +33,8 @@ echo
 
 # Rare (actions)
 echo "Aborting travel to start travel: $(grep -a "Aborting travel to start travel" debug.log | uniq | wc -l)"
-echo "Aborting vanilla travel to start travel: $(grep -a "Aborting vanilla travel to start travel" debug.log | uniq | wc -l)"
-echo "Aborting travel: $(grep -a "Aborting travel [(f]" debug.log | uniq | wc -l)"
-echo "- for prison guard: $(grep -a "Aborting travel for prison guard" debug.log | uniq | wc -l)"
-echo "- for PoW character: $(grep -a "Aborting travel for PoW character" debug.log | uniq | wc -l)"
+echo "Aborting travel completely: $(grep -a "Aborting travel completely" debug.log | uniq | wc -l)"
 echo "Restoring location: $(grep -a "Restoring location" debug.log | uniq | wc -l)"
-echo "- for vanilla traveler: $(grep -a "Restoring location for vanilla traveler" debug.log | uniq | wc -l)"
-echo "- for PoW traveler: $(grep -a "Restoring location for PoW traveler" debug.log | uniq | wc -l)"
 echo "Changing travel leader: $(grep -a "Changing travel leader" debug.log | uniq | wc -l)"
 echo "Removing travel companion: $(grep -a "Removing travel companion" debug.log | uniq | wc -l)"
 echo "Freeing prisoner: $(grep -a "Freeing prisoner" debug.log | uniq | wc -l)"
@@ -48,20 +43,21 @@ echo
 
 # Rare (events)
 echo "Travel plan aborted: $(grep -a "Travel plan to .*'s court aborted" debug.log | wc -l)"
-echo "Invalid receiver detected: $(grep -a "Invalid receiver detected" debug.log | wc -l)"
-echo "Invalid destination detected: $(grep -a "Invalid destination detected" debug.log | wc -l)"
+echo "Aborting travel for prison guard: $(grep -a "Aborting travel for prison guard" debug.log | uniq | wc -l)"
+#echo "Invalid receiver detected: $(grep -a "Invalid receiver detected" debug.log | wc -l)"
+#echo "Invalid destination detected: $(grep -a "Invalid destination detected" debug.log | wc -l)"
 echo
 
 # Rare (marriage in wrong location)
-echo "Character married as major partner: $(grep -a "Character married as major partner" debug.log | wc -l)"
-echo "Character married as minor partner: $(grep -a "Character married as minor partner" debug.log | wc -l)"
-echo "Character divorced: $(grep -a "Character divorced" debug.log | wc -l)"
-echo "Character was divorced: $(grep -a "Character was divorced" debug.log | wc -l)"
-echo "Character took concubine: $(grep -a "Character took concubine" debug.log | wc -l)"
-echo "Character was taken as concubine: $(grep -a "Character was taken as concubine" debug.log | wc -l)"
-echo "Character released concubine: $(grep -a "Character released concubine" debug.log | wc -l)"
-echo "Character was released as concubine: $(grep -a "Character was released as concubine" debug.log | wc -l)"
-echo
+#echo "Character married as major partner: $(grep -a "Character married as major partner" debug.log | wc -l)"
+#echo "Character married as minor partner: $(grep -a "Character married as minor partner" debug.log | wc -l)"
+#echo "Character divorced: $(grep -a "Character divorced" debug.log | wc -l)"
+#echo "Character was divorced: $(grep -a "Character was divorced" debug.log | wc -l)"
+#echo "Character took concubine: $(grep -a "Character took concubine" debug.log | wc -l)"
+#echo "Character was taken as concubine: $(grep -a "Character was taken as concubine" debug.log | wc -l)"
+#echo "Character released concubine: $(grep -a "Character released concubine" debug.log | wc -l)"
+#echo "Character was released as concubine: $(grep -a "Character was released as concubine" debug.log | wc -l)"
+#echo
 
 # Pulse events
 echo "Pulse event fired: $(grep -a "Pulse event fired" debug.log | wc -l)"

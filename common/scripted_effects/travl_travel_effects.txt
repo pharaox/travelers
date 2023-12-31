@@ -50,20 +50,7 @@
 		}
 
 		# Write debug log message
-		if = {
-			limit = { debug_only = yes }
-			if = {
-				limit = { travl_is_vanilla_traveler_trigger = yes }
-				travl_debug_log_effect = { MSG = travl_debug_msg_restoring_location_for_vanilla_traveler }
-			}
-			else_if = {
-				limit = { travl_is_PoW_traveler_trigger = yes }
-				travl_debug_log_effect = { MSG = travl_debug_msg_restoring_location_for_PoW_traveler }
-			}
-			else = {
-				travl_debug_log_effect = { MSG = travl_debug_msg_restoring_location }
-			}
-		}
+		travl_debug_log_effect = { MSG = travl_debug_msg_restoring_location }
 
 		# We are away from our saved location, and our current location is not the receiver's capital,
 		# so we teleported to the "wrong" location
@@ -80,20 +67,7 @@ travl_restore_location_effect = {
 		}
 
 		# Write debug log message
-		if = {
-			limit = { debug_only = yes }
-			if = {
-				limit = { travl_is_vanilla_traveler_trigger = yes }
-				travl_debug_log_effect = { MSG = travl_debug_msg_restoring_location_for_vanilla_traveler }
-			}
-			else_if = {
-				limit = { travl_is_PoW_traveler_trigger = yes }
-				travl_debug_log_effect = { MSG = travl_debug_msg_restoring_location_for_PoW_traveler }
-			}
-			else = {
-				travl_debug_log_effect = { MSG = travl_debug_msg_restoring_location }
-			}
-		}
+		travl_debug_log_effect = { MSG = travl_debug_msg_restoring_location }
 
 		set_location = var:travl_location
 	}
@@ -166,13 +140,6 @@ travl_start_travel_effect = {
 			}
 
 			travl_debug_log_effect = { MSG = travl_debug_msg_aborting_travel_to_start_travel }
-		}
-		if = {
-			limit = {
-				debug_only = yes
-				travl_is_vanilla_traveler_trigger = yes
-			}
-			travl_debug_log_effect = { MSG = travl_debug_msg_aborting_vanilla_travel_to_start_travel }
 		}
 
 		# Suppress events, we'll update leader and companions manually
@@ -380,16 +347,7 @@ travl_abort_travel_effect = {
 		travl_set_event_effect = { EVENT = $EVENT$ }
 
 		# Write debug log message
-		if = {
-			limit = { debug_only = yes }
-			if = {
-				limit = { travl_is_PoW_teleporting_character_trigger = yes }
-				travl_debug_log_effect = { MSG = travl_debug_msg_aborting_travel_for_PoW_character }
-			}
-			else = {
-				travl_debug_log_effect = { MSG = travl_debug_msg_aborting_travel }
-			}
-		}
+		travl_debug_log_effect = { MSG = travl_debug_msg_aborting_travel_completely }
 
 		# Suppress events, we'll update leader and companions manually
 		set_variable = {
