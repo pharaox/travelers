@@ -388,7 +388,12 @@ travl_on_leader_changed = {
 		if = {
 			limit = {
 				is_imprisoned = yes
-				scope:old_leader = { has_character_modifier = travl_prison_guard_modifier }
+				scope:old_leader = {
+					has_character_modifier = travl_prison_guard_modifier
+					current_travel_plan ?= {
+						is_aborted = yes
+					}
+				}
 			}
 
 			# Get prisoners and message recipients
