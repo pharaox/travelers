@@ -297,17 +297,17 @@ travl_event_apply_character_effect = {
 			trigger = var:travl_event_travel_delay
 			flag:minor = {
 				current_travel_plan ?= {
-					delay_travel_plan = { days = 5 }
+					delay_travel_plan = { days = 5 add = no }
 				}
 			}
 			flag:medium = {
 				current_travel_plan ?= {
-					delay_travel_plan = { days = 20 }
+					delay_travel_plan = { days = 20 add = no }
 				}
 			}
 			flag:major = {
 				current_travel_plan ?= {
-					delay_travel_plan = { days = 100 }
+					delay_travel_plan = { days = 100 add = no }
 				}
 			}
 		}
