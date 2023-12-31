@@ -26,9 +26,7 @@
 		}
 
 		if = {
-			limit = {
-				scope:leader ?= this
-			}
+			limit = { scope:leader ?= this }
 
 			# Get all travelers (leader, companions, and their entourages)
 			travl_get_travelers_effect = {
@@ -40,7 +38,7 @@
 			# Filter only new travelers
 			every_in_list = {
 				list = travelers
-				limit = { NOT = { has_variable = travl_departed } }
+				limit = { NOT = { has_variable = travl_departure_message_sent } }
 				add_to_temporary_list = new_travelers
 			}
 
@@ -59,40 +57,51 @@
 				TEXT = travl_departed_for_court_tt
 				OBJECT = scope:receiver
 			}
+
+			# Mark new travelers to avoid second messages
+			every_in_list = {
+				list = new_travelers
+				set_variable = { name = travl_departure_message_sent value = yes days = 2 }
+			}
 		}
 
+		# Log travelers departures
 		if = {
-			limit = { NOT = { has_variable = travl_departed } }
-
+			limit = { debug_only = yes }
 			if = {
-				limit = { scope:leader ?= this }
-				travl_debug_log_effect = { MSG = travl_debug_msg_character_departed_leader }
+				limit = { NOT = { has_variable = travl_departure_logged } }
+				if = {
+					limit = { scope:leader ?= this }
+					travl_debug_log_effect = { MSG = travl_debug_msg_character_departed_leader }
+				}
+				else = {
+					travl_debug_log_effect = { MSG = travl_debug_msg_character_departed_companion }
+				}
+				set_variable = { name = travl_departure_logged value = yes days = 2 }
 			}
-			else = {
-				travl_debug_log_effect = { MSG = travl_debug_msg_character_departed_companion }
+			current_travel_plan ?= {
+				travel_plan_owner = { save_temporary_scope_as = owner }
+				every_entourage_character = {
+					limit = { NOT = { has_variable = travl_departure_logged } }
+					travl_debug_log_2_effect = {
+						MSG = travl_debug_msg_character_departed_entourage
+						NAME1 = receiver TYPE1 = flag:character
+						NAME2 = owner TYPE2 = flag:character
+					}
+					set_variable = { name = travl_departure_logged value = yes days = 2 }
+				}
 			}
+		}
 
-			# Trigger travl_travel_on_departure for a second time
-			# to send notifications for travelers joining on the next day
+		# Trigger travl_travel_on_departure for a second time
+		# to inform about travelers joining on the next day
+		if = {
+			limit = { NOT = { has_variable = travl_second_on_departure_fired } }
 			trigger_event = {
 				on_action = travl_travel_on_departure
 				delayed = yes
 			}
-
-			set_variable = { name = travl_departed value = yes days = 2 }
-		}
-
-		current_travel_plan ?= {
-			travel_plan_owner = { save_temporary_scope_as = owner }
-			every_entourage_character = {
-				limit = { NOT = { has_variable = travl_departed } }
-				travl_debug_log_2_effect = {
-					MSG = travl_debug_msg_character_departed_entourage
-					NAME1 = receiver TYPE1 = flag:character
-					NAME2 = owner TYPE2 = flag:character
-				}
-				set_variable = { name = travl_departed value = yes days = 2 }
-			}
+			set_variable = { name = travl_second_on_departure_fired value = yes days = 2 }
 		}
 	}
 }
@@ -125,9 +134,7 @@ travl_travel_on_arrival = {
 		}
 
 		if = {
-			limit = {
-				scope:leader ?= this
-			}
+			limit = { scope:leader ?= this }
 
 			# Ensure companions arrive as well
 			every_in_list = {
@@ -161,20 +168,24 @@ travl_travel_on_arrival = {
 			}
 		}
 
+		# Log travelers arrivals
 		if = {
-			limit = { scope:leader ?= this }
-			travl_debug_log_effect = { MSG = travl_debug_msg_character_arrived_leader }
-		}
-		else = {
-			travl_debug_log_effect = { MSG = travl_debug_msg_character_arrived_companion }
-		}
-		current_travel_plan ?= {
-			travel_plan_owner = { save_temporary_scope_as = owner }
-			every_entourage_character = {
-				travl_debug_log_2_effect = {
-					MSG = travl_debug_msg_character_arrived_entourage
-					NAME1 = receiver TYPE1 = flag:character
-					NAME2 = owner TYPE2 = flag:character
+			limit = { debug_only = yes }
+			if = {
+				limit = { scope:leader ?= this }
+				travl_debug_log_effect = { MSG = travl_debug_msg_character_arrived_leader }
+			}
+			else = {
+				travl_debug_log_effect = { MSG = travl_debug_msg_character_arrived_companion }
+			}
+			current_travel_plan ?= {
+				travel_plan_owner = { save_temporary_scope_as = owner }
+				every_entourage_character = {
+					travl_debug_log_2_effect = {
+						MSG = travl_debug_msg_character_arrived_entourage
+						NAME1 = receiver TYPE1 = flag:character
+						NAME2 = owner TYPE2 = flag:character
+					}
 				}
 			}
 		}

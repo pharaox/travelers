@@ -212,6 +212,7 @@ travl_start_travel_effect = {
 			if = {
 				limit = {
 					travl_is_travelling_to_receiver_trigger = { RECEIVER = $RECEIVER$ }
+					has_variable = travl_travel_leader
 					OR = {
 						location = scope:traveler.location
 						current_travel_plan ?= {
