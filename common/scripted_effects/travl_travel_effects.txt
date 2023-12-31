@@ -865,12 +865,14 @@ travl_recruit_travel_leader_effect = {
 travl_recruit_prison_guard_effect = {
 	# Try to find a suitable pool character, or else create a new one
 	clear_saved_scope = prison_guard
+	imprisoner = { save_temporary_scope_as = imprisoner1 }
 	random_pool_character = {
-		province = imprisoner.capital_province
+		province = scope:imprisoner1.capital_province
 		limit = {
 			is_available_ai_adult = yes
 			is_ruler = no
 			has_no_particular_noble_roots_trigger = yes
+			can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = scope:imprisoner1 }
 			martial >= low_skill_rating
 			prowess >= mediocre_skill_rating
 		}
@@ -881,13 +883,14 @@ travl_recruit_prison_guard_effect = {
 			NOT = { exists = scope:prison_guard }
 		}
 		travl_debug_log_effect = { MSG = travl_debug_msg_creating_prison_guard_character }
+		scope:imprisoner1 = { save_temporary_scope_as = value_target }
 		create_character = {
 			location = root.location
 			template = new_warrior_character
 			dynasty = none
-			faith = imprisoner.faith
-			culture = imprisoner.culture
-			gender_female_chance = root_soldier_female_chance # TODO
+			faith = scope:imprisoner1.faith
+			culture = scope:imprisoner1.culture
+			gender_female_chance = scope_value_target_soldier_female_chance
 			save_temporary_scope_as = prison_guard
 		}
 		scope:prison_guard = {
