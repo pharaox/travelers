@@ -100,7 +100,9 @@ travl_event_apply_outcome_effect = {
 
 travl_send_event_messages_effect = {
 	if = {
-		limit = { has_game_rule = travl_travel_messages_enabled }
+		limit = {
+			NOT = { has_game_rule = travl_travel_messages_disabled }
+		}
 
 		save_temporary_scope_as = character
 		every_in_list = {

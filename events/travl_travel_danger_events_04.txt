@@ -83,6 +83,8 @@ travl_travel_danger.0004 = {
 	}
 
 	trigger = {
+		has_game_rule = travl_travel_events_enabled
+
 		# Travel leader
 		has_variable = travl_travel_leader
 		var:travl_travel_leader = root

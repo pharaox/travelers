@@ -12,6 +12,26 @@
 	travl_travel_messages_enabled = {
 		flag = GG_can_change_rule
 	}
+
+	travl_travel_messages_events_only = {
+		flag = GG_can_change_rule
+	}
+}
+
+travl_travel_events = {
+	categories = {
+		travl_travelers
+	}
+
+	default = travl_travel_events_enabled
+
+	travl_travel_events_disabled = {
+		flag = GG_can_change_rule
+	}
+
+	travl_travel_events_enabled = {
+		flag = GG_can_change_rule
+	}
 }
 
 travl_interaction_range = {
