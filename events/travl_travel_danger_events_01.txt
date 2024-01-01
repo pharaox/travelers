@@ -137,16 +137,9 @@ travl_travel_danger.0001 = {
 				}
 			}
 		}
-
-		# Cooldown between bandit events
-		NOR = {
-			has_character_flag = had_travel_danger_event_1002_bandit_event_recently
-			has_character_flag = had_travel_event_1003_bandit_event_recently
-			has_character_flag = had_travel_event_3070_bandit_event_recently
-		}
 	}
 
-	cooldown = { years = 2 }
+	cooldown = { months = 6 }
 
 	immediate = {
 		travl_debug_log_travel_event_effect = { MSG = travl_debug_msg_travel_danger_0001_t }

@@ -89,7 +89,7 @@ travl_travel_danger.0010 = {
 		NOT = { location_has_winter_trigger = yes }
 	}
 
-	cooldown = { months = 1 }
+	cooldown = { months = 6 }
 
 	immediate = {
 		travl_debug_log_travel_event_effect = { MSG = travl_debug_msg_travel_danger_0010_t }

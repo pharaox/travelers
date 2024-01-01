@@ -117,15 +117,9 @@ travl_travel_danger.0003 = {
 
 		# Is not an expert this type of terrain
 		travl_event_is_location_terrain_expert_trigger = no
-
-		# Cooldown between lost events
-		NOR = {
-			has_character_flag = had_1006_travel_danger_lost_event_recently
-			has_character_flag = had_2006_lost_pilgrimage_event_recently
-		}
 	}
 
-	cooldown = { months = 3 }
+	cooldown = { months = 6 }
 
 	immediate = {
 		travl_debug_log_travel_event_effect = { MSG = travl_debug_msg_travel_danger_0003_t }

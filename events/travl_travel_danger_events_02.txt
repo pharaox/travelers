@@ -111,7 +111,7 @@ travl_travel_danger.0002 = {
 		}
 	}
 
-	cooldown = { months = 1 }
+	cooldown = { months = 6 }
 
 	immediate = {
 		travl_debug_log_travel_event_effect = { MSG = travl_debug_msg_travel_danger_0002_t }

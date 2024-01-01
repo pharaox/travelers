@@ -72,11 +72,11 @@ travl_travel_danger.0006 = {
 					terrain = coastal_sea
 				}
 			}
-			factor = 0.5
+			factor = 0.25
 		}
 	}
 
-	cooldown = { months = 1 }
+	cooldown = { months = 6 }
 
 	immediate = {
 		travl_debug_log_travel_event_effect = { MSG = travl_debug_msg_travel_danger_0006_t }
