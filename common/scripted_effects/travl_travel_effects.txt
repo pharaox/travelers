@@ -657,7 +657,7 @@ travl_send_messages_effect = {
 		every_in_list = {
 			list = $RECIPIENTS$
 			send_interface_message = {
-				type = event_generic_neutral
+				type = travl_msg_travel
 				title = $TITLE$
 				right_icon = scope:character
 
@@ -682,7 +682,7 @@ travl_escape_from_prison_effect = {
 		every_in_list = {
 			list = $RECIPIENTS$
 			send_interface_message = {
-				type = event_generic_neutral
+				type = event_prison_bad
 				title = travl_msg_escaped_from_prison
 				right_icon = scope:character
 

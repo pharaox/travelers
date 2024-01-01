@@ -1,0 +1,17 @@
+﻿@msg_neutral_soundeffect = "event:/SFX/UI/Notifications/Messages/sfx_ui_message_theme_neutral"
+
+travl_msg_travel = {
+	icon = "travl_travel"
+	title = event_message_title
+	desc = event_message_effect
+	style = neutral
+	soundeffect = @msg_neutral_soundeffect
+}
+
+travl_msg_danger_event = {
+	icon = "travl_danger"
+	title = event_message_title
+	desc = event_message_effect
+	style = neutral
+	soundeffect = @msg_neutral_soundeffect
+}

@@ -106,7 +106,7 @@ travl_send_event_messages_effect = {
 		every_in_list = {
 			list = $RECIPIENTS$
 			send_interface_message = {
-				type = event_generic_neutral
+				type = travl_msg_danger_event
 				title = $TITLE$
 				right_icon = scope:character
 
