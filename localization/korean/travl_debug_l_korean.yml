@@ -1,0 +1,181 @@
+﻿l_korean:
+ travl_debug_prefix: "[GetCurrentDate.GetStringShort]: [THIS.Char.GetFullNameNoTooltip] ([THIS.Char.GetID], [THIS.Char.GetCurrentLocation.GetNameNoTooltip])"
+
+ travl_debug_msg_initialized: "[GetCurrentDate.GetStringShort]: Travelers mod initialized"
+
+ travl_debug_msg_pulse_event_fired: "[GetCurrentDate.GetStringShort]: Pulse event fired"
+
+ travl_debug_msg_starting_travel: "$travl_debug_prefix$: Starting travel ($travl_travel_event$)"
+ travl_debug_msg_starting_travel_for_escort: "$travl_debug_prefix$: Starting travel for escort ($travl_travel_event$)"
+ travl_debug_msg_starting_travel_with_travel_leader: "$travl_debug_prefix$: Starting travel with travel leader ($travl_travel_event$)"
+ travl_debug_msg_recruited_as_escort: "$travl_debug_prefix$: Recruited as escort"
+ travl_debug_msg_recruited_as_travel_leader: "$travl_debug_prefix$: Recruited as travel leader"
+ travl_debug_msg_moving_added_character_back_to_pool: "$travl_debug_prefix$: Moving added character back to pool"
+ travl_debug_msg_adding_entourage_character: "$travl_debug_prefix$: Adding entourage character ($travl_travel_event$)"
+ travl_debug_msg_aborting_travel_to_start_travel: "$travl_debug_prefix$: Aborting travel to start travel ($travl_travel_event$)" # Rare
+ travl_debug_msg_aborting_travel_completely: "$travl_debug_prefix$: Aborting travel completely ($travl_travel_event$)" # Rare
+ travl_debug_msg_aborting_travel_for_prison_guard: "$travl_debug_prefix$: Aborting travel for prison guard" # Rare
+ travl_debug_msg_restoring_location: "$travl_debug_prefix$: Restoring location ($travl_location$)" # Rare
+
+ travl_debug_msg_freeing_prisoner: "$travl_debug_prefix$: Freeing prisoner" # Rare
+
+ travl_debug_msg_creating_prison_guard_character: "$travl_debug_prefix$: Creating prison guard character" # Rare
+
+ travl_debug_msg_changing_leader: "$travl_debug_prefix$: Changing travel leader" # Rare
+ travl_debug_msg_removing_companion: "$travl_debug_prefix$: Removing travel companion" # Rare
+
+ travl_debug_msg_character_departed_leader: "$travl_debug_prefix$: Character departed for $travl_travel_receiver$'s court as leader ($travl_travel_event$)"
+ travl_debug_msg_character_departed_companion: "$travl_debug_prefix$: Character departed for $travl_travel_receiver$'s court as companion of $travl_travel_leader$ ($travl_travel_event$)"
+ travl_debug_msg_character_departed_entourage: "$travl_debug_prefix$: Character departed for $travl_receiver$'s court as entourage of $travl_owner$ ($travl_travel_event$)"
+ travl_debug_msg_character_arrived_leader: "$travl_debug_prefix$: Character arrived at $travl_travel_receiver$'s court as leader"
+ travl_debug_msg_character_arrived_companion: "$travl_debug_prefix$: Character arrived at $travl_travel_receiver$'s court as companion of $travl_travel_leader$"
+ travl_debug_msg_character_arrived_entourage: "$travl_debug_prefix$: Character arrived at $travl_receiver$'s court as entourage of $travl_owner$"
+
+ travl_debug_msg_travel_moved: "$travl_debug_prefix$: Travel plan to $travl_travel_receiver$'s court moved"
+ travl_debug_msg_travel_aborted: "$travl_debug_prefix$: Travel plan to $travl_travel_receiver$'s court aborted" # Rare
+
+ travl_debug_msg_character_married_major: "$travl_debug_prefix$: Character married as major partner ($travl_location$)"
+ travl_debug_msg_character_married_minor: "$travl_debug_prefix$: Character married as minor partner ($travl_location$)"
+ travl_debug_msg_character_divorced: "$travl_debug_prefix$: Character divorced ($travl_location$)"
+ travl_debug_msg_character_was_divorced: "$travl_debug_prefix$: Character was divorced ($travl_location$)"
+ travl_debug_msg_character_took_concubine: "$travl_debug_prefix$: Character took concubine ($travl_location$)"
+ travl_debug_msg_character_was_taken_concubine: "$travl_debug_prefix$: Character was taken as concubine ($travl_location$)"
+ travl_debug_msg_character_released_concubine: "$travl_debug_prefix$: Character released concubine ($travl_location$)"
+ travl_debug_msg_character_was_released_concubine: "$travl_debug_prefix$: Character was released as concubine ($travl_location$)"
+
+ travl_debug_msg_character_joined_court: "$travl_debug_prefix$: Character joined [THIS.Char.GetLiege.GetFullNameNoTooltip]'s court ($travl_location$)"
+ travl_debug_msg_character_left_court: "$travl_debug_prefix$: Character left court ($travl_location$)"
+ travl_debug_msg_character_imprisoned: "$travl_debug_prefix$: Character imprisoned ($travl_location$)"
+ travl_debug_msg_character_released_from_prison: "$travl_debug_prefix$: Character released from prison ($travl_location$)"
+ travl_debug_msg_character_gained_title: "$travl_debug_prefix$: Character gained title ($travl_location$)"
+ travl_debug_msg_character_lost_title: "$travl_debug_prefix$: Character lost title ($travl_location$)"
+ travl_debug_msg_realm_capital_changed: "$travl_debug_prefix$: Realm capital changed ($travl_location$)"
+
+ travl_debug_msg_invalid_receiver_detected: "$travl_debug_prefix$: Invalid receiver detected ($travl_location$)" # Rare
+ travl_debug_msg_invalid_destination_detected: "$travl_debug_prefix$: Invalid destination detected ($travl_location$)" # Rare
+ travl_debug_msg_liege_event_happened: "$travl_debug_prefix$: Liege event happened ($travl_location$)"
+ travl_debug_msg_courtier_event_happened: "$travl_debug_prefix$: Courtier event happened ($travl_location$)"
+ travl_debug_msg_character_teleported: "$travl_debug_prefix$: Character teleported ($travl_location$)"
+ travl_debug_msg_invalid_character_location_detected: "$travl_debug_prefix$: Invalid character location detected ($travl_location$)"
+
+ travl_debug_msg_travel_on_action_fired: "$travl_debug_prefix$: Travel on_action $travl_event$ fired ($travl_location$)"
+ travl_debug_msg_travel_event_fired: "$travl_debug_prefix$: Travel event $travl_event$ fired ($travl_location$)"
+
+ travl_debug_msg_delaying_on_join_court_event: "$travl_debug_prefix$: Delaying joining [THIS.Char.GetLiege.GetFullNameNoTooltip]'s court, travl_adding_courtier: [Select_CString(THIS.Var('travl_adding_courtier').IsSet, 'yes', 'no')] ($travl_location$)"
+
+ travl_setting_current_location_on_departure: "$travl_debug_prefix$: Setting current location on departure ($travl_location$)"
+ travl_setting_current_location_on_arrival: "$travl_debug_prefix$: Setting current location on arrival ($travl_location$)"
+ travl_setting_current_location_on_movement: "$travl_debug_prefix$: Setting current location on movement ($travl_location$)"
+
+ travl_error_msg_starting_travel_to_non_default_location: "$travl_debug_prefix$: Starting travel to non-default location, receiver is [THIS.Var('receiver').Char.GetFullNameNoTooltip], default location is [THIS.Var('default_location').Province.GetNameNoTooltip]"
+
+ travl_debug_msg_travel_danger_0001_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0001_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0001_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0001_t$ event option a success"
+ travl_debug_msg_travel_danger_0001_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0001_t$ event option a failure"
+ travl_debug_msg_travel_danger_0001_b_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0001_t$ event option b success"
+ travl_debug_msg_travel_danger_0001_b_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0001_t$ event option b failure"
+ travl_debug_msg_travel_danger_0001_c: "$travl_debug_prefix$: $travl_msg_travel_danger_0001_t$ event option c"
+ travl_debug_msg_travel_danger_0001_d: "$travl_debug_prefix$: $travl_msg_travel_danger_0001_t$ event option d"
+
+ travl_debug_msg_travel_danger_0002_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0002_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0002_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0002_t$ event option a success"
+ travl_debug_msg_travel_danger_0002_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0002_t$ event option a failure"
+ travl_debug_msg_travel_danger_0002_b: "$travl_debug_prefix$: $travl_msg_travel_danger_0002_t$ event option b"
+
+ travl_debug_msg_travel_danger_0003_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0003_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0003_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0003_t$ event option a success"
+ travl_debug_msg_travel_danger_0003_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0003_t$ event option a failure"
+ travl_debug_msg_travel_danger_0003_b_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0003_t$ event option b success"
+ travl_debug_msg_travel_danger_0003_b_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0003_t$ event option b failure"
+ travl_debug_msg_travel_danger_0003_c: "$travl_debug_prefix$: $travl_msg_travel_danger_0003_t$ event option c"
+
+ travl_debug_msg_travel_danger_0004_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0004_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0004_a: "$travl_debug_prefix$: $travl_msg_travel_danger_0004_t$ event option a"
+ travl_debug_msg_travel_danger_0004_b_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0004_t$ event option b success"
+ travl_debug_msg_travel_danger_0004_b_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0004_t$ event option b failure"
+ travl_debug_msg_travel_danger_0004_c_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0004_t$ event option c success"
+ travl_debug_msg_travel_danger_0004_c_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0004_t$ event option c failure"
+ travl_debug_msg_travel_danger_0004_d: "$travl_debug_prefix$: $travl_msg_travel_danger_0004_t$ event option d"
+
+ travl_debug_msg_travel_danger_0005_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0005_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0005_a: "$travl_debug_prefix$: $travl_msg_travel_danger_0005_t$ event option a"
+ travl_debug_msg_travel_danger_0005_b: "$travl_debug_prefix$: $travl_msg_travel_danger_0005_t$ event option b"
+ travl_debug_msg_travel_danger_1005_a: "$travl_debug_prefix$: $travl_msg_travel_danger_1005_t$ event option a"
+ travl_debug_msg_travel_danger_1005_b: "$travl_debug_prefix$: $travl_msg_travel_danger_1005_t$ event option b"
+ travl_debug_msg_travel_danger_1005_c: "$travl_debug_prefix$: $travl_msg_travel_danger_1005_t$ event option c"
+ travl_debug_msg_travel_danger_2005_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_2005_t$ event option a success"
+ travl_debug_msg_travel_danger_2005_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_2005_t$ event option a failure"
+ travl_debug_msg_travel_danger_2005_b: "$travl_debug_prefix$: $travl_msg_travel_danger_2005_t$ event option b"
+
+ travl_debug_msg_travel_danger_0006_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0006_t$ event fire $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0006_a: "$travl_debug_prefix$: $travl_msg_travel_danger_0006_t$ event option a"
+
+ travl_debug_msg_travel_danger_0007_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0007_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0007_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0007_t$ event option a success"
+ travl_debug_msg_travel_danger_0007_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0007_t$ event option a failure"
+ travl_debug_msg_travel_danger_0007_b: "$travl_debug_prefix$: $travl_msg_travel_danger_0007_t$ event option b"
+
+ travl_debug_msg_travel_danger_0008_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0008_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0008_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0008_t$ event option a success"
+ travl_debug_msg_travel_danger_0008_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0008_t$ event option a failure"
+ travl_debug_msg_travel_danger_0008_b: "$travl_debug_prefix$: $travl_msg_travel_danger_0008_t$ event option b"
+ travl_debug_msg_travel_danger_0008_c: "$travl_debug_prefix$: $travl_msg_travel_danger_0008_t$ event option c"
+
+ travl_debug_msg_travel_danger_0009_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0009_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0009_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0009_t$ event option a success"
+ travl_debug_msg_travel_danger_0009_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0009_t$ event option a failure"
+ travl_debug_msg_travel_danger_0009_b: "$travl_debug_prefix$: $travl_msg_travel_danger_0009_t$ event option b"
+
+ travl_debug_msg_travel_danger_0010_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0010_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0010_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0010_t$ event option a success"
+ travl_debug_msg_travel_danger_0010_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0010_t$ event option a failure"
+ travl_debug_msg_travel_danger_0010_b: "$travl_debug_prefix$: $travl_msg_travel_danger_0010_t$ event option b"
+
+ travl_debug_msg_travel_danger_0011_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0011_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0011_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0011_t$ event option a success"
+ travl_debug_msg_travel_danger_0011_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0011_t$ event option a failure"
+ travl_debug_msg_travel_danger_0011_b: "$travl_debug_prefix$: $travl_msg_travel_danger_0011_t$ event option b"
+
+ travl_debug_msg_travel_danger_0012_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0012_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0012_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0012_t$ event option a success"
+ travl_debug_msg_travel_danger_0012_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0012_t$ event option a failure"
+ travl_debug_msg_travel_danger_0012_b: "$travl_debug_prefix$: $travl_msg_travel_danger_0012_t$ event option b"
+
+ travl_debug_msg_travel_danger_0013_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0013_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0013_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0013_t$ event option a success"
+ travl_debug_msg_travel_danger_0013_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0013_t$ event option a failure"
+ travl_debug_msg_travel_danger_0013_b_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0013_t$ event option b success"
+ travl_debug_msg_travel_danger_0013_b_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0013_t$ event option b failure"
+ travl_debug_msg_travel_danger_0013_c: "$travl_debug_prefix$: $travl_msg_travel_danger_0013_t$ event option c"
+
+ travl_debug_msg_travel_danger_0014_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0014_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0014_a: "$travl_debug_prefix$: $travl_msg_travel_danger_0014_t$ event option a"
+
+ travl_debug_msg_event_character_gained_prestige: "$travl_debug_prefix$: Character gained [THIS.Var('travl_event_prestige').GetValue] prestige"
+ travl_debug_msg_event_character_lost_prestige: "$travl_debug_prefix$: Character lost [THIS.Var('travl_event_prestige').GetValue] prestige"
+ travl_debug_msg_event_character_gained_piety: "$travl_debug_prefix$: Character gained [THIS.Var('travl_event_piety').GetValue] piety"
+ travl_debug_msg_event_character_lost_piety: "$travl_debug_prefix$: Character lost [THIS.Var('travl_event_piety').GetValue] piety"
+ travl_debug_msg_event_character_gained_gold: "$travl_debug_prefix$: Character gained [THIS.Var('travl_event_gold').GetValue] gold"
+ travl_debug_msg_event_character_lost_gold: "$travl_debug_prefix$: Character lost [THIS.Var('travl_event_gold').GetValue] gold"
+ travl_debug_msg_event_character_injured: "$travl_debug_prefix$: Character injured, trait: [THIS.Var('travl_event_trait').GetFlagName]"
+ travl_debug_msg_event_character_wounded: "$travl_debug_prefix$: Character wounded, reason: [THIS.Var('travl_event_wound').GetFlagName]"
+ travl_debug_msg_event_character_diseased: "$travl_debug_prefix$: Character diseased, disease: [THIS.Var('travl_event_disease').GetFlagName]"
+ travl_debug_msg_event_character_gained_stress: "$travl_debug_prefix$: Character gained [THIS.Var('travl_event_stress_gain_value').GetFlagName] stress if they are [THIS.Var('travl_event_stress_gain_trait').GetFlagName]"
+ travl_debug_msg_event_character_added_modifier: "$travl_debug_prefix$: Character added [THIS.Var('travl_event_modifier').GetFlagName] modifier"
+ travl_debug_msg_event_character_joined_travel: "$travl_debug_prefix$: Character joined travel to [THIS.Var('travl_event_host').Char.GetFullNameNoTooltip]'s court"
+ travl_debug_msg_event_character_gained_traveler_xp: "$travl_debug_prefix$: Character gained [THIS.Var('travl_event_xp').GetFlagName] traveler XP"
+ travl_debug_msg_event_travel_delayed: "$travl_debug_prefix$: Travel delayed by a [THIS.Var('travl_event_travel_delay').GetFlagName] delay"
+ travl_debug_msg_event_travel_added_modifier: "$travl_debug_prefix$: Travel added [THIS.Var('travl_event_travel_modifier').GetFlagName] modifier"
+ travl_debug_msg_event_travel_added_waypoint: "$travl_debug_prefix$: Travel added [THIS.Var('travl_event_travel_waypoint').Province.GetNameNoTooltip] waypoint"
+ travl_debug_msg_event_character_died: "$travl_debug_prefix$: Character died, reason: [THIS.Var('travl_event_death').GetFlagName]"
+
+ travl_travel_receiver: "[THIS.Var('travl_travel_receiver').Char.GetFullNameNoTooltip]"
+ travl_travel_leader: "[THIS.Var('travl_travel_leader').Char.GetFullNameNoTooltip]"
+ travl_travel_event: "[THIS.Var('travl_travel_event').GetFlagName]"
+ travl_location: "[THIS.Var('travl_location').Province.GetNameNoTooltip]"
+
+ travl_receiver: "[THIS.Var('receiver').Char.GetFullNameNoTooltip]"
+ travl_owner: "[THIS.Var('owner').Char.GetFullNameNoTooltip]"
+ travl_event: "[THIS.Var('event').GetFlagName]"
+
+ travl_for_prison_guard: "[Select_CString(THIS.Var('prison_guard').IsSet, 'for prison guard', '')]"

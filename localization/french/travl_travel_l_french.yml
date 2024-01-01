@@ -2,4 +2,15 @@
  travl_is_imprisoned_modifier: "Emprisonné"
  travl_is_imprisoned_modifier_desc: "Vous êtes emprisonné et vous vous rendez à votre prison"
 
+ travl_prison_guard_modifier: "Escorte de prisonniers"
+ travl_prison_guard_modifier_desc: "Ce personnage escorte des prisonniers itinérants"
+
  travl_travel_leader_recruited.t: "Chef du voyage assigné"
+
+ travl_character_traveling_tooltip_companions: "[Character.Custom('travl_character_traveling_tooltip_companions'))]"
+ travl_together_with: "avec"
+ travl_companions_1: "$travl_together_with$ [SCOPE.sC('companion1').GetUIName]"
+ travl_companions_2: "$travl_together_with$ [SCOPE.sC('companion1').GetUIName] et [SCOPE.sC('companion2').GetUIName]"
+ travl_companions_3: "$travl_together_with$ [SCOPE.sC('companion1').GetUIName], [SCOPE.sC('companion2').GetUIName], et [SCOPE.sC('companion3').GetUIName]"
+ travl_companions_4: "$travl_together_with$ [SCOPE.sC('companion1').GetUIName], [SCOPE.sC('companion2').GetUIName], [SCOPE.sC('companion3').GetUIName], et d'autres"
+ travl_companions_empty: ""

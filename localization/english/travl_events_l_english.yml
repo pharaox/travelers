@@ -233,4 +233,3 @@
 
  # Custom tooltips
  travl_they_got_a_visitor_tt: "[THIS.Char.GetShortUIName|U] moved to stay at [THIS.Var('travl_event_host').Char.GetShortUINamePossessive] [court|E]"
-

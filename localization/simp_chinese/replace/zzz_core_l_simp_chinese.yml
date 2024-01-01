@@ -1,0 +1,2 @@
+﻿l_simp_chinese:
+ CHARACTER_TRAVELING_TOOLTIP: "#T 旅行中#!\n[SelectLocalization(Character.GetTravelPlan.GetData.GetActivity.IsValid, 'CHARACTER_TRAVELING_ACTIVITY_TOOLTIP_ADDITION', '')][traveling|E]前往[Character.GetTravelPlan.GetData.GetNextDestination.GetProvince.GetName]$travl_character_traveling_tooltip_companions$"

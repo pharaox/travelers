@@ -1,0 +1,2 @@
+﻿l_german:
+ CHARACTER_TRAVELING_TOOLTIP: "#T Reisen#!\n[Concept('traveling', 'Reist')|E] nach [Character.GetTravelPlan.GetData.GetNextDestination.GetProvince.GetName] [SelectLocalization(Character.GetTravelPlan.GetData.GetActivity.IsValid, 'CHARACTER_TRAVELING_ACTIVITY_TOOLTIP_ADDITION', '')]$travl_character_traveling_tooltip_companions$"

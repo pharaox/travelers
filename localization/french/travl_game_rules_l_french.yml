@@ -3,9 +3,17 @@
 
  rule_travl_travel_messages: "#P Travelers:#! Messages de voyage"
  setting_travl_travel_messages_disabled: "#high Désactivé#!"
- setting_travl_travel_messages_disabled_desc: "Les messages de départ et d'arrivée des personnages d'intérêt sont désactivés."
+ setting_travl_travel_messages_disabled_desc: "Les messages de départ, d'arrivée et d'événement pour les personnages d'intérêt sont désactivés."
  setting_travl_travel_messages_enabled: "Activé"
- setting_travl_travel_messages_enabled_desc: "Les messages de départ et d'arrivée des personnages d'intérêt sont activés."
+ setting_travl_travel_messages_enabled_desc: "Les messages de départ, d'arrivée et d'événement pour les personnages d'intérêt sont activés."
+ setting_travl_travel_messages_events_only: "#high Événements uniquement#!"
+ setting_travl_travel_messages_events_only_desc: "Seuls les messages d'événement pour les personnages d'intérêt sont activés."
+
+ rule_travl_travel_events: "#P Travelers:#! Événements pour les personnages sans terre"
+ setting_travl_travel_events_disabled: "#high Désactivé#!"
+ setting_travl_travel_events_disabled_desc: "Événements pour les personnages sans terre sont désactivés."
+ setting_travl_travel_events_enabled: "Activé"
+ setting_travl_travel_events_enabled_desc: "Événements pour les personnages sans terre sont activés."
 
  rule_travl_interaction_range: "#P Travelers:#! Portée d'interaction 'Inviter des personnages à la Cour'"
  setting_travl_interaction_range_small: "#high Petite#!"
