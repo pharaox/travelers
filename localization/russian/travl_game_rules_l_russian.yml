@@ -3,9 +3,17 @@
 
  rule_travl_travel_messages: "#P Travelers:#! Сообщения о путешествиях"
  setting_travl_travel_messages_disabled: "#high Выключено#!"
- setting_travl_travel_messages_disabled_desc: "Сообщения об отправлении и прибытии интересующих персонажей отключены."
+ setting_travl_travel_messages_disabled_desc: "Сообщения об отправлении, прибытии, и событиях интересующих персонажей отключены."
  setting_travl_travel_messages_enabled: "Включено"
- setting_travl_travel_messages_enabled_desc: "Сообщения об отправлении и прибытии интересующих персонажей включены."
+ setting_travl_travel_messages_enabled_desc: "Сообщения об отправлении, прибытии, и событиях интересующих персонажей включены."
+ setting_travl_travel_messages_events_only: "#high Только события#!"
+ setting_travl_travel_messages_events_only_desc: "Только сообщения о событиях интересующих персонажей включены"
+
+ rule_travl_travel_events: "#P Travelers:#! События для безземельных персонажей"
+ setting_travl_travel_events_disabled: "#high Выключено#!"
+ setting_travl_travel_events_disabled_desc: "События для безземельных персонажей отключены."
+ setting_travl_travel_events_enabled: "Включено"
+ setting_travl_travel_events_enabled_desc: "События для безземельных персонажей включены."
 
  rule_travl_interaction_range: "#P Travelers:#! Радиус 'Пригласить персонажей ко двору'"
  setting_travl_interaction_range_small: "#high Маленький#!"

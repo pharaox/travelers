@@ -160,7 +160,7 @@
  travl_msg_travel_danger_0003_a_failure: "$travl_msg_travel_danger_0003_prefix$, and $travl_this_or_learning_character$ failed to find the correct path."
  travl_msg_travel_danger_0003_b_success: "$travl_msg_travel_danger_0003_prefix$, but $travl_this_or_stewardship_character$ managed to find an experienced local guide."
  travl_msg_travel_danger_0003_b_failure: "$travl_msg_travel_danger_0003_prefix$, and $travl_this_or_stewardship_character$ failed to find an experienced local guide."
- travl_msg_travel_danger_0003_c: "$travl_msg_travel_danger_0003_prefix$ and pushed mindlessly forward."
+ travl_msg_travel_danger_0003_c: "$travl_msg_travel_danger_0003_prefix$ and wandered for days trying to find it."
  # travel_danger.0004 Out of Water
  travl_msg_travel_danger_0004_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions ran out of water while crossing the [location.Custom('GetTerrainTypePlural')] of [location.GetName]"
  travl_msg_travel_danger_0004_a: "$travl_msg_travel_danger_0004_prefix$ and had to stop at a nearby oasis."
