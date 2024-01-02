@@ -490,8 +490,8 @@ travl_event_get_message_recipients_effect = {
 	}
 
 	# Add the player as a recipient (debug-only)
-	if = {
-		limit = { debug_only = yes }
-		random_player = { add_to_list = $RECIPIENTS$ }
-	}
+	#if = {
+	#	limit = { debug_only = yes }
+	#	random_player = { add_to_list = $RECIPIENTS$ }
+	#}
 }
