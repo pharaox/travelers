@@ -14,9 +14,13 @@ Not only do they travel, but they often don't do it alone. When multiple charact
 
 Since character homes may change mid-travel, such groups may lose members, change their destination, split, or disband altogether, but every character should eventually arrive at their correct home.
 
-While traveling, rulers and their entourage may get some of the vanilla travel and danger events. As a result, some of them may die or leave, and others may join. Rulers can also select a travel leader, add travel options, and get experience on arrival. Non-ruler characters currently don't get any travel events, since none are available in vanilla.
+While traveling, rulers and their entourage may get some of the vanilla travel and danger events. As a result, some of them may die or leave, and others may join. Rulers can also select a travel leader, add travel options, and get experience on arrival.
 
-Prisoners are a special case. Imprisoned rulers are assigned a "prison guard" travel leader, can't add travel options, don't get events or experience, and may only be joined by other imprisoned characters.
+Since there are no travel events for non-ruler characters available in vanilla, this mod adds 14 new travel danger events for non-ruler group leaders, loosely based on existing vanilla events. Other group members may also participate in the resolution of such an event, and all may suffer its consequences. The player is informed about such events with appropriate messages. These events can be disabled via a game rule.
+
+Prisoners are a special case. Imprisoned characters always travel as companions of a "prisoner escort" group leader, who may also get some of the danger events mentioned above. If the escorting character travel is aborted for any reason, e.g. death due to an event, all prisoners escape.
+
+Imprisoned rulers traveling to their jailor's capital are assigned a "prison guard" travel leader, can't add travel options, and other characters may not join their entourages. They also don't get any vanilla travel events, but may still be affected by the travel danger events mentioned above if they happen to the character who escorts them.
 
 Finally, this mod also adds an **Invite Characters to Court** convenience interaction that lists all characters that would accept **Invite to Court**.
 
@@ -24,7 +28,7 @@ Finally, this mod also adds an **Invite Characters to Court** convenience intera
 
 The current version is compatible with CK3 1.11.
 
-This mod is compatible with most other mods, except for mods that make similar changes to the travel system, or modify the `travl_on_actions.txt` and `travel_options.txt` vanilla files. Unfortunately, the latter includes most total conversion mods. If you use such mods, put this mod before them in the load order - you may lose the special treatment of imprisoned rulers as a result, but everything else should work as expected.
+This mod is compatible with most other mods, except for mods that make similar changes to the travel system, or modify the `travl_on_actions.txt` and `travel_options.txt` vanilla files. Unfortunately, the latter includes most total conversion mods. If you use such mods, put this mod before them in the load order - the travel of imprisoned rulers may be affected as a result, but everything else should work as expected.
 
 This mod is now also compatible with [Prisoners of War](https://steamcommunity.com/workshop/filedetails/?id=2511247871). For best experience, use the compatch by @cuomo860, see [Links](#links). With PoW, prisoners of war attach to the commander who captured them instead of traveling to the prison on their own. Put this mod after PoW in the load order.
 
@@ -34,7 +38,7 @@ I strongly recommend using also the [Unofficial Patch](https://steamcommunity.co
 
 ## Localization
 
-This mod is currently available in English, French, and Russian. For other languages, it uses the original English text as a placeholder.
+This mod is currently available in English, Russian, and (partially) French. For other languages, it uses the original English text as a placeholder.
 
 ## Features
 
@@ -90,9 +94,36 @@ Since character homes may change mid-travel, such groups may lose members, chang
 
 While traveling, rulers and their entourage may get some of the vanilla travel and danger events. As a result, some of them may die or leave, and others may join. Rulers can also select a travel leader, add travel options, and get experience on arrival.
 
-Unlike rulers, non-ruler characters currently don't get any travel events, since none are available in vanilla. They also don't get travel leaders, and can't add travel options. I may add some special events for such characters in future versions of this mod.
+Since there are no travel events for non-ruler characters available in vanilla, this mod adds 14 new travel danger events for non-ruler group leaders, loosely based on existing vanilla events. Other group members may also participate in the resolution of such an event, and all may suffer its consequences. The player is informed about such events with appropriate messages. These events can be disabled via the **Travel Events for Unlanded Characters** game rule.
 
-Unlike rulers that travel to their own realm capital, imprisoned rulers traveling to their jailor's capital are assigned a "prison guard" travel leader, can't add travel options, don't get events or experience, and may only be joined by other imprisoned characters. I may add some special events also for imprisoned characters in future versions of this mod.
+Similarly to vanilla events, such events may only happen under certain conditions that may include various travel danger types, availability of companions or pool characters, winter or no winter, etc. Usually, they can be resolved via multiple options, most of them involving a skill-based challenge. The group member with the highest skill is always chosen for such challenges, if a member with at least 5 in the corresponding skill exists. Which option is eventually chosen depends on the AI dispositions of all participating characters and a random factor. There is always an "automatic failure" that is chosen if no other options are available.
+
+If the challenge ends in a success, the responsible character may be rewarded by prestige or piety gain. Otherwise, they and all other characters may suffer various negative effects ranging from loss of prestige, piety, or gold, becoming wounded, injured, or diseased, getting negative modifiers, being delayed, and sometimes even dying.
+
+These new travel danger events for non-ruler characters are the following:
+
+| No | Name | Danger Types | Other Conditions | Challenges |
+|---:|---|---|---|---|
+| 1 | Bandits | Mountains, Desert Mountains, County control |  | Prowess, Diplomacy |
+| 2 | Missing Companion | Wetlands, Forest, Taiga, Jungle | At least one companion | Stewardship |
+| 3 | Lost | Forest, Taiga, Jungle | Not terrain expert | Learning, Stewardship |
+| 4 | Out of Water | Desert, Desert Mountains, Drylands, Steppe | Not terrain expert, Not nomadic culture | Diplomacy |
+| 5 | Aftermath | Occupation, Siege, Raid, Army, Battle | Available pool character | Prowess |
+| 6 | Sea Storm | Sea, Coastal Sea | Traveled for > 15 days | |
+| 7 | Avalanche | Mountains, Desert Mountains | At least one companion, Winter | Prowess |
+| 8 | Snowbound | | Winter, Not winter expert, Not winter culture | Diplomacy |
+| 9 | Ripped Sails | Sea, Coastal Sea | Not sea expert, Not sailor culture | Learning |
+| 10 | Brush Fire | Hills | No winter | Martial |
+| 11 | Mosquitoes | Wetlands, Floodplains, Forest, Taiga, Jungle | No winter | Learning |
+| 12 | Beast Attack | Forest, Taiga, Jungle | | Prowess |
+| 13 | Spoiled Food | | No holding, Traveled for > 15 days | Learning, Intrigue |
+| 14 | Sickness | Wetlands, Jungle | Traveled for > 15 days | |
+
+### Prisoner Travel
+
+Imprisoned characters always travel as companions of a "prisoner escort" group leader, who may also get some of the danger events mentioned in [Travel and Danger Events](#travel-and-danger-events). If the escorting character travel is aborted for any reason, e.g. death due to an event, all prisoners escape.
+
+Unlike rulers that travel to their own realm capital, imprisoned rulers traveling to their jailor's capital are assigned a "prison guard" travel leader, can't add travel options, and other characters may not join their entourages. They also don't get any vanilla travel events, but may still be affected by the travel danger events mentioned above if they happen to the character who escorts them.
 
 ### Invite Characters to Court Interaction
 
@@ -126,7 +157,7 @@ The **Invite Characters to Court** interaction might also become slow if the num
 ## Links
 
 * [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3082182371)
-* [Travelers and Prisoners of War Compatch (by @cuomo860)](https://steamcommunity.com/sharedfiles/filedetails/?id=3098184700) (WIP)
+* [Travelers and Prisoners of War Compatch (by @cuomo860)](https://steamcommunity.com/sharedfiles/filedetails/?id=3098184700)
 * [GitHub Repository](https://github.com/pharaox/travelers)
 
 ## Changes to Vanilla

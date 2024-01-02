@@ -10,9 +10,13 @@ Not only do they travel, but they often don't do it alone. When multiple charact
 
 Since character homes may change mid-travel, such groups may lose members, change their destination, split, or disband altogether, but every character should eventually arrive at their correct home.
 
-While traveling, rulers and their entourage may get some of the vanilla travel and danger events. As a result, some of them may die or leave, and others may join. Rulers can also select a travel leader, add travel options, and get experience on arrival. Non-ruler characters currently don't get any travel events, since none are available in vanilla.
+While traveling, rulers and their entourage may get some of the vanilla travel and danger events. As a result, some of them may die or leave, and others may join. Rulers can also select a travel leader, add travel options, and get experience on arrival.
 
-Prisoners are a special case. Imprisoned rulers are assigned a "prison guard" travel leader, can't add travel options, don't get events or experience, and may only be joined by other imprisoned characters.
+Since there are no travel events for non-ruler characters available in vanilla, this mod adds 14 new travel danger events for non-ruler group leaders, loosely based on existing vanilla events. Other group members may also participate in the resolution of such an event, and all may suffer its consequences. The player is informed about such events with appropriate messages. These events can be disabled via a game rule.
+
+Prisoners are a special case. Imprisoned characters always travel as companions of a "prisoner escort" group leader, who may also get some of the danger events mentioned above. If the escorting character travel is aborted for any reason, e.g. death due to an event, all prisoners escape.
+
+Imprisoned rulers traveling to their jailor's capital are assigned a "prison guard" travel leader, can't add travel options, and other characters may not join their entourages. They also don't get any vanilla travel events, but may still be affected by the travel danger events mentioned above if they happen to the character who escorts them.
 
 Finally, this mod also adds an [b]Invite Characters to Court[/b] convenience interaction that lists all characters that would accept [b]Invite to Court[/b].
 
@@ -20,7 +24,7 @@ Finally, this mod also adds an [b]Invite Characters to Court[/b] convenience int
 
 The current version is compatible with CK3 1.11.
 
-This mod is compatible with most other mods, except for mods that make similar changes to the travel system, or modify the [b]travl_on_actions.txt[/b] and [b]travel_options.txt[/b] vanilla files. Unfortunately, the latter includes most total conversion mods. If you use such mods, put this mod before them in the load order - you may lose the special treatment of imprisoned rulers as a result, but everything else should work as expected.
+This mod is compatible with most other mods, except for mods that make similar changes to the travel system, or modify the [b]travl_on_actions.txt[/b] and [b]travel_options.txt[/b] vanilla files. Unfortunately, the latter includes most total conversion mods. If you use such mods, put this mod before them in the load order - the travel of imprisoned rulers may be affected as a result, but everything else should work as expected.
 
 This mod is now also compatible with [url=https://steamcommunity.com/workshop/filedetails/?id=2511247871]Prisoners of War[/url]. For best experience, use the compatch by @cuomo860, see [b]Links[/b] below. With PoW, prisoners of war attach to the commander who captured them instead of traveling to the prison on their own. Put this mod after PoW in the load order.
 
@@ -30,7 +34,7 @@ I strongly recommend using also the [url=https://steamcommunity.com/sharedfiles/
 
 [h2]Localization[/h2]
 
-This mod is currently available in English, French, and Russian. For other languages, it uses the original English text as a placeholder.
+This mod is currently available in English, Russian, and (partially) French. For other languages, it uses the original English text as a placeholder.
 
 [h2]Performance[/h2]
 
@@ -48,7 +52,7 @@ The [b]Invite Characters to Court[/b] interaction might also become slow if the 
 
 [h2]Links[/h2]
 [list]
-  [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3098184700]Travelers and Prisoners of War Compatch (by @cuomo860)[/url] (WIP)
+  [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3098184700]Travelers and Prisoners of War Compatch (by @cuomo860)[/url]
   [*] [url=https://github.com/pharaox/travelers]GitHub Repository[/url]
 [/list]
 
