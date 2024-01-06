@@ -51,8 +51,12 @@
  travl_debug_msg_character_lost_title: "$travl_debug_prefix$: Character lost title ($travl_location$)"
  travl_debug_msg_realm_capital_changed: "$travl_debug_prefix$: Realm capital changed ($travl_location$)"
 
- travl_debug_msg_invalid_receiver_detected: "$travl_debug_prefix$: Invalid receiver detected ($travl_location$)" # Rare
- travl_debug_msg_invalid_destination_detected: "$travl_debug_prefix$: Invalid destination detected ($travl_location$)" # Rare
+ travl_debug_msg_guest_arrived_from_pool: "$travl_debug_prefix$: Guest arrived from pool ($travl_location$)"
+ travl_debug_msg_guest_moved_to_pool: "$travl_debug_prefix$: Guest moved to pool ($travl_location$)"
+ travl_debug_msg_character_yearly_pulse: "$travl_debug_prefix$: Character yearly pulse ($travl_location$)"
+
+ travl_debug_msg_invalid_receiver_detected: "$travl_debug_prefix$: Invalid receiver detected ($travl_location$)"
+ travl_debug_msg_invalid_destination_detected: "$travl_debug_prefix$: Invalid destination detected ($travl_location$)"
  travl_debug_msg_liege_event_happened: "$travl_debug_prefix$: Liege event happened ($travl_location$)"
  travl_debug_msg_courtier_event_happened: "$travl_debug_prefix$: Courtier event happened ($travl_location$)"
  travl_debug_msg_character_teleported: "$travl_debug_prefix$: Character teleported ($travl_location$)"
@@ -63,9 +67,9 @@
 
  travl_debug_msg_delaying_on_join_court_event: "$travl_debug_prefix$: Delaying joining [THIS.Char.GetLiege.GetFullNameNoTooltip]'s court, travl_adding_courtier: [Select_CString(THIS.Var('travl_adding_courtier').IsSet, 'yes', 'no')] ($travl_location$)"
 
- travl_setting_current_location_on_departure: "$travl_debug_prefix$: Setting current location on departure ($travl_location$)"
- travl_setting_current_location_on_arrival: "$travl_debug_prefix$: Setting current location on arrival ($travl_location$)"
- travl_setting_current_location_on_movement: "$travl_debug_prefix$: Setting current location on movement ($travl_location$)"
+ travl_debug_msg_ensuring_location: "$travl_debug_prefix$: Ensuring location ($travl_location$)"
+
+ travl_debug_msg_accessing_recent_location: "$travl_debug_prefix$: Accessing recent location $travl_location$, previous location was $travl_prev_location$" # Rare
 
  travl_error_msg_starting_travel_to_non_default_location: "$travl_debug_prefix$: Starting travel to non-default location, receiver is [THIS.Var('receiver').Char.GetFullNameNoTooltip], default location is [THIS.Var('default_location').Province.GetNameNoTooltip]"
 
@@ -173,6 +177,7 @@
  travl_travel_leader: "[THIS.Var('travl_travel_leader').Char.GetFullNameNoTooltip]"
  travl_travel_event: "[THIS.Var('travl_travel_event').GetFlagName]"
  travl_location: "[THIS.Var('travl_location').Province.GetNameNoTooltip]"
+ travl_prev_location: "[THIS.Var('travl_prev_location').Province.GetNameNoTooltip]"
 
  travl_receiver: "[THIS.Var('receiver').Char.GetFullNameNoTooltip]"
  travl_owner: "[THIS.Var('owner').Char.GetFullNameNoTooltip]"

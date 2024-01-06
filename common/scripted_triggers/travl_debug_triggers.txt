@@ -1,0 +1,15 @@
+﻿travl_debug_does_recent_location_matter_trigger = {
+	debug_only = yes
+	has_variable = travl_location_date
+	travl_debug_days_since_location_date_value < 5
+	NOR = {
+		AND = {
+			var:travl_location ?= location
+			NOT = { exists = var:travl_prev_location }
+		}
+		AND = {
+			NOT = { exists = var:travl_location }
+			var:travl_prev_location ?= location
+		}
+	}
+}

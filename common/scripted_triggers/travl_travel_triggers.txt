@@ -156,14 +156,14 @@ travl_is_potentially_joining_travel_trigger = {
 	}
 }
 
-travl_is_near_saved_location_trigger = {
+travl_has_teleported_trigger = {
+	has_variable = travl_location
 	save_temporary_scope_as = character
-	var:travl_location ?= {
-		OR = {
+	var:travl_location = {
+		NOR = {
 			this = scope:character.location
 			AND = {
 				scope:character = {
-					is_travelling = yes
 					current_travel_plan ?= {
 						current_location = scope:character.location
 					}
@@ -176,21 +176,14 @@ travl_is_near_saved_location_trigger = {
 	}
 }
 
-travl_is_near_current_location_trigger = {
-	save_temporary_scope_as = character
+travl_is_at_current_location_trigger = {
 	current_travel_plan ?= {
-		current_location = {
-			OR = {
-				this = scope:character.location
-				any_neighboring_province = {
-					this = scope:character.location
-				}
-			}
-		}
+		current_location = prev.location
 	}
 }
 
 travl_should_notify_trigger = {
+	travl_could_travel_trigger = yes
 	OR = {
 		is_travelling = no
 		current_travel_plan ?= {
@@ -200,12 +193,25 @@ travl_should_notify_trigger = {
 			}
 		}
 	}
+}
+
+travl_could_travel_trigger = {
 	NAND = {
-		location = $LIEGE$.capital_province
+		location = default_location
 		OR = {
 			NOT = { has_variable = travl_location }
 			var:travl_location = location
 		}
+		#trigger_if = {
+		#	limit = { debug_only = yes }
+		#	OR = {
+		#		NOT = { has_variable = travl_prev_location }
+		#		var:travl_prev_location = location
+		#	}
+		#}
+		#trigger_else = {
+		#	always = yes
+		#}
 	}
 }
 

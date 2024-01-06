@@ -12,12 +12,14 @@
 	# Determine receiver
 	travl_set_receiver_effect = yes
 
+	#if = {
+	#	limit = { travl_debug_does_recent_location_matter_trigger = yes }
+	#	travl_debug_log_effect = { MSG = travl_debug_msg_accessing_recent_location }
+	#}
+
 	if = {
 		limit = {
-			OR = {
-				NOT = { has_variable = travl_location }
-				travl_is_near_saved_location_trigger = yes
-			}
+			travl_has_teleported_trigger = no
 		}
 
 		# We don't have a saved location or we are near it
@@ -37,7 +39,7 @@
 		# We are away from our saved location, and our current location is the receiver's capital,
 		# so we teleported to the "right" location
 		# Restore our saved location and travel from it to our current one
-		set_location = var:travl_location
+		travl_restore_location_effect = yes
 		travl_start_travel_effect = {
 			SENDER = scope:sender
 			RECEIVER = scope:receiver
@@ -55,21 +57,25 @@
 		# We are away from our saved location, and our current location is not the receiver's capital,
 		# so we teleported to the "wrong" location
 		# Restore our saved location without travel
-		set_location = var:travl_location
+		travl_restore_location_effect = yes
 	}
 }
 
-travl_restore_location_effect = {
+travl_restore_location_if_teleported_effect = {
+	#if = {
+	#	limit = { travl_debug_does_recent_location_matter_trigger = yes }
+	#	travl_debug_log_effect = { MSG = travl_debug_msg_accessing_recent_location }
+	#}
+
 	if = {
 		limit = {
-			has_variable = travl_location
-			travl_is_near_saved_location_trigger = no
+			travl_has_teleported_trigger = yes
 		}
 
 		# Write debug log message
 		travl_debug_log_effect = { MSG = travl_debug_msg_restoring_location }
 
-		set_location = var:travl_location
+		travl_restore_location_effect = yes
 	}
 }
 
@@ -81,7 +87,7 @@ travl_start_travel_effect = {
 			exists = $RECEIVER$.capital_province
 
 			# Not imprisoned, hostage, or guest of somebody else
-			travl_may_travel_to_receiver_trigger = { RECEIVER = $RECEIVER$ }
+			#travl_may_travel_to_receiver_trigger = { RECEIVER = $RECEIVER$ }
 
 			NOR = {
 				# Not traveling and already in the receiver's capital
@@ -93,7 +99,7 @@ travl_start_travel_effect = {
 				# Already traveling to the receiver's capital and near current location
 				AND = {
 					travl_is_travelling_to_receiver_trigger = { RECEIVER = $RECEIVER$ }
-					travl_is_near_current_location_trigger = yes
+					travl_is_at_current_location_trigger = yes
 				}
 
 				# In the receiver's entourage
@@ -611,12 +617,61 @@ travl_set_event_effect = {
 	}
 }
 
+travl_ensure_all_locations_effect = {
+	travl_ensure_location_effect = { LOCATION = $LOCATION$ }
+	current_travel_plan ?= {
+		every_entourage_character = {
+			limit = { is_alive = yes }
+			travl_ensure_location_effect = { LOCATION = $LOCATION$ }
+		}
+	}
+}
+
+travl_ensure_location_effect = {
+	if = {
+		limit = { NOT = { location ?= $LOCATION$ } }
+		#travl_debug_log_effect = { MSG = travl_debug_msg_ensuring_location }
+		set_location = $LOCATION$
+	}
+}
+
+travl_set_all_locations_effect = {
+	travl_set_location_effect = yes
+	current_travel_plan ?= {
+		every_entourage_character = {
+			limit = { is_alive = yes }
+			travl_set_location_effect = yes
+		}
+	}
+}
+
 travl_set_location_effect = {
+	#travl_debug_remove_location_date_effect = yes
 	set_variable = { name = travl_location value = location }
 }
 
+travl_set_custom_location_effect = {
+	#travl_debug_remove_location_date_effect = yes
+	set_variable = { name = travl_location value = $LOCATION$ }
+}
+
 travl_remove_location_effect = {
+	#travl_debug_remove_location_date_effect = yes
 	remove_variable = travl_location
+}
+
+travl_set_location_with_date_effect = {
+	#travl_debug_set_location_date_on_set_effect = yes
+	set_variable = { name = travl_location value = location }
+}
+
+travl_remove_location_with_date_effect = {
+	#travl_debug_set_location_date_on_remove_effect = yes
+	remove_variable = travl_location
+}
+
+travl_restore_location_effect = {
+	set_location = var:travl_location
 }
 
 travl_remove_vanilla_travel_variables_effect = {

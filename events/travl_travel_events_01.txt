@@ -27,8 +27,8 @@ travl_travel.0001 = {
 							NOT = { var:travl_location = location }
 
 							NOR = {
-								# Travelling and near their current location
-								travl_is_near_current_location_trigger = yes
+								# Travelling and at their current location
+								travl_is_at_current_location_trigger = yes
 
 								# Baron at their capital
 								AND = {
@@ -64,10 +64,10 @@ travl_travel.0001 = {
 						}
 					}
 
-					travl_set_location_effect = yes
+					travl_set_location_with_date_effect = yes
 				}
 				else = {
-					travl_remove_location_effect = yes
+					travl_remove_location_with_date_effect = yes
 				}
 			}
 		}
@@ -76,10 +76,10 @@ travl_travel.0001 = {
 				# Track location of non-teleporting characters
 				if = {
 					limit = { travl_is_teleporting_character_trigger = no }
-					travl_set_location_effect = yes
+					travl_set_location_with_date_effect = yes
 				}
 				else = {
-					travl_remove_location_effect = yes
+					travl_remove_location_with_date_effect = yes
 				}
 			}
 		}

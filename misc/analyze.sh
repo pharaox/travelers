@@ -12,21 +12,23 @@ echo
 
 # Events
 echo "on_join_court: $(grep -a "on_join_court" debug.log | uniq | wc -l)"
+echo "- on_marriage: $(grep -a "(on_marriage)" debug.log | uniq | wc -l)"
+echo "- on_concubinage: $(grep -a "(on_concubinage)" debug.log | uniq | wc -l)"
 echo "on_leave_court: $(grep -a "on_leave_court" debug.log | uniq | wc -l)"
 echo "on_imprison: $(grep -a "on_imprison" debug.log | uniq | wc -l)"
 echo "on_release_from_prison: $(grep -a "on_release_from_prison" debug.log | uniq | wc -l)"
 echo "on_title_gain: $(grep -a "on_title_gain" debug.log | uniq | wc -l)"
 echo "on_title_lost: $(grep -a "on_title_lost" debug.log | uniq | wc -l)"
 echo "on_realm_capital_change: $(grep -a "on_realm_capital_change" debug.log | uniq | wc -l)"
+echo "on_guest_arrived: $(grep -a "on_guest_arrived" debug.log | uniq | wc -l)"
+echo "on_guest_moved: $(grep -a "on_guest_moved" debug.log | uniq | wc -l)"
+echo "on_yearly_pulse: $(grep -a "on_yearly_pulse" debug.log | uniq | wc -l)"
 echo "on_invalid_receiver: $(grep -a "on_invalid_receiver" debug.log | uniq | wc -l)"
 echo "on_invalid_destination: $(grep -a "on_invalid_destination" debug.log | uniq | wc -l)"
 echo "on_liege_event: $(grep -a "on_liege_event" debug.log | uniq | wc -l)"
 echo "on_courtier_event: $(grep -a "on_courtier_event" debug.log | uniq | wc -l)"
 echo "on_teleport: $(grep -a "on_teleport" debug.log | uniq | wc -l)"
 echo "on_invalid_location: $(grep -a "on_invalid_location" debug.log | uniq | wc -l)"
-echo "on_marriage: $(grep -a "(on_marriage)" debug.log | uniq | wc -l)"
-echo "on_concubinage: $(grep -a "(on_concubinage)" debug.log | uniq | wc -l)"
-echo "on_delayed_join_court: $(grep -a "(on_delayed_join_court)" debug.log | uniq | wc -l)"
 echo "escort: $(grep -a "(escort)" debug.log | uniq | wc -l)"
 echo "travel_event: $(grep -a "(travel_event)" debug.log | uniq | wc -l)"
 echo
@@ -44,20 +46,7 @@ echo
 # Rare (events)
 echo "Travel plan aborted: $(grep -a "Travel plan to .*'s court aborted" debug.log | wc -l)"
 echo "Aborting travel for prison guard: $(grep -a "Aborting travel for prison guard" debug.log | uniq | wc -l)"
-#echo "Invalid receiver detected: $(grep -a "Invalid receiver detected" debug.log | wc -l)"
-#echo "Invalid destination detected: $(grep -a "Invalid destination detected" debug.log | wc -l)"
 echo
-
-# Rare (marriage in wrong location)
-#echo "Character married as major partner: $(grep -a "Character married as major partner" debug.log | wc -l)"
-#echo "Character married as minor partner: $(grep -a "Character married as minor partner" debug.log | wc -l)"
-#echo "Character divorced: $(grep -a "Character divorced" debug.log | wc -l)"
-#echo "Character was divorced: $(grep -a "Character was divorced" debug.log | wc -l)"
-#echo "Character took concubine: $(grep -a "Character took concubine" debug.log | wc -l)"
-#echo "Character was taken as concubine: $(grep -a "Character was taken as concubine" debug.log | wc -l)"
-#echo "Character released concubine: $(grep -a "Character released concubine" debug.log | wc -l)"
-#echo "Character was released as concubine: $(grep -a "Character was released as concubine" debug.log | wc -l)"
-#echo
 
 # Pulse events
 echo "Pulse event fired: $(grep -a "Pulse event fired" debug.log | wc -l)"
@@ -84,9 +73,10 @@ echo "Character died: $(grep -a "Character died" debug.log | wc -l)"
 echo
 
 # Rare (debug)
-#echo "Restoring incorrect location: $(grep -a "Restoring incorrect location" debug.log | uniq | wc -l)"
 #echo "Character teleported: $(grep -a "Character teleported" debug.log | uniq | wc -l)"
 #echo "Invalid character location detected: $(grep -a "Invalid character location detected" debug.log | uniq | wc -l)"
+#echo
+#echo "Accessing recent location: $(grep -a "Accessing recent location" debug.log | wc -l)"
 #echo
 
 # Errors

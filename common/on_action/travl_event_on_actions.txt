@@ -31,8 +31,8 @@ travl_on_marriage = {
 	effect = {
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
-			travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_married_major }
-			travl_restore_location_effect = yes
+			#travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_married_major }
+			travl_restore_location_if_teleported_effect = yes
 		}
 		scope:spouse = {
 			if = {
@@ -46,8 +46,8 @@ travl_on_marriage = {
 					travl_set_location_effect = yes
 				}
 				else = {
-					travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_married_minor }
-					travl_restore_location_effect = yes
+					#travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_married_minor }
+					travl_restore_location_if_teleported_effect = yes
 				}
 			}
 		}
@@ -66,14 +66,14 @@ travl_on_divorce = {
 	effect = {
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
-			travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_divorced }
-			travl_restore_location_effect = yes
+			#travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_divorced }
+			travl_restore_location_if_teleported_effect = yes
 		}
 		scope:spouse = {
 			if = {
 				limit = { travl_is_teleporting_character_trigger = no }
-				travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_was_divorced }
-				travl_restore_location_effect = yes
+				#travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_was_divorced }
+				travl_restore_location_if_teleported_effect = yes
 			}
 		}
 	}
@@ -90,8 +90,8 @@ travl_on_concubinage = {
 	effect = {
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
-			travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_took_concubine }
-			travl_restore_location_effect = yes
+			#travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_took_concubine }
+			travl_restore_location_if_teleported_effect = yes
 		}
 		scope:concubine = {
 			if = {
@@ -105,8 +105,8 @@ travl_on_concubinage = {
 					travl_set_location_effect = yes
 				}
 				else = {
-					travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_was_taken_concubine }
-					travl_restore_location_effect = yes
+					#travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_was_taken_concubine }
+					travl_restore_location_if_teleported_effect = yes
 				}
 			}
 		}
@@ -125,14 +125,14 @@ travl_on_concubinage_end = {
 	effect = {
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
-			travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_released_concubine }
-			travl_restore_location_effect = yes
+			#travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_released_concubine }
+			travl_restore_location_if_teleported_effect = yes
 		}
 		scope:concubine = {
 			if = {
 				limit = { travl_is_teleporting_character_trigger = no }
-				travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_was_released_concubine }
-				travl_restore_location_effect = yes
+				#travl_debug_log_teleport_effect = { MSG = travl_debug_msg_character_was_released_concubine }
+				travl_restore_location_if_teleported_effect = yes
 			}
 		}
 	}
@@ -172,13 +172,7 @@ travl_on_join_court = {
 			}
 			else = {
 				if = {
-					limit = { has_variable = travl_delayed_on_action }
-					travl_travel_effect = {
-						SENDER = scope:old_employer
-						EVENT = flag:on_delayed_join_court
-					}
-				}
-				else = {
+					limit = { travl_could_travel_trigger = yes }
 					travl_travel_effect = {
 						SENDER = scope:old_employer
 						EVENT = flag:on_join_court
@@ -212,9 +206,12 @@ travl_on_leave_court = {
 
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
-			travl_travel_effect = {
-				SENDER = scope:old_employer
-				EVENT = flag:on_leave_court
+			if = {
+				limit = { travl_could_travel_trigger = yes }
+				travl_travel_effect = {
+					SENDER = scope:old_employer
+					EVENT = flag:on_leave_court
+				}
 			}
 			travl_set_location_effect = yes
 		}
@@ -234,6 +231,11 @@ on_imprison = {
 travl_on_imprison = {
 	effect = {
 		#travl_debug_log_effect = { MSG = travl_debug_msg_character_imprisoned }
+
+		if = {
+			limit = { has_variable = travl_combat_location }
+			travl_set_custom_location_effect = { LOCATION = var:travl_combat_location }
+		}
 
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
@@ -289,9 +291,12 @@ travl_on_title_gain = {
 
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
-			travl_travel_effect = {
-				SENDER = this
-				EVENT = flag:on_title_gain
+			if = {
+				limit = { travl_could_travel_trigger = yes }
+				travl_travel_effect = {
+					SENDER = this
+					EVENT = flag:on_title_gain
+				}
 			}
 			travl_set_location_effect = yes
 		}
@@ -318,9 +323,12 @@ travl_on_title_lost = {
 
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
-			travl_travel_effect = {
-				SENDER = this
-				EVENT = flag:on_title_lost
+			if = {
+				limit = { travl_could_travel_trigger = yes }
+				travl_travel_effect = {
+					SENDER = this
+					EVENT = flag:on_title_lost
+				}
 			}
 			travl_set_location_effect = yes
 		}
@@ -364,9 +372,82 @@ travl_on_realm_capital_change = {
 	}
 }
 
+# Called when a pool character has appeared at the court. See guest_management in common/courtier_guest_management.
+# root, scope:guest: the guest
+# host: their host (owner of the court)
+# characters: list of all characters moving together. Includes the root character.
+on_guest_arrived_from_pool = {
+	on_actions = { travl_on_guest_arrived_from_pool }
+}
+
+travl_on_guest_arrived_from_pool = {
+	effect = {
+		#travl_debug_log_effect = { MSG = travl_debug_msg_guest_arrived_from_pool }
+
+		if = {
+			limit = { travl_could_travel_trigger = yes }
+			travl_travel_effect = {
+				SENDER = this
+				EVENT = flag:on_guest_arrived
+			}
+		}
+		travl_set_location_effect = yes
+	}
+}
+
+# Called after a set amount of time (GUEST_MOVE_TO_POOL_DELAY_MONTHS)
+# after a guest has decided to leave the court.
+# root, scope:guest: the guest
+# host: their host (owner of the court)
+# characters: list of all characters moving together. Includes the root character.
+# scope:destination: Where they should move to
+on_guest_ready_to_move_to_pool = {
+	on_actions = { travl_on_guest_ready_to_move_to_pool }
+}
+
+travl_on_guest_ready_to_move_to_pool = {
+	effect = {
+		#travl_debug_log_effect = { MSG = travl_debug_msg_guest_moved_to_pool }
+
+		travl_abort_travel_effect = { EVENT = flag:on_guest_moved }
+		travl_remove_location_effect = yes
+	}
+}
+
+# Called from code once a year for all characters, at a random point that year (individually for each character)
+# Root is the character
+random_yearly_everyone_pulse = {
+	on_actions = { travl_random_yearly_everyone_pulse }
+}
+
+travl_random_yearly_everyone_pulse = {
+	effect = {
+		#travl_debug_log_effect = { MSG = travl_debug_msg_character_yearly_pulse }
+
+		if = {
+			limit = { travl_is_teleporting_character_trigger = no }
+			if = {
+				limit = {
+					travl_could_travel_trigger = yes
+					is_travelling = no
+				}
+				travl_travel_effect = {
+					SENDER = this
+					EVENT = flag:on_yearly_pulse
+				}
+			}
+			travl_set_location_effect = yes
+		}
+		else = {
+			travl_abort_travel_effect = { EVENT = flag:on_yearly_pulse }
+			travl_remove_location_effect = yes
+		}
+	}
+}
+
 travl_on_invalid_receiver = {
 	effect = {
-		travl_debug_log_effect = { MSG = travl_debug_msg_invalid_receiver_detected }
+		#travl_debug_log_effect = { MSG = travl_debug_msg_invalid_receiver_detected }
 
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
@@ -385,7 +466,7 @@ travl_on_invalid_receiver = {
 
 travl_on_invalid_destination = {
 	effect = {
-		travl_debug_log_effect = { MSG = travl_debug_msg_invalid_destination_detected }
+		#travl_debug_log_effect = { MSG = travl_debug_msg_invalid_destination_detected }
 
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
@@ -466,50 +547,6 @@ travl_on_invalid_location = {
 	}
 }
 
-# called when a siege completes. Does *not* fire on reoccupation by province order
-# root is the occupant
-# scope:barony is the barony title that got occupied
-# scope:county is the county title for the barony
-# scope:previous_controller is the previous controller of the county
-# scope:war is the war causing the previous controller and the occupant to be hostile
-# occupied_baronies is a list of all baronies that the siege caused the occupier to control (I.E., can include baronies with no fort level)
-#on_siege_completion = {
-#}
-
-# Called when a raid action finishes
-# root is the raid army
-# scope:raider is the person owning the raid army
-# scope:barony is the barony title that got raided
-# scope:county is the county title for the barony
-#on_raid_action_completion = {
-#}
-
-# Root = Winning combat side
-# scope:wipe - Was this a wipe?
-on_combat_end_winner = {
-	on_actions = { travl_on_combat_end_winner }
-}
-
-travl_on_combat_end_winner = {
-	effect = {
-		combat.location = { save_scope_as = combat_location }
-		every_side_knight = {
-			limit = { is_alive = yes }
-			set_variable = {
-				name = travl_location
-				value = scope:combat_location
-			}
-		}
-		every_side_commander = {
-			limit = { is_alive = yes }
-			set_variable = {
-				name = travl_location
-				value = scope:combat_location
-			}
-		}
-	}
-}
-
 # Root = Losing combat side
 # scope:wipe - Was this a wipe?
 on_combat_end_loser = {
@@ -522,22 +559,18 @@ travl_on_combat_end_loser = {
 		every_side_knight = {
 			limit = { is_alive = yes }
 			set_variable = {
-				name = travl_location
+				name = travl_combat_location
 				value = scope:combat_location
+				days = 1
 			}
 		}
 		every_side_commander = {
 			limit = { is_alive = yes }
 			set_variable = {
-				name = travl_location
+				name = travl_combat_location
 				value = scope:combat_location
+				days = 1
 			}
 		}
 	}
 }
-
-#on_war_won_attacker = {
-#}
-
-#on_war_won_defender = {
-#}

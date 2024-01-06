@@ -12,17 +12,13 @@
 			travl_get_companions_effect = { COMPANIONS = companions }
 		}
 
-		# Ensure the character is at the current location
+		# Ensure all characters are at the current location
 		current_travel_plan ?= {
 			current_location = { save_temporary_scope_as = current_location }
 		}
 		if = {
-			limit = {
-				exists = scope:current_location
-				NOT = { location ?= scope:current_location }
-			}
-			#travl_debug_log_effect = { MSG = travl_setting_current_location_on_departure }
-			set_location = scope:current_location
+			limit = { exists = scope:current_location }
+			travl_ensure_all_locations_effect = { LOCATION = scope:current_location }
 		}
 
 		if = {
@@ -118,19 +114,6 @@ travl_travel_on_arrival = {
 		var:travl_travel_leader ?= { save_temporary_scope_as = leader }
 		scope:leader ?= {
 			travl_get_companions_effect = { COMPANIONS = companions }
-		}
-
-		# Ensure the character is at the destination
-		current_travel_plan ?= {
-			final_destination_province = { save_temporary_scope_as = current_location }
-		}
-		if = {
-			limit = {
-				exists = scope:current_location
-				NOT = { location ?= scope:current_location }
-			}
-			#travl_debug_log_effect = { MSG = travl_setting_current_location_on_arrival }
-			set_location = scope:current_location
 		}
 
 		if = {
@@ -233,19 +216,6 @@ travl_on_travel_plan_movement = {
 			travl_get_companions_effect = { COMPANIONS = companions }
 		}
 
-		# Ensure the character is at the current location
-		current_travel_plan ?= {
-			current_location = { save_temporary_scope_as = current_location }
-		}
-		if = {
-			limit = {
-				exists = scope:current_location
-				NOT = { location ?= scope:current_location }
-			}
-			#travl_debug_log_effect = { MSG = travl_setting_current_location_on_movement }
-			set_location = scope:current_location
-		}
-
 		if = {
 			limit = { scope:leader ?= this }
 
@@ -313,6 +283,15 @@ travl_on_travel_plan_movement = {
 	}
 }
 
+# Starting a travel plan (starting to travel to the first destination)
+on_travel_plan_start = {
+	on_actions = { travl_on_travel_plan_update_location }
+}
+
+# Arrival in a destination province during travel (a travel plan can have multiple sequential destinations)
+on_travel_plan_arrival = {
+	on_actions = { travl_on_travel_plan_update_location }
+}
 
 # Completed a travel plan (arrived at final destination, or completed through script)
 # A travel plan ends either via 'on_travel_plan_complete' or 'on_travel_plan_abort'
@@ -355,13 +334,7 @@ on_travel_plan_cancel = {
 
 travl_on_travel_plan_update_location = {
 	effect = {
-		travl_set_location_effect = yes
-		current_travel_plan ?= {
-			every_entourage_character = {
-				limit = { is_alive = yes }
-				travl_set_location_effect = yes
-			}
-		}
+		travl_set_all_locations_effect = yes
 	}
 }
 

@@ -1,0 +1,4 @@
+﻿travl_debug_days_since_location_date_value = {
+	value = current_date
+	subtract = var:travl_location_date
+}
