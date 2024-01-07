@@ -69,8 +69,14 @@ Rather than changing a significant amount of vanilla code, this mod handles vani
 * `on_realm_capital_change` (newly introduced in CK3 1.11)
 * `on_marriage` (for the minor partner)
 * `on_concubinage` (for the concubine)
+* `on_guest_arrived_from_pool`
+* `on_guest_ready_to_move_to_pool`
+* `random_yearly_everyone_pulse`
 
-The challenge with these on_actions is that they may be triggered before or after the character teleported. To ensure correct travel, this mod adds a *teleport detector* that saves the current location of every non-teleporting character on a daily basis, so it could be determined if the character teleported and if yes, from where they should start traveling.
+The challenge with these on_actions is that they may be triggered before or after the character teleported. To ensure correct travel, this mod saves the current location of every non-teleporting character, so it could be determined if the character teleported and if yes, from where they should start traveling. This is done by the following 2 complementary mechanisms:
+
+* Handling the above events and all vanilla travel events, after the character location has been updated.
+* Using a dedicated *location tracker* that reschedules itself after a fixed number of days, configurable via a game rule.
 
 The logic to handle any of the above events is always the same, and it does approximately the following:
 
@@ -80,9 +86,14 @@ The logic to handle any of the above events is always the same, and it does appr
 
 There are some exceptions to the above to adjust for specific cases. Also, sometimes lieges notify their courtiers and courtiers notify their lieges about events that happened to them (via the custom on_actions `on_liege_event` and `on_courtier_event`), to ensure that everyone is notified and that liege events always precede courtier events so courtiers may join their liege's entourage.
 
-### Teleport and Invalid Location Events
+### Handling Teleports and Invalid Locations
 
-In a few cases, characters may teleport due to reasons not covered by any of the above events. In other cases, they may find themselves in a strange place and not traveling. When the *teleport detector* detects such cases it triggers the custom on_actions `on_teleport` and `on_invalid_location`, that are handled by the same logic described above. This results in such characters starting their travel to home from their saved location, but unlike the vanilla events, this may happen 1 day after the character teleported. Since such cases are relatively few, you are rather unlikely to notice them as player.
+In a few cases, characters may teleport without any of the above events firing. In other cases, they may find themselves in a non-default location and not traveling. In previous versions of this mod, the *location tracker* detected such cases and triggered the custom on_actions `on_teleport` and `on_invalid_location` to send such characters traveling home from their saved location. However, this had a significant negative performance impact, so these events are now disabled. As a player, you are rather unlikely to notice any difference, because:
+
+* There are very few cases of teleports remaining. One such case is when a traveling entourage character is removed from the travel and returned home in certain vanilla events. Another is when a courtier character is sent to visit a different court in certain vanilla events and interactions. Both are rather rare, causing less than 10 teleports per year.
+* Characters stuck in non-default locations is caused by flawed vanilla logic and is also quite rare. It auto-corrects itself when any of the above events is triggered for such a character. The `random_yearly_everyone_pulse` event is triggered once per year for every character, so a character may remain no more than an year in a non-default location.
+
+Since such cases are relatively few, you are rather unlikely to notice them as player.
 
 ### Traveling in Groups
 
@@ -131,26 +142,26 @@ To make it easier for players to find targets for the **Invite to Court** intera
 
 ## Performance
 
-The *teleport detector* mentioned previously tracks the location of every non-teleporting character and triggers the `on_teleport` and `on_invalid_location` on_actions whenever one of these situations is detected. To achieve this, it activates on a regular basis and checks most living characters. This has a negative impact on the overall game performance that might be noticeable on lower-end machines.
+The *location tracker* mentioned previously tracks the location of every non-teleporting character. It activates on a regular basis and checks most living characters. This has a negative impact on the overall game performance that might be noticeable on lower-end machines.
 
-By default, the teleport detector triggers the on_actions mentioned above and activates daily. This setup is the most accurate, but also the slowest. To avoid the performance strain on lower-end machines, you can use game rules to make it slightly less accurate but much faster:
+By default, the location tracker activates every 5 days, for a reasonable tradeoff between performance and accuracy. You can use the **Location Tracker Interval** game rule to make it either more accurate or faster. This rule allows specifying if the detector should activate every 2, 5, or 10 days. Increasing this interval will result in better performance, but will also increase the chance for using an inaccurate location when determining if a character should travel and from where.
 
-* The **Teleport Detector Events** game rule allows disabling the `on_teleport` and `on_invalid_location` on_actions. When they are disabled, the teleport detector is effectively a lightweight location tracker that only updates a single variable per character. As a result, all travel triggered by vanilla events will still be accurate, but no travel will take place when characters teleport due to other reasons, or when they find themselves in an invalid location. These situations contribute less than 10% of all travel caused by this mod.
-* The **Teleport Detector Interval** game rule allows specifying if the detector should activate every 1, 2, or 5 days. Increasing this interval will result in a significant performance gain, but might also result in incorrect travel in some rare cases (up to less than 0.5% of all travel caused by this mod).
+When an inaccurate location is used, the character may teleport instead of traveling, or travel when they shouldn't. However, the chance for this is quite small for all settings. For the fastest setting, it amounts to less than 1% inaccurate travel cases out of all travel caused by this mod. Since the player sees only a small percentage of all this travel, the chance that they ever notice such inaccuracies is really small.
 
-The following table contains the times in seconds for 1, 2, 5, and 10 game years and different game rule combinations, measured on my own computer with CK3 1.11.0.1 and the Travelers 0.2.1, on max speed, in observer mode, and using the 867 game start:
+The following table contains the times in seconds for 1, 2, 5, and 10 game years and different settings, measured on my own computer with CK3 1.11.3 and the Travelers 0.5.0, on max speed, in observer mode, and using the 867 game start:
 
-| Setup | Events | Interval | 1y (s) | 2y (s) | 5y (s) | 10y (s) | Impact (%) |
-|---|---|---:|---:|---:|---:|---:|---:|
-| Vanilla | - | - | 11 | 22 | 56 | 119 | - |
-| Events, 1d | Yes | 1d | 16 | 33 | 88 | 196 | 60-65% |
-| No Events, 1d | No | 1d | 14 | 29 | 76 | 167 | 35-40% |
-| No Events, 2d | No | 2d | 13 | 26 | 67 | 145 | 18-20% |
-| No Events, 5d | No | 5d | 12 | 23 | 60 | 129 | 5-8% |
+| Setup | Interval | 1y (s) | 2y (s) | 5y (s) | 10y (s) | Impact (%) | Inacc. Chance (%) |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Vanilla | - | 10 | 21 | 54 | 116 | - | - |
+| Travelers |  2d | 13 | 27 | 71 | 157 | 35% | < 0.25% |
+| Travelers |  5d | 12 | 23 | 62 | 136 | 17% | < 0.50% |
+| Travelers | 10d | 10 | 22 | 59 | 129 | 11% | < 1.00% |
 
-As you can see, the slowest and most accurate setup is 65% slower than vanilla, while the fastest and least accurate is only 5-8% slower.
+As you can see, the slowest setup is 35% slower than vanilla, the fastest is 11% slower, and the default one is 17% slower.
 
-As a recommendation, if you don't notice any performance issues, just leave the default settings. Otherwise, disable **Teleport Detector Events** and optionally increase **Teleport Detector Interval** until the issue is solved.
+As a recommendation, if you don't notice any performance issues, just leave the default settings. Otherwise, you may try increasing the **Location Tracker Interval** to 10 days.
+
+**Note**: In previous versions of this mod, it also allowed enabling or disabling the `on_teleport` and `on_invalid_location` on_actions via the **Location Tracker Events** game rule. They are now disabled by default and cannot be enabled, due to their negative performance impact. As a result, no travel takes place when characters teleport without any of the vanilla on_actions firing, or when they are stuck in non-default locations. These cases are however quite rare and to some extent handled by different mechanisms, see [Handling Teleports and Invalid Locations](#handling-teleports-and-invalid-locations).
 
 The **Invite Characters to Court** interaction might also become slow if the number of characters that would accept **Invite to Court** is large enough (hundreds). To avoid this, you can use the **Invite Characters to Court Range** game rule to reduce the range this interaction uses to look for characters.
 

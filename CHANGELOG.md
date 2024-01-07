@@ -1,5 +1,31 @@
 # Changelog
 
+## Version 0.5.0
+
+### Performance
+
+* Improved location tracking accuracy outside of scheduled location tracker runs.
+  * As a result, location tracker interval can now be increased with very small impact on accuracy.
+* Added travel on `on_guest_arrived_from_pool`, `on_guest_ready_to_move_to_pool`, and `random_yearly_everyone_pulse` vanilla on_actions to send characters traveling in most situations that previously relied on location tracker events.
+  * As a result, location tracker events can now be disabled with very small impact on accuracy.
+
+### Game Rules
+
+* Adapted the *Teleport Detector Events* and *Teleport Detector Interval* game rules to enable better performance by default.
+  * Renamed them to *Location Tracker Events* and *Location Tracker Interval*.
+  * Changed their defaults to *Disabled*, and *5 Days*.
+  * Removed their slowest settings to ensure that they are not used for save games.
+  * Added a new setting *10 days* to *Location Tracker Interval* for even better performance vs. slightly higher inaccuracy chance.
+
+### Bug Fixes
+
+* Wiped army combatants now teleport to their homes instead of traveling (unless imprisoned), as when disbanding an army.
+* Fixed rare errors in `error.log`.
+
+### Housekeeping
+
+* Added debug code and logs to measure location tracking inaccuracy chance.
+
 ## Version 0.4.0
 
 ### Core Travel
