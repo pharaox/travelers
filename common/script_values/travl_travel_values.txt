@@ -1,15 +1,15 @@
 ﻿travl_teleport_detector_interval_value = {
 	if = {
-		limit = { has_game_rule = travl_teleport_detector_interval_01 }
-		value = 1
-	}
-	else_if = {
 		limit = { has_game_rule = travl_teleport_detector_interval_02 }
 		value = 2
 	}
 	else_if = {
 		limit = { has_game_rule = travl_teleport_detector_interval_05 }
 		value = 5
+	}
+	else_if = {
+		limit = { has_game_rule = travl_teleport_detector_interval_10 }
+		value = 10
 	}
 	else = {
 		value = 1
@@ -23,7 +23,7 @@ travl_days_since_last_event_value = {
 		subtract = global_var:travl_last_event_date
 	}
 	else = {
-		value = 42 # must be bigger than 10
+		value = 42 # must be bigger than 20
 	}
 }
 

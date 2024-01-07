@@ -8,7 +8,7 @@ travl_on_init = {
 	trigger = {
 		OR = {
 			NOT = { has_global_variable = travl_initialized }
-			travl_days_since_last_event_value > 10
+			travl_days_since_last_event_value > 20
 		}
 	}
 	events = {

@@ -71,15 +71,15 @@ travl_teleport_detector_events = {
 		travl_travelers
 	}
 
-	default = travl_teleport_detector_events_enabled
+	default = travl_teleport_detector_events_disabled
 
 	travl_teleport_detector_events_disabled = {
 		flag = GG_can_change_rule
 	}
 
-	travl_teleport_detector_events_enabled = {
-		flag = GG_can_change_rule
-	}
+	#travl_teleport_detector_events_enabled = {
+	#	flag = GG_can_change_rule
+	#}
 }
 
 travl_teleport_detector_interval = {
@@ -87,17 +87,21 @@ travl_teleport_detector_interval = {
 		travl_travelers
 	}
 
-	default = travl_teleport_detector_interval_01
+	default = travl_teleport_detector_interval_05
 
-	travl_teleport_detector_interval_01 = {
-		flag = GG_can_change_rule
-	}
+	#travl_teleport_detector_interval_01 = {
+	#	flag = GG_can_change_rule
+	#}
 
 	travl_teleport_detector_interval_02 = {
 		flag = GG_can_change_rule
 	}
 
 	travl_teleport_detector_interval_05 = {
+		flag = GG_can_change_rule
+	}
+
+	travl_teleport_detector_interval_10 = {
 		flag = GG_can_change_rule
 	}
 }
