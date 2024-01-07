@@ -171,12 +171,9 @@ travl_on_join_court = {
 				}
 			}
 			else = {
-				if = {
-					limit = { travl_could_travel_trigger = yes }
-					travl_travel_effect = {
-						SENDER = scope:old_employer
-						EVENT = flag:on_join_court
-					}
+				travl_travel_effect = {
+					SENDER = scope:old_employer
+					EVENT = flag:on_join_court
 				}
 				remove_variable = travl_delayed_on_action
 			}
@@ -206,12 +203,9 @@ travl_on_leave_court = {
 
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
-			if = {
-				limit = { travl_could_travel_trigger = yes }
-				travl_travel_effect = {
-					SENDER = scope:old_employer
-					EVENT = flag:on_leave_court
-				}
+			travl_travel_effect = {
+				SENDER = scope:old_employer
+				EVENT = flag:on_leave_court
 			}
 			travl_set_location_effect = yes
 		}
@@ -291,12 +285,9 @@ travl_on_title_gain = {
 
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
-			if = {
-				limit = { travl_could_travel_trigger = yes }
-				travl_travel_effect = {
-					SENDER = this
-					EVENT = flag:on_title_gain
-				}
+			travl_travel_effect = {
+				SENDER = this
+				EVENT = flag:on_title_gain
 			}
 			travl_set_location_effect = yes
 		}
@@ -323,12 +314,9 @@ travl_on_title_lost = {
 
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
-			if = {
-				limit = { travl_could_travel_trigger = yes }
-				travl_travel_effect = {
-					SENDER = this
-					EVENT = flag:on_title_lost
-				}
+			travl_travel_effect = {
+				SENDER = this
+				EVENT = flag:on_title_lost
 			}
 			travl_set_location_effect = yes
 		}
@@ -384,12 +372,9 @@ travl_on_guest_arrived_from_pool = {
 	effect = {
 		#travl_debug_log_effect = { MSG = travl_debug_msg_guest_arrived_from_pool }
 
-		if = {
-			limit = { travl_could_travel_trigger = yes }
-			travl_travel_effect = {
-				SENDER = this
-				EVENT = flag:on_guest_arrived
-			}
+		travl_travel_effect = {
+			SENDER = this
+			EVENT = flag:on_guest_arrived
 		}
 		travl_set_location_effect = yes
 	}
