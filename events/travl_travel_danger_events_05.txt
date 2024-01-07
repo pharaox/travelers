@@ -153,6 +153,7 @@ travl_travel_danger.0005 = {
 		# Available pool character
 		any_pool_character = {
 			province = root.location
+			exists = this
 			is_available_ai_adult = yes
 		}
 	}
@@ -170,6 +171,7 @@ travl_travel_danger.0005 = {
 		random_pool_character = {
 			province = root.location
 			limit = {
+				exists = this
 				is_available_ai_adult = yes
 			}
 			increase_wounds_no_death_effect = { REASON = battle }

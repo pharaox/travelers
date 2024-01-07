@@ -9,7 +9,10 @@
 		var:travl_travel_receiver ?= { save_temporary_scope_as = receiver }
 		var:travl_travel_leader ?= { save_temporary_scope_as = leader }
 		scope:leader ?= {
-			travl_get_companions_effect = { COMPANIONS = companions }
+			if = {
+				limit = { is_alive = yes }
+				travl_get_companions_effect = { COMPANIONS = companions }
+			}
 		}
 
 		# Ensure all characters are at the current location
@@ -113,7 +116,10 @@ travl_travel_on_arrival = {
 		var:travl_travel_receiver ?= { save_temporary_scope_as = receiver }
 		var:travl_travel_leader ?= { save_temporary_scope_as = leader }
 		scope:leader ?= {
-			travl_get_companions_effect = { COMPANIONS = companions }
+			if = {
+				limit = { is_alive = yes }
+				travl_get_companions_effect = { COMPANIONS = companions }
+			}
 		}
 
 		if = {
@@ -213,7 +219,10 @@ travl_on_travel_plan_movement = {
 		var:travl_travel_receiver ?= { save_temporary_scope_as = receiver }
 		var:travl_travel_leader ?= { save_temporary_scope_as = leader }
 		scope:leader ?= {
-			travl_get_companions_effect = { COMPANIONS = companions }
+			if = {
+				limit = { is_alive = yes }
+				travl_get_companions_effect = { COMPANIONS = companions }
+			}
 		}
 
 		if = {

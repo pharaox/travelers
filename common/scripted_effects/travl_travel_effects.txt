@@ -850,7 +850,10 @@ travl_notify_courtiers_effect = {
 travl_recruit_escort_effect = {
 	clear_saved_scope = escort
 	if = {
-		limit = { is_imprisoned = yes }
+		limit = {
+			is_imprisoned = yes
+			exists = imprisoner
+		}
 
 		travl_recruit_prison_guard_effect = yes
 		scope:prison_guard = {
@@ -862,7 +865,10 @@ travl_recruit_escort_effect = {
 travl_recruit_travel_leader_effect = {
 	clear_saved_scope = travel_leader
 	if = {
-		limit = { is_imprisoned = yes }
+		limit = {
+			is_imprisoned = yes
+			exists = imprisoner
+		}
 
 		travl_recruit_prison_guard_effect = yes
 		scope:prison_guard = {
@@ -878,6 +884,7 @@ travl_recruit_prison_guard_effect = {
 	random_pool_character = {
 		province = scope:imprisoner1.capital_province
 		limit = {
+			exists = this
 			is_available_ai_adult = yes
 			is_ruler = no
 			has_no_particular_noble_roots_trigger = yes
@@ -893,8 +900,9 @@ travl_recruit_prison_guard_effect = {
 		}
 		travl_debug_log_effect = { MSG = travl_debug_msg_creating_prison_guard_character }
 		scope:imprisoner1 = { save_temporary_scope_as = value_target }
+		save_temporary_scope_as = character1
 		create_character = {
-			location = root.location
+			location = scope:character1.location
 			template = new_warrior_character
 			dynasty = none
 			faith = scope:imprisoner1.faith

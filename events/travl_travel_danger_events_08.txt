@@ -152,6 +152,7 @@ travl_travel_danger.0008 = {
 		random_pool_character = {
 			province = root.location
 			limit = {
+				exists = this
 				is_available_ai_adult = yes
 				culture = root.location.culture
 				has_trait = winter_soldier

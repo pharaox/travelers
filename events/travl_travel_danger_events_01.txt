@@ -152,6 +152,7 @@ travl_travel_danger.0001 = {
 		random_pool_character = {
 			province = root.location
 			limit = {
+				exists = this
 				is_available_ai_adult = yes
 				prowess >= low_skill_rating
 				diplomacy >= low_skill_rating

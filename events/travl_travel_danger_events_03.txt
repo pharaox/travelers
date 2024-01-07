@@ -132,6 +132,7 @@ travl_travel_danger.0003 = {
 		random_pool_character = {
 			province = root.location
 			limit = {
+				exists = this
 				is_available_ai_adult = yes
 				stewardship >= low_skill_rating
 			}
