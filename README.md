@@ -18,6 +18,8 @@ While traveling, rulers and their entourage may get some of the vanilla travel a
 
 Since there are no travel events for non-ruler characters available in vanilla, this mod adds 14 new travel danger events for non-ruler group leaders, loosely based on existing vanilla events. Other group members may also participate in the resolution of such an event, and all may suffer its consequences. The player is informed about such events with appropriate messages. These events can be disabled via a game rule.
 
+Due to the increased volume of travel caused by this mod and the new travel danger events mentioned above, more characters may die or get injured due to travel danger events than before. If you don't like this, you can increase the travel safety of all travel caused by this mod via a game rule.
+
 Prisoners are a special case. Imprisoned characters always travel as companions of a "prisoner escort" group leader, who may also get some of the danger events mentioned above. If the escorting character travel is aborted for any reason, e.g. death due to an event, all prisoners escape.
 
 Imprisoned rulers traveling to their jailor's capital are assigned a "prison guard" travel leader, can't add travel options, and other characters may not join their entourages. They also don't get any vanilla travel events, but may still be affected by the travel danger events mentioned above if they happen to the character who escorts them.
@@ -93,8 +95,6 @@ In a few cases, characters may teleport without any of the above events firing. 
 * There are very few cases of teleports remaining. One such case is when a traveling entourage character is removed from the travel and returned home in certain vanilla events. Another is when a courtier character is sent to visit a different court in certain vanilla events and interactions. Both are rather rare, causing less than 10 teleports per year.
 * Characters stuck in non-default locations is caused by flawed vanilla logic and is also quite rare. It auto-corrects itself when any of the above events is triggered for such a character. The `random_yearly_everyone_pulse` event is triggered once per year for every character, so a character may remain no more than an year in a non-default location.
 
-Since such cases are relatively few, you are rather unlikely to notice them as player.
-
 ### Traveling in Groups
 
 When multiple characters in the same location start travel to the same destination, they form a group with a single *leader* and one or more *companions*. If the leader is a ruler, the other travelers may join their entourage. Otherwise, each character travels alone in vanilla terms (since non-ruler characters can't have entourages), but they all arrive together. In both cases, the player is informed about the departure or arrival with a single message that lists all members of the group.
@@ -118,17 +118,19 @@ These new travel danger events for non-ruler characters are the following:
 | 1 | Bandits | Mountains, Desert Mountains, County control |  | Prowess, Diplomacy |
 | 2 | Missing Companion | Wetlands, Forest, Taiga, Jungle | At least one companion | Stewardship |
 | 3 | Lost | Forest, Taiga, Jungle | Not terrain expert | Learning, Stewardship |
-| 4 | Out of Water | Desert, Desert Mountains, Drylands, Steppe | Not terrain expert, Not nomadic culture | Diplomacy |
+| 4 | Out of Water | Desert, Desert Mountains, Drylands, Steppe | Not terrain expert | Diplomacy |
 | 5 | Aftermath | Occupation, Siege, Raid, Army, Battle | Available pool character | Prowess |
-| 6 | Sea Storm | Sea, Coastal Sea | Traveled for > 15 days | |
-| 7 | Avalanche | Mountains, Desert Mountains | At least one companion, Winter | Prowess |
-| 8 | Snowbound | | Winter, Not winter expert, Not winter culture | Diplomacy |
-| 9 | Ripped Sails | Sea, Coastal Sea | Not sea expert, Not sailor culture | Learning |
-| 10 | Brush Fire | Hills | No winter | Martial |
-| 11 | Mosquitoes | Wetlands, Floodplains, Forest, Taiga, Jungle | No winter | Learning |
-| 12 | Beast Attack | Forest, Taiga, Jungle | | Prowess |
+| 6 | Sea Storm | Sea, Coastal Sea | Not terrain expert, Traveled for > 15 days | |
+| 7 | Avalanche | Mountains, Desert Mountains | At least one companion, Winter, Not terrain expert | Prowess |
+| 8 | Snowbound | | Winter, Not winter expert | Diplomacy |
+| 9 | Ripped Sails | Sea, Coastal Sea | Not terrain expert  | Learning |
+| 10 | Brush Fire | Hills | No winter, Not terrain expert | Martial |
+| 11 | Mosquitoes | Wetlands, Floodplains, Forest, Taiga, Jungle | No winter, Not terrain expert | Learning |
+| 12 | Beast Attack | Forest, Taiga, Jungle | Not terrain expert | Prowess |
 | 13 | Spoiled Food | | No holding, Traveled for > 15 days | Learning, Intrigue |
-| 14 | Sickness | Wetlands, Jungle | Traveled for > 15 days | |
+| 14 | Sickness | Wetlands, Jungle | Not terrain expert, Traveled for > 15 days | |
+
+Due to the increased volume of travel caused by this mod and the new travel danger events mentioned above, more characters may die or get injured due to travel danger events than before. If you don't like this, you can increase the travel safety of all travel caused by this mod via the **Travel Safety** game rule. This adds a travel safety modifier to all travel plans created by this mod, which causes both vanilla travel danger events and the new events mentioned above to fire less often.
 
 ### Prisoner Travel
 

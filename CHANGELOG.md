@@ -1,5 +1,26 @@
 # Changelog
 
+## Version 0.5.1
+
+### Game Balance
+
+* Adjusted the firing chance of some of the new events.
+* Reduced by half the probability of death for all new events, unless it's a certain death.
+* Terrain experts are now immune to all new events that are influenced by terrain.
+* Removed cultural tradition conditions from all new events, since they already influence the travel safety, and for improved compatibility with total conversion mods.
+
+### Game Rules
+
+* Added the *Travel Safety* game rule to enable increasing the travel safety for all travel caused by this mod.
+
+### Bug Fixes
+
+* Current travel danger and travel safety are now properly taken into account when determining the "chance of no event" for the new events. As a result, these events now fire much less often on average.
+
+### Housekeeping
+
+* Added debug code and logs to measure character deaths during travel and event travel danger.
+
 ## Version 0.5.0
 
 ### Performance
