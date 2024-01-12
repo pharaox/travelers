@@ -3,9 +3,9 @@
  travl_is_imprisoned_modifier_desc: "You are imprisoned and traveling to your prison location"
 
  travl_travel_safety_high_modifier: "High Travel Safety"
- travl_travel_safety_high_modifier_desc: "Travel safety is increased by a game rule setting"
+ travl_travel_safety_high_modifier_desc: "Travel safety is increased in accordance with game rules"
  travl_travel_safety_very_high_modifier: "Very High Travel Safety"
- travl_travel_safety_very_high_modifier_desc: "Travel safety is increased by a game rule setting"
+ travl_travel_safety_very_high_modifier_desc: "$travl_travel_safety_high_modifier_desc$"
 
  travl_prison_guard_modifier: "Prisoner Escort"
  travl_prison_guard_modifier_desc: "This character is escorting traveling prisoners"

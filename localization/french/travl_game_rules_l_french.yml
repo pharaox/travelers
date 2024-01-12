@@ -15,6 +15,14 @@
  setting_travl_travel_events_enabled: "Activé"
  setting_travl_travel_events_enabled_desc: "Événements pour les personnages sans terre sont activés."
 
+ rule_travl_travel_safety: "#P Travelers:#! Sécurité des voyages"
+ setting_travl_travel_safety_default: "Par défaut"
+ setting_travl_travel_safety_default_desc: "La sécurité des voyages n'est pas augmentée pour les voyages provoqués par ce mod par rapport aux voyages vanille."
+ setting_travl_travel_safety_high: "#high Haute#!"
+ setting_travl_travel_safety_high_desc: "La sécurité des voyages est augmentée de 20 pour tous les voyages provoqués par ce mod."
+ setting_travl_travel_safety_very_high: "#high Très haute#!"
+ setting_travl_travel_safety_very_high_desc: "La sécurité des voyages est augmentée de 40 pour tous les voyages provoqués par ce mod."
+
  rule_travl_interaction_range: "#P Travelers:#! Portée d'interaction 'Inviter des personnages à la Cour'"
  setting_travl_interaction_range_small: "#high Petite#!"
  setting_travl_interaction_range_small_desc: "Les personnages à portée diplomatique et situés dans un rayon de 150 pixels de la carte sont répertoriés (le plus vite)."
