@@ -41,8 +41,19 @@
 			has_trait = desert_warrior
 		}
 		AND = {
-			location = { terrain = jungle }
+			location = {
+				terrain = jungle
+			}
 			has_trait = jungle_stalker
+		}
+		AND = {
+			location = {
+				OR = {
+					terrain = sea
+					terrain = coastal_sea
+				}
+			}
+			has_trait = forder
 		}
 	}
 }

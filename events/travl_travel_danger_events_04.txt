@@ -61,10 +61,10 @@ scripted_effect travl_travel_danger_0004_failure_effect = {
 	every_in_list = {
 		list = travelers
 		random_list = {
-			10 = {
+			5 = {
 				travl_event_death_effect = { REASON = flag:death_thirst KILLER = this }
 			}
-			90 = {}
+			95 = {}
 		}
 	}
 }
@@ -116,16 +116,8 @@ travl_travel_danger.0004 = {
 			}
 		}
 
-		# Is not an expert this type of terrain
+		# Is not an expert in this type of terrain
 		travl_event_is_location_terrain_expert_trigger = no
-
-		# Culture is not nomadic
-		culture = {
-			NOR = {
-				has_cultural_tradition = tradition_saharan_nomads
-				has_cultural_tradition = tradition_desert_nomads
-			}
-		}
 	}
 
 	cooldown = { months = 6 }

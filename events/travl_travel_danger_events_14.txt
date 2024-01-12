@@ -64,9 +64,11 @@ travl_travel_danger.0014 = {
 					travel_plan = root.current_travel_plan
 					terrain = jungle
 				}
-				has_province_modifier = disease_spreading_modifier
 			}
 		}
+
+		# Is not an expert in this in type of terrain
+		travl_event_is_location_terrain_expert_trigger = no
 
 		# Already traveled for some time
 		current_travel_plan.days_travelled >= 15

@@ -30,10 +30,10 @@ scripted_effect travl_travel_danger_0012_a_failure_effect = {
 	scope:prowess_character = {
 		travl_event_add_stress_effect = { TRAIT = flag:craven VALUE = flag:major }
 		random_list = {
-			50 = {
+			25 = {
 				travl_event_animal_death_effect = { ANIMAL_TYPE = root.var:animal_type }
 			}
-			50 = {
+			75 = {
 				travl_event_animal_wound_effect = { ANIMAL_TYPE = root.var:animal_type }
 			}
 		}
@@ -48,10 +48,10 @@ scripted_effect travl_travel_danger_0012_b_effect = {
 	random_in_list = {
 		list = travelers
 		random_list = {
-			50 = {
+			25 = {
 				travl_event_animal_death_effect = { ANIMAL_TYPE = root.var:animal_type }
 			}
-			50 = {
+			75 = {
 				travl_event_animal_wound_effect = { ANIMAL_TYPE = root.var:animal_type }
 			}
 		}
@@ -104,6 +104,9 @@ travl_travel_danger.0012 = {
 				}
 			}
 		}
+
+		# Is not an expert in this type of terrain
+		travl_event_is_location_terrain_expert_trigger = no
 	}
 
 	cooldown = { months = 6 }

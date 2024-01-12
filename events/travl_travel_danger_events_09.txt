@@ -87,17 +87,7 @@ travl_travel_danger.0009 = {
 		}
 
 		# Is not an expert in this type of terrain
-		NOT = { has_trait = forder }
-
-		# Culture is not adapted to winter
-		culture = {
-			NOR = {
-				has_cultural_tradition = tradition_seafaring
-				has_cultural_tradition = tradition_fishermen
-				has_cultural_tradition = tradition_maritime_mercantilism
-				has_cultural_tradition = tradition_fp1_coastal_warriors
-			}
-		}
+		travl_event_is_location_terrain_expert_trigger = no
 	}
 
 	cooldown = { months = 6 }

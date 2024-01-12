@@ -62,13 +62,17 @@ travl_debug_log_event_effect = {
 }
 
 travl_debug_log_travel_event_effect = {
+	save_temporary_scope_value_as = {
+		name = danger_value
+		value = travl_travel_danger_value
+	}
 	if = {
 		limit = { has_character_modifier = travl_prison_guard_modifier }
 		save_temporary_scope_as = prison_guard
-		travl_debug_log_1_effect = { MSG = $MSG$ NAME1 = prison_guard TYPE1 = flag:character }
+		travl_debug_log_2_effect = { MSG = $MSG$ NAME1 = danger_value TYPE1 = flag:value NAME2 = prison_guard TYPE2 = flag:character }
 	}
 	else = {
-		#travl_debug_log_effect = { MSG = $MSG$ }
+		travl_debug_log_1_effect = { MSG = $MSG$ NAME1 = danger_value TYPE1 = flag:value }
 	}
 }
 

@@ -52,3 +52,10 @@ travl_interaction_range_value = {
 		value = squared_distance_massive
 	}
 }
+
+travl_travel_danger_value = {
+	value = root.current_travel_plan.current_danger_value
+	subtract = root.current_travel_plan.travel_safety
+	min = define:NTravel|TRAVEL_DANGER_MINIMUM
+	max = 100
+}

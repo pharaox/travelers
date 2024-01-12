@@ -272,7 +272,8 @@ travl_on_travel_plan_movement = {
 
 	random_events = {
 		chance_of_no_event = {
-			value = 80
+			value = 100
+			subtract = travl_travel_danger_value
 		}
 		100 = 0
 		 50 = travl_travel_danger.0001 # Danger: Bandits
@@ -280,7 +281,7 @@ travl_on_travel_plan_movement = {
 		100 = travl_travel_danger.0003 # Danger: Lost
 		 50 = travl_travel_danger.0004 # Danger: Out of Water
 		200 = travl_travel_danger.0005 # Danger: Aftermath
-		 20 = travl_travel_danger.0006 # Danger: Sea Storm
+		 10 = travl_travel_danger.0006 # Danger: Sea Storm
 		200 = travl_travel_danger.0007 # Danger: Avalanche
 		 50 = travl_travel_danger.0008 # Danger: Snowbound
 		100 = travl_travel_danger.0009 # Danger: Ripped Sails

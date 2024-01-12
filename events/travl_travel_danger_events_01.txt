@@ -24,13 +24,13 @@ scripted_effect travl_travel_danger_0001_a_failure_effect = {
 	scope:prowess_character = {
 		travl_event_add_stress_effect = { TRAIT = flag:craven VALUE = flag:major }
 		random_list = {
-			25 = {
+			10 = {
 				travl_event_death_effect = { REASON = flag:death_fight KILLER = scope:bandit }
 			}
-			25 = {
+			20 = {
 				travl_event_add_trait_effect = { TRAIT = flag:maimed }
 			}
-			50 = {
+			70 = {
 				travl_event_wound_effect = { REASON = flag:fight }
 			}
 		}
@@ -66,13 +66,13 @@ scripted_effect travl_travel_danger_0001_failure_effect = {
 	every_in_list = {
 		list = travelers
 		random_list = {
-			10 = {
+			5 = {
 				travl_event_death_effect = { REASON = flag:death_fight KILLER = scope:bandit }
 			}
 			10 = {
 				travl_event_add_trait_effect = { TRAIT = flag:maimed }
 			}
-			20 = {
+			25 = {
 				travl_event_wound_effect = { REASON = flag:fight }
 			}
 			10 = {

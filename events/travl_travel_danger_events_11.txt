@@ -108,6 +108,9 @@ travl_travel_danger.0011 = {
 
 		# Doesn't have winter
 		NOT = { location_has_winter_trigger = yes }
+
+		# Is not an expert in this type of terrain
+		travl_event_is_location_terrain_expert_trigger = no
 	}
 
 	cooldown = { months = 6 }

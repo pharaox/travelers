@@ -59,6 +59,9 @@ travl_travel_danger.0006 = {
 			}
 		}
 
+		# Is not an expert in this type of terrain
+		travl_event_is_location_terrain_expert_trigger = no
+
 		# Already traveled for some time
 		current_travel_plan.days_travelled >= 15
 	}

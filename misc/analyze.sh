@@ -69,7 +69,9 @@ echo "Danger: Spoiled Food event fired: $(grep -a "Danger: Spoiled Food event" d
 echo "Danger: Sickness event fired: $(grep -a "Danger: Sickness event" debug.log | wc -l)"
 echo "Total danger events: $(grep -a "Danger: .* event option" debug.log | wc -l)"
 echo "- for prison guard: $(grep -a "Danger: .* event fired for prison guard" debug.log | wc -l)"
-echo "Character died: $(grep -a "Character died" debug.log | wc -l)"
+echo "Character died: $(grep -a "Character died, " debug.log | wc -l)"
+echo "Character died while traveling: $(grep -a "Character died while traveling, " debug.log | wc -l)"
+echo "- ruler: $(grep -a ".* of .*Character died while traveling" debug.log | wc -l)"
 echo
 
 # Rare (debug)

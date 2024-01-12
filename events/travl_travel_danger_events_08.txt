@@ -105,16 +105,8 @@ travl_travel_danger.0008 = {
 		# Has winter
 		location_has_winter_trigger = yes
 
-		# Is not an expert in this type of weather
+		# Is not a winter expert
 		NOT = { has_trait = winter_soldier }
-
-		# Culture is not adapted to winter
-		culture = {
-			NOR = {
-				has_cultural_tradition = tradition_winter_warriors
-				has_cultural_tradition = tradition_himalayan_settlers
-			}
-		}
 	}
 
 	weight_multiplier = {

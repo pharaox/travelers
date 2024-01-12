@@ -1,5 +1,6 @@
 ﻿l_english:
  travl_debug_prefix: "[GetCurrentDate.GetStringShort]: [THIS.Char.GetFullNameNoTooltip] ([THIS.Char.GetID], [THIS.Char.GetCurrentLocation.GetNameNoTooltip])"
+ travl_debug_prefix_2: "[GetCurrentDate.GetStringShort]: [THIS.Char.GetFullNameNoTooltip] ([THIS.Char.GetID])"
 
  travl_debug_msg_initialized: "[GetCurrentDate.GetStringShort]: Travelers mod initialized"
 
@@ -73,7 +74,7 @@
 
  travl_error_msg_starting_travel_to_non_default_location: "$travl_debug_prefix$: Starting travel to non-default location, receiver is [THIS.Var('receiver').Char.GetFullNameNoTooltip], default location is [THIS.Var('default_location').Province.GetNameNoTooltip]"
 
- travl_debug_msg_travel_danger_0001_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0001_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0001_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0001_t$ event fired$travl_for_prison_guard$, danger: $travl_danger_value$"
  travl_debug_msg_travel_danger_0001_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0001_t$ event option a success"
  travl_debug_msg_travel_danger_0001_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0001_t$ event option a failure"
  travl_debug_msg_travel_danger_0001_b_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0001_t$ event option b success"
@@ -81,19 +82,19 @@
  travl_debug_msg_travel_danger_0001_c: "$travl_debug_prefix$: $travl_msg_travel_danger_0001_t$ event option c"
  travl_debug_msg_travel_danger_0001_d: "$travl_debug_prefix$: $travl_msg_travel_danger_0001_t$ event option d"
 
- travl_debug_msg_travel_danger_0002_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0002_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0002_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0002_t$ event fired$travl_for_prison_guard$, danger: $travl_danger_value$"
  travl_debug_msg_travel_danger_0002_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0002_t$ event option a success"
  travl_debug_msg_travel_danger_0002_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0002_t$ event option a failure"
  travl_debug_msg_travel_danger_0002_b: "$travl_debug_prefix$: $travl_msg_travel_danger_0002_t$ event option b"
 
- travl_debug_msg_travel_danger_0003_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0003_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0003_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0003_t$ event fired$travl_for_prison_guard$, danger: $travl_danger_value$"
  travl_debug_msg_travel_danger_0003_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0003_t$ event option a success"
  travl_debug_msg_travel_danger_0003_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0003_t$ event option a failure"
  travl_debug_msg_travel_danger_0003_b_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0003_t$ event option b success"
  travl_debug_msg_travel_danger_0003_b_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0003_t$ event option b failure"
  travl_debug_msg_travel_danger_0003_c: "$travl_debug_prefix$: $travl_msg_travel_danger_0003_t$ event option c"
 
- travl_debug_msg_travel_danger_0004_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0004_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0004_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0004_t$ event fired$travl_for_prison_guard$, danger: $travl_danger_value$"
  travl_debug_msg_travel_danger_0004_a: "$travl_debug_prefix$: $travl_msg_travel_danger_0004_t$ event option a"
  travl_debug_msg_travel_danger_0004_b_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0004_t$ event option b success"
  travl_debug_msg_travel_danger_0004_b_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0004_t$ event option b failure"
@@ -101,7 +102,7 @@
  travl_debug_msg_travel_danger_0004_c_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0004_t$ event option c failure"
  travl_debug_msg_travel_danger_0004_d: "$travl_debug_prefix$: $travl_msg_travel_danger_0004_t$ event option d"
 
- travl_debug_msg_travel_danger_0005_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0005_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0005_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0005_t$ event fired$travl_for_prison_guard$, danger: $travl_danger_value$"
  travl_debug_msg_travel_danger_0005_a: "$travl_debug_prefix$: $travl_msg_travel_danger_0005_t$ event option a"
  travl_debug_msg_travel_danger_0005_b: "$travl_debug_prefix$: $travl_msg_travel_danger_0005_t$ event option b"
  travl_debug_msg_travel_danger_1005_a: "$travl_debug_prefix$: $travl_msg_travel_danger_1005_t$ event option a"
@@ -111,48 +112,48 @@
  travl_debug_msg_travel_danger_2005_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_2005_t$ event option a failure"
  travl_debug_msg_travel_danger_2005_b: "$travl_debug_prefix$: $travl_msg_travel_danger_2005_t$ event option b"
 
- travl_debug_msg_travel_danger_0006_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0006_t$ event fire $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0006_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0006_t$ event fire$travl_for_prison_guard$"
  travl_debug_msg_travel_danger_0006_a: "$travl_debug_prefix$: $travl_msg_travel_danger_0006_t$ event option a"
 
- travl_debug_msg_travel_danger_0007_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0007_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0007_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0007_t$ event fired$travl_for_prison_guard$, danger: $travl_danger_value$"
  travl_debug_msg_travel_danger_0007_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0007_t$ event option a success"
  travl_debug_msg_travel_danger_0007_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0007_t$ event option a failure"
  travl_debug_msg_travel_danger_0007_b: "$travl_debug_prefix$: $travl_msg_travel_danger_0007_t$ event option b"
 
- travl_debug_msg_travel_danger_0008_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0008_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0008_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0008_t$ event fired$travl_for_prison_guard$, danger: $travl_danger_value$"
  travl_debug_msg_travel_danger_0008_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0008_t$ event option a success"
  travl_debug_msg_travel_danger_0008_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0008_t$ event option a failure"
  travl_debug_msg_travel_danger_0008_b: "$travl_debug_prefix$: $travl_msg_travel_danger_0008_t$ event option b"
  travl_debug_msg_travel_danger_0008_c: "$travl_debug_prefix$: $travl_msg_travel_danger_0008_t$ event option c"
 
- travl_debug_msg_travel_danger_0009_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0009_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0009_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0009_t$ event fired$travl_for_prison_guard$, danger: $travl_danger_value$"
  travl_debug_msg_travel_danger_0009_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0009_t$ event option a success"
  travl_debug_msg_travel_danger_0009_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0009_t$ event option a failure"
  travl_debug_msg_travel_danger_0009_b: "$travl_debug_prefix$: $travl_msg_travel_danger_0009_t$ event option b"
 
- travl_debug_msg_travel_danger_0010_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0010_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0010_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0010_t$ event fired$travl_for_prison_guard$, danger: $travl_danger_value$"
  travl_debug_msg_travel_danger_0010_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0010_t$ event option a success"
  travl_debug_msg_travel_danger_0010_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0010_t$ event option a failure"
  travl_debug_msg_travel_danger_0010_b: "$travl_debug_prefix$: $travl_msg_travel_danger_0010_t$ event option b"
 
- travl_debug_msg_travel_danger_0011_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0011_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0011_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0011_t$ event fired$travl_for_prison_guard$, danger: $travl_danger_value$"
  travl_debug_msg_travel_danger_0011_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0011_t$ event option a success"
  travl_debug_msg_travel_danger_0011_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0011_t$ event option a failure"
  travl_debug_msg_travel_danger_0011_b: "$travl_debug_prefix$: $travl_msg_travel_danger_0011_t$ event option b"
 
- travl_debug_msg_travel_danger_0012_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0012_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0012_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0012_t$ event fired$travl_for_prison_guard$, danger: $travl_danger_value$"
  travl_debug_msg_travel_danger_0012_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0012_t$ event option a success"
  travl_debug_msg_travel_danger_0012_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0012_t$ event option a failure"
  travl_debug_msg_travel_danger_0012_b: "$travl_debug_prefix$: $travl_msg_travel_danger_0012_t$ event option b"
 
- travl_debug_msg_travel_danger_0013_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0013_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0013_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0013_t$ event fired$travl_for_prison_guard$, danger: $travl_danger_value$"
  travl_debug_msg_travel_danger_0013_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0013_t$ event option a success"
  travl_debug_msg_travel_danger_0013_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0013_t$ event option a failure"
  travl_debug_msg_travel_danger_0013_b_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0013_t$ event option b success"
  travl_debug_msg_travel_danger_0013_b_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0013_t$ event option b failure"
  travl_debug_msg_travel_danger_0013_c: "$travl_debug_prefix$: $travl_msg_travel_danger_0013_t$ event option c"
 
- travl_debug_msg_travel_danger_0014_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0014_t$ event fired $travl_for_prison_guard$"
+ travl_debug_msg_travel_danger_0014_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0014_t$ event fired$travl_for_prison_guard$, danger: $travl_danger_value$"
  travl_debug_msg_travel_danger_0014_a: "$travl_debug_prefix$: $travl_msg_travel_danger_0014_t$ event option a"
 
  travl_debug_msg_event_character_gained_prestige: "$travl_debug_prefix$: Character gained [THIS.Var('travl_event_prestige').GetValue] prestige"
@@ -173,6 +174,8 @@
  travl_debug_msg_event_travel_added_waypoint: "$travl_debug_prefix$: Travel added [THIS.Var('travl_event_travel_waypoint').Province.GetNameNoTooltip] waypoint"
  travl_debug_msg_event_character_died: "$travl_debug_prefix$: Character died, reason: [THIS.Var('travl_event_death').GetFlagName]"
 
+ travl_debug_msg_character_died_while_traveling: "$travl_debug_prefix_2$: Character died while traveling, reason: [THIS.Char.GetDeathReason]"
+
  travl_travel_receiver: "[THIS.Var('travl_travel_receiver').Char.GetFullNameNoTooltip]"
  travl_travel_leader: "[THIS.Var('travl_travel_leader').Char.GetFullNameNoTooltip]"
  travl_travel_event: "[THIS.Var('travl_travel_event').GetFlagName]"
@@ -183,4 +186,5 @@
  travl_owner: "[THIS.Var('owner').Char.GetFullNameNoTooltip]"
  travl_event: "[THIS.Var('event').GetFlagName]"
 
- travl_for_prison_guard: "[Select_CString(THIS.Var('prison_guard').IsSet, 'for prison guard', '')]"
+ travl_danger_value: "[THIS.Var('danger_value').GetValue]"
+ travl_for_prison_guard: "[Select_CString(THIS.Var('prison_guard').IsSet, ' for prison guard', '')]"

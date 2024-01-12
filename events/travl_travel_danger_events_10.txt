@@ -39,13 +39,13 @@ scripted_effect travl_travel_danger_0010_failure_effect = {
 	every_in_list = {
 		list = travelers
 		random_list = {
-			10 = {
+			5 = {
 				travl_event_death_effect = { REASON = flag:death_fire KILLER = this }
 			}
-			40 = {
+			25 = {
 				travl_event_wound_effect = { REASON = flag:burned }
 			}
-			50 = {}
+			70 = {}
 		}
 		travl_event_delay_travel_effect = { VALUE = flag:minor }
 	}
@@ -87,6 +87,9 @@ travl_travel_danger.0010 = {
 
 		# Doesn't have winter
 		NOT = { location_has_winter_trigger = yes }
+
+		# Is not an expert in this type of terrain
+		travl_event_is_location_terrain_expert_trigger = no
 	}
 
 	cooldown = { months = 6 }

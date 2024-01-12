@@ -1,0 +1,16 @@
+﻿namespace = travl_debug
+
+travl_debug.0001 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		debug_only = yes
+	}
+
+	immediate = {
+		scope:dead_character = {
+			debug_log = travl_debug_msg_character_died_while_traveling
+		}
+	}
+}

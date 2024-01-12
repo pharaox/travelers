@@ -105,10 +105,8 @@ travl_travel_danger.0007 = {
 		# Has winter
 		location_has_winter_trigger = yes
 
-		# Culture is not adapted to mountains
-		culture = {
-			NOT = { has_cultural_parameter = mountain_trait_bonuses }
-		}
+		# Is not an expert in this type of terrain
+		travl_event_is_location_terrain_expert_trigger = no
 	}
 
 	weight_multiplier = {

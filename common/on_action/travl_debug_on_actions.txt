@@ -1,0 +1,20 @@
+﻿
+# character just about to die in root scope
+# if a killer is known, it's set as scope:killer
+#Triggered by code
+on_death = {
+	on_actions = { travl_on_death }
+}
+
+travl_on_death = {
+	trigger = {
+		debug_only = yes
+		is_travelling = yes
+	}
+	effect = {
+		save_scope_as = dead_character
+		random_ruler = {
+			trigger_event = { id = travl_debug.0001 days = 1 }
+		}
+	}
+}

@@ -23,10 +23,10 @@ scripted_effect travl_travel_danger_0013_a_failure_effect = {
 	scope:learning_character = {
 		travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
 		random_list = {
-			10 = {
+			5 = {
 				travl_event_death_effect = { REASON = flag:death_poisonous_forage KILLER = this }
 			}
-			20 = {
+			25 = {
 				travl_event_disease_effect = { DISEASE = flag:ill }
 			}
 			70 = {}
