@@ -334,6 +334,20 @@ travl_start_travel_effect = {
 					add_travel_plan_modifier = travl_is_imprisoned_modifier
 				}
 			}
+
+			# Add travel plan modifiers for game rules
+			if = {
+				limit = { has_game_rule = travl_travel_safety_high }
+				current_travel_plan ?= {
+					add_travel_plan_modifier = travl_travel_safety_high_modifier
+				}
+			}
+			else_if = {
+				limit = { has_game_rule = travl_travel_safety_very_high }
+				current_travel_plan ?= {
+					add_travel_plan_modifier = travl_travel_safety_very_high_modifier
+				}
+			}
 		}
 	}
 }

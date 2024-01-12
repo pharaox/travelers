@@ -34,6 +34,26 @@ travl_travel_events = {
 	}
 }
 
+travl_travel_safety = {
+	categories = {
+		travl_travelers
+	}
+
+	default = travl_travel_safety_default
+
+	travl_travel_safety_default = {
+		flag = GG_can_change_rule
+	}
+
+	travl_travel_safety_high = {
+		flag = GG_can_change_rule
+	}
+
+	travl_travel_safety_very_high = {
+		flag = GG_can_change_rule
+	}
+}
+
 travl_interaction_range = {
 	categories = {
 		travl_travelers tweaks historicity
