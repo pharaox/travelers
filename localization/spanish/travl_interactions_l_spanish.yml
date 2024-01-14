@@ -10,5 +10,7 @@
  travl_msg_escaped_from_prison: "Escaped from Prison"
 
  # Message tooltips
- travl_departed_for_court_tt: "[CHARACTER.GetShortUIName] departed for [TARGET_CHARACTER.GetShortUINamePossessive] court"
- travl_arrived_at_court_tt: "[CHARACTER.GetShortUIName] arrived at [TARGET_CHARACTER.GetShortUINamePossessive] court"
+ travl_departed_for_court_tt: "[CHARACTER.GetShortUIName] departed for [TARGET_CHARACTER.GetShortUINamePossessive] court."
+ travl_arrived_at_court_tt: "[CHARACTER.GetShortUIName] arrived at [TARGET_CHARACTER.GetShortUINamePossessive] court."
+ travl_departed_for_court_joined_tt: "$travl_departed_for_court_tt$ [CHARACTER.GetSheHe|U] joined [TARGET_CHARACTER.GetShortUINamePossessive] court only temporarily and will leave on arrival."
+ travl_arrived_at_court_joined_tt: "$travl_arrived_at_court_tt$ [CHARACTER.GetSheHe|U] joined [TARGET_CHARACTER.GetShortUINamePossessive] court only temporarily and will leave now."
