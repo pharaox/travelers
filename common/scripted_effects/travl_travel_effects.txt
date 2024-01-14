@@ -244,11 +244,6 @@ travl_start_travel_effect = {
 				scope:escort ?= {
 					#travl_debug_log_effect = { MSG = travl_debug_msg_recruited_as_escort }
 
-					# Make the escort visit the receiver's court
-					$RECEIVER$ = {
-						add_visiting_courtier = prev
-					}
-
 					# Set travel variables for the escort
 					travl_set_sender_and_receiver_effect = {
 						SENDER = $SENDER$
@@ -273,6 +268,17 @@ travl_start_travel_effect = {
 						on_start_on_action = travl_travel_on_departure
 						on_arrival_on_action = travl_travel_on_arrival
 						on_arrival_destinations = last
+					}
+
+					# Add the escort to the receiver's court
+					$RECEIVER$ = {
+						add_courtier = scope:escort
+					}
+
+					# Set the knight status of the escort to forbid so that they are not knighted automatically.
+					if = {
+						limit = { is_potential_knight = yes }
+						set_knight_status = forbid
 					}
 				}
 			}
@@ -437,7 +443,7 @@ travl_add_leader_or_companion_effect = {
 
 		# Add character as companion
 		scope:leader1 = {
-			travl_get_companions_effect = { COMPANIONS = companions1 }
+			travl_get_all_companions_effect = { COMPANIONS = companions1 }
 		}
 		add_to_temporary_list = companions1
 	}
@@ -458,14 +464,15 @@ travl_remove_leader_or_companion_effect = {
 	if = {
 		limit = { scope:leader2 ?= this }
 		# If this is the leader, it's safe to get companions without is_alive check
-		travl_get_companions_effect = { COMPANIONS = companions2 }
+		# Get all companions, not just the alive ones, since the one to be removed might be dead
+		travl_get_all_companions_effect = { COMPANIONS = companions2 }
 	}
 	else = {
 		# Otherwise, check that the leader is alive before getting the companions
 		scope:leader2 ?= {
 			if = {
 				limit = { is_alive = yes }
-				travl_get_companions_effect = { COMPANIONS = companions2 }
+				travl_get_all_companions_effect = { COMPANIONS = companions2 }
 			}
 		}
 	}
@@ -623,6 +630,16 @@ travl_get_companions_effect = {
 	}
 }
 
+travl_get_all_companions_effect = {
+	if = {
+		limit = { has_variable_list = travl_travel_companions }
+		every_in_list = {
+			variable = travl_travel_companions
+			add_to_temporary_list = $COMPANIONS$
+		}
+	}
+}
+
 travl_set_event_effect = {
 	set_variable = {
 		name = travl_travel_event
@@ -732,10 +749,20 @@ travl_send_messages_effect = {
 
 				every_in_list = {
 					list = $TRAVELERS$
-					custom_description = {
-						text = $TEXT$
-						subject = this
-						object = $OBJECT$
+					if = {
+						limit = { has_character_flag = travl_added_character }
+						custom_description = {
+							text = $TEXT_ADDED_CHARACTER$
+							subject = this
+							object = $OBJECT$
+						}
+					}
+					else = {
+						custom_description = {
+							text = $TEXT$
+							subject = this
+							object = $OBJECT$
+						}
 					}
 				}
 			}

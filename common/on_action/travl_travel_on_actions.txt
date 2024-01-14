@@ -54,6 +54,7 @@
 				TRAVELERS = new_travelers
 				TITLE = travl_msg_departed_for_court
 				TEXT = travl_departed_for_court_tt
+				TEXT_ADDED_CHARACTER = travl_departed_for_court_joined_tt
 				OBJECT = scope:receiver
 			}
 
@@ -153,6 +154,7 @@ travl_travel_on_arrival = {
 				TRAVELERS = travelers
 				TITLE = travl_msg_arrived_at_court
 				TEXT = travl_arrived_at_court_tt
+				TEXT_ADDED_CHARACTER = travl_arrived_at_court_joined_tt
 				OBJECT = scope:receiver
 			}
 		}
