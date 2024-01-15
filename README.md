@@ -20,7 +20,7 @@ Since there are no travel events for non-ruler characters available in vanilla, 
 
 Due to the increased volume of travel caused by this mod and the new travel danger events mentioned above, more characters may die or get injured due to travel danger events than before. If you don't like this, you can increase the travel safety of all travel caused by this mod via a game rule.
 
-Prisoners are a special case. Imprisoned characters always travel as companions of a "prisoner escort" group leader, who may also get some of the danger events mentioned above. If the escorting character travel is aborted for any reason, e.g. death due to an event, all prisoners escape.
+Prisoners are a special case. Imprisoned characters always travel as companions of a "prisoner escort" group leader, who joins the imprisoner's court only temporarily and leaves on arrival, similarly to characters joining court due to travel options. The escorting character may also get some of the danger events mentioned above. If this character travel is aborted for any reason, e.g. death due to an event, all prisoners escape.
 
 Imprisoned rulers traveling to their jailor's capital are assigned a "prison guard" travel leader, can't add travel options, and other characters may not join their entourages. They also don't get any vanilla travel events, but may still be affected by the travel danger events mentioned above if they happen to the character who escorts them.
 
@@ -134,7 +134,7 @@ Due to the increased volume of travel caused by this mod and the new travel dang
 
 ### Prisoner Travel
 
-Imprisoned characters always travel as companions of a "prisoner escort" group leader, who may also get some of the danger events mentioned in [Travel and Danger Events](#travel-and-danger-events). If the escorting character travel is aborted for any reason, e.g. death due to an event, all prisoners escape.
+Imprisoned characters always travel as companions of a "prisoner escort" group leader, who joins the imprisoner's court only temporarily and leaves on arrival, similarly to characters joining court due to travel options. The escorting character may also get some of the danger events mentioned in [Travel and Danger Events](#travel-and-danger-events). If this character  travel is aborted for any reason, e.g. death due to an event, all prisoners escape.
 
 Unlike rulers that travel to their own realm capital, imprisoned rulers traveling to their jailor's capital are assigned a "prison guard" travel leader, can't add travel options, and other characters may not join their entourages. They also don't get any vanilla travel events, but may still be affected by the travel danger events mentioned above if they happen to the character who escorts them.
 

@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 0.5.2
+
+### Core Travel
+
+* Added prisoner escort characters as courtiers instead of guests, to prevent players and AI from wasting their gold on recruiting them.
+* Added an additional sentence to messages for prisoner escort characters to inform that they have joined only temporarily.
+
+### Bug Fixes
+
+* Fixed dead companions not being properly removed from the traveling group in some cases.
+
 ## Version 0.5.1
 
 ### Game Balance
