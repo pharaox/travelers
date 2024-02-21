@@ -59,4 +59,5 @@ For more information, see the mod [url=https://github.com/pharaox/travelers/blob
 If you like this mod, you may also consider my other mods:
 [list]
   [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2962238514]Search & Trade Artifacts[/url]
+  [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3157170996]Active Courtiers[/url]
 [/list]
