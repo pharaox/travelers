@@ -122,6 +122,12 @@ travl_travel_danger.0012 = {
 		save_scope_as = big_local_game
 		hunt_activity_dangerous_game_effect = { PROVINCE = location }
 
+		# Use a fallback animal type if it's still missing at this point
+		if = {
+			limit = { NOT = { exists = var:animal_type } }
+			set_variable = { name = animal_type value = flag:wolf years = 3 }
+		}
+
 		# Find relevant travelers
 		ordered_in_list = {
 			list = travelers

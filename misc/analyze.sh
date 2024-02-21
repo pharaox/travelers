@@ -14,6 +14,7 @@ echo
 echo "on_join_court: $(grep -a "on_join_court" debug.log | uniq | wc -l)"
 echo "- on_marriage: $(grep -a "(on_marriage)" debug.log | uniq | wc -l)"
 echo "- on_concubinage: $(grep -a "(on_concubinage)" debug.log | uniq | wc -l)"
+echo "- on_delayed_join_court: $(grep -a "(on_delayed_join_court)" debug.log | uniq | wc -l)"
 echo "on_leave_court: $(grep -a "on_leave_court" debug.log | uniq | wc -l)"
 echo "on_imprison: $(grep -a "on_imprison" debug.log | uniq | wc -l)"
 echo "on_release_from_prison: $(grep -a "on_release_from_prison" debug.log | uniq | wc -l)"

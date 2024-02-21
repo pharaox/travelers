@@ -145,14 +145,14 @@ travl_is_PoW_traveler_trigger = {
 	}
 }
 
-travl_is_potentially_joining_travel_trigger = {
+travl_should_delay_travel_trigger = {
 	is_travelling = no
 	$OWNER$ = {
 		is_travelling = yes
 		is_landed = yes
-		current_travel_plan ?= {
-			days_travelled > 1
-		}
+		#current_travel_plan ?= {
+		#	days_travelled > 1
+		#}
 	}
 }
 
@@ -213,6 +213,10 @@ travl_could_travel_trigger = {
 		#	always = yes
 		#}
 	}
+}
+
+travl_can_travel_to_destination_trigger = {
+	exists = $DESTINATION$
 }
 
 travl_travel_should_send_message_trigger = {

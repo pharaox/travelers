@@ -115,6 +115,9 @@ travl_start_travel_effect = {
 					}
 				}
 			}
+
+			# This destination can be reached by travel
+			travl_can_travel_to_destination_trigger = { DESTINATION = $RECEIVER$.capital_province }
 		}
 
 		travl_set_event_effect = { EVENT = $EVENT$ }

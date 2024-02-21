@@ -6,9 +6,9 @@
 
  travl_debug_msg_pulse_event_fired: "[GetCurrentDate.GetStringShort]: Pulse event fired"
 
- travl_debug_msg_starting_travel: "$travl_debug_prefix$: Starting travel ($travl_travel_event$)"
- travl_debug_msg_starting_travel_for_escort: "$travl_debug_prefix$: Starting travel for escort ($travl_travel_event$)"
- travl_debug_msg_starting_travel_with_travel_leader: "$travl_debug_prefix$: Starting travel with travel leader ($travl_travel_event$)"
+ travl_debug_msg_starting_travel: "$travl_debug_prefix$: Starting travel to $travl_travel_receiver$'s court ($travl_travel_event$)"
+ travl_debug_msg_starting_travel_for_escort: "$travl_debug_prefix$: Starting travel to $travl_travel_receiver$'s court for escort ($travl_travel_event$)"
+ travl_debug_msg_starting_travel_with_travel_leader: "$travl_debug_prefix$: Starting travel to $travl_travel_receiver$'s court with travel leader ($travl_travel_event$)"
  travl_debug_msg_recruited_as_escort: "$travl_debug_prefix$: Recruited as escort"
  travl_debug_msg_recruited_as_travel_leader: "$travl_debug_prefix$: Recruited as travel leader"
  travl_debug_msg_moving_added_character_back_to_pool: "$travl_debug_prefix$: Moving added character back to pool"

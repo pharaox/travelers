@@ -157,7 +157,7 @@ travl_on_join_court = {
 
 			if = {
 				limit = {
-					travl_is_potentially_joining_travel_trigger = { OWNER = scope:new_employer }
+					travl_should_delay_travel_trigger = { OWNER = scope:new_employer }
 					NOT = { has_variable = travl_delayed_on_action }
 				}
 
@@ -171,11 +171,20 @@ travl_on_join_court = {
 				}
 			}
 			else = {
-				travl_travel_effect = {
-					SENDER = scope:old_employer
-					EVENT = flag:on_join_court
+				if = {
+					limit = { has_variable = travl_delayed_on_action }
+					travl_travel_effect = {
+						SENDER = scope:old_employer
+						EVENT = flag:on_delayed_join_court
+					}
+					remove_variable = travl_delayed_on_action
 				}
-				remove_variable = travl_delayed_on_action
+				else = {
+					travl_travel_effect = {
+						SENDER = scope:old_employer
+						EVENT = flag:on_join_court
+					}
+				}
 			}
 
 			travl_set_location_effect = yes
