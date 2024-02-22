@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 0.5.3
+
+### Compatibility
+
+* Added changes needed for AGOT compatch.
+* Improved compatibility with total conversion mods.
+
 ## Version 0.5.2
 
 ### Core Travel
