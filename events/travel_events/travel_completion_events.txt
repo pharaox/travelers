@@ -97,6 +97,10 @@ travel_completion_event.1000 = {
 			involved_activity ?= {
 				has_activity_type = activity_tour
 			}
+			# Travelers: Doesn't work as intended, so commented out
+			#current_travel_plan = {
+			#	is_aborted = no
+			#}
 		}
 	}
 
