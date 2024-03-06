@@ -39,7 +39,7 @@ travl_travel_safety = {
 		travl_travelers
 	}
 
-	default = travl_travel_safety_default
+	default = travl_travel_safety_high
 
 	travl_travel_safety_default = {
 		flag = GG_can_change_rule
