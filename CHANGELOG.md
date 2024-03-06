@@ -2,6 +2,10 @@
 
 ## Version 0.6.0
 
+### Game Balance
+
+* The default setting for the *Travel Safety* game rule is now *High*.
+
 ### Compatibility
 
 * Adapted to CK3 1.12.1
