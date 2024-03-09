@@ -211,17 +211,17 @@ travl_msg_travel_danger_0011_b: "$travl_msg_travel_danger_0011_prefix$ 그리고
  # travel_danger.0012 Beast Attack
 travl_msg_travel_danger_0012_prefix: "[THIS.Char.GetShortUIName|U]와 [THIS.Char.GetHerHis] 동료들은 [location.GetName]의 [location.Custom('GetTerrainTypePlural')]에서 무서운 [THIS.Char.Custom('GetAnimalType')]에게 공격당했습니다."
 travl_msg_travel_danger_0012_a_success: "$travl_msg_travel_danger_0012_prefix$ 하지만 $travl_this_or_prowess_character$가 그것을 죽였습니다."
-travl_msg_travel_danger_0012_a_failure: "$travl_msg_travel_danger_0012_prefix$ 그리고 $travl_this_or_prowess_character$가 그것을 죽이지 못했습니다."
+travl_msg_travel_danger_0012_a_failure: "$travl_msg_travel_danger_0012_prefix$ 그리고 $travl_this_or_prowess_character$는 그것을 죽이지 못했습니다."
 travl_msg_travel_danger_0012_b: "$travl_msg_travel_danger_0012_prefix$ 그리고 공포에 떨며 목숨을 걸고 도망쳤습니다."
  # travel_danger.0013 Spoiled Food
 travl_msg_travel_danger_0013_prefix: "[THIS.Char.GetShortUIName|U]와 [THIS.Char.GetHerHis] 동료들은 [location.GetName]에서 식량이 상했다는 것을 알았습니다."
-travl_msg_travel_danger_0013_a_success: "$travl_msg_travel_danger_0013_prefix$ 하지만 $travl_this_or_learning_character$가 야생식물을 찾아 음식을 구했습니다."
-travl_msg_travel_danger_0013_a_failure: "$travl_msg_travel_danger_0013_prefix$ 그리고 $travl_this_or_learning_character$가 야생식물을 찾아 음식을 구하지 못했습니다."
+travl_msg_travel_danger_0013_a_success: "$travl_msg_travel_danger_0013_prefix$ 하지만 $travl_this_or_learning_character$는 야생식물을 찾아 음식을 구했습니다."
+travl_msg_travel_danger_0013_a_failure: "$travl_msg_travel_danger_0013_prefix$ 그리고 $travl_this_or_learning_character$는 야생식물을 찾았지만 음식을 구하지는 못했습니다."
 travl_msg_travel_danger_0013_b_success: "$travl_msg_travel_danger_0013_prefix$ 하지만 $travl_this_or_intrigue_character$가 현지인들로부터 음식을 훔쳤습니다."
-travl_msg_travel_danger_0013_b_failure: "$travl_msg_travel_danger_0013_prefix$ 그리고 $travl_this_or_intrigue_character$가 현지인들로부터 음식을 훔치지 못했습니다."
+travl_msg_travel_danger_0013_b_failure: "$travl_msg_travel_danger_0013_prefix$ 그리고 $travl_this_or_intrigue_character$는 현지인들로부터 음식을 훔치지 못했습니다."
 travl_msg_travel_danger_0013_c: "$travl_msg_travel_danger_0013_prefix$ 그냥 그 음식을 먹었고, 병에 걸릴 위험을 감수했습니다."
  # travel_danger.0014 Sickness
-travl_msg_travel_danger_0014_a: "[THIS.Char.GetShortUIName|U]와 [THIS.Char.GetHerHis] 동료들은 [location.GetName]의 [location.Custom('GetTerrainTypePlural')]를 여행하는 동안 아프게 되었습니다."
+travl_msg_travel_danger_0014_a: "[THIS.Char.GetShortUIName|U]와 [THIS.Char.GetHerHis] 동료들은 [location.GetName]의 [location.Custom('GetTerrainTypePlural')]를 여행하는 동안 병에 걸렸습니다."
 
  travl_this_or_diplomacy_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, diplomacy_character.GetID), THIS.Char.GetSheHe, diplomacy_character.GetShortUIName)]"
  travl_this_or_martial_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, martial_character.GetID), THIS.Char.GetSheHe, martial_character.GetShortUIName)]"
