@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.6.1
+
+### Game Balance
+
+* Added Korean translation by @gazette2.
+
 ## Version 0.6.0
 
 ### Game Balance
