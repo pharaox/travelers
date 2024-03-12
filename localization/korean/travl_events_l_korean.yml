@@ -59,7 +59,7 @@ travl_travel_danger.2005.desc: "[zombie.GetWomanMan]은 우리를 공격합니�
 travl_travel_danger.2005.a: "[zombie.GetHerHim]를 막기"
 travl_travel_danger.2005.a.success: "[zombie.GetHerHim]를 막는데 성공했습니다."
 travl_travel_danger.2005.a.failure: "[zombie.GetHerHim]를 막는데 실패했습니다."
-travl_travel_danger.2005.b: "[zombie.GetHerHim]으로부터 도망가기"
+travl_travel_danger.2005.b: "[zombie.GetHerHim]로부터 도망가기"
  # travel_danger.0006 Sea Storm
 travl_travel_danger.0006.t: "$travel_danger_prefix$ 바다 폭풍"
 travl_travel_danger.0006.desc: "우리를 휩쓸어버리는 엄청난 바다 폭풍이 시작됩니다. 나는 선원들이 깊은 어둠 속으로 던져지는 것을 공포스럽게 지켜봅니다. 거대한 파도가 배 위로 굴러갑니다."
@@ -151,9 +151,9 @@ travl_msg_travel_danger_0001_c: "$travl_msg_travel_danger_0001_prefix$ 그리고
 travl_msg_travel_danger_0001_d: "$travl_msg_travel_danger_0001_prefix$ 그리고 그들에게 공격당해 물건을 빼앗겼습니다."
  # travel_danger.0002 Missing Companion
 travl_msg_travel_danger_0002_prefix: "[THIS.Char.GetShortUINamePossessive|U]의 동료 중 한 명인 [missing_companion.GetShortUIName]이(가) [location.GetName]의 [location.Custom('GetTerrainTypePlural')]에서 실종되었습니다."
-travl_msg_travel_danger_0002_a_success: "$travl_msg_travel_danger_0002_prefix$ 하지만 $travl_this_or_stewardship_character$가 [missing_companion.GetHerHim]를(를) 찾았습니다."
-travl_msg_travel_danger_0002_a_failure: "$travl_msg_travel_danger_0002_prefix$ 그리고 $travl_this_or_stewardship_character$가 [missing_companion.GetHerHim]를(를) 찾지 못했습니다."
-travl_msg_travel_danger_0002_b: "$travl_msg_travel_danger_0002_prefix$ 그리고 그들은 [missing_companion.GetHerHim]를(를) 떠났습니다."
+travl_msg_travel_danger_0002_a_success: "$travl_msg_travel_danger_0002_prefix$ 하지만 $travl_this_or_stewardship_character$가 [missing_companion.GetHerHim]를 찾았습니다."
+travl_msg_travel_danger_0002_a_failure: "$travl_msg_travel_danger_0002_prefix$ 그리고 $travl_this_or_stewardship_character$가 [missing_companion.GetHerHim]를 찾지 못했습니다."
+travl_msg_travel_danger_0002_b: "$travl_msg_travel_danger_0002_prefix$ 그리고 그들은 [missing_companion.GetHerHim]를 떠났습니다."
  # travel_danger.0003 Lost
 travl_msg_travel_danger_0003_prefix: "[THIS.Char.GetShortUIName|U]와 [THIS.Char.GetHerHis]의 동료들은 [location.GetName]의 [location.Custom('GetTerrainTypePlural')]에서 길을 잃었습니다."
 travl_msg_travel_danger_0003_a_success: "$travl_msg_travel_danger_0003_prefix$ 하지만 $travl_this_or_learning_character$가 올바른 길을 찾았습니다."
@@ -194,7 +194,7 @@ travl_msg_travel_danger_0008_a_failure: "$travl_msg_travel_danger_0008_prefix$, 
 travl_msg_travel_danger_0008_b: "$travl_msg_travel_danger_0008_prefix$, 그리고 $travl_this_or_gold_character$가 일부 현지인들에게 도움을 받기 위해 돈을 지불했습니다."
 travl_msg_travel_danger_0008_c: "$travl_msg_travel_danger_0008_prefix$ 그럼에도 일부 현지인들로부터 제공된 도움을 받지 않았습니다."
  # travel_danger.0009 Ripped Sails
-travl_msg_travel_danger_0009_prefix: "[THIS.Char.GetShortUIName|U]와 [THIS.Char.GetHerHis] 동료들은 [location.GetName]에서 백색 폭풍에 의해 돛을 잃었습니다."
+travl_msg_travel_danger_0009_prefix: "[THIS.Char.GetShortUIName|U]와 [THIS.Char.GetHerHis] 동료들은 [location.GetName]에서 돌풍에 의해 돛을 잃었습니다."
 travl_msg_travel_danger_0009_a_success: "$travl_msg_travel_danger_0009_prefix$, 그러나 $travl_this_or_learning_character$가 임시 돛으로 다시 선박을 항해시킬 수 있었습니다."
 travl_msg_travel_danger_0009_a_failure: "$travl_msg_travel_danger_0009_prefix$, 그리고 $travl_this_or_learning_character$가 임시 돛으로 선박을 항해시키지 못했습니다."
 travl_msg_travel_danger_0009_b: "$travl_msg_travel_danger_0009_prefix$ 그리고 바람과 함께 천천히 이동하다가 지나가는 선박이 도움을 제공할 때까지 기다렸습니다."
