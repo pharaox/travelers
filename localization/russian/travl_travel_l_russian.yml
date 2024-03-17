@@ -12,7 +12,7 @@
 
  travl_travel_leader_recruited.t: "Назначен лидер путешествия"
 
- travl_character_traveling_tooltip_companions: "[Character.Custom('travl_character_traveling_tooltip_companions'))]"
+ travl_character_traveling_tooltip_companions: "[Character.Custom('travl_character_traveling_tooltip_companions')]"
  travl_together_with: "вместе с"
  travl_companions_1: "$travl_together_with$ [SCOPE.sC('companion1').GetUIName]"
  travl_companions_2: "$travl_together_with$ [SCOPE.sC('companion1').GetUIName] и [SCOPE.sC('companion2').GetUIName]"

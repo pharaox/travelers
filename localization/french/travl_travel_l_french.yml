@@ -12,7 +12,7 @@
 
  travl_travel_leader_recruited.t: "Chef du voyage assigné"
 
- travl_character_traveling_tooltip_companions: "[Character.Custom('travl_character_traveling_tooltip_companions'))]"
+ travl_character_traveling_tooltip_companions: "[Character.Custom('travl_character_traveling_tooltip_companions')]"
  travl_together_with: "avec"
  travl_companions_1: "$travl_together_with$ [SCOPE.sC('companion1').GetUIName]"
  travl_companions_2: "$travl_together_with$ [SCOPE.sC('companion1').GetUIName] et [SCOPE.sC('companion2').GetUIName]"
