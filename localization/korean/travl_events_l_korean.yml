@@ -1,6 +1,6 @@
 ﻿l_korean:
 travel_completion_event.1000.desc.aborted: "[final_destination_province.GetName]로의 여정을 계속하는 것이 더 이상 의미가 없어졌습니다. 잠시 휴식을 취할 수 있습니다."
-travel_completion_event.1000.c: "이번에 길이 나를 어디로 데려갈까요?"
+travel_completion_event.1000.c: "이번에는 어디로 가게 될까요?"
 
  # Event texts (hidden events, no need to translate)
  # travel_danger.0001 Bandits
