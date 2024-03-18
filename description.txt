@@ -24,13 +24,13 @@ Finally, this mod also adds an [b]Invite Characters to Court[/b] convenience int
 
 [h2]Compatibility[/h2]
 
-The current version is compatible with CK3 1.11. If you are still on CK3 1.11.x, use [url=https://github.com/pharaox/travelers/releases/download/0.5.3/travelers-0.5.3.zip]version 0.5.3[/url] instead.
+The current version is compatible with CK3 1.12. If you are still on CK3 1.11.x, use [url=https://github.com/pharaox/travelers/releases/download/0.5.3/travelers-0.5.3.zip]version 0.5.3[/url] instead.
 
 This mod is compatible with most other mods, except for mods that make similar changes to the travel system, or modify the [b]travl_on_actions.txt[/b] and [b]travel_options.txt[/b] vanilla files. Unfortunately, the latter includes most total conversion mods. If you use such mods, put this mod before them in the load order - the travel of imprisoned rulers may be affected as a result, but everything else should work as expected.
 
 This mod is now fully compatible with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2962333032]A Game of Thrones[/url] with a compatibility patch, see [b]Links[/b] below. Since AGOT is still on CK3 1.11.x, you need to use the older version mentioned above.
 
-This mod is now also compatible with [url=https://steamcommunity.com/workshop/filedetails/?id=2511247871]Prisoners of War[/url]. For best experience, use the compatch by @cuomo860, see [b]Links[/b] below. With PoW, prisoners of war attach to the commander who captured them instead of traveling to the prison on their own. Put this mod after PoW in the load order.
+This mod is now also compatible with [url=https://steamcommunity.com/workshop/filedetails/?id=2511247871]Prisoners of War[/url]. Since PoW is still on CK3 1.11.x, you need to use the older version mentioned above. For best experience, use the compatch by @cuomo860, see [b]Links[/b] below. With PoW, prisoners of war attach to the commander who captured them instead of traveling to the prison on their own. Put this mod after PoW in the load order.
 
 This mod also supports changing its game rules mid-game with the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2826829936]Gamerule Gadget[/url] mod.
 
@@ -38,7 +38,7 @@ I strongly recommend using also the [url=https://steamcommunity.com/sharedfiles/
 
 [h2]Localization[/h2]
 
-This mod is currently available in English, Russian, and (partially) French. For other languages, it uses the original English text as a placeholder.
+This mod is currently available in English, Russian, (partially) French, and Korean (translated by @gazette2). For other languages, it uses the original English text as a placeholder.
 
 [h2]Performance[/h2]
 
@@ -54,6 +54,7 @@ The [b]Invite Characters to Court[/b] interaction might also become slow if the 
 [list]
   [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3166199552]Travelers AGOT Compatibility[/url]
   [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3098184700]Travelers and Prisoners of War Compatch (by @cuomo860)[/url]
+  [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2903983628]Chinese Translation (by @牛奶大魔王)[/url]
   [*] [url=https://github.com/pharaox/travelers]GitHub Repository[/url]
 [/list]
 
