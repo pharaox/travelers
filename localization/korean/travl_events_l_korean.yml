@@ -223,13 +223,13 @@ travl_msg_travel_danger_0013_c: "$travl_msg_travel_danger_0013_prefix$ 그냥 �
  # travel_danger.0014 Sickness
 travl_msg_travel_danger_0014_a: "[THIS.Char.GetShortUIName|U]와 [THIS.Char.GetHerHis] 동료들은 [location.GetName]의 [location.Custom('GetTerrainTypePlural')]를 여행하는 동안 병에 걸렸습니다."
 
- travl_this_or_diplomacy_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, diplomacy_character.GetID), THIS.Char.GetSheHe, diplomacy_character.GetShortUIName)]"
- travl_this_or_martial_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, martial_character.GetID), THIS.Char.GetSheHe, martial_character.GetShortUIName)]"
- travl_this_or_stewardship_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, stewardship_character.GetID), THIS.Char.GetSheHe, stewardship_character.GetShortUIName)]"
- travl_this_or_intrigue_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, intrigue_character.GetID), THIS.Char.GetSheHe, intrigue_character.GetShortUIName)]"
- travl_this_or_learning_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, learning_character.GetID), THIS.Char.GetSheHe, learning_character.GetShortUIName)]"
- travl_this_or_prowess_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, prowess_character.GetID), THIS.Char.GetSheHe, prowess_character.GetShortUIName)]"
- travl_this_or_gold_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, gold_character.GetID), THIS.Char.GetSheHe, gold_character.GetShortUIName)]"
+travl_this_or_diplomacy_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, diplomacy_character.GetID), THIS.Char.GetSheHe, diplomacy_character.GetShortUIName)]"
+travl_this_or_martial_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, martial_character.GetID), THIS.Char.GetSheHe, martial_character.GetShortUIName)]"
+travl_this_or_stewardship_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, stewardship_character.GetID), THIS.Char.GetSheHe, stewardship_character.GetShortUIName)]"
+travl_this_or_intrigue_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, intrigue_character.GetID), THIS.Char.GetSheHe, intrigue_character.GetShortUIName)]"
+travl_this_or_learning_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, learning_character.GetID), THIS.Char.GetSheHe, learning_character.GetShortUIName)]"
+travl_this_or_prowess_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, prowess_character.GetID), THIS.Char.GetSheHe, prowess_character.GetShortUIName)]"
+travl_this_or_gold_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, gold_character.GetID), THIS.Char.GetSheHe, gold_character.GetShortUIName)]"
 
  # Custom tooltips
 travl_they_got_a_visitor_tt: "[THIS.Char.GetShortUIName|U]는 [THIS.Var('travl_event_host').Char.GetShortUINamePossessive] [court|E]에 머물기로 했습니다."
