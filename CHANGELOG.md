@@ -2,7 +2,7 @@
 
 ## Version 0.6.1
 
-### Game Balance
+### Localization
 
 * Added Korean translation by @gazette2.
 
