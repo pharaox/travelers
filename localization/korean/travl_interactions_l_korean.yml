@@ -1,15 +1,15 @@
 ﻿l_korean:
  # travl_invite_courtiers_interaction
-travl_invite_courtiers_interaction: "궁정으로 인물 초대"
-travl_invite_courtiers_interaction_desc: "인물들을 [court|E]로 이동시켜서 그들을 [courtiers|E]로 만듭니다."
-recipient_secondary_travl_invite_courtiers_interaction: "$INTERACTION_RECIPIENT$"
-# Message titles
-travl_msg_departed_for_court: "궁정으로 출발"
-travl_msg_arrived_at_court: "궁정에 도착"
-travl_msg_escaped_from_prison: "감옥에서 탈출함"
+ travl_invite_courtiers_interaction: "궁정으로 인물 초대"
+ travl_invite_courtiers_interaction_desc: "인물들을 [court|E]로 이동시켜서 그들을 [courtiers|E]로 만듭니다."
+ recipient_secondary_travl_invite_courtiers_interaction: "$INTERACTION_RECIPIENT$"
+ # Message titles
+ travl_msg_departed_for_court: "궁정으로 출발"
+ travl_msg_arrived_at_court: "궁정에 도착"
+ travl_msg_escaped_from_prison: "감옥에서 탈출함"
 
-# Message tooltips
-travl_departed_for_court_tt: "[CHARACTER.GetShortUIName]가 [TARGET_CHARACTER.GetShortUINamePossessive] 궁정으로 출발했습니다."
-travl_arrived_at_court_tt: "[CHARACTER.GetShortUIName]가 [TARGET_CHARACTER.GetShortUINamePossessive] 궁정에 도착했습니다."
-travl_departed_for_court_joined_tt: "$travl_departed_for_court_tt$ [CHARACTER.GetSheHe|U]는 [TARGET_CHARACTER.GetShortUINamePossessive] 궁정에 임시로 합류했으며 목적지에 도착하면 떠날 것입니다."
-travl_arrived_at_court_joined_tt: "$travl_arrived_at_court_tt$ [CHARACTER.GetSheHe|U]는 [TARGET_CHARACTER.GetShortUINamePossessive] 궁정에 임시로 합류했으며 곧 떠날 것입니다."
+ # Message tooltips
+ travl_departed_for_court_tt: "[CHARACTER.GetShortUIName]가 [TARGET_CHARACTER.GetShortUINamePossessive] 궁정으로 출발했습니다."
+ travl_arrived_at_court_tt: "[CHARACTER.GetShortUIName]가 [TARGET_CHARACTER.GetShortUINamePossessive] 궁정에 도착했습니다."
+ travl_departed_for_court_joined_tt: "$travl_departed_for_court_tt$ [CHARACTER.GetSheHe|U]는 [TARGET_CHARACTER.GetShortUINamePossessive] 궁정에 임시로 합류했으며 목적지에 도착하면 떠날 것입니다."
+ travl_arrived_at_court_joined_tt: "$travl_arrived_at_court_tt$ [CHARACTER.GetSheHe|U]는 [TARGET_CHARACTER.GetShortUINamePossessive] 궁정에 임시로 합류했으며 곧 떠날 것입니다."
