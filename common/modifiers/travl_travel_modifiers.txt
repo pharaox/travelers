@@ -18,3 +18,11 @@ travl_prison_guard_modifier = {
 	diplomacy = -1
 	prowess = 1
 }
+
+travl_travel_prison_type = {
+	diplomacy = -5
+	dread_baseline_add = -20
+	dread_loss_mult = 1
+	monthly_lifestyle_xp_gain_mult = -0.75
+	icon = prison_negative
+}

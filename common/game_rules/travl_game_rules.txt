@@ -34,6 +34,22 @@ travl_travel_events = {
 	}
 }
 
+travl_prison_interactions = {
+	categories = {
+		travl_travelers
+	}
+
+	default = travl_prison_interactions_enabled
+
+	travl_prison_interactions_disabled = {
+		flag = GG_can_change_rule
+	}
+
+	travl_prison_interactions_enabled = {
+		flag = GG_can_change_rule
+	}
+}
+
 travl_travel_safety = {
 	categories = {
 		travl_travelers

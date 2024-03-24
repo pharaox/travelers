@@ -196,6 +196,7 @@ travl_travel_on_arrival = {
 
 		# Remove travel variables
 		travl_remove_sender_and_receiver_effect = yes
+		travl_remove_prisoner_flags_effect = yes
 		travl_remove_leader_and_companions_effect = yes
 
 		# Move added characters back to pool
@@ -330,6 +331,7 @@ travl_on_travel_plan_abort = {
 
 		# Remove travel variables
 		travl_remove_sender_and_receiver_effect = yes
+		travl_remove_prisoner_flags_effect = yes
 		travl_remove_leader_or_companion_effect = yes
 
 		# Move added characters back to pool

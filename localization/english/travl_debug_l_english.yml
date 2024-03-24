@@ -13,10 +13,10 @@
  travl_debug_msg_recruited_as_travel_leader: "$travl_debug_prefix$: Recruited as travel leader"
  travl_debug_msg_moving_added_character_back_to_pool: "$travl_debug_prefix$: Moving added character back to pool"
  travl_debug_msg_adding_entourage_character: "$travl_debug_prefix$: Adding entourage character ($travl_travel_event$)"
- travl_debug_msg_aborting_travel_to_start_travel: "$travl_debug_prefix$: Aborting travel to start travel ($travl_travel_event$)" # Rare
- travl_debug_msg_aborting_travel_completely: "$travl_debug_prefix$: Aborting travel completely ($travl_travel_event$)" # Rare
- travl_debug_msg_aborting_travel_for_prison_guard: "$travl_debug_prefix$: Aborting travel for prison guard" # Rare
- travl_debug_msg_restoring_location: "$travl_debug_prefix$: Restoring location ($travl_location$)" # Rare
+ travl_debug_msg_aborting_travel_to_start_travel: "$travl_debug_prefix$: Aborting travel to start travel$travl_imprisoned$ ($travl_travel_event$)" # Rare
+ travl_debug_msg_aborting_travel_completely: "$travl_debug_prefix$: Aborting travel completely$travl_imprisoned$ ($travl_travel_event$)" # Rare
+ travl_debug_msg_aborting_travel_for_prison_guard: "$travl_debug_prefix$: Aborting travel for prison guard$travl_imprisoned$" # Rare
+ travl_debug_msg_restoring_location: "$travl_debug_prefix$: Restoring location$travl_imprisoned$ ($travl_location$)" # Rare
 
  travl_debug_msg_freeing_prisoner: "$travl_debug_prefix$: Freeing prisoner" # Rare
 
@@ -25,15 +25,15 @@
  travl_debug_msg_changing_leader: "$travl_debug_prefix$: Changing travel leader" # Rare
  travl_debug_msg_removing_companion: "$travl_debug_prefix$: Removing travel companion" # Rare
 
- travl_debug_msg_character_departed_leader: "$travl_debug_prefix$: Character departed for $travl_travel_receiver$'s court as leader ($travl_travel_event$)"
- travl_debug_msg_character_departed_companion: "$travl_debug_prefix$: Character departed for $travl_travel_receiver$'s court as companion of $travl_travel_leader$ ($travl_travel_event$)"
- travl_debug_msg_character_departed_entourage: "$travl_debug_prefix$: Character departed for $travl_receiver$'s court as entourage of $travl_owner$ ($travl_travel_event$)"
- travl_debug_msg_character_arrived_leader: "$travl_debug_prefix$: Character arrived at $travl_travel_receiver$'s court as leader"
- travl_debug_msg_character_arrived_companion: "$travl_debug_prefix$: Character arrived at $travl_travel_receiver$'s court as companion of $travl_travel_leader$"
- travl_debug_msg_character_arrived_entourage: "$travl_debug_prefix$: Character arrived at $travl_receiver$'s court as entourage of $travl_owner$"
+ travl_debug_msg_character_departed_leader: "$travl_debug_prefix$: Character departed for $travl_travel_receiver$'s court as leader$travl_imprisoned$ ($travl_travel_event$)"
+ travl_debug_msg_character_departed_companion: "$travl_debug_prefix$: Character departed for $travl_travel_receiver$'s court as companion of $travl_travel_leader$$travl_imprisoned$ ($travl_travel_event$)"
+ travl_debug_msg_character_departed_entourage: "$travl_debug_prefix$: Character departed for $travl_receiver$'s court as entourage of $travl_owner$$travl_imprisoned$ ($travl_travel_event$)"
+ travl_debug_msg_character_arrived_leader: "$travl_debug_prefix$: Character arrived at $travl_travel_receiver$'s court as leader$travl_imprisoned$"
+ travl_debug_msg_character_arrived_companion: "$travl_debug_prefix$: Character arrived at $travl_travel_receiver$'s court as companion of $travl_travel_leader$$travl_imprisoned$"
+ travl_debug_msg_character_arrived_entourage: "$travl_debug_prefix$: Character arrived at $travl_receiver$'s court as entourage of $travl_owner$$travl_imprisoned$"
 
  travl_debug_msg_travel_moved: "$travl_debug_prefix$: Travel plan to $travl_travel_receiver$'s court moved"
- travl_debug_msg_travel_aborted: "$travl_debug_prefix$: Travel plan to $travl_travel_receiver$'s court aborted" # Rare
+ travl_debug_msg_travel_aborted: "$travl_debug_prefix$: Travel plan to $travl_travel_receiver$'s court aborted$travl_imprisoned$" # Rare
 
  travl_debug_msg_character_married_major: "$travl_debug_prefix$: Character married as major partner ($travl_location$)"
  travl_debug_msg_character_married_minor: "$travl_debug_prefix$: Character married as minor partner ($travl_location$)"
@@ -188,3 +188,5 @@
 
  travl_danger_value: "[THIS.Var('danger_value').GetValue]"
  travl_for_prison_guard: "[Select_CString(THIS.Var('prison_guard').IsSet, ' for prison guard', '')]"
+
+ travl_imprisoned: "[Select_CString(THIS.Char.IsImprisoned, ', imprisoned', '')]"
