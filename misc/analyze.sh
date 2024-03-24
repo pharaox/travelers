@@ -38,7 +38,9 @@ echo
 
 # Rare (actions)
 echo "Aborting travel to start travel: $(grep -a "Aborting travel to start travel" $LOGFILE | uniq | wc -l)"
+echo "- imprisoned: $(grep -a "Aborting travel to start travel, imprisoned" $LOGFILE | uniq | wc -l)"
 echo "Aborting travel completely: $(grep -a "Aborting travel completely" $LOGFILE | uniq | wc -l)"
+echo "- imprisoned: $(grep -a "Aborting travel completely, imprisoned" $LOGFILE | uniq | wc -l)"
 echo "Restoring location: $(grep -a "Restoring location" $LOGFILE | uniq | wc -l)"
 echo "Changing travel leader: $(grep -a "Changing travel leader" $LOGFILE | uniq | wc -l)"
 echo "Removing travel companion: $(grep -a "Removing travel companion" $LOGFILE | uniq | wc -l)"
@@ -48,6 +50,7 @@ echo
 
 # Rare (events)
 echo "Travel plan aborted: $(grep -a "Travel plan to .*'s court aborted" $LOGFILE | wc -l)"
+echo "- imprisoned: $(grep -a "Travel plan to .*'s court aborted, imprisoned" $LOGFILE | uniq | wc -l)"
 echo "Aborting travel for prison guard: $(grep -a "Aborting travel for prison guard" $LOGFILE | uniq | wc -l)"
 echo
 
@@ -56,20 +59,20 @@ echo "Pulse event fired: $(grep -a "Pulse event fired" $LOGFILE | wc -l)"
 echo
 
 # Danger events
-echo "Danger: Bandits event fired: $(grep -a "Danger: Bandits event" $LOGFILE | wc -l)"
-echo "Danger: Missing Companion event fired: $(grep -a "Danger: Missing Companion event" $LOGFILE | wc -l)"
-echo "Danger: Lost event fired: $(grep -a "Danger: Lost event" $LOGFILE | wc -l)"
-echo "Danger: Out of Water event fired: $(grep -a "Danger: Out of Water event" $LOGFILE | wc -l)"
-echo "Danger: Aftermath event fired: $(grep -a "Danger: Aftermath.* event" $LOGFILE | wc -l)"
-echo "Danger: Sea Storm event fired: $(grep -a "Danger: Sea Storm event" $LOGFILE | wc -l)"
-echo "Danger: Avalanche event fired: $(grep -a "Danger: Avalanche event" $LOGFILE | wc -l)"
-echo "Danger: Snowbound event fired: $(grep -a "Danger: Snowbound event" $LOGFILE | wc -l)"
-echo "Danger: Ripped Sails event fired: $(grep -a "Danger: Ripped Sails event" $LOGFILE | wc -l)"
-echo "Danger: Brush Fire event fired: $(grep -a "Danger: Brush Fire event" $LOGFILE | wc -l)"
-echo "Danger: Mosquitoes event fired: $(grep -a "Danger: Mosquitoes event" $LOGFILE | wc -l)"
-echo "Danger: Beast Attack event fired: $(grep -a "Danger: Beast Attack event" $LOGFILE | wc -l)"
-echo "Danger: Spoiled Food event fired: $(grep -a "Danger: Spoiled Food event" $LOGFILE | wc -l)"
-echo "Danger: Sickness event fired: $(grep -a "Danger: Sickness event" $LOGFILE | wc -l)"
+echo "Danger: Bandits event fired: $(grep -a "Danger: Bandits event fired" $LOGFILE | wc -l)"
+echo "Danger: Missing Companion event fired: $(grep -a "Danger: Missing Companion event fired" $LOGFILE | wc -l)"
+echo "Danger: Lost event fired: $(grep -a "Danger: Lost event fired" $LOGFILE | wc -l)"
+echo "Danger: Out of Water event fired: $(grep -a "Danger: Out of Water event fired" $LOGFILE | wc -l)"
+echo "Danger: Aftermath event fired: $(grep -a "Danger: Aftermath.* event fired" $LOGFILE | wc -l)"
+echo "Danger: Sea Storm event fired: $(grep -a "Danger: Sea Storm event fired" $LOGFILE | wc -l)"
+echo "Danger: Avalanche event fired: $(grep -a "Danger: Avalanche event fired" $LOGFILE | wc -l)"
+echo "Danger: Snowbound event fired: $(grep -a "Danger: Snowbound event fired" $LOGFILE | wc -l)"
+echo "Danger: Ripped Sails event fired: $(grep -a "Danger: Ripped Sails event fired" $LOGFILE | wc -l)"
+echo "Danger: Brush Fire event fired: $(grep -a "Danger: Brush Fire event fired" $LOGFILE | wc -l)"
+echo "Danger: Mosquitoes event fired: $(grep -a "Danger: Mosquitoes event fired" $LOGFILE | wc -l)"
+echo "Danger: Beast Attack event fired: $(grep -a "Danger: Beast Attack event fired" $LOGFILE | wc -l)"
+echo "Danger: Spoiled Food event fired: $(grep -a "Danger: Spoiled Food event fired" $LOGFILE | wc -l)"
+echo "Danger: Sickness event fired: $(grep -a "Danger: Sickness event fired" $LOGFILE | wc -l)"
 echo "Total danger events: $(grep -a "Danger: .* event option" $LOGFILE | wc -l)"
 echo "- for prison guard: $(grep -a "Danger: .* event fired for prison guard" $LOGFILE | wc -l)"
 echo "Character died: $(grep -a "Character died, " $LOGFILE | wc -l)"
