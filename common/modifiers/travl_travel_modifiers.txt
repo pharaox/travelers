@@ -5,12 +5,12 @@
 
 travl_travel_safety_high_modifier = {
 	icon = outdoors_positive
-	travel_safety = 20
+	travel_safety = 10
 }
 
 travl_travel_safety_very_high_modifier = {
 	icon = outdoors_positive
-	travel_safety = 40
+	travel_safety = 20
 }
 
 travl_prison_guard_modifier = {
