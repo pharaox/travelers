@@ -15,23 +15,23 @@ scripted_effect travl_travel_danger_0001_outcome_effect = {
 
 scripted_effect travl_travel_danger_0001_a_success_effect = {
 	scope:prowess_character = {
-		travl_event_add_stress_effect = { TRAIT = flag:craven VALUE = flag:major }
+		travl_event_add_stress_effect = { TRAIT = craven VALUE = major }
 		travl_event_add_prestige_effect = { VALUE = minor_prestige_value }
 	}
 }
 
 scripted_effect travl_travel_danger_0001_a_failure_effect = {
 	scope:prowess_character = {
-		travl_event_add_stress_effect = { TRAIT = flag:craven VALUE = flag:major }
+		travl_event_add_stress_effect = { TRAIT = craven VALUE = major }
 		random_list = {
 			10 = {
-				travl_event_death_effect = { REASON = flag:death_fight KILLER = scope:bandit }
+				travl_event_death_effect = { REASON = death_fight KILLER = scope:bandit }
 			}
 			20 = {
-				travl_event_add_trait_effect = { TRAIT = flag:maimed }
+				travl_event_add_trait_effect = { TRAIT = maimed }
 			}
 			70 = {
-				travl_event_wound_effect = { REASON = flag:fight }
+				travl_event_wound_effect = { REASON = fight }
 			}
 		}
 	}
@@ -53,8 +53,8 @@ scripted_effect travl_travel_danger_0001_b_failure_effect = {
 
 scripted_effect travl_travel_danger_0001_c_effect = {
 	scope:gold_character = {
-		travl_event_add_stress_effect = { TRAIT = flag:greedy VALUE = flag:medium }
-		travl_event_remove_gold_effect = { VALUE = minor_gold_value }
+		travl_event_add_stress_effect = { TRAIT = greedy VALUE = medium }
+		travl_event_pay_gold_effect = { TARGET = scope:bandit VALUE = minor_gold_value }
 	}
 }
 
@@ -67,13 +67,13 @@ scripted_effect travl_travel_danger_0001_failure_effect = {
 		list = travelers
 		random_list = {
 			5 = {
-				travl_event_death_effect = { REASON = flag:death_fight KILLER = scope:bandit }
+				travl_event_death_effect = { REASON = death_fight KILLER = scope:bandit }
 			}
 			10 = {
-				travl_event_add_trait_effect = { TRAIT = flag:maimed }
+				travl_event_add_trait_effect = { TRAIT = maimed }
 			}
 			25 = {
-				travl_event_wound_effect = { REASON = flag:fight }
+				travl_event_wound_effect = { REASON = fight }
 			}
 			10 = {
 				travl_event_remove_prestige_effect = { VALUE = medium_prestige_value }

@@ -15,22 +15,22 @@ scripted_effect travl_travel_danger_0007_outcome_effect = {
 
 scripted_effect travl_travel_danger_0007_a_success_effect = {
 	scope:prowess_character = {
-		travl_event_add_stress_effect = { TRAIT = flag:craven VALUE = flag:medium }
+		travl_event_add_stress_effect = { TRAIT = craven VALUE = medium }
 		travl_event_add_prestige_effect = { VALUE = miniscule_prestige_value }
 	}
 }
 
 scripted_effect travl_travel_danger_0007_a_failure_effect = {
 	scope:prowess_character = {
-		travl_event_add_stress_effect = { TRAIT = flag:craven VALUE = flag:medium }
-		travl_event_wound_effect = { REASON = flag:avalanche }
+		travl_event_add_stress_effect = { TRAIT = craven VALUE = medium }
+		travl_event_wound_effect = { REASON = avalanche }
 	}
 	travl_travel_danger_0007_failure_effect = yes
 }
 
 scripted_effect travl_travel_danger_0007_b_effect = {
 	root = {
-		travl_event_add_stress_effect = { TRAIT = flag:brave VALUE = flag:medium }
+		travl_event_add_stress_effect = { TRAIT = brave VALUE = medium }
 	}
 	travl_travel_danger_0007_failure_effect = yes
 }
@@ -39,16 +39,16 @@ scripted_effect travl_travel_danger_0007_failure_effect = {
 	scope:avalanche_victim = {
 		random_list = {
 			50 = {
-				travl_event_wound_effect = { REASON = flag:avalanche }
+				travl_event_wound_effect = { REASON = avalanche }
 			}
 			50 = {
-				travl_event_death_effect = { REASON = flag:death_avalanche KILLER = this }
+				travl_event_death_effect = { REASON = death_avalanche KILLER = this }
 			}
 		}
 	}
 	every_in_list = {
 		list = travelers
-		travl_event_delay_travel_effect = { VALUE = flag:medium }
+		travl_event_delay_travel_effect = { VALUE = medium }
 	}
 }
 

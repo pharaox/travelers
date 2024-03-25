@@ -273,6 +273,13 @@ travl_on_travel_plan_movement = {
 		}
 	}
 
+	on_actions = {
+		travl_travel_danger_events
+		travl_prisoner_events
+	}
+}
+
+travl_travel_danger_events = {
 	random_events = {
 		chance_of_no_event = {
 			value = 100
@@ -293,6 +300,16 @@ travl_on_travel_plan_movement = {
 		100 = travl_travel_danger.0012 # Danger: Beast Attack
 		 20 = travl_travel_danger.0013 # Danger: Spoiled Food
 		200 = travl_travel_danger.0014 # Danger: Sickness
+	}
+}
+
+travl_prisoner_events = {
+	random_events = {
+		chance_of_no_event = {
+			value = 80
+		}
+		100 = 0
+		100 = travl_prisoner.0001 # Prisoner: Escape from Prison
 	}
 }
 

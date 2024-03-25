@@ -844,18 +844,36 @@ travl_send_messages_effect = {
 }
 
 travl_escape_from_prison_effect = {
-	save_temporary_scope_as = character
-	every_in_list = {
-		list = $RECIPIENTS$
-		send_interface_message = {
-			type = event_prison_bad
-			title = travl_msg_escaped_from_prison
-			right_icon = scope:character
+	hidden_effect = {
+		save_temporary_scope_as = character
+		every_in_list = {
+			list = $RECIPIENTS$
 
-			show_as_tooltip = {
-				every_in_list = {
-					list = $PRISONERS$
-					release_from_prison = yes
+			if = {
+				limit = { is_in_list = $PRISONERS$ }
+				send_interface_message = {
+					type = event_prison_good
+					title = travl_msg_escaped_from_prison
+					right_icon = scope:character
+					show_as_tooltip = {
+						every_in_list = {
+							list = $PRISONERS$
+							release_from_prison = yes
+						}
+					}
+				}
+			}
+			else = {
+				send_interface_message = {
+					type = event_prison_bad
+					title = travl_msg_escaped_from_prison
+					right_icon = scope:character
+					show_as_tooltip = {
+						every_in_list = {
+							list = $PRISONERS$
+							release_from_prison = yes
+						}
+					}
 				}
 			}
 		}
@@ -869,8 +887,13 @@ travl_escape_from_prison_effect = {
 
 		travl_debug_log_effect = { MSG = travl_debug_msg_freeing_prisoner }
 		imprisoner ?= { save_temporary_scope_as = imprisoner }
-		travl_remove_prisoner_flags_effect = yes
-		escape_from_prison_effect = yes
+		hidden_effect = {
+			travl_remove_prisoner_flags_effect = yes
+		}
+		if = {
+			limit = { exists = scope:imprisoner }
+			escape_from_prison_effect = yes
+		}
 	}
 }
 

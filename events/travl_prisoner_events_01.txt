@@ -1,0 +1,511 @@
+﻿namespace = travl_prisoner
+
+scripted_effect travl_prisoner_0001_outcome_effect = {
+	# Setup character effects
+	travl_prisoner_0001_$OUTCOME$_effect = yes
+
+	# Send messages to potential recipients and apply character effects
+	travl_event_apply_outcome_effect = {
+		EVENT = prisoner_0001
+		OUTCOME = $OUTCOME$
+		RECIPIENTS = recipients
+		TRAVELERS = travelers
+	}
+}
+
+scripted_effect travl_prisoner_0001_a_success_effect = {
+	root = {
+		travl_event_add_stress_effect = { TRAIT = craven VALUE = major }
+		travl_event_add_prestige_effect = { VALUE = medium_prestige_value }
+		travl_event_escape_from_prison_effect = yes
+	}
+	scope:guard = {
+		random_list = {
+			30 = {
+				travl_event_death_effect = { REASON = death_fight KILLER = root }
+			}
+			30 = {
+				travl_event_add_trait_effect = { TRAIT = maimed }
+			}
+			40 = {
+				travl_event_wound_effect = { REASON = fight }
+			}
+		}
+	}
+}
+
+scripted_effect travl_prisoner_0001_a_failure_effect = {
+	root = {
+		travl_event_add_stress_effect = { TRAIT = craven VALUE = major }
+		random_list = {
+			10 = {
+				travl_event_death_effect = { REASON = death_fight KILLER = scope:guard }
+			}
+			20 = {
+				travl_event_add_trait_effect = { TRAIT = maimed }
+			}
+			70 = {
+				travl_event_wound_effect = { REASON = fight }
+			}
+		}
+	}
+	scope:guard = {
+		travl_event_add_prestige_effect = { VALUE = minor_prestige_value }
+	}
+}
+
+scripted_effect travl_prisoner_0001_b_success_effect = {
+	root = {
+		travl_event_add_stress_effect = { TRAIT = shy VALUE = medium }
+		travl_event_add_prestige_effect = { VALUE = minor_prestige_value }
+		travl_event_escape_from_prison_effect = yes
+	}
+}
+
+scripted_effect travl_prisoner_0001_b_failure_effect = {
+	root = {
+		travl_event_add_stress_effect = { TRAIT = shy VALUE = medium }
+		travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
+		random_list = {
+			30 = {
+				travl_event_wound_effect = { REASON = whipping }
+			}
+			70 = {}
+		}
+	}
+}
+
+scripted_effect travl_prisoner_0001_c_success_effect = {
+	root = {
+		travl_event_add_stress_effect = { TRAIT = honest VALUE = medium }
+		travl_event_add_prestige_effect = { VALUE = minor_prestige_value }
+		travl_event_escape_from_prison_effect = yes
+	}
+}
+
+scripted_effect travl_prisoner_0001_c_failure_effect = {
+	root = {
+		travl_event_add_stress_effect = { TRAIT = honest VALUE = medium }
+		travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
+		random_list = {
+			70 = {
+				travl_event_wound_effect = { REASON = whipping }
+			}
+			30 = {}
+		}
+	}
+}
+
+scripted_effect travl_prisoner_0001_d_success_effect = {
+	root = {
+		travl_event_add_stress_effect = { TRAIT = greedy VALUE = medium }
+		travl_event_pay_gold_effect = { TARGET = scope:guard VALUE = travl_bribe_gold_value }
+		travl_event_escape_from_prison_effect = yes
+	}
+}
+
+scripted_effect travl_prisoner_0001_d_failure_effect = {
+	root = {
+		travl_event_add_stress_effect = { TRAIT = greedy VALUE = medium }
+		travl_event_remove_prestige_effect = { VALUE = medium_prestige_value }
+	}
+}
+
+scripted_effect travl_prisoner_0001_e_success_effect = {
+	root = {
+		travl_event_add_stress_effect = { TRAIT = chaste VALUE = medium }
+		travl_event_had_sex_with_effect = { TARGET = scope:guard }
+		travl_event_escape_from_prison_effect = yes
+	}
+}
+
+scripted_effect travl_prisoner_0001_e_failure_effect = {
+	root = {
+		travl_event_add_stress_effect = { TRAIT = chaste VALUE = medium }
+		travl_event_remove_prestige_effect = { VALUE = medium_prestige_value }
+	}
+}
+
+# Prisoner: Escape from Prison
+travl_prisoner.0001 = {
+	type = character_event
+	title = travl_prisoner.0001.t
+	desc = travl_prisoner.0001.desc
+	theme = travel
+
+	left_portrait = {
+		character = root
+		triggered_animation = {
+			trigger = {
+				prowess >= scope:guard.prowess
+			}
+			animation = personality_bold
+		}
+		triggered_animation = {
+			trigger = {
+				diplomacy >= scope:guard.diplomacy
+			}
+			animation = personality_honorable
+		}
+		triggered_animation = {
+			trigger = {
+				intrigue >= scope:guard.intrigue
+			}
+			animation = scheme
+		}
+		triggered_animation = {
+			trigger = {
+				diplomacy >= low_skill_rating
+				gold >= travl_bribe_gold_value
+			}
+			animation = personality_ratioinal
+		}
+		triggered_animation = {
+			trigger = {
+				intrigue >= low_skill_rating
+				is_attracted_to_gender_of = scope:guard
+				scope:guard = {
+					is_attracted_to_gender_of = root
+				}
+			}
+			animation = flirtation
+		}
+		animation = idle
+	}
+	right_portrait = {
+		character = scope:guard
+	}
+
+	trigger = {
+		has_game_rule = travl_travel_events_enabled
+
+		# Travel companion of a prison guard character
+		has_variable = travl_travel_leader
+		NOT = { var:travl_travel_leader = root }
+		var:travl_travel_leader ?= {
+			has_character_modifier = travl_prison_guard_modifier
+		}
+
+		# Traveling adult prisoner
+		travl_is_imprisoned_travelling_adult_trigger = yes
+
+		NOT = { has_character_flag = travl_prisoner_0001_fired }
+	}
+
+	cooldown = { months = 6 }
+
+	immediate = {
+		travl_debug_log_travel_event_effect = { MSG = travl_debug_msg_prisoner_0001_t }
+
+		# Get travelers and message recipients
+		travl_event_get_travelers_effect = { TRAVELERS = travelers }
+		travl_event_get_message_recipients_effect = { RECIPIENTS = recipients }
+
+		# Save guard
+		var:travl_travel_leader = {
+			save_scope_as = guard
+		}
+
+		# Save location
+		location = { save_scope_as = location }
+
+		# Prevent this event from firing too frequently
+		add_character_flag = {
+			flag = travl_prisoner_0001_fired
+			months = 6
+		}
+	}
+
+	# Fight them (prowess challenge)
+	option = {
+		name = travl_prisoner.0001.a
+
+		trigger = {
+			prowess >= scope:guard.prowess
+		}
+
+		duel = {
+			skill = prowess
+			value = {
+				value = scope:guard.prowess
+				add = 10
+			}
+			50 = {
+				desc = travl_prisoner.0001.a.success
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 3.5
+					min = -49
+				}
+				travl_prisoner_0001_outcome_effect = { OUTCOME = a_success }
+			}
+			50 = {
+				desc = travl_prisoner.0001.a.failure
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -3.5
+					min = -49
+				}
+				travl_prisoner_0001_outcome_effect = { OUTCOME = a_failure }
+			}
+		}
+
+		ai_chance = {
+			base = 100
+			modifier = {
+				add = {
+					value = prowess
+					subtract = {
+						value = scope:guard.prowess
+						add = 10
+					}
+					multiply = 5
+				}
+			}
+			ai_value_modifier = {
+				ai_boldness = 0.5 # stress: craven
+				ai_vengefulness = 0.5
+			}
+		}
+	}
+
+	# Persuade them to set me free (diplomacy challenge)
+	option = {
+		name = travl_prisoner.0001.b
+
+		trigger = {
+			diplomacy >= scope:guard.diplomacy
+		}
+
+		duel = {
+			skill = diplomacy
+			value = {
+				value = scope:guard.diplomacy
+				add = 10
+			}
+			50 = {
+				desc = travl_prisoner.0001.b.success
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 3.5
+					min = -49
+				}
+				travl_prisoner_0001_outcome_effect = { OUTCOME = b_success }
+			}
+			50 = {
+				desc = travl_prisoner.0001.b.failure
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -3.5
+					min = -49
+				}
+				travl_prisoner_0001_outcome_effect = { OUTCOME = b_failure }
+			}
+		}
+
+		ai_chance = {
+			base = 100
+			modifier = {
+				add = {
+					value = diplomacy
+					subtract = {
+						value = scope:guard.diplomacy
+						add = 10
+					}
+					multiply = 5
+				}
+			}
+			ai_value_modifier = {
+				ai_boldness = 0.5
+				ai_sociability = 0.5 # stress: shy
+			}
+		}
+	}
+
+	# Trick them into freeing me (intrigue challenge)
+	option = {
+		name = travl_prisoner.0001.c
+
+		trigger = {
+			intrigue >= scope:guard.intrigue
+		}
+
+		duel = {
+			skill = intrigue
+			value = {
+				value = scope:guard.intrigue
+				add = 10
+			}
+			50 = {
+				desc = travl_prisoner.0001.c.success
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 3.5
+					min = -49
+				}
+				travl_prisoner_0001_outcome_effect = { OUTCOME = c_success }
+			}
+			50 = {
+				desc = travl_prisoner.0001.c.failure
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -3.5
+					min = -49
+				}
+				travl_prisoner_0001_outcome_effect = { OUTCOME = c_failure }
+			}
+		}
+
+		ai_chance = {
+			base = 100
+			modifier = {
+				add = {
+					value = intrigue
+					subtract = {
+						value = scope:guard.intrigue
+						add = 10
+					}
+					multiply = 5
+				}
+			}
+			ai_value_modifier = {
+				ai_boldness = 0.5
+				ai_honor = -0.5 # stress: honest
+			}
+		}
+	}
+
+	# Bribe them to let me escape (diplomacy challenge)
+	option = {
+		name = travl_prisoner.0001.d
+
+		trigger = {
+			diplomacy >= low_skill_rating
+			gold >= travl_bribe_gold_value
+		}
+
+		duel = {
+			skill = diplomacy
+			target = scope:guard
+			50 = {
+				desc = travl_prisoner.0001.d.success
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 3.5
+					min = -49
+				}
+				travl_prisoner_0001_outcome_effect = { OUTCOME = d_success }
+			}
+			50 = {
+				desc = travl_prisoner.0001.d.failure
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -3.5
+					min = -49
+				}
+				travl_prisoner_0001_outcome_effect = { OUTCOME = d_failure }
+			}
+		}
+
+		ai_chance = {
+			base = 100
+			modifier = {
+				add = {
+					value = diplomacy
+					subtract = scope:guard.diplomacy
+					multiply = 5
+				}
+			}
+			ai_value_modifier = {
+				ai_boldness = 0.5
+				ai_greed = -0.5 # stress: greedy
+			}
+		}
+	}
+
+	# Seduce them to gain my freedom (special challenge)
+	option = {
+		name = travl_prisoner.0001.e
+
+		trigger = {
+			intrigue >= low_skill_rating
+			is_attracted_to_gender_of = scope:guard
+			scope:guard = {
+				is_attracted_to_gender_of = root
+			}
+			trigger_if = {
+				limit = { is_ai = yes }
+				might_cheat_on_every_partner_trigger = yes
+			}
+		}
+
+		scope:guard = {
+			save_temporary_scope_as = target
+			save_temporary_opinion_value_as = {
+				name = target_opinion
+				target = root
+			}
+		}
+
+		duel = {
+			value = travl_seduce_duel_value
+			50 = {
+				desc = travl_prisoner.0001.e.success
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 3.5
+					min = -49
+				}
+				travl_prisoner_0001_outcome_effect = { OUTCOME = e_success }
+			}
+			50 = {
+				desc = travl_prisoner.0001.e.failure
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -3.5
+					min = -49
+				}
+				travl_prisoner_0001_outcome_effect = { OUTCOME = e_failure }
+			}
+		}
+
+		ai_chance = {
+			base = 100
+			modifier = {
+				scope:guard = {
+					save_temporary_scope_as = target
+					save_temporary_opinion_value_as = {
+						name = target_opinion
+						target = root
+					}
+				}
+				add = {
+					value = travl_seduce_duel_value
+					multiply = 5
+				}
+			}
+			ai_value_modifier = {
+				ai_boldness = 0.5
+			}
+			modifier = {
+				has_trait = lustful
+				add = 50
+			}
+			modifier = {
+				has_trait = chaste # stress: chaste
+				add = -50
+			}
+		}
+	}
+
+	# It's too dangerous
+	option = {
+		name = travl_prisoner.0001.z
+
+		travl_debug_log_effect = { MSG = travl_debug_msg_prisoner_0001_z }
+
+		ai_chance = {
+			base = 100
+		}
+	}
+}

@@ -153,6 +153,19 @@
  travl_debug_msg_travel_danger_0013_b_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0013_t$ event option b failure"
  travl_debug_msg_travel_danger_0013_c: "$travl_debug_prefix$: $travl_msg_travel_danger_0013_t$ event option c"
 
+ travl_debug_msg_prisoner_0001_t: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event fired"
+ travl_debug_msg_prisoner_0001_a_success: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option a success"
+ travl_debug_msg_prisoner_0001_a_failure: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option a failure"
+ travl_debug_msg_prisoner_0001_b_success: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option b success"
+ travl_debug_msg_prisoner_0001_b_failure: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option b failure"
+ travl_debug_msg_prisoner_0001_c_success: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option c success"
+ travl_debug_msg_prisoner_0001_c_failure: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option c failure"
+ travl_debug_msg_prisoner_0001_d_success: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option d success"
+ travl_debug_msg_prisoner_0001_d_failure: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option d failure"
+ travl_debug_msg_prisoner_0001_e_success: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option e success"
+ travl_debug_msg_prisoner_0001_e_failure: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option e failure"
+ travl_debug_msg_prisoner_0001_z: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option z"
+
  travl_debug_msg_travel_danger_0014_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0014_t$ event fired$travl_for_prison_guard$, danger: $travl_danger_value$"
  travl_debug_msg_travel_danger_0014_a: "$travl_debug_prefix$: $travl_msg_travel_danger_0014_t$ event option a"
 
@@ -162,6 +175,7 @@
  travl_debug_msg_event_character_lost_piety: "$travl_debug_prefix$: Character lost [THIS.Var('travl_event_piety').GetValue] piety"
  travl_debug_msg_event_character_gained_gold: "$travl_debug_prefix$: Character gained [THIS.Var('travl_event_gold').GetValue] gold"
  travl_debug_msg_event_character_lost_gold: "$travl_debug_prefix$: Character lost [THIS.Var('travl_event_gold').GetValue] gold"
+ travl_debug_msg_event_character_paid_gold: "$travl_debug_prefix$: Character paid [THIS.Var('travl_event_pay_gold_value').GetValue] gold to [THIS.Var('travl_event_pay_gold_target').Char.GetFullNameNoTooltip]"
  travl_debug_msg_event_character_injured: "$travl_debug_prefix$: Character injured, trait: [THIS.Var('travl_event_trait').GetFlagName]"
  travl_debug_msg_event_character_wounded: "$travl_debug_prefix$: Character wounded, reason: [THIS.Var('travl_event_wound').GetFlagName]"
  travl_debug_msg_event_character_diseased: "$travl_debug_prefix$: Character diseased, disease: [THIS.Var('travl_event_disease').GetFlagName]"
@@ -172,6 +186,8 @@
  travl_debug_msg_event_travel_delayed: "$travl_debug_prefix$: Travel delayed by a [THIS.Var('travl_event_travel_delay').GetFlagName] delay"
  travl_debug_msg_event_travel_added_modifier: "$travl_debug_prefix$: Travel added [THIS.Var('travl_event_travel_modifier').GetFlagName] modifier"
  travl_debug_msg_event_travel_added_waypoint: "$travl_debug_prefix$: Travel added [THIS.Var('travl_event_travel_waypoint').Province.GetNameNoTooltip] waypoint"
+ travl_debug_msg_event_had_sex: "$travl_debug_prefix$: Character had sex with [THIS.Var('travl_event_had_sex').Char.GetFullNameNoTooltip]"
+ travl_debug_msg_event_escaped_from_prison: "$travl_debug_prefix$: Character escaped from prison"
  travl_debug_msg_event_character_died: "$travl_debug_prefix$: Character died, reason: [THIS.Var('travl_event_death').GetFlagName]"
 
  travl_debug_msg_character_died_while_traveling: "$travl_debug_prefix_2$: Character died while traveling, reason: [THIS.Char.GetDeathReason]"

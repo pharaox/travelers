@@ -15,35 +15,34 @@ scripted_effect travl_travel_danger_0005_outcome_effect = {
 
 scripted_effect travl_travel_danger_0005_a_effect = {
 	root = {
-		travl_event_add_stress_effect = { TRAIT = flag:compassionate VALUE = flag:major }
+		travl_event_add_stress_effect = { TRAIT = compassionate VALUE = major }
 	}
 	scope:zombie = {
-		travl_event_death_effect = { REASON = flag:death_fight KILLER = root }
+		travl_event_death_effect = { REASON = death_fight KILLER = root }
 		add_to_list = travelers
 	}
 }
 
 scripted_effect travl_travel_danger_0005_b_effect = {
 	root = {
-		travl_event_add_stress_effect = { TRAIT = flag:craven VALUE = flag:major }
+		travl_event_add_stress_effect = { TRAIT = craven VALUE = major }
 	}
 }
 
 scripted_effect travl_travel_danger_1005_a_effect = {
 	scope:gold_character = {
-		travl_event_add_stress_effect = { TRAIT = flag:greedy VALUE = flag:medium }
-		travl_event_remove_gold_effect = { VALUE = tiny_gold_value }
+		travl_event_add_stress_effect = { TRAIT = greedy VALUE = medium }
+		travl_event_pay_gold_effect = { TARGET = scope:zombie VALUE = tiny_gold_value }
 		travl_event_add_piety_effect = { VALUE = minor_piety_value }
 	}
 	scope:zombie = {
-		travl_event_add_gold_effect = { VALUE = tiny_gold_value }
 		add_to_list = travelers
 	}
 }
 
 scripted_effect travl_travel_danger_1005_b_effect = {
 	root = {
-		travl_event_add_stress_effect = { TRAIT = flag:paranoid VALUE = flag:major }
+		travl_event_add_stress_effect = { TRAIT = paranoid VALUE = major }
 	}
 	scope:zombie = {
 		travl_event_visit_court_effect = { HOST = root.var:travl_travel_receiver }
@@ -51,43 +50,43 @@ scripted_effect travl_travel_danger_1005_b_effect = {
 	}
 	every_in_list = {
 		list = travelers
-		travl_event_add_travel_modifier_effect = { VALUE = flag:travel_guide_modifier }
+		travl_event_add_travel_modifier_effect = { MODIFIER = travel_guide_modifier }
 	}
 }
 
 scripted_effect travl_travel_danger_1005_c_effect = {
 	root = {
-		travl_event_add_stress_effect = { TRAIT = flag:compassionate VALUE = flag:major }
+		travl_event_add_stress_effect = { TRAIT = compassionate VALUE = major }
 	}
 }
 
 scripted_effect travl_travel_danger_2005_a_success_effect = {
 	scope:prowess_character = {
-		travl_event_add_stress_effect = { TRAIT = flag:craven VALUE = flag:major }
+		travl_event_add_stress_effect = { TRAIT = craven VALUE = major }
 		travl_event_add_prestige_effect = { VALUE = miniscule_prestige_value }
 	}
 	scope:zombie = {
-		travl_event_wound_effect = { REASON = flag:fight }
+		travl_event_wound_effect = { REASON = fight }
 		add_to_list = travelers
 	}
 }
 
 scripted_effect travl_travel_danger_2005_a_failure_effect = {
 	scope:prowess_character = {
-		travl_event_add_stress_effect = { TRAIT = flag:craven VALUE = flag:major }
-		travl_event_wound_effect = { REASON = flag:fight }
+		travl_event_add_stress_effect = { TRAIT = craven VALUE = major }
+		travl_event_wound_effect = { REASON = fight }
 	}
 }
 
 scripted_effect travl_travel_danger_2005_b_effect = {
 	root = {
-		travl_event_add_stress_effect = { TRAIT = flag:brave VALUE = flag:major }
+		travl_event_add_stress_effect = { TRAIT = brave VALUE = major }
 	}
 	random_in_list = {
 		list = travelers
 		random_list = {
 			50 = {
-				travl_event_wound_effect = { REASON = flag:fight }
+				travl_event_wound_effect = { REASON = fight }
 			}
 			50 = {}
 		}

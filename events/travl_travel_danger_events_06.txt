@@ -16,7 +16,7 @@ scripted_effect travl_travel_danger_0006_outcome_effect = {
 scripted_effect travl_travel_danger_0006_a_effect = {
 	every_in_list = {
 		list = travelers
-		travl_event_death_effect = { REASON = flag:death_sea_storm KILLER = this }
+		travl_event_death_effect = { REASON = death_sea_storm KILLER = this }
 	}
 }
 

@@ -1,0 +1,61 @@
+﻿travl_minor_danger_xp_min_value = 1
+travl_minor_danger_xp_max_value = 3
+travl_medium_danger_xp_min_value = 1
+travl_medium_danger_xp_max_value = 3
+travl_major_danger_xp_min_value = 1
+travl_major_danger_xp_max_value = 3
+
+travl_minor_travel_delay_value = 5
+travl_medium_travel_delay_value = 20
+travl_major_travel_delay_value = 100
+
+travl_bribe_gold_value = {
+	if = {
+		limit = {
+			is_landed = yes
+			highest_held_title_tier >= tier_county
+		}
+		value = medium_gold_value
+	}
+	else = {
+		value = minor_gold_value
+	}
+}
+
+travl_seduce_duel_value = {
+	save_temporary_scope_as = seducer
+
+	# Intrigue
+	value = intrigue
+
+	# Attraction (approx -10 to 10)
+	add = {
+		value = attraction
+		divide = 3
+	}
+
+	# Opinion of target (-10 to 10)
+	add = {
+		value = scope:target_opinion
+		divide = 10
+	}
+
+	# TODO Perks
+
+	scope:target = {
+		# Intrigue
+		subtract = intrigue
+
+		# Lustful / chaste
+		if = {
+			limit = { has_trait = lustful }
+			add = 10
+		}
+		else_if = {
+			limit = { has_trait = chaste }
+			add = -10
+		}
+
+		# TODO Adultery, sodomy, incest
+	}
+}

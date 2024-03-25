@@ -79,6 +79,20 @@ echo "Character died: $(grep -a "Character died, " $LOGFILE | wc -l)"
 echo "Character died while traveling: $(grep -a "Character died while traveling, " $LOGFILE | wc -l)"
 echo "- ruler: $(grep -a ".* of .*Character died while traveling" $LOGFILE | wc -l)"
 echo
+# Prisoner events
+echo "Escape from Prison event fired: $(grep -a "Escape from Prison event fired" $LOGFILE | wc -l)"
+echo "- option a success: $(grep -a "Escape from Prison event option a success" $LOGFILE | wc -l)"
+echo "- option a failure: $(grep -a "Escape from Prison event option a failure" $LOGFILE | wc -l)"
+echo "- option b success: $(grep -a "Escape from Prison event option b success" $LOGFILE | wc -l)"
+echo "- option b failure: $(grep -a "Escape from Prison event option b failure" $LOGFILE | wc -l)"
+echo "- option c success: $(grep -a "Escape from Prison event option c success" $LOGFILE | wc -l)"
+echo "- option c failure: $(grep -a "Escape from Prison event option c failure" $LOGFILE | wc -l)"
+echo "- option d success: $(grep -a "Escape from Prison event option d success" $LOGFILE | wc -l)"
+echo "- option d failure: $(grep -a "Escape from Prison event option d failure" $LOGFILE | wc -l)"
+echo "- option e success: $(grep -a "Escape from Prison event option e success" $LOGFILE | wc -l)"
+echo "- option e failure: $(grep -a "Escape from Prison event option e failure" $LOGFILE | wc -l)"
+echo "- option z: $(grep -a "Escape from Prison event option z" $LOGFILE | wc -l)"
+echo
 
 # Rare (debug)
 #echo "Character teleported: $(grep -a "Character teleported" $LOGFILE | uniq | wc -l)"

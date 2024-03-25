@@ -16,20 +16,20 @@ scripted_effect travl_travel_danger_0004_outcome_effect = {
 scripted_effect travl_travel_danger_0004_a_effect = {
 	every_in_list = {
 		list = travelers
-		travl_event_add_travel_waypoint_effect = { VALUE = scope:oasis_province }
+		travl_event_add_travel_waypoint_effect = { WAYPOINT = scope:oasis_province }
 	}
 }
 
 scripted_effect travl_travel_danger_0004_b_success_effect = {
 	scope:diplomacy_character = {
-		travl_event_add_stress_effect = { TRAIT = flag:cynical VALUE = flag:medium }
+		travl_event_add_stress_effect = { TRAIT = cynical VALUE = medium }
 		travl_event_add_prestige_effect = { VALUE = miniscule_prestige_value }
 	}
 }
 
 scripted_effect travl_travel_danger_0004_b_failure_effect = {
 	scope:diplomacy_character = {
-		travl_event_add_stress_effect = { TRAIT = flag:cynical VALUE = flag:medium }
+		travl_event_add_stress_effect = { TRAIT = cynical VALUE = medium }
 		travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
 	}
 	travl_travel_danger_0004_failure_effect = yes
@@ -37,7 +37,7 @@ scripted_effect travl_travel_danger_0004_b_failure_effect = {
 
 scripted_effect travl_travel_danger_0004_c_success_effect = {
 	root = {
-		travl_event_add_stress_effect = { TRAIT = flag:trusting VALUE = flag:major }
+		travl_event_add_stress_effect = { TRAIT = trusting VALUE = major }
 		travl_event_add_prestige_effect = { VALUE = miniscule_prestige_value }
 	}
 	scope:water_hider = {
@@ -47,7 +47,7 @@ scripted_effect travl_travel_danger_0004_c_success_effect = {
 
 scripted_effect travl_travel_danger_0004_c_failure_effect = {
 	root = {
-		travl_event_add_stress_effect = { TRAIT = flag:trusting VALUE = flag:major }
+		travl_event_add_stress_effect = { TRAIT = trusting VALUE = major }
 		travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
 	}
 	travl_travel_danger_0004_failure_effect = yes
@@ -62,7 +62,7 @@ scripted_effect travl_travel_danger_0004_failure_effect = {
 		list = travelers
 		random_list = {
 			5 = {
-				travl_event_death_effect = { REASON = flag:death_thirst KILLER = this }
+				travl_event_death_effect = { REASON = death_thirst KILLER = this }
 			}
 			95 = {}
 		}

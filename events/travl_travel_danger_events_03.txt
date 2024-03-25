@@ -16,7 +16,7 @@ scripted_effect travl_travel_danger_0003_outcome_effect = {
 scripted_effect travl_travel_danger_0003_a_success_effect = {
 	scope:learning_character = {
 		travl_event_add_prestige_effect = { VALUE = miniscule_prestige_value }
-		travl_event_add_traveler_xp_effect = { VALUE = flag:major }
+		travl_event_add_traveler_xp_effect = { VALUE = major }
 	}
 }
 
@@ -29,7 +29,7 @@ scripted_effect travl_travel_danger_0003_a_failure_effect = {
 
 scripted_effect travl_travel_danger_0003_b_success_effect = {
 	scope:stewardship_character = {
-		travl_event_add_stress_effect = { TRAIT = flag:paranoid VALUE = flag:medium }
+		travl_event_add_stress_effect = { TRAIT = paranoid VALUE = medium }
 	}
 	scope:guide = {
 		travl_event_visit_court_effect = { HOST = root.var:travl_travel_receiver }
@@ -37,13 +37,13 @@ scripted_effect travl_travel_danger_0003_b_success_effect = {
 	}
 	every_in_list = {
 		list = travelers
-		travl_event_add_travel_modifier_effect = { VALUE = flag:travel_guide_modifier }
+		travl_event_add_travel_modifier_effect = { MODIFIER = travel_guide_modifier }
 	}
 }
 
 scripted_effect travl_travel_danger_0003_b_failure_effect = {
 	scope:stewardship_character = {
-		travl_event_add_stress_effect = { TRAIT = flag:paranoid VALUE = flag:medium }
+		travl_event_add_stress_effect = { TRAIT = paranoid VALUE = medium }
 	}
 	travl_travel_danger_0003_failure_effect = yes
 }
@@ -57,13 +57,13 @@ scripted_effect travl_travel_danger_0003_failure_effect = {
 		70 = {
 			every_in_list = {
 				list = travelers
-				travl_event_delay_travel_effect = { VALUE = flag:medium }
+				travl_event_delay_travel_effect = { VALUE = medium }
 			}
 		}
 		30 = {
 			every_in_list = {
 				list = travelers
-				travl_event_delay_travel_effect = { VALUE = flag:minor }
+				travl_event_delay_travel_effect = { VALUE = minor }
 			}
 		}
 	}
