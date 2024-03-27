@@ -300,6 +300,7 @@ travl_travel_danger_events = {
 		100 = travl_travel_danger.0012 # Danger: Beast Attack
 		 20 = travl_travel_danger.0013 # Danger: Spoiled Food
 		200 = travl_travel_danger.0014 # Danger: Sickness
+		500 = travl_travel_danger.0015 # Danger: Carrion
 	}
 }
 

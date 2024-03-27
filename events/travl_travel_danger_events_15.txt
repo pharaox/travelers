@@ -1,0 +1,209 @@
+﻿namespace = travl_travel_danger
+
+scripted_effect travl_travel_danger_0015_outcome_effect = {
+	# Setup character effects
+	travl_travel_danger_0015_$OUTCOME$_effect = yes
+
+	# Send messages to potential recipients and apply character effects
+	travl_event_apply_outcome_effect = {
+		EVENT = travel_danger_0015
+		OUTCOME = $OUTCOME$
+		RECIPIENTS = recipients
+		TRAVELERS = travelers
+	}
+}
+
+scripted_effect travl_travel_danger_0015_a_success_effect = {
+	scope:learning_character = {
+		travl_event_add_stress_effect = { TRAIT = impatient VALUE = medium }
+		travl_event_add_prestige_effect = { VALUE = miniscule_prestige_value }
+	}
+}
+
+scripted_effect travl_travel_danger_0015_a_failure_effect = {
+	scope:learning_character = {
+		travl_event_add_stress_effect = { TRAIT = impatient VALUE = medium }
+		travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
+	}
+	travl_travel_danger_0015_failure_effect = yes
+}
+
+scripted_effect travl_travel_danger_0015_b_effect = {
+	root = {
+		travl_event_add_stress_effect = { TRAIT = craven VALUE = medium }
+	}
+	travl_travel_danger_0015_failure_effect = yes
+}
+
+scripted_effect travl_travel_danger_0015_failure_effect = {
+	every_in_list = {
+		list = travelers
+		random = {
+			chance = 50
+			modifier = {
+				add = {
+					value = 0
+					subtract = health
+				}
+			}
+			modifier = {
+				OR = {
+					has_trait = whole_of_body
+					has_perk = wash_your_hands_perk
+				}
+				add = -10
+			}
+			travl_event_epidemic_effect = { EPIDEMIC = scope:epidemic }
+		}
+	}
+}
+
+scripted_effect travl_travel_danger_0015_c_effect = {
+	every_in_list = {
+		list = travelers
+		travl_event_add_travel_modifier_effect = { MODIFIER = no_water_modifier }
+	}
+}
+
+# Danger: Carrion
+travl_travel_danger.0015 = {
+	type = character_event
+	title = travl_travel_danger.0015.t
+	desc = travl_travel_danger.0015.desc
+	theme = plague
+	#hidden = yes
+
+	left_portrait = {
+		character = root
+		animation = sick
+	}
+
+	trigger = {
+		has_game_rule = travl_travel_events_enabled
+
+		# Travel leader
+		has_variable = travl_travel_leader
+		var:travl_travel_leader = root
+
+		# Available, traveling, adult, and unlanded
+		is_available_travelling_adult = yes
+		is_location_valid_for_travel_event_on_land = yes
+		is_landed = no
+
+		# Epidemic
+		location = {
+			any_province_epidemic = {
+				count >= 1
+			}
+		}
+	}
+
+	cooldown = { months = 6 }
+
+	immediate = {
+		travl_debug_log_travel_event_effect = { MSG = travl_debug_msg_travel_danger_0015_t }
+
+		# Get travelers and message recipients
+		travl_event_get_travelers_effect = { TRAVELERS = travelers }
+		travl_event_get_message_recipients_effect = { RECIPIENTS = recipients }
+
+		# Find relevant travelers
+		ordered_in_list = {
+			list = travelers
+			limit = {
+				is_available_travelling_adult = yes
+				learning >= low_skill_rating
+			}
+			order_by = learning
+			save_scope_as = learning_character
+		}
+
+		# Save location and epidemic
+		location = {
+			save_scope_as = location
+			random_province_epidemic = {
+				save_scope_as = epidemic
+			}
+		}
+	}
+
+	# Drink safely (learning challenge)
+	option = {
+		name = travl_travel_danger.0015.a
+
+		trigger = {
+			exists = scope:learning_character
+		}
+
+		scope:learning_character = {
+			duel = {
+				skill = learning
+				value = decent_skill_rating
+				50 = {
+					desc = travl_travel_danger.0015.a.success
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 3.5
+						min = -49
+					}
+					modifier = {
+						OR = {
+							has_trait = lifestyle_physician
+							has_trait = lifestyle_herbalist
+						}
+						add = 25
+					}
+					root = {
+						travl_travel_danger_0015_outcome_effect = { OUTCOME = a_success }
+					}
+				}
+				50 = {
+					desc = travl_travel_danger.0015.a.failure
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -3.5
+						min = -49
+					}
+					root = {
+						travl_travel_danger_0015_outcome_effect = { OUTCOME = a_failure }
+					}
+				}
+			}
+		}
+
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				who = scope:learning_character
+				ai_rationality = 0.5 # stress: impatient
+				ai_boldness = 0.5
+			}
+		}
+	}
+
+	# Drink
+	option = {
+		name = travl_travel_danger.0015.b
+
+		travl_travel_danger_0015_outcome_effect = { OUTCOME = b }
+
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_boldness = 0.5 # stress: craven
+				ai_zeal = 0.5
+			}
+		}
+	}
+
+	# We must press on...
+	option = {
+		name = travl_travel_danger.0015.c
+
+		travl_travel_danger_0015_outcome_effect = { OUTCOME = c }
+
+		ai_chance = {
+			base = 100
+		}
+	}
+}

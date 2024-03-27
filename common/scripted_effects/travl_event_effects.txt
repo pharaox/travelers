@@ -65,6 +65,13 @@ travl_event_disease_effect = {
 	set_variable = { name = travl_event_disease value = flag:$DISEASE$ }
 }
 
+travl_event_epidemic_effect = {
+	show_as_tooltip = {
+		add_trait = $EPIDEMIC$.epidemic_type.epidemic_trait
+	}
+	set_variable = { name = travl_event_epidemic value = $EPIDEMIC$ }
+}
+
 travl_event_add_stress_effect = {
 	show_as_tooltip = {
 		stress_impact = { $TRAIT$ = $VALUE$_stress_impact_gain }
@@ -311,6 +318,13 @@ travl_event_apply_character_effect = {
 		}
 	}
 
+	# Get infected
+	if = {
+		limit = { has_variable = travl_event_epidemic }
+		travl_debug_log_effect = { MSG = travl_debug_msg_event_character_got_infected }
+		add_trait = var:travl_event_epidemic.epidemic_type.epidemic_trait
+	}
+
 	# Stress impact
 	if = {
 		limit = { has_variable = travl_event_stress_gain_trait }
@@ -414,6 +428,11 @@ travl_event_apply_character_effect = {
 			flag:travel_guide_modifier = {
 				current_travel_plan ?= {
 					add_travel_plan_modifier = travel_guide_modifier
+				}
+			}
+			flag:no_water_modifier = {
+				current_travel_plan ?= {
+					add_travel_plan_modifier = no_water_modifier
 				}
 			}
 		}
@@ -534,6 +553,7 @@ travl_event_apply_character_effect = {
 		remove_variable = travl_event_pay_gold_value
 		remove_variable = travl_event_trait
 		remove_variable = travl_event_disease
+		remove_variable = travl_event_epidemic
 		remove_variable = travl_event_stress_gain_trait
 		remove_variable = travl_event_stress_gain_value
 		remove_variable = travl_event_modifier
@@ -590,6 +610,18 @@ travl_event_apply_stress_impact_effect = {
 		}
 		flag:deceitful = {
 			stress_impact = { deceitful = $VALUE$ }
+		}
+		flag:just = {
+			stress_impact = { just = $VALUE$ }
+		}
+		flag:arbitrary = {
+			stress_impact = { arbitrary = $VALUE$ }
+		}
+		flag:patient = {
+			stress_impact = { patient = $VALUE$ }
+		}
+		flag:impatient = {
+			stress_impact = { impatient = $VALUE$ }
 		}
 		flag:trusting = {
 			stress_impact = { trusting = $VALUE$ }

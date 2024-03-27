@@ -153,6 +153,15 @@
  travl_debug_msg_travel_danger_0013_b_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0013_t$ event option b failure"
  travl_debug_msg_travel_danger_0013_c: "$travl_debug_prefix$: $travl_msg_travel_danger_0013_t$ event option c"
 
+ travl_debug_msg_travel_danger_0014_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0014_t$ event fired$travl_for_prison_guard$, danger: $travl_danger_value$"
+ travl_debug_msg_travel_danger_0014_a: "$travl_debug_prefix$: $travl_msg_travel_danger_0014_t$ event option a"
+
+ travl_debug_msg_travel_danger_0015_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0015_t$ event fired$travl_for_prison_guard$, danger: $travl_danger_value$"
+ travl_debug_msg_travel_danger_0015_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0015_t$ event option a success"
+ travl_debug_msg_travel_danger_0015_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0015_t$ event option a failure"
+ travl_debug_msg_travel_danger_0015_b: "$travl_debug_prefix$: $travl_msg_travel_danger_0015_t$ event option b"
+ travl_debug_msg_travel_danger_0015_c: "$travl_debug_prefix$: $travl_msg_travel_danger_0015_t$ event option c"
+
  travl_debug_msg_prisoner_0001_t: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event fired"
  travl_debug_msg_prisoner_0001_a_success: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option a success"
  travl_debug_msg_prisoner_0001_a_failure: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option a failure"
@@ -166,9 +175,6 @@
  travl_debug_msg_prisoner_0001_e_failure: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option e failure"
  travl_debug_msg_prisoner_0001_z: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option z"
 
- travl_debug_msg_travel_danger_0014_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0014_t$ event fired$travl_for_prison_guard$, danger: $travl_danger_value$"
- travl_debug_msg_travel_danger_0014_a: "$travl_debug_prefix$: $travl_msg_travel_danger_0014_t$ event option a"
-
  travl_debug_msg_event_character_gained_prestige: "$travl_debug_prefix$: Character gained [THIS.Var('travl_event_prestige').GetValue] prestige"
  travl_debug_msg_event_character_lost_prestige: "$travl_debug_prefix$: Character lost [THIS.Var('travl_event_prestige').GetValue] prestige"
  travl_debug_msg_event_character_gained_piety: "$travl_debug_prefix$: Character gained [THIS.Var('travl_event_piety').GetValue] piety"
@@ -179,6 +185,7 @@
  travl_debug_msg_event_character_injured: "$travl_debug_prefix$: Character injured, trait: [THIS.Var('travl_event_trait').GetFlagName]"
  travl_debug_msg_event_character_wounded: "$travl_debug_prefix$: Character wounded, reason: [THIS.Var('travl_event_wound').GetFlagName]"
  travl_debug_msg_event_character_diseased: "$travl_debug_prefix$: Character diseased, disease: [THIS.Var('travl_event_disease').GetFlagName]"
+ travl_debug_msg_event_character_got_infected: "$travl_debug_prefix$: Character got infected, epidemic: [THIS.Var('travl_event_epidemic').Epidemic.GetType.GetName]"
  travl_debug_msg_event_character_gained_stress: "$travl_debug_prefix$: Character gained [THIS.Var('travl_event_stress_gain_value').GetFlagName] stress if they are [THIS.Var('travl_event_stress_gain_trait').GetFlagName]"
  travl_debug_msg_event_character_added_modifier: "$travl_debug_prefix$: Character added [THIS.Var('travl_event_modifier').GetFlagName] modifier"
  travl_debug_msg_event_character_joined_travel: "$travl_debug_prefix$: Character joined travel to [THIS.Var('travl_event_host').Char.GetFullNameNoTooltip]'s court"

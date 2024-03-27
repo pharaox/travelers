@@ -121,6 +121,14 @@
  travl_travel_danger.0014.t: "$travel_danger_prefix$ Sickness"
  travl_travel_danger.0014.desc: "Some of us begin to feel weak, lagging behind the rest of the party... There is something wrong..."
  travl_travel_danger.0014.a: "We must press on..."
+ # travel_danger.0015 Carrion
+ travl_travel_danger.0015.t: "$travel_danger_prefix$ Carrion"
+ travl_travel_danger.0015.desc: "Our water supplies are running low when we enter a deserted village with a well and a lot of corpses."
+ travl_travel_danger.0015.a: "Make the water safe to drink by boiling it and mixing it with herbs"
+ travl_travel_danger.0015.a.success: "You manage to make the water safe to drink"
+ travl_travel_danger.0015.a.failure: "You fail to make the water safe to drink"
+ travl_travel_danger.0015.b: "Drink from the well"
+ travl_travel_danger.0015.c: "We must press on..."
 
  # Prisoner event texts (actual events, should be translated)
  # prisoner.0001 Escape from Prison
@@ -160,6 +168,7 @@
  travl_msg_travel_danger_0012_t: "$travel_danger_prefix$ Beast Attack"
  travl_msg_travel_danger_0013_t: "$travel_danger_prefix$ Spoiled Food"
  travl_msg_travel_danger_0014_t: "$travel_danger_prefix$ Sickness"
+ travl_msg_travel_danger_0015_t: "$travel_danger_prefix$ Carrion"
 
  # Prisoner message titles
  travl_msg_prisoner_0001_t: "Escape from Prison"
@@ -246,6 +255,12 @@
  travl_msg_travel_danger_0013_c: "$travl_msg_travel_danger_0013_prefix$ and just ate them, risking disease."
  # travel_danger.0014 Sickness
  travl_msg_travel_danger_0014_a: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions got sick while traveling through the [location.Custom('GetTerrainTypePlural')] of [location.GetName]."
+ # travel_danger.0015 Carrion
+ travl_msg_travel_danger_0015_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions came across a well with tainted water in [location.GetName]"
+ travl_msg_travel_danger_0015_a_success: "$travl_msg_travel_danger_0015_prefix$, but $travl_this_or_learning_character$ managed to make the water safe to drink by boiling it."
+ travl_msg_travel_danger_0015_a_failure: "$travl_msg_travel_danger_0015_prefix$, and $travl_this_or_learning_character$ failed to make the water safe to drink by boiling it."
+ travl_msg_travel_danger_0015_b: "$travl_msg_travel_danger_0015_prefix$ and drank from it."
+ travl_msg_travel_danger_0015_c: "$travl_msg_travel_danger_0015_prefix$ and did not dare to drink from it, going thirsty for some time."
 
  # Prisoner message tooltips
  # prisoner.0001 Escape from Prison
