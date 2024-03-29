@@ -1,4 +1,4 @@
-﻿l_english:
+﻿l_korean:
  travl_debug_prefix: "[GetCurrentDate.GetStringShort]: [THIS.Char.GetFullNameNoTooltip] ([THIS.Char.GetID], [THIS.Char.GetCurrentLocation.GetNameNoTooltip])"
  travl_debug_prefix_2: "[GetCurrentDate.GetStringShort]: [THIS.Char.GetFullNameNoTooltip] ([THIS.Char.GetID])"
 
@@ -13,27 +13,30 @@
  travl_debug_msg_recruited_as_travel_leader: "$travl_debug_prefix$: Recruited as travel leader"
  travl_debug_msg_moving_added_character_back_to_pool: "$travl_debug_prefix$: Moving added character back to pool"
  travl_debug_msg_adding_entourage_character: "$travl_debug_prefix$: Adding entourage character ($travl_travel_event$)"
- travl_debug_msg_aborting_travel_to_start_travel: "$travl_debug_prefix$: Aborting travel to start travel ($travl_travel_event$)" # Rare
- travl_debug_msg_aborting_travel_completely: "$travl_debug_prefix$: Aborting travel completely ($travl_travel_event$)" # Rare
- travl_debug_msg_aborting_travel_for_prison_guard: "$travl_debug_prefix$: Aborting travel for prison guard" # Rare
- travl_debug_msg_restoring_location: "$travl_debug_prefix$: Restoring location ($travl_location$)" # Rare
+ travl_debug_msg_aborting_travel_to_start_travel: "$travl_debug_prefix$: Aborting travel to start travel$travl_imprisoned$ ($travl_travel_event$)" # Rare
+ travl_debug_msg_aborting_travel_completely: "$travl_debug_prefix$: Aborting travel completely$travl_imprisoned$ ($travl_travel_event$)" # Rare
+ travl_debug_msg_aborting_travel_for_prison_guard: "$travl_debug_prefix$: Aborting travel for prison guard$travl_imprisoned$" # Rare
+ travl_debug_msg_restoring_location: "$travl_debug_prefix$: Restoring location$travl_imprisoned$ ($travl_location$)" # Rare
 
- travl_debug_msg_freeing_prisoner: "$travl_debug_prefix$: Freeing prisoner" # Rare
+ travl_debug_msg_escaping_from_prison: "$travl_debug_prefix$: Escaping from prison" # Rare
+ travl_debug_msg_imprisoning: "$travl_debug_prefix$: Imprisoning" # Rare
+ travl_debug_msg_sending_escaped_from_prison_message: "$travl_debug_prefix$: Sending $travl_msg_escaped_from_prison$ message"
+ travl_debug_msg_sending_imprisoned_message: "$travl_debug_prefix$: Sending $travl_msg_imprisoned$ message"
 
  travl_debug_msg_creating_prison_guard_character: "$travl_debug_prefix$: Creating prison guard character" # Rare
 
  travl_debug_msg_changing_leader: "$travl_debug_prefix$: Changing travel leader" # Rare
  travl_debug_msg_removing_companion: "$travl_debug_prefix$: Removing travel companion" # Rare
 
- travl_debug_msg_character_departed_leader: "$travl_debug_prefix$: Character departed for $travl_travel_receiver$'s court as leader ($travl_travel_event$)"
- travl_debug_msg_character_departed_companion: "$travl_debug_prefix$: Character departed for $travl_travel_receiver$'s court as companion of $travl_travel_leader$ ($travl_travel_event$)"
- travl_debug_msg_character_departed_entourage: "$travl_debug_prefix$: Character departed for $travl_receiver$'s court as entourage of $travl_owner$ ($travl_travel_event$)"
- travl_debug_msg_character_arrived_leader: "$travl_debug_prefix$: Character arrived at $travl_travel_receiver$'s court as leader"
- travl_debug_msg_character_arrived_companion: "$travl_debug_prefix$: Character arrived at $travl_travel_receiver$'s court as companion of $travl_travel_leader$"
- travl_debug_msg_character_arrived_entourage: "$travl_debug_prefix$: Character arrived at $travl_receiver$'s court as entourage of $travl_owner$"
+ travl_debug_msg_character_departed_leader: "$travl_debug_prefix$: Character departed for $travl_travel_receiver$'s court as leader$travl_imprisoned$ ($travl_travel_event$)"
+ travl_debug_msg_character_departed_companion: "$travl_debug_prefix$: Character departed for $travl_travel_receiver$'s court as companion of $travl_travel_leader$$travl_imprisoned$ ($travl_travel_event$)"
+ travl_debug_msg_character_departed_entourage: "$travl_debug_prefix$: Character departed for $travl_receiver$'s court as entourage of $travl_owner$$travl_imprisoned$ ($travl_travel_event$)"
+ travl_debug_msg_character_arrived_leader: "$travl_debug_prefix$: Character arrived at $travl_travel_receiver$'s court as leader$travl_imprisoned$"
+ travl_debug_msg_character_arrived_companion: "$travl_debug_prefix$: Character arrived at $travl_travel_receiver$'s court as companion of $travl_travel_leader$$travl_imprisoned$"
+ travl_debug_msg_character_arrived_entourage: "$travl_debug_prefix$: Character arrived at $travl_receiver$'s court as entourage of $travl_owner$$travl_imprisoned$"
 
  travl_debug_msg_travel_moved: "$travl_debug_prefix$: Travel plan to $travl_travel_receiver$'s court moved"
- travl_debug_msg_travel_aborted: "$travl_debug_prefix$: Travel plan to $travl_travel_receiver$'s court aborted" # Rare
+ travl_debug_msg_travel_aborted: "$travl_debug_prefix$: Travel plan to $travl_travel_receiver$'s court aborted$travl_imprisoned$" # Rare
 
  travl_debug_msg_character_married_major: "$travl_debug_prefix$: Character married as major partner ($travl_location$)"
  travl_debug_msg_character_married_minor: "$travl_debug_prefix$: Character married as minor partner ($travl_location$)"
@@ -156,15 +159,40 @@
  travl_debug_msg_travel_danger_0014_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0014_t$ event fired$travl_for_prison_guard$, danger: $travl_danger_value$"
  travl_debug_msg_travel_danger_0014_a: "$travl_debug_prefix$: $travl_msg_travel_danger_0014_t$ event option a"
 
+ travl_debug_msg_travel_danger_0015_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0015_t$ event fired$travl_for_prison_guard$, danger: $travl_danger_value$"
+ travl_debug_msg_travel_danger_0015_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0015_t$ event option a success"
+ travl_debug_msg_travel_danger_0015_a_failure: "$travl_debug_prefix$: $travl_msg_travel_danger_0015_t$ event option a failure"
+ travl_debug_msg_travel_danger_0015_b: "$travl_debug_prefix$: $travl_msg_travel_danger_0015_t$ event option b"
+ travl_debug_msg_travel_danger_0015_c: "$travl_debug_prefix$: $travl_msg_travel_danger_0015_t$ event option c"
+
+ travl_debug_msg_prisoner_0001_t: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event fired"
+ travl_debug_msg_prisoner_0001_a_success: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option a success"
+ travl_debug_msg_prisoner_0001_a_failure: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option a failure"
+ travl_debug_msg_prisoner_0001_b_success: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option b success"
+ travl_debug_msg_prisoner_0001_b_failure: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option b failure"
+ travl_debug_msg_prisoner_0001_c_success: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option c success"
+ travl_debug_msg_prisoner_0001_c_failure: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option c failure"
+ travl_debug_msg_prisoner_0001_d_success: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option d success"
+ travl_debug_msg_prisoner_0001_d_failure: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option d failure"
+ travl_debug_msg_prisoner_0001_e_success: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option e success"
+ travl_debug_msg_prisoner_0001_e_failure: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option e failure"
+ travl_debug_msg_prisoner_0001_z: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option z"
+
+ travl_debug_msg_prisoner_0002_t: "$travl_debug_prefix$: $travl_msg_prisoner_0002_t$ event fired"
+ travl_debug_msg_prisoner_0002_a_success: "$travl_debug_prefix$: $travl_msg_prisoner_0002_t$ event option a success"
+ travl_debug_msg_prisoner_0002_a_failure: "$travl_debug_prefix$: $travl_msg_prisoner_0002_t$ event option a failure"
+
  travl_debug_msg_event_character_gained_prestige: "$travl_debug_prefix$: Character gained [THIS.Var('travl_event_prestige').GetValue] prestige"
  travl_debug_msg_event_character_lost_prestige: "$travl_debug_prefix$: Character lost [THIS.Var('travl_event_prestige').GetValue] prestige"
  travl_debug_msg_event_character_gained_piety: "$travl_debug_prefix$: Character gained [THIS.Var('travl_event_piety').GetValue] piety"
  travl_debug_msg_event_character_lost_piety: "$travl_debug_prefix$: Character lost [THIS.Var('travl_event_piety').GetValue] piety"
  travl_debug_msg_event_character_gained_gold: "$travl_debug_prefix$: Character gained [THIS.Var('travl_event_gold').GetValue] gold"
  travl_debug_msg_event_character_lost_gold: "$travl_debug_prefix$: Character lost [THIS.Var('travl_event_gold').GetValue] gold"
+ travl_debug_msg_event_character_paid_gold: "$travl_debug_prefix$: Character paid [THIS.Var('travl_event_pay_gold_value').GetValue] gold to [THIS.Var('travl_event_pay_gold_target').Char.GetFullNameNoTooltip]"
  travl_debug_msg_event_character_injured: "$travl_debug_prefix$: Character injured, trait: [THIS.Var('travl_event_trait').GetFlagName]"
  travl_debug_msg_event_character_wounded: "$travl_debug_prefix$: Character wounded, reason: [THIS.Var('travl_event_wound').GetFlagName]"
  travl_debug_msg_event_character_diseased: "$travl_debug_prefix$: Character diseased, disease: [THIS.Var('travl_event_disease').GetFlagName]"
+ travl_debug_msg_event_character_got_infected: "$travl_debug_prefix$: Character got infected, epidemic: [THIS.Var('travl_event_epidemic').Epidemic.GetType.GetName]"
  travl_debug_msg_event_character_gained_stress: "$travl_debug_prefix$: Character gained [THIS.Var('travl_event_stress_gain_value').GetFlagName] stress if they are [THIS.Var('travl_event_stress_gain_trait').GetFlagName]"
  travl_debug_msg_event_character_added_modifier: "$travl_debug_prefix$: Character added [THIS.Var('travl_event_modifier').GetFlagName] modifier"
  travl_debug_msg_event_character_joined_travel: "$travl_debug_prefix$: Character joined travel to [THIS.Var('travl_event_host').Char.GetFullNameNoTooltip]'s court"
@@ -172,6 +200,9 @@
  travl_debug_msg_event_travel_delayed: "$travl_debug_prefix$: Travel delayed by a [THIS.Var('travl_event_travel_delay').GetFlagName] delay"
  travl_debug_msg_event_travel_added_modifier: "$travl_debug_prefix$: Travel added [THIS.Var('travl_event_travel_modifier').GetFlagName] modifier"
  travl_debug_msg_event_travel_added_waypoint: "$travl_debug_prefix$: Travel added [THIS.Var('travl_event_travel_waypoint').Province.GetNameNoTooltip] waypoint"
+ travl_debug_msg_event_had_sex: "$travl_debug_prefix$: Character had sex with [THIS.Var('travl_event_had_sex').Char.GetFullNameNoTooltip]"
+ travl_debug_msg_event_escaped_from_prison: "$travl_debug_prefix$: Character escaped from prison"
+ travl_debug_msg_event_imprisoned: "$travl_debug_prefix$: Character was imprisoned by [THIS.Var('travl_event_imprison').Char.GetFullNameNoTooltip]"
  travl_debug_msg_event_character_died: "$travl_debug_prefix$: Character died, reason: [THIS.Var('travl_event_death').GetFlagName]"
 
  travl_debug_msg_character_died_while_traveling: "$travl_debug_prefix_2$: Character died while traveling, reason: [THIS.Char.GetDeathReason]"
@@ -188,3 +219,5 @@
 
  travl_danger_value: "[THIS.Var('danger_value').GetValue]"
  travl_for_prison_guard: "[Select_CString(THIS.Var('prison_guard').IsSet, ' for prison guard', '')]"
+
+ travl_imprisoned: "[Select_CString(THIS.Char.IsImprisoned, ', imprisoned', '')]"
