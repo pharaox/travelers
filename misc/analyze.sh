@@ -44,7 +44,8 @@ echo "- imprisoned: $(grep -a "Aborting travel completely, imprisoned" $LOGFILE 
 echo "Restoring location: $(grep -a "Restoring location" $LOGFILE | uniq | wc -l)"
 echo "Changing travel leader: $(grep -a "Changing travel leader" $LOGFILE | uniq | wc -l)"
 echo "Removing travel companion: $(grep -a "Removing travel companion" $LOGFILE | uniq | wc -l)"
-echo "Freeing prisoner: $(grep -a "Freeing prisoner" $LOGFILE | uniq | wc -l)"
+echo "Escaping from prison: $(grep -a "Escaping from prison" $LOGFILE | uniq | wc -l)"
+echo "Imprisoning: $(grep -a "Imprisoning" $LOGFILE | uniq | wc -l)"
 echo "Creating prison guard character: $(grep -a "Creating prison guard character" $LOGFILE | uniq | wc -l)"
 echo
 
@@ -93,6 +94,9 @@ echo "- option d failure: $(grep -a "Escape from Prison event option d failure" 
 echo "- option e success: $(grep -a "Escape from Prison event option e success" $LOGFILE | wc -l)"
 echo "- option e failure: $(grep -a "Escape from Prison event option e failure" $LOGFILE | wc -l)"
 echo "- option z: $(grep -a "Escape from Prison event option z" $LOGFILE | wc -l)"
+echo "Hostile Army event fired: $(grep -a "Hostile Army event fired" $LOGFILE | wc -l)"
+echo "- option a success: $(grep -a "Hostile Army event option a success" $LOGFILE | wc -l)"
+echo "- option a failure: $(grep -a "Hostile Army event option a failure" $LOGFILE | wc -l)"
 echo
 
 # Rare (debug)

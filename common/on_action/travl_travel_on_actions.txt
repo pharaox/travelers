@@ -310,7 +310,10 @@ travl_prisoner_events = {
 			value = 80
 		}
 		100 = 0
-		100 = travl_prisoner.0001 # Prisoner: Escape from Prison
+		100 = travl_prisoner.0001 # Escape from Prison
+	}
+	events = {
+		travl_prisoner.0002 # Hostile Army
 	}
 }
 
@@ -401,15 +404,9 @@ travl_on_leader_changed = {
 				}
 			}
 
-			# Get prisoners and message recipients
+			# Let prisoners escape and notify recipients
 			travl_event_get_prisoners_effect = { PRISONERS = prisoners }
-			travl_event_get_message_recipients_effect = { RECIPIENTS = recipients }
-
-			# Release prisoners and notify recipients
-			travl_escape_from_prison_effect = {
-				RECIPIENTS = recipients
-				PRISONERS = prisoners
-			}
+			travl_escape_from_prison_prisoners_effect = { PRISONERS = prisoners }
 		}
 	}
 }

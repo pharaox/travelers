@@ -59,3 +59,24 @@ travl_seduce_duel_value = {
 		# TODO Adultery, sodomy, incest
 	}
 }
+
+travl_intercept_duel_value = {
+	value = army_commander.martial
+	if = {
+		limit = {
+			OR = {
+				is_army_in_siege = yes
+				is_army_in_raid = yes
+			}
+		}
+		add = 10
+	}
+	else_if = {
+		limit = {
+			OR = {
+				is_army_in_combat = yes
+			}
+		}
+		add = -10
+	}
+}

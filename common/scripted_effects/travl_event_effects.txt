@@ -146,10 +146,21 @@ travl_event_had_sex_with_effect = {
 
 travl_event_escape_from_prison_effect = {
 	show_as_tooltip = {
-		imprisoner ?= { save_temporary_scope_as = imprisoner }
-		escape_from_prison_effect = yes
+		release_from_prison = yes
 	}
 	set_variable = { name = travl_event_escape_from_prison value = yes }
+}
+
+travl_event_imprison_effect = {
+	show_as_tooltip = {
+		$IMPRISONER$ ?= {
+			imprison = {
+				target = prev
+				type = dungeon
+			}
+		}
+	}
+	set_variable = { name = travl_event_imprison value = $IMPRISONER$ }
 }
 
 travl_event_wound_effect = {
@@ -207,6 +218,13 @@ travl_event_apply_outcome_effect = {
 		list = $TRAVELERS$
 		travl_event_apply_character_effect = yes
 	}
+	travl_escape_from_prison_prisoners_effect = {
+		PRISONERS = escaped_prisoners
+	}
+	travl_imprison_prisoners_effect = {
+		PRISONERS = imprisoned_prisoners
+		IMPRISONER = scope:imprisoner
+	}
 }
 
 travl_send_event_messages_effect = {
@@ -231,6 +249,13 @@ travl_send_event_messages_effect = {
 					every_in_list = {
 						list = $TRAVELERS$
 						travl_event_apply_character_effect = yes
+					}
+					travl_escape_from_prison_prisoners_effect = {
+						PRISONERS = escaped_prisoners
+					}
+					travl_imprison_prisoners_effect = {
+						PRISONERS = imprisoned_prisoners
+						IMPRISONER = scope:imprisoner
 					}
 				}
 			}
@@ -460,18 +485,20 @@ travl_event_apply_character_effect = {
 
 	# Escape from prison
 	if = {
-		limit = { has_variable = travl_event_escape_from_prison }
-		travl_debug_log_effect = { MSG = travl_debug_msg_event_escaped_from_prison }
-
-		# Get prisoners and message recipients
-		add_to_list = prisoners
-		travl_event_get_message_recipients_effect = { RECIPIENTS = recipients }
-
-		# Release prisoners and notify recipients
-		travl_escape_from_prison_effect = {
-			RECIPIENTS = recipients
-			PRISONERS = prisoners
+		limit = {
+			has_variable = travl_event_escape_from_prison
+			is_imprisoned = yes
 		}
+		travl_debug_log_effect = { MSG = travl_debug_msg_event_escaped_from_prison }
+		add_to_list = escaped_prisoners
+	}
+
+	# Imprison
+	if = {
+		limit = { has_variable = travl_event_imprison }
+		travl_debug_log_effect = { MSG = travl_debug_msg_event_imprisoned }
+		var:travl_event_imprison = { save_temporary_scope_as = imprisoner }
+		add_to_list = imprisoned_prisoners
 	}
 
 	# Increase wounds (must be second to last, since the character may die)
@@ -564,6 +591,7 @@ travl_event_apply_character_effect = {
 		remove_variable = travl_event_travel_waypoint
 		remove_variable = travl_event_had_sex
 		remove_variable = travl_event_escape_from_prison
+		remove_variable = travl_event_imprison
 		remove_variable = travl_event_wound
 		remove_variable = travl_event_animal_wound
 		remove_variable = travl_event_death
@@ -700,10 +728,4 @@ travl_event_get_message_recipients_effect = {
 		RECEIVER = scope:receiver
 		RECIPIENTS = $RECIPIENTS$
 	}
-
-	# Add the player as a recipient (debug-only)
-	#if = {
-	#	limit = { debug_only = yes }
-	#	random_player = { add_to_list = $RECIPIENTS$ }
-	#}
 }

@@ -34,6 +34,13 @@ travl_debug_remove_location_date_effect = {
 	}
 }
 
+travl_debug_add_player_recipient_effect = {
+	if = {
+		limit = { debug_only = yes }
+		random_player = { add_to_list = $RECIPIENTS$ }
+	}
+}
+
 travl_debug_log_effect = {
 	if = {
 		limit = { debug_only = yes }

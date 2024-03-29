@@ -843,57 +843,239 @@ travl_send_messages_effect = {
 	}
 }
 
-travl_escape_from_prison_effect = {
+travl_escape_from_prison_prisoners_effect = {
 	hidden_effect = {
-		save_temporary_scope_as = character
+		# Collect message recipients
 		every_in_list = {
-			list = $RECIPIENTS$
+			list = $PRISONERS$
+			limit = { is_alive = yes }
+			travl_get_prisoner_recipients_effect = {
+				IMPRISONER = imprisoner
+				RECIPIENTS = escaped_from_prison_recipients
+			}
+		}
+
+		# Send messages to all recipients
+		every_in_list = {
+			list = escaped_from_prison_recipients
 
 			if = {
-				limit = { is_in_list = $PRISONERS$ }
-				send_interface_message = {
-					type = event_prison_good
-					title = travl_msg_escaped_from_prison
-					right_icon = scope:character
-					show_as_tooltip = {
-						every_in_list = {
-							list = $PRISONERS$
-							release_from_prison = yes
-						}
-					}
-				}
+				limit = { this = imprisoner }
+				travl_send_escaped_from_prison_message_effect = { TYPE = bad }
 			}
 			else = {
-				send_interface_message = {
-					type = event_prison_bad
-					title = travl_msg_escaped_from_prison
-					right_icon = scope:character
-					show_as_tooltip = {
-						every_in_list = {
-							list = $PRISONERS$
-							release_from_prison = yes
-						}
-					}
-				}
+				travl_send_escaped_from_prison_message_effect = { TYPE = good }
 			}
+
+			clear_variable_list = travl_prisoners
 		}
 	}
 
 	ordered_in_list = {
 		list = $PRISONERS$
+		limit = { is_alive = yes }
 		order_by = highest_held_title_tier
 		max = 100
 		check_range_bounds = no
 
-		travl_debug_log_effect = { MSG = travl_debug_msg_freeing_prisoner }
-		imprisoner ?= { save_temporary_scope_as = imprisoner }
-		hidden_effect = {
-			travl_remove_prisoner_flags_effect = yes
+		travl_escape_from_prison_effect = yes
+	}
+}
+
+travl_imprison_prisoners_effect = {
+	hidden_effect = {
+		# Collect message recipients
+		every_in_list = {
+			list = $PRISONERS$
+			limit = { is_alive = yes }
+			travl_get_prisoner_recipients_effect = {
+				IMPRISONER = $IMPRISONER$
+				RECIPIENTS = imprisoned_recipients
+			}
 		}
+
+		# Send messages to all recipients
+		every_in_list = {
+			list = imprisoned_recipients
+
+			if = {
+				limit = { this = $IMPRISONER$ }
+				travl_send_imprisoned_message_effect = {
+					IMPRISONER = $IMPRISONER$
+					TYPE = good
+				}
+			}
+			else = {
+				travl_send_imprisoned_message_effect = {
+					IMPRISONER = $IMPRISONER$
+					TYPE = bad
+				}
+			}
+
+			clear_variable_list = travl_prisoners
+		}
+	}
+
+	ordered_in_list = {
+		list = $PRISONERS$
+		limit = { is_alive = yes }
+		order_by = highest_held_title_tier
+		max = 100
+		check_range_bounds = no
+
+		travl_imprison_effect = { IMPRISONER = $IMPRISONER$ }
+	}
+}
+
+travl_get_prisoner_recipients_effect = {
+	add_to_temporary_list = $RECIPIENTS$
+	add_to_variable_list = {
+		name = travl_prisoners
+		target = this
+	}
+	liege ?= {
+		add_to_temporary_list = $RECIPIENTS$
+		add_to_variable_list = {
+			name = travl_prisoners
+			target = prev
+		}
+	}
+	$IMPRISONER$ ?= {
+		add_to_temporary_list = $RECIPIENTS$
+		add_to_variable_list = {
+			name = travl_prisoners
+			target = prev
+		}
+	}
+
+	# Add the player as a recipient (debug-only)
+	#if = {
+	#	limit = { debug_only = yes }
+	#	random_player = {
+	#		add_to_temporary_list = $RECIPIENTS$
+	#		add_to_variable_list = {
+	#			name = travl_prisoners
+	#			target = prev
+	#		}
+	#	}
+	#}
+}
+
+travl_send_escaped_from_prison_message_effect = {
+	ordered_in_list = {
+		variable = travl_prisoners
+		order_by = highest_held_title_tier
+		save_temporary_scope_as = prisoner
+	}
+
+	#travl_debug_log_effect = { MSG = travl_debug_msg_sending_escaped_from_prison_message }
+	send_interface_message = {
+		type = event_prison_$TYPE$
+		title = travl_msg_escaped_from_prison
+		right_icon = scope:prisoner
+		show_as_tooltip = {
+			every_in_list = {
+				variable = travl_prisoners
+				release_from_prison = yes
+			}
+		}
+	}
+}
+
+travl_send_imprisoned_message_effect = {
+	ordered_in_list = {
+		variable = travl_prisoners
+		order_by = highest_held_title_tier
+		save_temporary_scope_as = prisoner
+	}
+
+	#travl_debug_log_effect = { MSG = travl_debug_msg_sending_imprisoned_message }
+	send_interface_message = {
+		type = event_prison_$TYPE$
+		title = travl_msg_imprisoned
+		right_icon = scope:prisoner
+		show_as_tooltip = {
+			every_in_list = {
+				variable = travl_prisoners
+				$IMPRISONER$ = {
+					imprison = {
+						target = prev
+						type = dungeon
+					}
+				}
+			}
+		}
+	}
+}
+
+travl_escape_from_prison_effect = {
+	travl_debug_log_effect = { MSG = travl_debug_msg_escaping_from_prison }
+
+	# Add "escaped from prison" opinion
+	imprisoner ?= {
+		save_temporary_scope_as = imprisoner1
 		if = {
-			limit = { exists = scope:imprisoner }
-			escape_from_prison_effect = yes
+			limit = {
+				OR = {
+					has_revoke_title_reason = prev
+					has_banish_reason = prev
+					has_execute_reason = prev
+				}
+			}
+			add_opinion = {
+				target = prev
+				modifier = escaped_from_prison_crime
+			}
 		}
+		else = {
+			add_opinion = {
+				target = prev
+				modifier = escaped_from_prison_opinion
+			}
+		}
+	}
+
+	# Add "escaped from prison" memory
+	create_character_memory = {
+		type = escaped_from_prison_memory
+		participants = {
+			imprisoner = scope:imprisoner1
+		}
+	}
+
+	# Prevent "released from prison" memory and avoid other notifications
+	add_character_flag = {
+		flag = escaped_from_prison_flag
+		days = 1
+	}
+	add_character_flag = {
+		flag = block_for_prison_release_notification
+		days = 1
+	}
+
+	# Remove prisoner flags and move to original prison type
+	hidden_effect = {
+		travl_remove_prisoner_flags_effect = yes
+	}
+
+	# Actually release from prison
+	release_from_prison = yes
+}
+
+travl_imprison_effect = {
+	travl_debug_log_effect = { MSG = travl_debug_msg_imprisoning }
+
+	# Actually imprison
+	$IMPRISONER$ = {
+		imprison = {
+			target = prev
+			type = dungeon
+		}
+	}
+
+	# Set prisoner flags and move to "travel" prison type
+	hidden_effect = {
+		travl_set_prisoner_flags_effect = yes
 	}
 }
 

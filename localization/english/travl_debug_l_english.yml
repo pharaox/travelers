@@ -18,7 +18,10 @@
  travl_debug_msg_aborting_travel_for_prison_guard: "$travl_debug_prefix$: Aborting travel for prison guard$travl_imprisoned$" # Rare
  travl_debug_msg_restoring_location: "$travl_debug_prefix$: Restoring location$travl_imprisoned$ ($travl_location$)" # Rare
 
- travl_debug_msg_freeing_prisoner: "$travl_debug_prefix$: Freeing prisoner" # Rare
+ travl_debug_msg_escaping_from_prison: "$travl_debug_prefix$: Escaping from prison" # Rare
+ travl_debug_msg_imprisoning: "$travl_debug_prefix$: Imprisoning" # Rare
+ travl_debug_msg_sending_escaped_from_prison_message: "$travl_debug_prefix$: Sending $travl_msg_escaped_from_prison$ message"
+ travl_debug_msg_sending_imprisoned_message: "$travl_debug_prefix$: Sending $travl_msg_imprisoned$ message"
 
  travl_debug_msg_creating_prison_guard_character: "$travl_debug_prefix$: Creating prison guard character" # Rare
 
@@ -175,6 +178,10 @@
  travl_debug_msg_prisoner_0001_e_failure: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option e failure"
  travl_debug_msg_prisoner_0001_z: "$travl_debug_prefix$: $travl_msg_prisoner_0001_t$ event option z"
 
+ travl_debug_msg_prisoner_0002_t: "$travl_debug_prefix$: $travl_msg_prisoner_0002_t$ event fired"
+ travl_debug_msg_prisoner_0002_a_success: "$travl_debug_prefix$: $travl_msg_prisoner_0002_t$ event option a success"
+ travl_debug_msg_prisoner_0002_a_failure: "$travl_debug_prefix$: $travl_msg_prisoner_0002_t$ event option a failure"
+
  travl_debug_msg_event_character_gained_prestige: "$travl_debug_prefix$: Character gained [THIS.Var('travl_event_prestige').GetValue] prestige"
  travl_debug_msg_event_character_lost_prestige: "$travl_debug_prefix$: Character lost [THIS.Var('travl_event_prestige').GetValue] prestige"
  travl_debug_msg_event_character_gained_piety: "$travl_debug_prefix$: Character gained [THIS.Var('travl_event_piety').GetValue] piety"
@@ -195,6 +202,7 @@
  travl_debug_msg_event_travel_added_waypoint: "$travl_debug_prefix$: Travel added [THIS.Var('travl_event_travel_waypoint').Province.GetNameNoTooltip] waypoint"
  travl_debug_msg_event_had_sex: "$travl_debug_prefix$: Character had sex with [THIS.Var('travl_event_had_sex').Char.GetFullNameNoTooltip]"
  travl_debug_msg_event_escaped_from_prison: "$travl_debug_prefix$: Character escaped from prison"
+ travl_debug_msg_event_imprisoned: "$travl_debug_prefix$: Character was imprisoned by [THIS.Var('travl_event_imprison').Char.GetFullNameNoTooltip]"
  travl_debug_msg_event_character_died: "$travl_debug_prefix$: Character died, reason: [THIS.Var('travl_event_death').GetFlagName]"
 
  travl_debug_msg_character_died_while_traveling: "$travl_debug_prefix_2$: Character died while traveling, reason: [THIS.Char.GetDeathReason]"
