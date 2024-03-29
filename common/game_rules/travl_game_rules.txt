@@ -39,7 +39,7 @@ travl_prison_interactions = {
 		travl_travelers
 	}
 
-	default = travl_prison_interactions_enabled
+	default = travl_prison_interactions_disabled
 
 	travl_prison_interactions_disabled = {
 		flag = GG_can_change_rule

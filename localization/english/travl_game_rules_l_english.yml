@@ -15,11 +15,11 @@
  setting_travl_travel_events_enabled: "Enabled"
  setting_travl_travel_events_enabled_desc: "Travel events for unlanded characters are enabled."
 
- rule_travl_prison_interactions: "#P Travelers:#! Interactions and Events for Traveling Prisoners"
- setting_travl_prison_interactions_disabled: "#high Disabled#!"
- setting_travl_prison_interactions_disabled_desc: "Some interactions and events for traveling prisoners are disabled."
- setting_travl_prison_interactions_enabled: "Enabled"
- setting_travl_prison_interactions_enabled_desc: "All interactions and events for traveling prisoners are enabled."
+ rule_travl_prison_interactions: "#P Travelers:#! Interactions for Traveling Prisoners"
+ setting_travl_prison_interactions_disabled: "Disabled"
+ setting_travl_prison_interactions_disabled_desc: "Some interactions for traveling prisoners are disabled."
+ setting_travl_prison_interactions_enabled: "#high Enabled#!"
+ setting_travl_prison_interactions_enabled_desc: "All interactions for traveling prisoners are enabled."
 
  rule_travl_travel_safety: "#P Travelers:#! Travel Safety"
  setting_travl_travel_safety_default: "#high Default#!"
