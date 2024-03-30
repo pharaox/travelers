@@ -158,7 +158,7 @@ travl_prisoner.0001 = {
 				diplomacy >= low_skill_rating
 				gold >= travl_bribe_gold_value
 			}
-			animation = personality_ratioinal
+			animation = personality_dishonorable
 		}
 		triggered_animation = {
 			trigger = {
