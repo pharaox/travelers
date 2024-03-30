@@ -36,7 +36,7 @@ scripted_effect travl_travel_danger_0011_success_effect = {
 		list = travelers
 		random_list = {
 			30 = {
-				travl_event_add_modifier_effect = { VALUE = flag:drained_by_mosquitoes_modifier }
+				travl_event_add_modifier_effect = { MODIFIER = drained_by_mosquitoes_modifier }
 			}
 			70 = {}
 		}
@@ -48,7 +48,7 @@ scripted_effect travl_travel_danger_0011_failure_effect = {
 		list = travelers
 		random_list = {
 			70 = {
-				travl_event_add_modifier_effect = { VALUE = flag:drained_by_mosquitoes_modifier }
+				travl_event_add_modifier_effect = { MODIFIER = drained_by_mosquitoes_modifier }
 			}
 			30 = {}
 		}

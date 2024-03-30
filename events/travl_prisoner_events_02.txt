@@ -1,0 +1,187 @@
+﻿namespace = travl_prisoner
+
+scripted_trigger travl_prisoner_0002_army_trigger = {
+	exists = army_commander
+	root = {
+		trigger_if = {
+			limit = { is_ruler = yes }
+			save_temporary_scope_as = liege
+		}
+		trigger_else = {
+			liege ?= { save_temporary_scope_as = liege }
+		}
+	}
+	exists = scope:liege
+	army_owner ?= {
+		travl_is_hostile_character_trigger = { CHARACTER = scope:liege }
+	}
+}
+
+scripted_effect travl_prisoner_0002_outcome_effect = {
+	# Setup character effects
+	travl_prisoner_0002_$OUTCOME$_effect = yes
+
+	# Send messages to potential recipients and apply character effects
+	travl_event_apply_outcome_effect = {
+		EVENT = prisoner_0002
+		OUTCOME = $OUTCOME$
+		RECIPIENTS = recipients
+		TRAVELERS = travelers
+	}
+}
+
+scripted_effect travl_prisoner_0002_a_success_effect = {
+	root = {
+		travl_event_add_prestige_effect = { VALUE = minor_prestige_value }
+	}
+}
+
+scripted_effect travl_prisoner_0002_a_failure_effect = {
+	scope:army_commander = {
+		travl_event_add_prestige_effect = { VALUE = minor_prestige_value }
+	}
+
+	every_in_list = {
+		list = travelers
+
+		# Get self or liege
+		if = {
+			limit = { is_ruler = yes }
+			save_temporary_scope_as = liege
+		}
+		else = {
+			liege ?= { save_temporary_scope_as = liege }
+		}
+
+		# Escape from prison if imprisoned
+		if = {
+			limit = { is_imprisoned = yes }
+			travl_event_escape_from_prison_effect = yes
+		}
+
+		# Become prisoner of army owner or get injured by army commander if they are hostile
+		if = {
+			limit = {
+				exists = scope:liege
+				scope:army_owner = {
+					travl_is_hostile_character_trigger = { CHARACTER = scope:liege }
+				}
+			}
+
+			random = {
+				chance = 50
+				travl_event_imprison_effect = { IMPRISONER = scope:army_owner }
+			}
+
+			random_list = {
+				5 = {
+					travl_event_death_effect = { REASON = death_fight KILLER = scope:army_commander }
+				}
+				10 = {
+					travl_event_add_trait_effect = { TRAIT = maimed }
+				}
+				20 = {
+					travl_event_wound_effect = { REASON = fight }
+				}
+				65 = {}
+			}
+		}
+	}
+}
+
+# Prisoner: A Chance Encounter
+travl_prisoner.0002 = {
+	type = character_event
+	title = travl_prisoner.0002.t
+	desc = travl_prisoner.0002.desc
+	theme = travel
+
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+
+	trigger = {
+		has_game_rule = travl_travel_events_enabled
+
+		# Travel leader and prison guard
+		has_variable = travl_travel_leader
+		var:travl_travel_leader = root
+
+		# Available, traveling, adult, and unlanded
+		is_available_travelling_adult = yes
+		is_location_valid_for_travel_event_on_land = yes
+		is_landed = no
+
+		# Prison guard
+		has_character_modifier = travl_prison_guard_modifier
+
+		# An army that is hostile to the guard
+		location = {
+			any_army_in_location = {
+				travl_prisoner_0002_army_trigger = yes
+			}
+		}
+	}
+
+	cooldown = { days = 10 }
+
+	immediate = {
+		travl_debug_log_travel_event_effect = { MSG = travl_debug_msg_prisoner_0002_t }
+
+		# Get travelers and message recipients
+		travl_event_get_travelers_effect = { TRAVELERS = travelers }
+		travl_event_get_message_recipients_effect = { RECIPIENTS = recipients }
+
+		# Save army, army commander, and army owner
+		location = {
+			ordered_army_in_location = {
+				limit = {
+					travl_prisoner_0002_army_trigger = yes
+				}
+				order_by = travl_intercept_duel_value
+				save_scope_as = army
+				army_commander = {
+					save_scope_as = army_commander
+				}
+				army_owner = {
+					save_scope_as = army_owner
+				}
+			}
+		}
+
+		# Save location
+		location = { save_scope_as = location }
+	}
+
+	option = {
+		name = travl_prisoner.0002.a
+
+		duel = {
+			skill = martial
+			value = scope:army.travl_intercept_duel_value
+			50 = {
+				desc = travl_prisoner.0002.a.success
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 3.5
+					min = -49
+				}
+				travl_prisoner_0002_outcome_effect = { OUTCOME = a_success }
+			}
+			50 = {
+				desc = travl_prisoner.0002.a.failure
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -3.5
+					min = -49
+				}
+				travl_prisoner_0002_outcome_effect = { OUTCOME = a_failure }
+			}
+		}
+
+		ai_chance = {
+			base = 100
+		}
+	}
+}

@@ -15,7 +15,7 @@ scripted_effect travl_travel_danger_0008_outcome_effect = {
 
 scripted_effect travl_travel_danger_0008_a_success_effect = {
 	scope:diplomacy_character = {
-		travl_event_add_stress_effect = { TRAIT = flag:paranoid VALUE = flag:medium }
+		travl_event_add_stress_effect = { TRAIT = paranoid VALUE = medium }
 		travl_event_add_prestige_effect = { VALUE = miniscule_prestige_value }
 	}
 	scope:maron_leader = {
@@ -24,13 +24,13 @@ scripted_effect travl_travel_danger_0008_a_success_effect = {
 	}
 	every_in_list = {
 		list = travelers
-		travl_event_add_travel_modifier_effect = { VALUE = flag:travel_guide_modifier }
+		travl_event_add_travel_modifier_effect = { MODIFIER = travel_guide_modifier }
 	}
 }
 
 scripted_effect travl_travel_danger_0008_a_failure_effect = {
 	scope:diplomacy_character = {
-		travl_event_add_stress_effect = { TRAIT = flag:paranoid VALUE = flag:medium }
+		travl_event_add_stress_effect = { TRAIT = paranoid VALUE = medium }
 		travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
 	}
 	travl_travel_danger_0008_failure_effect = yes
@@ -38,8 +38,8 @@ scripted_effect travl_travel_danger_0008_a_failure_effect = {
 
 scripted_effect travl_travel_danger_0008_b_effect = {
 	scope:gold_character = {
-		travl_event_add_stress_effect = { TRAIT = flag:greedy VALUE = flag:medium }
-		travl_event_remove_gold_effect = { VALUE = minor_gold_value }
+		travl_event_add_stress_effect = { TRAIT = greedy VALUE = medium }
+		travl_event_pay_gold_effect = { TARGET = scope:maron_leader VALUE = minor_gold_value }
 	}
 	scope:maron_leader = {
 		travl_event_visit_court_effect = { HOST = root.var:travl_travel_receiver }
@@ -47,7 +47,7 @@ scripted_effect travl_travel_danger_0008_b_effect = {
 	}
 	every_in_list = {
 		list = travelers
-		travl_event_add_travel_modifier_effect = { VALUE = flag:travel_guide_modifier }
+		travl_event_add_travel_modifier_effect = { MODIFIER = travel_guide_modifier }
 	}
 }
 
@@ -60,13 +60,13 @@ scripted_effect travl_travel_danger_0008_failure_effect = {
 		30 = {
 			every_in_list = {
 				list = travelers
-				travl_event_delay_travel_effect = { VALUE = flag:minor }
+				travl_event_delay_travel_effect = { VALUE = minor }
 			}
 		}
 		70 = {
 			every_in_list = {
 				list = travelers
-				travl_event_delay_travel_effect = { VALUE = flag:medium }
+				travl_event_delay_travel_effect = { VALUE = medium }
 			}
 		}
 	}

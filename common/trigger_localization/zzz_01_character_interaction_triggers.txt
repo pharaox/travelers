@@ -1,0 +1,4 @@
+﻿currently_being_tortured = {
+	first_not = travl_i_am_traveling_or_being_tortured
+	third_not = travl_they_are_traveling_or_being_tortured
+}

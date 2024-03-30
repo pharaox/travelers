@@ -15,20 +15,22 @@ scripted_effect travl_travel_danger_0002_outcome_effect = {
 
 scripted_effect travl_travel_danger_0002_a_success_effect = {
 	scope:stewardship_character = {
-		travl_event_add_stress_effect = { TRAIT = flag:callous VALUE = flag:medium }
+		travl_event_add_stress_effect = { TRAIT = callous VALUE = medium }
+		travl_event_add_stress_effect = { TRAIT = sadistic VALUE = medium }
 	}
 }
 
 scripted_effect travl_travel_danger_0002_a_failure_effect = {
 	scope:stewardship_character = {
-		travl_event_add_stress_effect = { TRAIT = flag:callous VALUE = flag:medium }
+		travl_event_add_stress_effect = { TRAIT = callous VALUE = medium }
+		travl_event_add_stress_effect = { TRAIT = sadistic VALUE = medium }
 	}
 	travl_travel_danger_0002_failure_effect = yes
 }
 
 scripted_effect travl_travel_danger_0002_b_effect = {
 	root = {
-		travl_event_add_stress_effect = { TRAIT = flag:compassionate VALUE = flag:major }
+		travl_event_add_stress_effect = { TRAIT = compassionate VALUE = major }
 	}
 	travl_travel_danger_0002_failure_effect = yes
 }
@@ -44,10 +46,10 @@ scripted_effect travl_travel_danger_0002_failure_effect = {
 					}
 				}
 			}
-			travl_event_death_effect = { REASON = flag:death_lost_in_the_bog KILLER = this }
+			travl_event_death_effect = { REASON = death_lost_in_the_bog KILLER = this }
 		}
 		else = {
-			travl_event_death_effect = { REASON = flag:death_lost_in_the_forest KILLER = this }
+			travl_event_death_effect = { REASON = death_lost_in_the_forest KILLER = this }
 		}
 	}
 }

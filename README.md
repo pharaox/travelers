@@ -16,13 +16,15 @@ Since character homes may change mid-travel, such groups may lose members, chang
 
 While traveling, rulers and their entourage may get some of the vanilla travel and danger events. As a result, some of them may die or leave, and others may join. Rulers can also select a travel leader, add travel options, and get experience on arrival.
 
-Since there are no travel events for non-ruler characters available in vanilla, this mod adds 14 new travel danger events for non-ruler group leaders, loosely based on existing vanilla events. Other group members may also participate in the resolution of such an event, and all may suffer its consequences. The player is informed about such events with appropriate messages. These events can be disabled via a game rule.
+Since there are no travel events for non-ruler characters available in vanilla, this mod adds 15 new travel danger events for non-ruler group leaders, loosely based on existing vanilla events. Other group members may also participate in the resolution of such an event, and all may suffer its consequences. The player is informed about such events with appropriate messages, and they can be disabled via a game rule.
 
 Due to the increased volume of travel caused by this mod and the new travel danger events mentioned above, more characters may die or get injured due to travel danger events than before. To compensate for this, the travel safety of all travel caused by this mod is increased compared to vanilla travel. If you prefer, you can increase it even further or decrease it to its default level via a game rule.
 
-Prisoners are a special case. Imprisoned characters always travel as companions of a "prisoner escort" group leader, who joins the imprisoner's court only temporarily and leaves on arrival, similarly to characters joining court due to travel options. The escorting character may also get some of the danger events mentioned above. If this character travel is aborted for any reason, e.g. death due to an event, all prisoners escape.
+Prisoners are a special case. Imprisoned characters always travel as companions of a "prisoner escort" group leader, who joins the imprisoner's court only temporarily and leaves on arrival, and may also get some of the danger events mentioned above. If their travel is aborted for any reason, e.g. death due to an event, all prisoners escape.
 
-Imprisoned rulers traveling to their jailor's capital are assigned a "prison guard" travel leader, can't add travel options, and other characters may not join their entourages. They also don't get any vanilla travel events, but may still be affected by the travel danger events mentioned above if they happen to the character who escorts them.
+Imprisoned rulers traveling to their jailor's capital are assigned a "prison guard" travel leader, can't add travel options, and other characters may not join their entourages. They also don't get any vanilla travel events, but may still be affected by the danger events mentioned above.
+
+Traveling prisoners are moved to a special prison type and can't be interacted with (ransomed, executed, etc.) (can be disabled via a game rule). They may try to escape while traveling via a special event, and may also get freed if their escorting character moves to a location containing a hostile army. As a player, you can try to free prisoners captured by an enemy by putting one of your armies on their path.
 
 Finally, this mod also adds an **Invite Characters to Court** convenience interaction that lists all characters that would accept **Invite to Court**.
 
@@ -32,13 +34,11 @@ The current version is compatible with CK3 1.12. If you are still on CK3 1.11.x,
 
 This mod is compatible with most other mods, except for mods that make similar changes to the travel system, or modify the `travl_on_actions.txt` and `travel_options.txt` vanilla files. Unfortunately, the latter includes most total conversion mods. If you use such mods, put this mod before them in the load order - the travel of imprisoned rulers may be affected as a result, but everything else should work as expected.
 
-This mod is now fully compatible with [A Game of Thrones](https://steamcommunity.com/sharedfiles/filedetails/?id=2962333032) with a compatibility patch, see [Links](#links). Since AGOT is still on CK3 1.11.x, you need to use the older version mentioned above.
+This mod is now fully compatible with [A Game of Thrones](https://steamcommunity.com/sharedfiles/filedetails/?id=2962333032) with a compatibility patch, see [Links](#links).
 
-This mod is now also compatible with [Prisoners of War](https://steamcommunity.com/workshop/filedetails/?id=2511247871). Since PoW is still on CK3 1.11.x, you need to use the older version mentioned above. For best experience, use the compatch by @cuomo860, see [Links](#links). With PoW, prisoners of war attach to the commander who captured them instead of traveling to the prison on their own. Put this mod after PoW in the load order.
+This mod is now also compatible with [Prisoners of War](https://steamcommunity.com/workshop/filedetails/?id=2511247871). For best experience, use the compatch by @cuomo860, see [Links](#links). With PoW, prisoners of war attach to the commander who captured them instead of traveling to the prison on their own. Put this mod after PoW in the load order.
 
 This mod also supports changing its game rules mid-game with the [Gamerule Gadget](https://steamcommunity.com/sharedfiles/filedetails/?id=2826829936) mod.
-
-I strongly recommend using also the [Unofficial Patch](https://steamcommunity.com/sharedfiles/filedetails/?id=2871648329) mod as it fixes many vanilla travel issues. Put this mod after Unofficial Patch in the load order.
 
 ## Localization
 
@@ -131,14 +131,17 @@ These new travel danger events for non-ruler characters are the following:
 | 12 | Beast Attack | Forest, Taiga, Jungle | Not terrain expert | Prowess |
 | 13 | Spoiled Food | | No holding, Traveled for > 15 days | Learning, Intrigue |
 | 14 | Sickness | Wetlands, Jungle | Not terrain expert, Traveled for > 15 days | |
+| 15 | Carrion | | Epidemic | Learning |
 
 Due to the increased volume of travel caused by this mod and the new travel danger events mentioned above, more characters may die or get injured due to travel danger events than before. If you don't like this, you can increase the travel safety of all travel caused by this mod via the **Travel Safety** game rule. This adds a travel safety modifier to all travel plans created by this mod, which causes both vanilla travel danger events and the new events mentioned above to fire less often.
 
 ### Prisoner Travel
 
-Imprisoned characters always travel as companions of a "prisoner escort" group leader, who joins the imprisoner's court only temporarily and leaves on arrival, similarly to characters joining court due to travel options. The escorting character may also get some of the danger events mentioned in [Travel and Danger Events](#travel-and-danger-events). If this character  travel is aborted for any reason, e.g. death due to an event, all prisoners escape.
+Imprisoned characters always travel as companions of a "prisoner escort" group leader, who joins the imprisoner's court only temporarily and leaves on arrival, similarly to characters joining court due to travel options. The escorting character may also get some of the danger events mentioned in [Travel and Danger Events](#travel-and-danger-events). If this character travel is aborted for any reason, e.g. death due to an event, all prisoners escape.
 
 Unlike rulers that travel to their own realm capital, imprisoned rulers traveling to their jailor's capital are assigned a "prison guard" travel leader, can't add travel options, and other characters may not join their entourages. They also don't get any vanilla travel events, but may still be affected by the travel danger events mentioned above if they happen to the character who escorts them.
+
+Traveling prisoners are moved to a special prison type and can't be interacted with (ransomed, executed, etc.). This can be disabled via the **Interactions for Traveling Prisoners** game rule. They may try to escape while traveling via a special **Escape from Prison** event by winning a prowess, diplomacy, or intrigue challenge against their guard, although their chances of success are rather low and most would not even try it. They may also get freed if their escorting character moves to a location containing a hostile army and fails a martial challenge against the army commander. As a player, you can try to free prisoners captured by an enemy by putting one of your armies on their path.
 
 ### Invite Characters to Court Interaction
 

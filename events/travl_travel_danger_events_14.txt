@@ -18,10 +18,10 @@ scripted_effect travl_travel_danger_0014_a_effect = {
 		list = travelers
 		random_list = {
 			50 = {
-				travl_event_disease_effect = { DISEASE = flag:ill }
+				travl_event_disease_effect = { DISEASE = ill }
 			}
 			20 = {
-				travl_event_disease_effect = { DISEASE = flag:consumption }
+				travl_event_disease_effect = { DISEASE = consumption }
 			}
 			30 = {}
 		}

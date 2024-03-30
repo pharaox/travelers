@@ -25,6 +25,16 @@ travl_is_PoW_teleporting_character_trigger = {
 	}
 }
 
+travl_is_imprisoned_travelling_adult_trigger = {
+	is_alive = yes
+	is_adult = yes
+	is_imprisoned = yes
+	is_travelling = yes
+	has_contagious_deadly_disease_trigger = no
+	is_incapable = no
+	is_busy_in_events_unlocalised = no
+}
+
 travl_is_travelling_to_receiver_trigger = {
 	current_travel_plan ?= {
 		travel_plan_owner = {

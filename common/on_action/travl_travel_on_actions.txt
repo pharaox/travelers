@@ -196,6 +196,7 @@ travl_travel_on_arrival = {
 
 		# Remove travel variables
 		travl_remove_sender_and_receiver_effect = yes
+		travl_remove_prisoner_flags_effect = yes
 		travl_remove_leader_and_companions_effect = yes
 
 		# Move added characters back to pool
@@ -272,6 +273,13 @@ travl_on_travel_plan_movement = {
 		}
 	}
 
+	on_actions = {
+		travl_travel_danger_events
+		travl_prisoner_events
+	}
+}
+
+travl_travel_danger_events = {
 	random_events = {
 		chance_of_no_event = {
 			value = 100
@@ -292,6 +300,20 @@ travl_on_travel_plan_movement = {
 		100 = travl_travel_danger.0012 # Danger: Beast Attack
 		 20 = travl_travel_danger.0013 # Danger: Spoiled Food
 		200 = travl_travel_danger.0014 # Danger: Sickness
+		500 = travl_travel_danger.0015 # Danger: Carrion
+	}
+}
+
+travl_prisoner_events = {
+	random_events = {
+		chance_of_no_event = {
+			value = 80
+		}
+		100 = 0
+		100 = travl_prisoner.0001 # Escape from Prison
+	}
+	events = {
+		travl_prisoner.0002 # Hostile Army
 	}
 }
 
@@ -330,6 +352,7 @@ travl_on_travel_plan_abort = {
 
 		# Remove travel variables
 		travl_remove_sender_and_receiver_effect = yes
+		travl_remove_prisoner_flags_effect = yes
 		travl_remove_leader_or_companion_effect = yes
 
 		# Move added characters back to pool
@@ -381,15 +404,9 @@ travl_on_leader_changed = {
 				}
 			}
 
-			# Get prisoners and message recipients
+			# Let prisoners escape and notify recipients
 			travl_event_get_prisoners_effect = { PRISONERS = prisoners }
-			travl_event_get_message_recipients_effect = { RECIPIENTS = recipients }
-
-			# Release prisoners and notify recipients
-			travl_escape_from_prison_effect = {
-				RECIPIENTS = recipients
-				PRISONERS = prisoners
-			}
+			travl_escape_from_prison_prisoners_effect = { PRISONERS = prisoners }
 		}
 	}
 }

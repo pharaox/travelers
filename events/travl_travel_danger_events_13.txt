@@ -24,10 +24,10 @@ scripted_effect travl_travel_danger_0013_a_failure_effect = {
 		travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
 		random_list = {
 			5 = {
-				travl_event_death_effect = { REASON = flag:death_poisonous_forage KILLER = this }
+				travl_event_death_effect = { REASON = death_poisonous_forage KILLER = this }
 			}
 			25 = {
-				travl_event_disease_effect = { DISEASE = flag:ill }
+				travl_event_disease_effect = { DISEASE = ill }
 			}
 			70 = {}
 		}
@@ -37,18 +37,18 @@ scripted_effect travl_travel_danger_0013_a_failure_effect = {
 
 scripted_effect travl_travel_danger_0013_b_success_effect = {
 	scope:intrigue_character = {
-		travl_event_add_stress_effect = { TRAIT = flag:just VALUE = flag:major }
+		travl_event_add_stress_effect = { TRAIT = just VALUE = major }
 		travl_event_add_prestige_effect = { VALUE = miniscule_prestige_value }
 	}
 }
 
 scripted_effect travl_travel_danger_0013_b_failure_effect = {
 	scope:intrigue_character = {
-		travl_event_add_stress_effect = { TRAIT = flag:just VALUE = flag:major }
+		travl_event_add_stress_effect = { TRAIT = just VALUE = major }
 		travl_event_remove_piety_effect = { VALUE = minor_piety_value }
 		random = {
 			chance = 50
-			travl_event_wound_effect = { REASON = flag:fight }
+			travl_event_wound_effect = { REASON = fight }
 		}
 	}
 	travl_travel_danger_0013_failure_effect = yes
@@ -79,7 +79,7 @@ scripted_effect travl_travel_danger_0013_failure_effect = {
 				has_trait = physique_good_3
 				add = -15
 			}
-			travl_event_disease_effect = { DISEASE = flag:ill }
+			travl_event_disease_effect = { DISEASE = ill }
 		}
 	}
 }

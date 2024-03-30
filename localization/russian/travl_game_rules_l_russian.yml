@@ -15,13 +15,19 @@
  setting_travl_travel_events_enabled: "Включено"
  setting_travl_travel_events_enabled_desc: "События для безземельных персонажей включены."
 
+ rule_travl_prison_interactions: "#P Travelers:#! Взаимодействия с путешествующих заключенных"
+ setting_travl_prison_interactions_disabled: "Выключено"
+ setting_travl_prison_interactions_disabled_desc: "Некоторые взаимодействия с путешествующих заключенных отключены."
+ setting_travl_prison_interactions_enabled: "#high Включено#!"
+ setting_travl_prison_interactions_enabled_desc: "Все взаимодействия с путешествующих заключенных включены."
+
  rule_travl_travel_safety: "#P Travelers:#! Безопасность в пути"
  setting_travl_travel_safety_default: "#high По умолчанию#!"
  setting_travl_travel_safety_default_desc: "Безопасность в пути для путешествий, вызванных этим модом, не увеличивается по сравнению с обычными путешествиями."
  setting_travl_travel_safety_high: "Высокая"
- setting_travl_travel_safety_high_desc: "Безопасность в пути увеличивается на 20 для всех путешествий, вызванных этим модом."
+ setting_travl_travel_safety_high_desc: "Безопасность в пути увеличивается на 10 для всех путешествий, вызванных этим модом."
  setting_travl_travel_safety_very_high: "#high Очень высокая#!"
- setting_travl_travel_safety_very_high_desc: "Безопасность в пути увеличивается на 40 для всех путешествий, вызванных этим модом."
+ setting_travl_travel_safety_very_high_desc: "Безопасность в пути увеличивается на 20 для всех путешествий, вызванных этим модом."
 
  rule_travl_interaction_range: "#P Travelers:#! Радиус 'Пригласить персонажей ко двору'"
  setting_travl_interaction_range_small: "#high Маленький#!"

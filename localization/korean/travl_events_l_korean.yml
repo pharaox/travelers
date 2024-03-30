@@ -1,8 +1,8 @@
 ﻿l_korean:
  travel_completion_event.1000.desc.aborted: "[final_destination_province.GetName]로의 여정을 계속하는 것이 더 이상 의미가 없어졌습니다. 잠시 휴식을 취할 수 있습니다."
  travel_completion_event.1000.c: "이번에는 어디로 가게 될까요?"
- 
- # Event texts (hidden events, no need to translate)
+
+ # Travel danger event texts (hidden events, no need to translate)
  # travel_danger.0001 Bandits
  travl_travel_danger.0001.t: "$travel_danger_prefix$ 강도"
  travl_travel_danger.0001.desc: "길에서 강도를 만났습니다."
@@ -121,8 +121,43 @@
  travl_travel_danger.0014.t: "$travel_danger_prefix$ 병"
  travl_travel_danger.0014.desc: "우리 중 일부가 약해져서 다른 사람들에 뒤처지기 시작합니다... 무언가 잘못된 것이 있습니다..."
  travl_travel_danger.0014.a: "계속 나아가야 합니다..."
- 
- # Message titles
+ # travel_danger.0015 Carrion
+ travl_travel_danger.0015.t: "$travel_danger_prefix$ Carrion"
+ travl_travel_danger.0015.desc: "Our water supplies are running low when we enter a deserted village with a well and a lot of corpses."
+ travl_travel_danger.0015.a: "Make the water safe to drink by boiling it and mixing it with herbs"
+ travl_travel_danger.0015.a.success: "You manage to make the water safe to drink"
+ travl_travel_danger.0015.a.failure: "You fail to make the water safe to drink"
+ travl_travel_danger.0015.b: "Drink from the well"
+ travl_travel_danger.0015.c: "We must press on..."
+
+ # Prisoner event texts (actual events, should be translated)
+ # prisoner.0001 Escape from Prison
+ travl_prisoner.0001.t: "Escape from Prison"
+ travl_prisoner.0001.desc: "I am imprisoned, but not in prison yet. While traveling I am lightly guarded, and it seems the best time to attempt an escape is NOW, before we reach our destination. However, how to deal with the guards?"
+ travl_prisoner.0001.a: "Attack [guard.GetShortUIName] and try to break free"
+ travl_prisoner.0001.a.success: "You manage to defeat [guard.GetShortUIName]"
+ travl_prisoner.0001.a.failure: "You fail to defeat [guard.GetShortUIName]"
+ travl_prisoner.0001.b: "Persuade [guard.GetShortUIName] to set me free"
+ travl_prisoner.0001.b.success: "You manage to persuade [guard.GetShortUIName]"
+ travl_prisoner.0001.b.failure: "You fail to persuade [guard.GetShortUIName], and [guard.GetSheHe] whips you for your insolence"
+ travl_prisoner.0001.c: "Trick [guard.GetShortUIName] into freeing me"
+ travl_prisoner.0001.c.success: "You manage to trick [guard.GetShortUIName]"
+ travl_prisoner.0001.c.failure: "You fail to trick [guard.GetShortUIName], and [guard.GetSheHe] whips you (hard) for your insolence"
+ travl_prisoner.0001.d: "Bribe [guard.GetShortUIName] to let me escape"
+ travl_prisoner.0001.d.success: "[guard.GetShortUIName] accepts your bribe and lets you escape"
+ travl_prisoner.0001.d.failure: "[guard.GetShortUIName] doesn't accept your bribe and laughs at you"
+ travl_prisoner.0001.e: "Seduce [guard.GetShortUIName] to gain my freedom"
+ travl_prisoner.0001.e.success: "You manage to seduce [guard.GetShortUIName] and [guard.GetSheHe] frees you"
+ travl_prisoner.0001.e.failure: "You fail to seduce [guard.GetShortUIName] and [guard.GetSheHe] laughs at you"
+ travl_prisoner.0001.z: "It's too dangerous"
+ # prisoner.0002 Hostile Army
+ travl_prisoner.0002.t: "Hostile Army"
+ travl_prisoner.0002.desc: "A hostile army led by [army_commander.GetShortUIName] is nearby. If they intercept us, they may capture us or worse."
+ travl_prisoner.0002.a: "Avoid them at all costs!"
+ travl_prisoner.0002.a.success: "You manage to avoid being intercepted by the army"
+ travl_prisoner.0002.a.failure: "You fail to avoid being intercepted by the army"
+
+ # Travel danger message titles
  travl_msg_travel_danger_0001_t: "$travel_danger_prefix$ 강도들"
  travl_msg_travel_danger_0002_t: "$travel_danger_prefix$ 사라진 동료"
  travl_msg_travel_danger_0003_t: "$travel_danger_prefix$ 길을 잃음"
@@ -139,8 +174,13 @@
  travl_msg_travel_danger_0012_t: "$travel_danger_prefix$ 야수 공격"
  travl_msg_travel_danger_0013_t: "$travel_danger_prefix$ 식량 오염"
  travl_msg_travel_danger_0014_t: "$travel_danger_prefix$ 병"
- 
- # Message tooltips
+ travl_msg_travel_danger_0015_t: "$travel_danger_prefix$ Carrion"
+
+ # Prisoner message titles
+ travl_msg_prisoner_0001_t: "Escape from Prison"
+ travl_msg_prisoner_0002_t: "Hostile Army"
+
+ # Travel danger message tooltips
  # travel_danger.0001 Bandits
  travl_msg_travel_danger_0001_prefix: "[THIS.Char.GetShortUIName|U]과 [THIS.Char.GetHerHis] 동료들은 [location.GetName]에서 길을 가다가 강도들을 만났습니다."
  travl_msg_travel_danger_0001_a_success: "$travl_msg_travel_danger_0001_prefix$ 하지만 $travl_this_or_prowess_character$가 그들을 격퇴했습니다."
@@ -222,7 +262,31 @@
  travl_msg_travel_danger_0013_c: "$travl_msg_travel_danger_0013_prefix$ 그냥 그 음식을 먹었고, 병에 걸릴 위험을 감수했습니다."
  # travel_danger.0014 Sickness
  travl_msg_travel_danger_0014_a: "[THIS.Char.GetShortUIName|U]와 [THIS.Char.GetHerHis] 동료들은 [location.GetName]의 [location.Custom('GetTerrainTypePlural')]를 여행하는 동안 병에 걸렸습니다."
- 
+ # travel_danger.0015 Carrion
+ travl_msg_travel_danger_0015_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] companions came across a well with tainted water in [location.GetName]"
+ travl_msg_travel_danger_0015_a_success: "$travl_msg_travel_danger_0015_prefix$, but $travl_this_or_learning_character$ managed to make the water safe to drink by boiling it."
+ travl_msg_travel_danger_0015_a_failure: "$travl_msg_travel_danger_0015_prefix$, and $travl_this_or_learning_character$ failed to make the water safe to drink by boiling it."
+ travl_msg_travel_danger_0015_b: "$travl_msg_travel_danger_0015_prefix$ and drank from it."
+ travl_msg_travel_danger_0015_c: "$travl_msg_travel_danger_0015_prefix$ and did not dare to drink from it, going thirsty for some time."
+
+ # Prisoner message tooltips
+ # prisoner.0001 Escape from Prison
+ travl_msg_prisoner_0001_prefix: "[THIS.Char.GetShortUIName|U] attempted to escape $travl_char_your_her_his$ guards in [location.GetName]"
+ travl_msg_prisoner_0001_a_success: "$travl_msg_prisoner_0001_prefix$. $travl_char_you_she_he_u$ attacked [guard.GetShortUIName] and somehow managed to defeat [guard.GetHerHim]."
+ travl_msg_prisoner_0001_a_failure: "$travl_msg_prisoner_0001_prefix$. $travl_char_you_she_he_u$ attacked [guard.GetShortUIName], but failed to defeat [guard.GetHerHim]."
+ travl_msg_prisoner_0001_b_success: "$travl_msg_prisoner_0001_prefix$. $travl_char_you_she_he_u$ somehow managed to persuade [guard.GetShortUIName] to set $travl_char_you_her_him$ free."
+ travl_msg_prisoner_0001_b_failure: "$travl_msg_prisoner_0001_prefix$. $travl_char_you_she_he_u$ failed to persuade [guard.GetShortUIName] to set $travl_char_you_her_him$ free and $travl_char_were_was$ whipped for $travl_char_your_her_his$ insolence."
+ travl_msg_prisoner_0001_c_success: "$travl_msg_prisoner_0001_prefix$. $travl_char_you_she_he_u$ somehow tricked [guard.GetShortUIName] into freeing $travl_char_you_her_him$."
+ travl_msg_prisoner_0001_c_failure: "$travl_msg_prisoner_0001_prefix$. $travl_char_you_she_he_u$ failed to trick [guard.GetShortUIName] into freeing $travl_char_you_her_him$ and $travl_char_were_was$ whipped for $travl_char_your_her_his$ insolence."
+ travl_msg_prisoner_0001_d_success: "$travl_msg_prisoner_0001_prefix$. $travl_char_you_she_he_u$ bribed [guard.GetShortUIName] to let $travl_char_you_her_him$ escape."
+ travl_msg_prisoner_0001_d_failure: "$travl_msg_prisoner_0001_prefix$. $travl_char_you_she_he_u$ failed to bribe [guard.GetShortUIName] to let $travl_char_you_her_him$ escape and $travl_char_were_was$ laughed at."
+ travl_msg_prisoner_0001_e_success: "$travl_msg_prisoner_0001_prefix$. $travl_char_you_she_he_u$ seduced [guard.GetShortUIName] to gain $travl_char_your_her_his$ freedom."
+ travl_msg_prisoner_0001_e_failure: "$travl_msg_prisoner_0001_prefix$. $travl_char_you_she_he_u$ failed to seduce [guard.GetShortUIName] to gain $travl_char_your_her_his$ freedom and $travl_char_were_was$ laughed at."
+ # prisoner.0002 Hostile Army
+ travl_msg_prisoner_0002_prefix: "[THIS.Char.GetShortUIName|U] and [THIS.Char.GetHerHis] escorted prisoners passed by a hostile army led by [army_commander.GetShortUIName] in [location.GetName]"
+ travl_msg_prisoner_0002_a_success: "$travl_msg_prisoner_0002_prefix$, but [THIS.Char.GetSheHe] managed to avoid being intercepted by it."
+ travl_msg_prisoner_0002_a_failure: "$travl_msg_prisoner_0002_prefix$, and [THIS.Char.GetSheHe] failed to avoid being intercepted by it."
+
  travl_this_or_diplomacy_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, diplomacy_character.GetID), THIS.Char.GetSheHe, diplomacy_character.GetShortUIName)]"
  travl_this_or_martial_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, martial_character.GetID), THIS.Char.GetSheHe, martial_character.GetShortUIName)]"
  travl_this_or_stewardship_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, stewardship_character.GetID), THIS.Char.GetSheHe, stewardship_character.GetShortUIName)]"
@@ -230,6 +294,12 @@
  travl_this_or_learning_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, learning_character.GetID), THIS.Char.GetSheHe, learning_character.GetShortUIName)]"
  travl_this_or_prowess_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, prowess_character.GetID), THIS.Char.GetSheHe, prowess_character.GetShortUIName)]"
  travl_this_or_gold_character: "[Select_CString(EqualTo_uint32(THIS.Char.GetID, gold_character.GetID), THIS.Char.GetSheHe, gold_character.GetShortUIName)]"
- 
+
+ travl_char_you_she_he: "[Select_CString(THIS.Char.IsLocalPlayer, 'you', THIS.Char.GetSheHe)]"
+ travl_char_you_she_he_u: "[Select_CString(THIS.Char.IsLocalPlayer, 'you', THIS.Char.GetSheHe)|U]"
+ travl_char_you_her_him: "[Select_CString(THIS.Char.IsLocalPlayer, 'you', THIS.Char.GetHerHim)]"
+ travl_char_your_her_his: "[Select_CString(THIS.Char.IsLocalPlayer, 'your', THIS.Char.GetHerHis)]"
+ travl_char_were_was: "[Select_CString(THIS.Char.IsLocalPlayer, 'were', 'was')]"
+
  # Custom tooltips
  travl_they_got_a_visitor_tt: "[THIS.Char.GetShortUIName|U]는 [THIS.Var('travl_event_host').Char.GetShortUINamePossessive] [court|E]에 머물기로 했습니다."

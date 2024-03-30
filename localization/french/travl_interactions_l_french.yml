@@ -8,6 +8,7 @@
  travl_msg_departed_for_court: "Parti pour la Cour"
  travl_msg_arrived_at_court: "Arrivée à la Cour"
  travl_msg_escaped_from_prison: "Évadé de prison"
+ travl_msg_imprisoned: "Emprisonné"
 
  # Message tooltips
  travl_departed_for_court_tt: "[CHARACTER.Custom('FR_le_Char_U_Pi')|U][CHARACTER.GetShortUIName] est parti pour la Cour [TARGET_CHARACTER.Custom('FR_du_Char_U_Pi')][TARGET_CHARACTER.GetShortUIName]."

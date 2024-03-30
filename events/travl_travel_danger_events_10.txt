@@ -15,14 +15,14 @@ scripted_effect travl_travel_danger_0010_outcome_effect = {
 
 scripted_effect travl_travel_danger_0010_a_success_effect = {
 	scope:martial_character = {
-		travl_event_add_stress_effect = { TRAIT = flag:craven VALUE = flag:major }
+		travl_event_add_stress_effect = { TRAIT = craven VALUE = major }
 		travl_event_add_prestige_effect = { VALUE = miniscule_prestige_value }
 	}
 }
 
 scripted_effect travl_travel_danger_0010_a_failure_effect = {
 	scope:martial_character = {
-		travl_event_add_stress_effect = { TRAIT = flag:craven VALUE = flag:major }
+		travl_event_add_stress_effect = { TRAIT = craven VALUE = major }
 		travl_event_remove_prestige_effect = { VALUE = minor_prestige_value }
 	}
 	travl_travel_danger_0010_failure_effect = yes
@@ -30,7 +30,7 @@ scripted_effect travl_travel_danger_0010_a_failure_effect = {
 
 scripted_effect travl_travel_danger_0010_b_effect = {
 	root = {
-		travl_event_add_stress_effect = { TRAIT = flag:brave VALUE = flag:major }
+		travl_event_add_stress_effect = { TRAIT = brave VALUE = major }
 	}
 	travl_travel_danger_0010_failure_effect = yes
 }
@@ -40,14 +40,14 @@ scripted_effect travl_travel_danger_0010_failure_effect = {
 		list = travelers
 		random_list = {
 			5 = {
-				travl_event_death_effect = { REASON = flag:death_fire KILLER = this }
+				travl_event_death_effect = { REASON = death_fire KILLER = this }
 			}
 			25 = {
-				travl_event_wound_effect = { REASON = flag:burned }
+				travl_event_wound_effect = { REASON = burned }
 			}
 			70 = {}
 		}
-		travl_event_delay_travel_effect = { VALUE = flag:minor }
+		travl_event_delay_travel_effect = { VALUE = minor }
 	}
 }
 

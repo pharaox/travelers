@@ -57,3 +57,18 @@
 		}
 	}
 }
+
+travl_is_hostile_character_trigger = {
+	save_temporary_scope_as = character
+	OR = {
+		is_at_war_with = $CHARACTER$
+		any_hostile_raider = { 
+			this = $CHARACTER$
+		}
+		$CHARACTER$ = {
+			any_hostile_raider = {
+				this = scope:character
+			}
+		}
+	}
+}

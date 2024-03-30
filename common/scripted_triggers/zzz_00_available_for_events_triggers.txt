@@ -1,0 +1,24 @@
+﻿# For flags that *may* be seen by the player, and thus need to be cloaked in a custom description to look nice.
+is_busy_in_events_localised = {
+	custom_description = {
+		text = "yearly_1010_abducted"
+		NOT = { has_character_flag = yearly_1010_abducted }
+	}
+	custom_description = {
+		text = "yearly_1010_abductor"
+		NOT = { has_character_flag = yearly_1010_abductor }
+	}
+	# Travelers
+	custom_description = {
+		text = "currently_being_tortured"
+		trigger_if = {
+			limit = {
+				OR = {
+					scope:actor ?= this
+					scope:secondary_recipient ?= this
+				}
+			}
+			NOT = { has_character_flag = is_being_tortured }
+		}
+	}
+}

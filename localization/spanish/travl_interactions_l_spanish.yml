@@ -8,6 +8,7 @@
  travl_msg_departed_for_court: "Departed for Court"
  travl_msg_arrived_at_court: "Arrived at Court"
  travl_msg_escaped_from_prison: "Escaped from Prison"
+ travl_msg_imprisoned: "Imprisoned"
 
  # Message tooltips
  travl_departed_for_court_tt: "[CHARACTER.GetShortUIName] departed for [TARGET_CHARACTER.GetShortUINamePossessive] court."

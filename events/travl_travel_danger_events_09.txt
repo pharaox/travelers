@@ -35,13 +35,13 @@ scripted_effect travl_travel_danger_0009_failure_effect = {
 		30 = {
 			every_in_list = {
 				list = travelers
-				travl_event_delay_travel_effect = { VALUE = flag:minor }
+				travl_event_delay_travel_effect = { VALUE = minor }
 			}
 		}
 		70 = {
 			every_in_list = {
 				list = travelers
-				travl_event_delay_travel_effect = { VALUE = flag:medium }
+				travl_event_delay_travel_effect = { VALUE = medium }
 			}
 		}
 	}

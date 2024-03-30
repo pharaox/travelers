@@ -15,13 +15,19 @@
  setting_travl_travel_events_enabled: "Enabled"
  setting_travl_travel_events_enabled_desc: "Travel events for unlanded characters are enabled."
 
+ rule_travl_prison_interactions: "#P Travelers:#! Interactions for Traveling Prisoners"
+ setting_travl_prison_interactions_disabled: "Disabled"
+ setting_travl_prison_interactions_disabled_desc: "Some interactions for traveling prisoners are disabled."
+ setting_travl_prison_interactions_enabled: "#high Enabled#!"
+ setting_travl_prison_interactions_enabled_desc: "All interactions for traveling prisoners are enabled."
+
  rule_travl_travel_safety: "#P Travelers:#! Travel Safety"
  setting_travl_travel_safety_default: "#high Default#!"
  setting_travl_travel_safety_default_desc: "Travel safety is not increased for travel caused by this mod compared to vanilla travel."
  setting_travl_travel_safety_high: "High"
- setting_travl_travel_safety_high_desc: "Travel safety is increased by 20 for all travel caused by this mod."
+ setting_travl_travel_safety_high_desc: "Travel safety is increased by 10 for all travel caused by this mod."
  setting_travl_travel_safety_very_high: "#high Very High#!"
- setting_travl_travel_safety_very_high_desc: "Travel safety is increased by 40 for all travel caused by this mod."
+ setting_travl_travel_safety_very_high_desc: "Travel safety is increased by 20 for all travel caused by this mod."
 
  rule_travl_interaction_range: "#P Travelers:#! Invite Characters to Court Range"
  setting_travl_interaction_range_small: "#high Small#!"

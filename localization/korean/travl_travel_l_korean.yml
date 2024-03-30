@@ -1,22 +1,35 @@
 ﻿l_korean:
  travl_is_imprisoned_modifier: "수감자"
  travl_is_imprisoned_modifier_desc: "당신은 수감되어 있으며 수감지로 이동 중입니다."
- 
+
  travl_travel_safety_high_modifier: "높은 여행 안전성"
  travl_travel_safety_high_modifier_desc: "게임 규칙에 따라 여행 안전성이 증가합니다."
  travl_travel_safety_very_high_modifier: "매우 높은 여행 안전성"
  travl_travel_safety_very_high_modifier_desc: "$travl_travel_safety_high_modifier_desc$"
- 
+
  travl_prison_guard_modifier: "수감자 호위"
  travl_prison_guard_modifier_desc: "이 캐릭터는 수감자를 호위하고 있습니다."
- 
+
+ travl_travel_prison_type: "Prisoner Travel"
+ travl_travel_prison_type_desc: "This character is imprisoned and traveling to their prison location"
+
  travl_travel_leader_recruited.t: "여행 리더 지정"
- 
- travl_character_traveling_tooltip_companions: "[Character.Custom('travl_character_traveling_tooltip_companions'))]"
+
+ travl_character_traveling_tooltip_companions: "[Character.Custom('travl_character_traveling_tooltip_companions')]"
  travl_together_with: "와 함께"
  travl_companions_1: "$travl_together_with$ [SCOPE.sC('companion1').GetUIName]"
  travl_companions_2: "$travl_together_with$ [SCOPE.sC('companion1').GetUIName] 및 [SCOPE.sC('companion2').GetUIName]"
  travl_companions_3: "$travl_together_with$ [SCOPE.sC('companion1').GetUIName], [SCOPE.sC('companion2').GetUIName], 및 [SCOPE.sC('companion3').GetUIName]"
  travl_companions_4: "$travl_together_with$ [SCOPE.sC('companion1').GetUIName], [SCOPE.sC('companion2').GetUIName], [SCOPE.sC('companion3').GetUIName], 및 다른 사람들"
  travl_companions_empty: ""
- 
+
+ travl_i_am_traveling_or_being_tortured: "[SelectLocalization(CHARACTER.MakeScope.Var('travl_travel_receiver').IsSet, 'travl_i_am_traveling', 'travl_i_am_being_tortured')]"
+ travl_they_are_traveling_or_being_tortured: "[SelectLocalization(CHARACTER.MakeScope.Var('travl_travel_receiver').IsSet, 'travl_they_are_traveling', 'travl_they_are_being_tortured')]"
+ travl_i_am_traveling: "You are traveling to your prison location"
+ travl_they_are_traveling: "[Character.GetShortUIName|U] is traveling to [Character.GetHerHis] prison location"
+ travl_i_am_being_tortured: "You are being tortured!"
+ travl_they_are_being_tortured: "[Character.GetShortUIName|U] is being tortured"
+
+ travl_prisontype_travel: "prisoner travel"
+ travl_prisontypemodifier_travel: "[GetModifier('travl_travel_prison_type').GetNameWithTooltip]"
+ travl_prisontypecell_travel: "prisoner travel"

@@ -15,7 +15,7 @@ scripted_effect travl_travel_danger_0012_outcome_effect = {
 
 scripted_effect travl_travel_danger_0012_a_success_effect = {
 	scope:prowess_character = {
-		travl_event_add_stress_effect = { TRAIT = flag:craven VALUE = flag:major }
+		travl_event_add_stress_effect = { TRAIT = craven VALUE = major }
 		travl_event_add_prestige_effect = { VALUE = medium_prestige_value }
 		random_list = {
 			50 = {
@@ -28,7 +28,7 @@ scripted_effect travl_travel_danger_0012_a_success_effect = {
 
 scripted_effect travl_travel_danger_0012_a_failure_effect = {
 	scope:prowess_character = {
-		travl_event_add_stress_effect = { TRAIT = flag:craven VALUE = flag:major }
+		travl_event_add_stress_effect = { TRAIT = craven VALUE = major }
 		random_list = {
 			25 = {
 				travl_event_animal_death_effect = { ANIMAL_TYPE = root.var:animal_type }
@@ -43,7 +43,7 @@ scripted_effect travl_travel_danger_0012_a_failure_effect = {
 
 scripted_effect travl_travel_danger_0012_b_effect = {
 	root = {
-		travl_event_add_stress_effect = { TRAIT = flag:brave VALUE = flag:major }
+		travl_event_add_stress_effect = { TRAIT = brave VALUE = major }
 	}
 	random_in_list = {
 		list = travelers
@@ -62,7 +62,7 @@ scripted_effect travl_travel_danger_0012_b_effect = {
 scripted_effect travl_travel_danger_0012_failure_effect = {
 	every_in_list = {
 		list = travelers
-		travl_event_delay_travel_effect = { VALUE = flag:minor }
+		travl_event_delay_travel_effect = { VALUE = minor }
 	}
 }
 
