@@ -15,11 +15,11 @@
  setting_travl_travel_events_enabled: "Включено"
  setting_travl_travel_events_enabled_desc: "События для безземельных персонажей включены."
 
- rule_travl_prison_interactions: "#P Travelers:#! Interactions for Traveling Prisoners"
- setting_travl_prison_interactions_disabled: "Disabled"
- setting_travl_prison_interactions_disabled_desc: "Some interactions for traveling prisoners are disabled."
- setting_travl_prison_interactions_enabled: "#high Enabled#!"
- setting_travl_prison_interactions_enabled_desc: "All interactions for traveling prisoners are enabled."
+ rule_travl_prison_interactions: "#P Travelers:#! Взаимодействия с путешествующих заключенных"
+ setting_travl_prison_interactions_disabled: "Выключено"
+ setting_travl_prison_interactions_disabled_desc: "Некоторые взаимодействия с путешествующих заключенных отключены."
+ setting_travl_prison_interactions_enabled: "#high Включено#!"
+ setting_travl_prison_interactions_enabled_desc: "Все взаимодействия с путешествующих заключенных включены."
 
  rule_travl_travel_safety: "#P Travelers:#! Безопасность в пути"
  setting_travl_travel_safety_default: "#high По умолчанию#!"

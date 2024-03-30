@@ -10,8 +10,8 @@
  travl_prison_guard_modifier: "Эскорт заключенных"
  travl_prison_guard_modifier_desc: "Этот персонаж сопровождает путешествующих заключенных."
 
- travl_travel_prison_type: "Prisoner Travel"
- travl_travel_prison_type_desc: "This character is imprisoned and traveling to their prison location"
+ travl_travel_prison_type: "Путешествие заключенного"
+ travl_travel_prison_type_desc: "Этот персонаж заключен в тюрьму и едет к месту своей тюрьмы."
 
  travl_travel_leader_recruited.t: "Назначен лидер путешествия"
 
@@ -25,11 +25,11 @@
 
  travl_i_am_traveling_or_being_tortured: "[SelectLocalization(CHARACTER.MakeScope.Var('travl_travel_receiver').IsSet, 'travl_i_am_traveling', 'travl_i_am_being_tortured')]"
  travl_they_are_traveling_or_being_tortured: "[SelectLocalization(CHARACTER.MakeScope.Var('travl_travel_receiver').IsSet, 'travl_they_are_traveling', 'travl_they_are_being_tortured')]"
- travl_i_am_traveling: "You are traveling to your prison location"
- travl_they_are_traveling: "[Character.GetShortUIName|U] is traveling to [Character.GetHerHis] prison location"
- travl_i_am_being_tortured: "You are being tortured!"
- travl_they_are_being_tortured: "[Character.GetShortUIName|U] is being tortured"
+ travl_i_am_traveling: "Вы едете к месту своей тюрьмы"
+ travl_they_are_traveling: "[Character.GetShortUIName|U] едет к месту своей тюрьмы"
+ travl_i_am_being_tortured: "Вас пытают!"
+ travl_they_are_being_tortured: "[Character.GetShortUIName|U] подвергается пыткам"
 
- travl_prisontype_travel: "prisoner travel"
+ travl_prisontype_travel: "путешествие заключенного"
  travl_prisontypemodifier_travel: "[GetModifier('travl_travel_prison_type').GetNameWithTooltip]"
- travl_prisontypecell_travel: "prisoner travel"
+ travl_prisontypecell_travel: "путешествие заключенного"

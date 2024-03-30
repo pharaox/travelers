@@ -8,7 +8,7 @@
  travl_msg_departed_for_court: "Отправление ко двору"
  travl_msg_arrived_at_court: "Прибытие ко двору"
  travl_msg_escaped_from_prison: "Сбежали из тюрьмы"
- travl_msg_imprisoned: "Imprisoned"
+ travl_msg_imprisoned: "В заключении"
 
  # Message tooltips
  travl_departed_for_court_tt: "[CHARACTER.GetShortUIName] [Select_CString(CHARACTER.IsFemale, 'отправилась', 'отправился' )] ко двору [Select_CString(TARGET_CHARACTER.IsLocalPlayer, '', 'персонажа ' )][TARGET_CHARACTER.GetNamePossessiveOrMy][Select_CString(TARGET_CHARACTER.IsLocalPlayer, 'его персонажа', '' )]."
