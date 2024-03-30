@@ -1,5 +1,26 @@
 # Changelog
 
+## Version 0.7.0
+
+### Core Travel
+
+* Traveling prisoners now are moved to a special prison type and can't be interacted with (ransomed, executed, etc.) (can be disabled via a game rule).
+* Reduced travel safety bonuses from the *Travel Safety* game rule as they seemed excessive.
+
+### Travel Events
+
+* Added a special *Escape from Prison* event for traveling prisoners. A prisoner tries to escape by winning a prowess, diplomacy, or intrigue challenge against their guard.
+* Added a special *Hostile Army* event for prisoner escort characters moving to a location containing a hostile army.
+* Added one new *Carrion* travel danger event for non-ruler group leaders passing through locations affected by an epidemic, loosely based on the existing vanilla event.
+
+### Game Rules
+
+* Added the *Interactions for Traveling Prisoners* game rule to allow enabling or disabling the standard prison interactions (*Ransom*, *Execute*, etc.) for traveling prisoners.
+
+### Localization
+
+* Updated Korean translation by @gazette2.
+
 ## Version 0.6.1
 
 ### Localization
