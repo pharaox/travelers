@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.7.1
+
+### Core Travel
+
+* Players are now informed when a hostile prisoner escort departs.
+
+### Travel Events
+
+* The army owner is now also informed about the outcome of a *Hostile Army* event.
+
 ## Version 0.7.0
 
 ### Core Travel
