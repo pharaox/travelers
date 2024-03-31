@@ -124,7 +124,7 @@ travl_prisoner.0002 = {
 		}
 	}
 
-	cooldown = { days = 10 }
+	cooldown = { days = 2 }
 
 	immediate = {
 		travl_debug_log_travel_event_effect = { MSG = travl_debug_msg_prisoner_0002_t }
@@ -146,6 +146,7 @@ travl_prisoner.0002 = {
 				}
 				army_owner = {
 					save_scope_as = army_owner
+					add_to_list = recipients
 				}
 			}
 		}
