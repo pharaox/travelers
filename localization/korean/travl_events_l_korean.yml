@@ -62,7 +62,7 @@
  travl_travel_danger.2005.b: "[zombie.GetHerHim]로부터 도망가기"
  # travel_danger.0006 Sea Storm
  travl_travel_danger.0006.t: "$travel_danger_prefix$ 바다 폭풍"
- travl_travel_danger.0006.desc: "우리를 휩쓸어버리는 엄청난 바다 폭풍이 시작됩니다. 나는 선원들이 깊은 어둠 속으로 던져지는 것을 공포스럽게 지켜봅니다. 거대한 파도가 배 위로 굴러갑니다."
+ travl_travel_danger.0006.desc: "우리를 휩쓸어버리는 엄청난 바다 폭풍이 시작됩니다. 나는 선원들이 깊은 어둠 속으로 빨려 들어가는 것을 공포스럽게 지켜봅니다. 거대한 파도가 배를 덮칩니다."
  travl_travel_danger.0006.a: "아아아아아아!"
  # travel_danger.0007 Avalanche
  travl_travel_danger.0007.t: "$travel_danger_prefix$ 눈사태"
@@ -144,7 +144,7 @@
  travl_prisoner.0001.c.success: "[guard.GetShortUIName]을(를) 속이는 데 성공했습니다."
  travl_prisoner.0001.c.failure: "[guard.GetShortUIName]을(를) 속이지 못했습니다. 그리고 [guard.GetSheHe]가 당신의 무례함에 (강하게) 채찍질을 합니다."
  travl_prisoner.0001.d: "[guard.GetShortUIName]에게 뇌물을 주어 나를 탈출하게 하려 시도"
- travl_prisoner.0001.d.success: "[guard.GetShortUIName]이(가) 당신의 뇌물을 받고 당신을 탈출시켰습니다."
+ travl_prisoner.0001.d.success: "[guard.GetShortUIName]이(가) 당신의 뇌물을 받고 당신을 풀어줬습니다."
  travl_prisoner.0001.d.failure: "[guard.GetShortUIName]은(는) 당신의 뇌물을 받지 않고 당신을 비웃었습니다."
  travl_prisoner.0001.e: "[guard.GetShortUIName]을(를) 유혹하여 나의 자유를 얻으려 시도"
  travl_prisoner.0001.e.success: "[guard.GetShortUIName]을(를) 유혹하는 데 성공했고, [guard.GetSheHe]가 당신을 풀어줬습니다."

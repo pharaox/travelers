@@ -15,11 +15,11 @@
  setting_travl_travel_events_enabled: "활성화됨"
  setting_travl_travel_events_enabled_desc: "비지주 캐릭터들을 위한 여행 이벤트가 활성화됩니다."
 
- rule_travl_prison_interactions: "#P 여행 중인 죄수를 위한 상호 작용:#!"
+ rule_travl_prison_interactions: "#P 호송 중인 죄수를 위한 상호 작용:#!"
  setting_travl_prison_interactions_disabled: "비활성화됨"
- setting_travl_prison_interactions_disabled_desc: "여행 중인 죄수를 위한 일부 상호 작용이 비활성화되었습니다."
+ setting_travl_prison_interactions_disabled_desc: "호송 중인 죄수를 위한 일부 상호 작용이 비활성화되었습니다."
  setting_travl_prison_interactions_enabled: "#high 활성화됨#!"
- setting_travl_prison_interactions_enabled_desc: "여행 중인 죄수를 위한 모든 상호 작용이 활성화되었습니다."
+ setting_travl_prison_interactions_enabled_desc: "호송 중인 죄수를 위한 모든 상호 작용이 활성화되었습니다."
 
  rule_travl_travel_safety: "#P 여행자들:#! 여행 안전"
  setting_travl_travel_safety_default: "기본"
