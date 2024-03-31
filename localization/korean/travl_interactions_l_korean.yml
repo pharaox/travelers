@@ -8,7 +8,7 @@
  travl_msg_departed_for_court: "궁정으로 출발"
  travl_msg_arrived_at_court: "궁정에 도착"
  travl_msg_escaped_from_prison: "감옥에서 탈출함"
- travl_msg_imprisoned: "Imprisoned"
+ travl_msg_imprisoned: "수감됨"
 
  # Message tooltips
  travl_departed_for_court_tt: "[CHARACTER.GetShortUIName]가 [TARGET_CHARACTER.GetShortUINamePossessive] 궁정으로 출발했습니다."
