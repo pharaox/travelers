@@ -806,36 +806,48 @@ travl_get_message_recipients_effect = {
 }
 
 travl_send_messages_effect = {
+	save_temporary_scope_as = character
+	every_in_list = {
+		list = $RECIPIENTS$
+
+		travl_send_message_effect = {
+			CHARACTER = scope:character
+			TRAVELERS = $TRAVELERS$
+			TITLE = $TITLE$
+			TEXT = $TEXT$
+			TEXT_ADDED_CHARACTER = $TEXT_ADDED_CHARACTER$
+			OBJECT = $OBJECT$
+		}
+	}
+}
+
+travl_send_message_effect = {
 	if = {
 		limit = {
 			has_game_rule = travl_travel_messages_enabled
 			list_size = { name = $TRAVELERS$ value > 0 }
 		}
 
-		save_temporary_scope_as = character
-		every_in_list = {
-			list = $RECIPIENTS$
-			send_interface_message = {
-				type = travl_msg_travel
-				title = $TITLE$
-				right_icon = scope:character
+		send_interface_message = {
+			type = travl_msg_travel
+			title = $TITLE$
+			right_icon = $CHARACTER$
 
-				every_in_list = {
-					list = $TRAVELERS$
-					if = {
-						limit = { has_character_flag = travl_added_character }
-						custom_description = {
-							text = $TEXT_ADDED_CHARACTER$
-							subject = this
-							object = $OBJECT$
-						}
+			every_in_list = {
+				list = $TRAVELERS$
+				if = {
+					limit = { has_character_flag = travl_added_character }
+					custom_description = {
+						text = $TEXT_ADDED_CHARACTER$
+						subject = this
+						object = $OBJECT$
 					}
-					else = {
-						custom_description = {
-							text = $TEXT$
-							subject = this
-							object = $OBJECT$
-						}
+				}
+				else = {
+					custom_description = {
+						text = $TEXT$
+						subject = this
+						object = $OBJECT$
 					}
 				}
 			}

@@ -58,6 +58,28 @@
 				OBJECT = scope:receiver
 			}
 
+			# Send departure messages to players hostile to a prison guard receiver
+			if = {
+				limit = {
+					has_character_modifier = travl_prison_guard_modifier
+					NOT = { has_variable = travl_departure_message_sent }
+				}
+				save_temporary_scope_as = prison_guard
+				every_player = {
+					limit = {
+						travl_is_hostile_character_trigger = { CHARACTER = scope:receiver }
+					}
+					travl_send_message_effect = {
+						CHARACTER = scope:prison_guard
+						TRAVELERS = new_travelers
+						TITLE = travl_msg_prison_guard_departed
+						TEXT = travl_departed_for_court_tt
+						TEXT_ADDED_CHARACTER = travl_prison_guard_departed_tt
+						OBJECT = scope:receiver
+					}
+				}
+			}
+
 			# Mark new travelers to avoid second messages
 			every_in_list = {
 				list = new_travelers

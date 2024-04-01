@@ -9,9 +9,11 @@
  travl_msg_arrived_at_court: "Arrivée à la Cour"
  travl_msg_escaped_from_prison: "Évadé de prison"
  travl_msg_imprisoned: "Emprisonné"
+ travl_msg_prison_guard_departed: "L'escorte d'un prisonnier ennemi est partie"
 
  # Message tooltips
  travl_departed_for_court_tt: "[CHARACTER.Custom('FR_le_Char_U_Pi')|U][CHARACTER.GetShortUIName] est parti pour la Cour [TARGET_CHARACTER.Custom('FR_du_Char_U_Pi')][TARGET_CHARACTER.GetShortUIName]."
  travl_arrived_at_court_tt: "[CHARACTER.Custom('FR_le_Char_U_Pi')|U][CHARACTER.GetShortUIName] est arrivé à la Cour [TARGET_CHARACTER.Custom('FR_du_Char_U_Pi')][TARGET_CHARACTER.GetShortUIName]."
  travl_departed_for_court_joined_tt: "$travl_departed_for_court_tt$ [CHARACTER.GetSheHe|U] n'a rejoint la Cour [TARGET_CHARACTER.Custom('FR_du_Char_U_Pi')][TARGET_CHARACTER.GetShortUIName] que temporairement et partira à son arrivée."
  travl_arrived_at_court_joined_tt: "$travl_arrived_at_court_tt$ [CHARACTER.GetSheHe|U] n'a rejoint la Cour [TARGET_CHARACTER.Custom('FR_du_Char_U_Pi')][TARGET_CHARACTER.GetShortUIName] que temporairement et va partir maintenant."
+ travl_prison_guard_departed_tt: "[CHARACTER.GetShortUIName] est parti pour la Cour de votre ennemi[Select_CString(CHARACTER.IsFemale, 'e', '' )] [TARGET_CHARACTER.GetShortUIName] escortant des prisonniers. Vous pouvez tenter de les libérer en mettant une armée sur son chemin."

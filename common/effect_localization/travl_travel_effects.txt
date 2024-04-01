@@ -33,3 +33,12 @@ travl_arrived_at_court_joined_tt = {
 	third_past = travl_arrived_at_court_joined_tt
 	global_past = travl_arrived_at_court_joined_tt
 }
+
+travl_prison_guard_departed_tt = {
+	first = travl_prison_guard_departed_tt
+	third = travl_prison_guard_departed_tt
+	global = travl_prison_guard_departed_tt
+	first_past = travl_prison_guard_departed_tt
+	third_past = travl_prison_guard_departed_tt
+	global_past = travl_prison_guard_departed_tt
+}
