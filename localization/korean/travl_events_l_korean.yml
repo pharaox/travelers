@@ -124,7 +124,7 @@
  # travel_danger.0015 Carrion
  travl_travel_danger.0015.t: "$travel_danger_prefix$ 부패"
  travl_travel_danger.0015.desc: "우물과 많은 시체가 있는 버려진 마을에 들어섰을 때 우리의 마실 물이 바닥났다."
- travl_travel_danger.0015.a: "허브와 물을 끓여서 안전하게 마시기"
+ travl_travel_danger.0015.a: "물을 허브와 함께 끓여서 안전하게 마시기"
  travl_travel_danger.0015.a.success: "당신은 물을 안전하게 만들어 마십니다."
  travl_travel_danger.0015.a.failure: "물을 안전하게 만드는 데 실패했습니다."
  travl_travel_danger.0015.b: "우물에서 마시기"
@@ -174,7 +174,7 @@
  travl_msg_travel_danger_0012_t: "$travel_danger_prefix$ 야수 공격"
  travl_msg_travel_danger_0013_t: "$travel_danger_prefix$ 식량 오염"
  travl_msg_travel_danger_0014_t: "$travel_danger_prefix$ 병"
- travl_msg_travel_danger_0015_t: "$travel_danger_prefix$ Carrion"
+ travl_msg_travel_danger_0015_t: "$travel_danger_prefix$ 부패"
 
  # Prisoner message titles
  travl_msg_prisoner_0001_t: "탈옥"
@@ -266,7 +266,7 @@
  travl_msg_travel_danger_0015_prefix: "[THIS.Char.GetShortUIName|U]와 [THIS.Char.GetHerHis] 동료들은 [location.GetName]에서 오염된 우물을 발견했습니다."
  travl_msg_travel_danger_0015_a_success: "$travl_msg_travel_danger_0015_prefix$, 하지만 $travl_this_or_learning_character$가 끓여서 물을 안전하게 마실 수 있게 만들었습니다."
  travl_msg_travel_danger_0015_a_failure: "$travl_msg_travel_danger_0015_prefix$, 그러나 $travl_this_or_learning_character$가 물을 정화하는데 실패했습니다."
- travl_msg_travel_danger_0015_b: "$travl_msg_travel_danger_0015_prefix$ 그리고 마셨습니다."
+ travl_msg_travel_danger_0015_b: "$travl_msg_travel_danger_0015_prefix$ 그리고 그대로 마셨습니다."
  travl_msg_travel_danger_0015_c: "$travl_msg_travel_danger_0015_prefix$ 그리고 감히 마실 수 없어서 한동안 목마르게 지냈습니다."
 
  # Prisoner message tooltips
