@@ -2,4 +2,5 @@ tmp/
 images/
 .DS_Store
 .~lock.*
+ck3-tiger.out
 /.vs

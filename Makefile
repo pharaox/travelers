@@ -1,6 +1,11 @@
 NAME := travelers
 VERSION := $(shell cat VERSION)
 
+.PHONY: tiger
+tiger:
+	ck3-tiger --no-color . > ck3-tiger.out
+	cat ck3-tiger.out
+
 .PHONY: build
 build: clean
 	mkdir -p tmp/$(NAME)
@@ -12,6 +17,7 @@ build: clean
 .PHONY: clean
 clean:
 	rm -rf tmp
+	rm -f ck3-tiger.out
 
 .PHONY: update-version
 update-version:
