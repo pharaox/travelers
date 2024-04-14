@@ -8,12 +8,12 @@
  travl_msg_departed_for_court: "궁정으로 출발"
  travl_msg_arrived_at_court: "궁정에 도착"
  travl_msg_escaped_from_prison: "감옥에서 탈출함"
- travl_msg_imprisoned: "Imprisoned"
- travl_msg_prison_guard_departed: "Enemy Prisoner Escort Departed"
+ travl_msg_imprisoned: "수감됨"
+ travl_msg_prison_guard_departed: "적의 포로 호송대가 출발함"
 
  # Message tooltips
  travl_departed_for_court_tt: "[CHARACTER.GetShortUIName]가 [TARGET_CHARACTER.GetShortUINamePossessive] 궁정으로 출발했습니다."
  travl_arrived_at_court_tt: "[CHARACTER.GetShortUIName]가 [TARGET_CHARACTER.GetShortUINamePossessive] 궁정에 도착했습니다."
- travl_departed_for_court_joined_tt: "$travl_departed_for_court_tt$ [CHARACTER.GetSheHe|U]는 [TARGET_CHARACTER.GetShortUINamePossessive] 궁정에 임시로 합류했으며 목적지에 도착하면 떠날 것입니다."
- travl_arrived_at_court_joined_tt: "$travl_arrived_at_court_tt$ [CHARACTER.GetSheHe|U]는 [TARGET_CHARACTER.GetShortUINamePossessive] 궁정에 임시로 합류했으며 곧 떠날 것입니다."
- travl_prison_guard_departed_tt: "[CHARACTER.GetShortUIName] departed for your enemy [TARGET_CHARACTER.GetShortUINamePossessive] court escorting prisoners. You can try to free them by putting an army on [CHARACTER.GetHerHis] path."
+ travl_departed_for_court_joined_tt: "$travl_departed_for_court_tt$ [CHARACTER.GetSheHe|U]는 죄수 호송을 위해 [TARGET_CHARACTER.GetShortUINamePossessive] 궁정에 임시로 합류했으며 목적지에 도착하면 떠날 것입니다."
+ travl_arrived_at_court_joined_tt: "$travl_arrived_at_court_tt$ [CHARACTER.GetSheHe|U]는 죄수 호송을 위해 [TARGET_CHARACTER.GetShortUINamePossessive] 궁정에 임시로 합류했으며 곧 떠날 것입니다."
+ travl_prison_guard_departed_tt: "[CHARACTER.GetShortUIName]이(가) 적대적인 [TARGET_CHARACTER.GetShortUINamePossessive] 궁정으로 죄수를 호송하기 위해 출발했습니다. [CHARACTER.GetHerHis] 경로에 군대를 보내어 포로들을 해방시킬 수 있습니다."
