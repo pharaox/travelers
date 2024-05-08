@@ -25,7 +25,7 @@
  setting_travl_travel_safety_default: "#high Par défaut#!"
  setting_travl_travel_safety_default_desc: "La sécurité des voyages n'est pas augmentée pour les voyages provoqués par ce mod par rapport aux voyages vanille."
  setting_travl_travel_safety_medium: "#high Moyenne#!"
- setting_travl_travel_safety_medium_desc: La sécurité des voyages est augmentée de 10 pour tous les voyages provoqués par ce mod."
+ setting_travl_travel_safety_medium_desc: "La sécurité des voyages est augmentée de 10 pour tous les voyages provoqués par ce mod."
  setting_travl_travel_safety_high: "Haute"
  setting_travl_travel_safety_high_desc: "La sécurité des voyages est augmentée de 20 pour tous les voyages provoqués par ce mod."
  setting_travl_travel_safety_very_high: "#high Très haute#!"
