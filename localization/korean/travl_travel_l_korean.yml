@@ -2,6 +2,8 @@
  travl_is_imprisoned_modifier: "수감자"
  travl_is_imprisoned_modifier_desc: "당신은 수감되어 있으며 수감지로 이동 중입니다."
 
+ travl_travel_safety_medium_modifier: "중간 여행 안전성"
+ travl_travel_safety_medium_modifier_desc: "$travl_travel_safety_high_modifier_desc$"
  travl_travel_safety_high_modifier: "높은 여행 안전성"
  travl_travel_safety_high_modifier_desc: "게임 규칙에 따라 여행 안전성이 증가합니다."
  travl_travel_safety_very_high_modifier: "매우 높은 여행 안전성"

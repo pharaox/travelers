@@ -2,6 +2,8 @@
  travl_is_imprisoned_modifier: "Emprisonné"
  travl_is_imprisoned_modifier_desc: "Vous êtes emprisonné et vous vous rendez à votre prison"
 
+ travl_travel_safety_medium_modifier: "Moyenne sécurité de voyage"
+ travl_travel_safety_medium_modifier_desc: "$travl_travel_safety_high_modifier_desc$"
  travl_travel_safety_high_modifier: "Haute sécurité de voyage"
  travl_travel_safety_high_modifier_desc: "La sécurité des voyages est augmentée conformément aux règles du jeu"
  travl_travel_safety_very_high_modifier: "Très haute sécurité de voyage"

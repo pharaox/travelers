@@ -61,6 +61,10 @@ travl_travel_safety = {
 		flag = GG_can_change_rule
 	}
 
+	travl_travel_safety_medium = {
+		flag = GG_can_change_rule
+	}
+
 	travl_travel_safety_high = {
 		flag = GG_can_change_rule
 	}

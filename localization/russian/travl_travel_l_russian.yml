@@ -2,6 +2,8 @@
  travl_is_imprisoned_modifier: "В заключении"
  travl_is_imprisoned_modifier_desc: "Вы находитесь в тюрьме и едете к месту своей тюрьмы"
 
+ travl_travel_safety_medium_modifier: "Средняя безопасность в пути"
+ travl_travel_safety_medium_modifier_desc: "$travl_travel_safety_high_modifier_desc$"
  travl_travel_safety_high_modifier: "Высокая безопасность в пути"
  travl_travel_safety_high_modifier_desc: "Безопасность в пути повышена в соответствии с правилами игры."
  travl_travel_safety_very_high_modifier: "Очень высокая безопасность в пути"

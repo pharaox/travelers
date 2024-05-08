@@ -350,6 +350,12 @@ travl_start_travel_effect = {
 
 			# Add travel plan modifiers for game rules
 			if = {
+				limit = { has_game_rule = travl_travel_safety_medium }
+				current_travel_plan ?= {
+					add_travel_plan_modifier = travl_travel_safety_medium_modifier
+				}
+			}
+			else_if = {
 				limit = { has_game_rule = travl_travel_safety_high }
 				current_travel_plan ?= {
 					add_travel_plan_modifier = travl_travel_safety_high_modifier
