@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 0.7.3
+
+### Compatibility
+
+* Adapted to CK3 1.12.5
+
+### Game Balance
+
+* Changed travel safety bonuses for the *High* and *Very High* game rule settings to their original values (20 and 40), and added one additional *Medium* setting with a bonus of 10.
+* Reduced the chance for the *Escape from Prison* event from 10% to 5%.
+
 ## Version 0.7.2
 
 ### Localization
