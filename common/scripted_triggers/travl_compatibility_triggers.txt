@@ -1,0 +1,3 @@
+﻿travl_is_loaded = {
+	always = yes
+}
