@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.7.5
+
+### Compatibility
+
+* Added a compatibility trigger to be used by other mods.
+
 ## Version 0.7.4
 
 ### Compatibility
