@@ -73,13 +73,16 @@ travl_debug_log_travel_event_effect = {
 		name = danger_value
 		value = travl_travel_danger_value
 	}
+	location = {
+		travl_get_terrain_effect = yes
+	}
 	if = {
 		limit = { has_character_modifier = travl_prison_guard_modifier }
 		save_temporary_scope_as = prison_guard
-		travl_debug_log_2_effect = { MSG = $MSG$ NAME1 = danger_value TYPE1 = flag:value NAME2 = prison_guard TYPE2 = flag:character }
+		travl_debug_log_3_effect = { MSG = $MSG$ NAME1 = danger_value TYPE1 = flag:value NAME2 = terrain TYPE2 = flag:flag NAME3 = prison_guard TYPE3 = flag:character }
 	}
 	else = {
-		travl_debug_log_1_effect = { MSG = $MSG$ NAME1 = danger_value TYPE1 = flag:value }
+		travl_debug_log_2_effect = { MSG = $MSG$ NAME1 = danger_value TYPE1 = flag:value NAME2 = terrain TYPE2 = flag:flag }
 	}
 }
 
@@ -102,6 +105,20 @@ travl_debug_log_2_effect = {
 		debug_log = $MSG$
 		travl_debug_remove_scope_variable_effect = { NAME = $NAME1$ TYPE = $TYPE1$ }
 		travl_debug_remove_scope_variable_effect = { NAME = $NAME2$ TYPE = $TYPE2$ }
+	}
+}
+
+travl_debug_log_3_effect = {
+	if = {
+		limit = { debug_only = yes }
+
+		travl_debug_set_scope_variable_effect = { NAME = $NAME1$ TYPE = $TYPE1$ }
+		travl_debug_set_scope_variable_effect = { NAME = $NAME2$ TYPE = $TYPE2$ }
+		travl_debug_set_scope_variable_effect = { NAME = $NAME3$ TYPE = $TYPE3$ }
+		debug_log = $MSG$
+		travl_debug_remove_scope_variable_effect = { NAME = $NAME1$ TYPE = $TYPE1$ }
+		travl_debug_remove_scope_variable_effect = { NAME = $NAME2$ TYPE = $TYPE2$ }
+		travl_debug_remove_scope_variable_effect = { NAME = $NAME3$ TYPE = $TYPE3$ }
 	}
 }
 

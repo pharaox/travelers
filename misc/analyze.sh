@@ -99,6 +99,9 @@ echo "- option a success: $(grep -a "Hostile Army event option a success" $LOGFI
 echo "- option a failure: $(grep -a "Hostile Army event option a failure" $LOGFILE | wc -l)"
 echo
 
+# Danger event terrains
+#pcre2grep -o1 -o2 --om-separator=': ' 'Danger: (.*) event .* terrain: (.*)' $LOGFILE | sort | uniq -c
+
 # Rare (debug)
 #echo "Character teleported: $(grep -a "Character teleported" $LOGFILE | uniq | wc -l)"
 #echo "Invalid character location detected: $(grep -a "Invalid character location detected" $LOGFILE | uniq | wc -l)"

@@ -1,0 +1,53 @@
+﻿travl_get_terrain_effect = {
+	switch = {
+		trigger = terrain
+		plains = {
+			save_temporary_scope_value_as = { name = terrain value = flag:plains }
+		}
+		farmlands = {
+			save_temporary_scope_value_as = { name = terrain value = flag:farmlands }
+		}
+		hills = {
+			save_temporary_scope_value_as = { name = terrain value = flag:hills }
+		}
+		mountains = {
+			save_temporary_scope_value_as = { name = terrain value = flag:mountains }
+		}
+		desert = {
+			save_temporary_scope_value_as = { name = terrain value = flag:desert }
+		}
+		desert_mountains = {
+			save_temporary_scope_value_as = { name = terrain value = flag:desert_mountains }
+		}
+		oasis = {
+			save_temporary_scope_value_as = { name = terrain value = flag:oasis }
+		}
+		jungle = {
+			save_temporary_scope_value_as = { name = terrain value = flag:jungle }
+		}
+		forest = {
+			save_temporary_scope_value_as = { name = terrain value = flag:forest }
+		}
+		taiga = {
+			save_temporary_scope_value_as = { name = terrain value = flag:taiga }
+		}
+		wetlands = {
+			save_temporary_scope_value_as = { name = terrain value = flag:wetlands }
+		}
+		steppe = {
+			save_temporary_scope_value_as = { name = terrain value = flag:steppe }
+		}
+		floodplains = {
+			save_temporary_scope_value_as = { name = terrain value = flag:floodplains }
+		}
+		drylands = {
+			save_temporary_scope_value_as = { name = terrain value = flag:drylands }
+		}
+		sea = {
+			save_temporary_scope_value_as = { name = terrain value = flag:sea }
+		}
+		coastal_sea = {
+			save_temporary_scope_value_as = { name = terrain value = flag:coastal_sea }
+		}
+	}
+}
