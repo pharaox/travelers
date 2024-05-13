@@ -96,23 +96,8 @@ travl_travel_danger.0004 = {
 
 		# Danger types
 		location = {
-			OR = {
-				travel_danger_type = {
-					travel_plan = root.current_travel_plan
-					terrain = desert
-				}
-				travel_danger_type = {
-					travel_plan = root.current_travel_plan
-					terrain = desert_mountains
-				}
-				travel_danger_type = {
-					travel_plan = root.current_travel_plan
-					terrain = drylands
-				}
-				travel_danger_type = {
-					travel_plan = root.current_travel_plan
-					terrain = steppe
-				}
+			travl_is_travel_danger_type_dry_terrain_trigger = {
+				TRAVEL_PLAN = root.current_travel_plan
 			}
 		}
 

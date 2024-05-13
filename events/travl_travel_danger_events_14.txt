@@ -55,15 +55,8 @@ travl_travel_danger.0014 = {
 
 		# Danger types
 		location = {
-			OR = {
-				travel_danger_type = {
-					travel_plan = root.current_travel_plan
-					terrain = wetlands
-				}
-				travel_danger_type = {
-					travel_plan = root.current_travel_plan
-					terrain = jungle
-				}
+			travl_is_travel_danger_type_wet_terrain_trigger = {
+				TRAVEL_PLAN = root.current_travel_plan
 			}
 		}
 

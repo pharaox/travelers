@@ -72,3 +72,88 @@ travl_is_hostile_character_trigger = {
 		}
 	}
 }
+
+travl_is_travel_danger_type_mountainous_terrain_trigger = {
+	OR = {
+		travel_danger_type = {
+			travel_plan = $TRAVEL_PLAN$
+			terrain = mountains
+		}
+		travel_danger_type = {
+			travel_plan = $TRAVEL_PLAN$
+			terrain = desert_mountains
+		}
+	}
+}
+
+travl_is_travel_danger_type_hilly_terrain_trigger = {
+	travel_danger_type = {
+		travel_plan = $TRAVEL_PLAN$
+		terrain = hills
+	}
+}
+
+travl_is_travel_danger_type_marshy_terrain_trigger = {
+	travel_danger_type = {
+		travel_plan = $TRAVEL_PLAN$
+		terrain = wetlands
+	}
+}
+
+travl_is_travel_danger_type_flooded_terrain_trigger = {
+	travel_danger_type = {
+		travel_plan = $TRAVEL_PLAN$
+		terrain = floodplains
+	}
+}
+
+travl_is_travel_danger_type_forested_terrain_trigger = {
+	OR = {
+		travel_danger_type = {
+			travel_plan = $TRAVEL_PLAN$
+			terrain = forest
+		}
+		travel_danger_type = {
+			travel_plan = $TRAVEL_PLAN$
+			terrain = taiga
+		}
+		travel_danger_type = {
+			travel_plan = $TRAVEL_PLAN$
+			terrain = jungle
+		}
+	}
+}
+
+travl_is_travel_danger_type_dry_terrain_trigger = {
+	OR = {
+		travel_danger_type = {
+			travel_plan = $TRAVEL_PLAN$
+			terrain = desert
+		}
+		travel_danger_type = {
+			travel_plan = $TRAVEL_PLAN$
+			terrain = desert_mountains
+		}
+		travel_danger_type = {
+			travel_plan = $TRAVEL_PLAN$
+			terrain = drylands
+		}
+		travel_danger_type = {
+			travel_plan = $TRAVEL_PLAN$
+			terrain = steppe
+		}
+	}
+}
+
+travl_is_travel_danger_type_wet_terrain_trigger = {
+	OR = {
+		travel_danger_type = {
+			travel_plan = $TRAVEL_PLAN$
+			terrain = wetlands
+		}
+		travel_danger_type = {
+			travel_plan = $TRAVEL_PLAN$
+			terrain = jungle
+		}
+	}
+}
