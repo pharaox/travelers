@@ -1,0 +1,35 @@
+﻿# Fired by the army pulse event when it detects that an army has been created
+# root is the owner of the army
+# scope:army is the army
+travl_on_army_created = {
+	effect = {
+		travl_debug_log_1_effect = {
+			MSG = travl_debug_msg_army_created
+			NAME1 = army TYPE1 = flag:army
+		}
+	}
+}
+
+# Fired by the army pulse event when it detects that an army has been deleted
+# root is the owner of the army
+travl_on_army_deleted = {
+	effect = {
+		travl_debug_log_effect = { MSG = travl_debug_msg_army_deleted }
+	}
+}
+
+# called for armies whenever they enter a province
+# root is the owner of the army
+# scope:army is the army
+on_army_enter_province = {
+	on_actions = { travl_on_army_enter_province }
+}
+
+travl_on_army_enter_province = {
+	effect = {
+		travl_debug_log_1_effect = {
+			MSG = travl_debug_msg_army_entered
+			NAME1 = army TYPE1 = flag:army
+		}
+	}
+}

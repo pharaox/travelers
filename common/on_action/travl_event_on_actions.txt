@@ -1,7 +1,7 @@
 ﻿# Called from code after history generation
 # Empty scope
 on_game_start = {
-	on_actions = { travl_on_init }
+	on_actions = { travl_on_init travl_on_army_init }
 }
 
 travl_on_init = {
@@ -20,11 +20,20 @@ travl_on_init = {
 	}
 }
 
+travl_on_army_init = {
+	trigger = {
+		travl_days_since_last_army_event_value > 5
+	}
+	events = {
+		travl_travel.0002
+	}
+}
+
 # Characters getting married
 # root = Major partner of the marriage
 # scope:spouse = Minor partner of the marriage
 on_marriage = {
-	on_actions = { travl_on_init travl_on_marriage }
+	on_actions = { travl_on_init travl_on_army_init travl_on_marriage }
 }
 
 travl_on_marriage = {
@@ -143,7 +152,7 @@ travl_on_concubinage_end = {
 # scope:new_employer is their new employer
 # scope:old_employer is their old employer (if they had one; otherwise unset)
 on_join_court = {
-	on_actions = { travl_on_init travl_on_join_court }
+	on_actions = { travl_on_init travl_on_army_init travl_on_join_court }
 }
 
 travl_on_join_court = {

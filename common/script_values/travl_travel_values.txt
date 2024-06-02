@@ -27,6 +27,17 @@ travl_days_since_last_event_value = {
 	}
 }
 
+travl_days_since_last_army_event_value = {
+	if = {
+		limit = { exists = global_var:travl_last_army_event_date }
+		value = current_date
+		subtract = global_var:travl_last_army_event_date
+	}
+	else = {
+		value = 42 # must be bigger than 5
+	}
+}
+
 travl_interaction_range_value = {
 	if = {
 		limit = { has_game_rule = travl_interaction_range_small }
@@ -58,4 +69,11 @@ travl_travel_danger_value = {
 	subtract = root.current_travel_plan.travel_safety
 	min = define:NTravel|TRAVEL_DANGER_MINIMUM
 	max = 100
+}
+
+travl_num_armies_value = {
+	value = 0
+	every_army = {
+		add = 1
+	}
 }

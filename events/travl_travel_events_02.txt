@@ -1,0 +1,78 @@
+﻿namespace = travl_travel
+
+travl_travel.0002 = {
+	scope = none
+	hidden = yes
+
+	immediate = {
+		travl_debug_log_effect = { MSG = travl_debug_msg_army_pulse_event_fired }
+
+		if = {
+			limit = {
+				# If more than 5 days have passed since the last army pulse event,
+				# assume current state is stale and don't trigger army events
+				travl_days_since_last_army_event_value <= 5
+			}
+
+			every_ruler = {
+				save_temporary_scope_as = army_owner
+
+				# Trigger on_army_created on_action for every newly created army
+				every_army = {
+					limit = {
+						NOT = { has_variable = travl_created }
+					}
+
+					# Mark this army as created
+					set_variable = { name = travl_created value = yes }
+
+					save_scope_as = army
+					scope:army_owner = {
+						# Trigger on_army_created on_action
+						trigger_event = {
+							on_action = travl_on_army_created
+						}
+
+						# Increment travl_num_armies variable
+						if = {
+							limit = { has_variable = travl_num_armies }
+							change_variable = { name = travl_num_armies add = 1 }
+						}
+						else = {
+							set_variable = { name = travl_num_armies value = 1 }
+						}
+					}
+				}
+
+				# Determine current number of armies
+				save_temporary_scope_value_as = {
+					name = travl_num_armies
+					value = travl_num_armies_value
+				}
+
+				# Trigger on_army_deleted on_action for every deleted army
+				while = {
+					limit = {
+						has_variable = travl_num_armies
+						var:travl_num_armies > scope:travl_num_armies
+					}
+
+					# Trigger on_army_deleted on_action
+					trigger_event = {
+						on_action = travl_on_army_deleted
+					}
+
+					# Decrement travl_num_armies variable
+					change_variable = { name = travl_num_armies subtract = 1 }
+				}
+			}
+		}
+
+		set_global_variable = { name = travl_last_army_event_date value = current_date }
+
+		trigger_event = {
+			id = travl_travel.0002
+			days = 1
+		}
+	}
+}

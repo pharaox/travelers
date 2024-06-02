@@ -5,6 +5,7 @@
  travl_debug_msg_initialized: "[GetCurrentDate.GetStringShort]: Travelers mod initialized"
 
  travl_debug_msg_pulse_event_fired: "[GetCurrentDate.GetStringShort]: Pulse event fired"
+ travl_debug_msg_army_pulse_event_fired: "[GetCurrentDate.GetStringShort]: Army pulse event fired"
 
  travl_debug_msg_starting_travel: "$travl_debug_prefix$: Starting travel to $travl_travel_receiver$'s court ($travl_travel_event$)"
  travl_debug_msg_starting_travel_for_escort: "$travl_debug_prefix$: Starting travel to $travl_travel_receiver$'s court for escort ($travl_travel_event$)"
@@ -65,6 +66,10 @@
  travl_debug_msg_courtier_event_happened: "$travl_debug_prefix$: Courtier event happened ($travl_location$)"
  travl_debug_msg_character_teleported: "$travl_debug_prefix$: Character teleported ($travl_location$)"
  travl_debug_msg_invalid_character_location_detected: "$travl_debug_prefix$: Invalid character location detected ($travl_location$)"
+
+ travl_debug_msg_army_created: "$travl_debug_prefix$: Army $travl_army$ created in $travl_army_location$"
+ travl_debug_msg_army_deleted: "$travl_debug_prefix$: Army deleted"
+ travl_debug_msg_army_entered: "$travl_debug_prefix$: Army $travl_army$ entered $travl_army_location$"
 
  travl_debug_msg_travel_on_action_fired: "$travl_debug_prefix$: Travel on_action $travl_event$ fired ($travl_location$)"
  travl_debug_msg_travel_event_fired: "$travl_debug_prefix$: Travel event $travl_event$ fired ($travl_location$)"
@@ -216,6 +221,9 @@
  travl_receiver: "[THIS.Var('receiver').Char.GetFullNameNoTooltip]"
  travl_owner: "[THIS.Var('owner').Char.GetFullNameNoTooltip]"
  travl_event: "[THIS.Var('event').GetFlagName]"
+
+ travl_army: "[THIS.Var('army').Army.GetNameNoTooltip] ([THIS.Var('army').Army.GetArmyId])"
+ travl_army_location: "[THIS.Var('army').Army.GetLocation.GetNameNoTooltip]"
 
  travl_danger_value: "[THIS.Var('danger_value').GetValue]"
  travl_for_prison_guard: "[Select_CString(THIS.Var('prison_guard').IsSet, ' for prison guard', '')]"
