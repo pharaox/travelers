@@ -1,0 +1,472 @@
+﻿# Update ruler officers
+travl_update_officers_effect = {
+	save_temporary_scope_as = army_owner
+
+	if = {
+		limit = { has_raised_armies = yes }
+
+		# Determine all valid officers
+		travl_get_valid_officers_effect = { OFFICERS = valid_officers }
+
+		# Remove invalid officers from ruler officers
+		every_in_list = {
+			variable = travl_officers
+			limit = {
+				NOT = { is_in_list = valid_officers }
+			}
+
+			travl_remove_officer_effect = yes
+			travl_remove_army_officer_effect = yes
+			set_location_to_default = yes
+		}
+
+		# Determine max number of ruler officers
+		save_temporary_scope_value_as = {
+			name = max_number_of_officers
+			value = max_number_of_knights
+		}
+
+		# Add top officers by martial to ruler officers up to max number
+		ordered_in_list = {
+			list = valid_officers
+			order_by = martial
+			max = 1000
+			check_range_bounds = no
+
+			if = {
+				limit = {
+					scope:army_owner = {
+						OR = {
+							NOT = { has_variable_list = travl_officers }
+							variable_list_size = { name = travl_officers value < scope:max_number_of_officers }
+						}
+					}
+				}
+				travl_add_officer_effect = { ARMY_OWNER = scope:army_owner }
+			}
+		}
+	}
+	else = {
+		# Remove all officers from ruler officers
+		every_in_list = {
+			variable = travl_officers
+
+			travl_remove_officer_effect = yes
+			travl_remove_army_officer_effect = yes
+			set_location_to_default = yes
+		}
+	}
+}
+
+# Add or reassign officers to a newly created army
+travl_add_created_army_officers_effect = {
+	save_temporary_scope_as = army_owner
+
+	if = {
+		limit = {
+			$ARMY$.location = {
+				any_army_in_location = {
+					army_owner = scope:army_owner
+					NOT = { this = $ARMY$ }
+					has_variable_list = travl_army_officers
+				}
+			}
+		}
+
+		# There are other armies of this owner in this army's location that have officers
+		# We assume this army was split from another one, choose the one with most officers
+		$ARMY$.location = {
+			ordered_army_in_location = {
+				limit = {
+					army_owner = scope:army_owner
+					NOT = { this = $ARMY$ }
+					has_variable_list = travl_army_officers
+				}
+				order_by = {
+					value = 0
+					every_in_list = {
+						variable = travl_army_officers
+						add = 1
+					}
+				}
+				save_temporary_scope_as = other_army
+			}
+		}
+
+		# Reassign some of the other army officers to the new army
+		scope:other_army = {
+			every_in_list = {
+				variable = travl_army_officers
+				random = {
+					chance = {
+						value = 50
+						if = {
+							limit = { commanding_army ?= scope:other_army }
+							value = 0
+						}
+						else_if = {
+							limit = {
+								OR = {
+									commanding_army ?= $ARMY$
+									$ARMY$ = {
+										NOT = { has_variable_list = travl_army_officers }
+									}
+								}
+							}
+							value = 100
+						}
+					}
+					travl_remove_army_officer_effect = yes
+					travl_add_army_officer_effect = { ARMY = $ARMY$ }
+				}
+			}
+		}
+	}
+	else = {
+		# There are no other armies of this owner in the army location that have officers
+		# We assume it's a newly spawned army
+		if = {
+			limit = {
+				any_army = {
+					has_variable = travl_spawned
+					NOT = { this = $ARMY$ }
+					has_variable_list = travl_army_officers
+				}
+			}
+
+			# There are other spawned armies that have officers, choose the one with most officers
+			ordered_army = {
+				limit = {
+					has_variable = travl_spawned
+					NOT = { this = $ARMY$ }
+					has_variable_list = travl_army_officers
+				}
+				order_by = {
+					value = 0
+					every_in_list = {
+						variable = travl_army_officers
+						add = 1
+					}
+				}
+				save_temporary_scope_as = other_army
+			}
+
+			# Reassign some of the other army officers to the new army
+			scope:other_army = {
+				every_in_list = {
+					variable = travl_army_officers
+					random = {
+						chance = {
+							value = 50
+							if = {
+								limit = { commanding_army ?= scope:other_army }
+								value = 0
+							}
+							else_if = {
+								limit = {
+									OR = {
+										commanding_army ?= $ARMY$
+										$ARMY$ = {
+											NOT = { has_variable_list = travl_army_officers }
+										}
+									}
+								}
+								value = 100
+							}
+						}
+						travl_remove_army_officer_effect = yes
+						travl_add_army_officer_effect = { ARMY = $ARMY$ }
+					}
+				}
+			}
+		}
+		else = {
+			# There are no other spawned armies that have officers
+			# Move all idle officers to the new army
+			every_in_list = {
+				variable = travl_officers
+				limit = {
+					NOT = { has_variable = travl_officer_army }
+				}
+				travl_add_army_officer_effect = { ARMY = $ARMY$ }
+			}
+		}
+
+		# Mark this army as a newly spawned army
+		$ARMY$ = {
+			set_variable = { name = travl_spawned value = yes days = 1 }
+		}
+	}
+}
+
+# Remove or reassign officers from deleted armies
+travl_remove_deleted_army_officers_effect = {
+	save_temporary_scope_as = army_owner
+
+	every_in_list = {
+		variable = travl_officers
+		limit = {
+			NAND = {
+				has_variable = travl_officer_army
+				exists = var:travl_officer_army
+			}
+		}
+
+		if = {
+			limit = {
+				location = {
+					any_army_in_location = {
+						army_owner = scope:army_owner
+					}
+				}
+			}
+
+			# There are other armies of this owner in this officer's location,
+			# choose the one with least officers
+			location = {
+				ordered_army_in_location = {
+					limit = { army_owner = scope:army_owner }
+					order_by = {
+						value = 0
+						every_in_list = {
+							variable = travl_army_officers
+							add = -1
+						}
+					}
+					save_temporary_scope_as = other_army
+				}
+			}
+
+			# Reassign this officer to the other army
+			travl_add_army_officer_effect = { ARMY = scope:other_army }
+		}
+		else = {
+			# There are no other armies of this owner in this officer's location
+			# Remove this officer from any armies
+			travl_remove_army_officer_effect = yes
+		}
+	}
+}
+
+# Add the army commander as officer if they are a valid officer for this army owner
+travl_add_army_commander_as_officer_effect = {
+	save_temporary_scope_as = current_army
+	army_commander ?= {
+		if = {
+			limit = {
+				travl_is_valid_officer_trigger = { ARMY_OWNER = scope:current_army.army_owner }
+				NOT = { var:travl_officer_army ?= scope:current_army }
+			}
+			travl_add_officer_effect = { ARMY_OWNER = scope:current_army.army_owner }
+			travl_remove_army_officer_effect = yes
+			travl_add_army_officer_effect = { ARMY = scope:current_army }
+		}
+	}
+}
+
+# Ensure that army knights are not commanding different armies
+travl_ensure_valid_army_knights_effect = {
+	every_in_list = {
+		variable = travl_army_knights
+		limit = { has_variable = travl_army_owner }
+		travl_remove_officer_effect = yes
+		travl_remove_army_officer_effect = yes
+	}
+
+	every_in_list = {
+		variable = travl_army_knights
+		limit = {
+			exists = commanding_army
+			NOT = { commanding_army = prev }
+		}
+
+		commanding_army = {
+			travl_ensure_valid_army_commander_effect = yes
+		}
+	}
+}
+
+# Ensure that the army commander is valid for this army
+travl_ensure_valid_army_commander_effect = {
+	save_temporary_scope_as = current_army
+
+	# Remove the current commander if it's not valid for this army
+	if = {
+		limit = {
+			army_commander ?= {
+				NOT = {
+					travl_is_valid_army_commander_trigger = { ARMY = scope:current_army }
+				}
+			}
+		}
+
+		army_owner = {
+			travl_debug_log_1_effect = {
+				MSG = travl_debug_msg_removing_army_commander
+				NAME1 = current_army TYPE1 = flag:army
+			}
+		}
+
+		remove_commander = yes
+		remove_variable = travl_army_commander
+	}
+
+	# If there is no commander, assign the best commander available for this army
+	if = {
+		limit = {
+			NOT = { exists = army_commander }
+		}
+
+		travl_get_best_army_commander_effect = yes
+		if = {
+			limit = { exists = scope:best_commander }
+
+			assign_commander = scope:best_commander
+			set_variable = { name = travl_army_commander value = army_commander }
+
+			army_owner = {
+				travl_debug_log_1_effect = {
+					MSG = travl_debug_msg_assigning_army_commander
+					NAME1 = current_army TYPE1 = flag:army
+				}
+			}
+		}
+	}
+}
+
+# Check validity of ruler officers
+travl_check_officers_effect = {
+	save_temporary_scope_as = army_owner
+	every_in_list = {
+		variable = travl_officers
+		limit = {
+			NOT = {
+				travl_is_valid_officer_trigger = { ARMY_OWNER = scope:army_owner }
+			}
+		}
+		save_temporary_scope_as = officer
+		scope:army_owner = {
+			travl_debug_log_1_effect = {
+				MSG = travl_debug_msg_invalid_officer
+				NAME1 = officer TYPE1 = flag:character
+			}
+		}
+	}
+}
+
+# Check validity of army commander
+travl_check_army_commander_effect = {
+	save_temporary_scope_as = current_army
+	if = {
+		limit = {
+			army_commander ?= {
+				NOT = {
+					travl_is_valid_army_commander_trigger = { ARMY = scope:current_army }
+				}
+			}
+		}
+		army_owner = {
+			travl_debug_log_1_effect = {
+				MSG = travl_debug_msg_invalid_army_commander
+				NAME1 = current_army TYPE1 = flag:army
+			}
+		}
+	}
+}
+
+# Move all army characters to this army's location
+travl_move_army_characters_effect = {
+	every_in_list = {
+		variable = travl_army_officers
+		limit = { is_travelling = no }
+		set_location = { location = prev.location stick_to_location = yes }
+	}
+	every_in_list = {
+		variable = travl_army_knights
+		limit = { is_travelling = no }
+		set_location = { location = prev.location stick_to_location = yes }
+	}
+}
+
+# Return all idle army officers to their default locations
+travl_return_idle_officers_effect = {
+	every_in_list = {
+		variable = travl_officers
+		limit = {
+			NOT = { has_variable = travl_officer_army }
+		}
+		set_location_to_default = yes
+	}
+}
+
+travl_get_valid_officers_effect = {
+	save_temporary_scope_as = army_owner
+	if = {
+		limit = {
+			travl_is_valid_officer_trigger = { ARMY_OWNER = scope:army_owner }
+		}
+		add_to_temporary_list = $OFFICERS$
+	}
+	every_vassal = {
+		limit = {
+			travl_is_valid_officer_trigger = { ARMY_OWNER = scope:army_owner }
+		}
+		add_to_temporary_list = $OFFICERS$
+	}
+	every_courtier = {
+		limit = {
+			travl_is_valid_officer_trigger = { ARMY_OWNER = scope:army_owner }
+		}
+		add_to_temporary_list = $OFFICERS$
+	}
+}
+
+travl_get_best_army_commander_effect = {
+	save_temporary_scope_as = current_army
+	clear_saved_scope = best_commander
+	every_in_list = {
+		variable = travl_army_officers
+		add_to_temporary_list = available_commanders
+	}
+	every_in_list = {
+		variable = travl_army_knights
+		add_to_temporary_list = available_commanders
+	}
+	ordered_in_list = {
+		list = available_commanders
+		limit = {
+			travl_is_valid_army_commander_trigger = { ARMY = scope:current_army }
+		}
+		order_by = martial
+		save_temporary_scope_as = best_commander
+	}
+}
+
+travl_add_officer_effect = {
+	set_variable = { name = travl_army_owner value = $ARMY_OWNER$ }
+	var:travl_army_owner = {
+		add_to_variable_list = { name = travl_officers target = prev }
+	}
+}
+
+travl_remove_officer_effect = {
+	var:travl_army_owner ?= {
+		remove_list_variable = { name = travl_officers target = prev }
+	}
+	remove_variable = travl_army_owner
+}
+
+travl_add_army_officer_effect = {
+	set_variable = { name = travl_officer_army value = $ARMY$ }
+	var:travl_officer_army = {
+		add_to_variable_list = { name = travl_army_officers target = prev }
+	}
+}
+
+travl_remove_army_officer_effect = {
+	var:travl_officer_army ?= {
+		remove_list_variable = { name = travl_army_officers target = prev }
+	}
+	remove_variable = travl_officer_army
+}
+

@@ -11,6 +11,7 @@ travl_is_vanilla_teleporting_character_trigger = {
 	OR = {
 		is_pool_character = yes
 		is_in_army = yes
+		has_variable = travl_officer_army
 		has_variable = gone_adventuring
 	}
 }

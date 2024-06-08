@@ -17,14 +17,120 @@ travl_travel.0002 = {
 			every_ruler = {
 				save_temporary_scope_as = army_owner
 
+				# Maintain ruler knights
+				every_knight = {
+					limit = {
+						NOT = {
+							scope:army_owner = {
+								is_target_in_variable_list = { name = travl_knights target = prev }
+							}
+						}
+					}
+					scope:army_owner = {
+						add_to_variable_list = { name = travl_knights target = prev }
+						set_variable = { name = travl_knights_changed value = yes days = 1 }
+					}
+				}
+				every_in_list = {
+					variable = travl_knights
+					limit = {
+						NOT = { is_knight_of = scope:army_owner }
+					}
+					scope:army_owner = {
+						remove_list_variable = { name = travl_knights target = prev }
+						set_variable = { name = travl_knights_changed value = yes days = 1 }
+					}
+				}
+
+				# Maintain army knights
+				every_knight = {
+					limit = {
+						NOT = {
+							knight_army ?= {
+								is_target_in_variable_list = { name = travl_army_knights target = prev }
+							}
+						}
+					}
+					knight_army ?= {
+						add_to_variable_list = { name = travl_army_knights target = prev }
+						set_variable = { name = travl_knights_changed value = yes days = 1 }
+					}
+				}
+				every_army = {
+					every_in_list = {
+						variable = travl_army_knights
+						limit = {
+							NOT = { knight_army ?= prev }
+						}
+						prev = {
+							remove_list_variable = { name = travl_army_knights target = prev }
+							set_variable = { name = travl_knights_changed value = yes days = 1 }
+						}
+					}
+				}
+
+				# Maintain army commanders
+				every_army = {
+					if = {
+						limit = {
+							exists = army_commander
+							NOT = { var:travl_army_commander ?= army_commander }
+						}
+						set_variable = { name = travl_army_commander value = army_commander }
+						set_variable = { name = travl_commander_changed value = yes days = 1 }
+					}
+					else_if = {
+						limit = {
+							NOT = { exists = army_commander }
+							has_variable = travl_army_commander
+						}
+						remove_variable = travl_army_commander
+						set_variable = { name = travl_commander_changed value = yes days = 1 }
+					}
+				}
+
+				# Trigger on_knights_changed on action
+				if = {
+					limit = { has_variable = travl_knights_changed }
+					# Trigger on_knights_changed on_action
+					trigger_event = {
+						on_action = travl_on_knights_changed
+					}
+				}
+
+				# Trigger on_army_knights_changed and on_army_commander_changed on actions
+				every_army = {
+					limit = { has_variable = travl_created }
+					save_scope_as = army
+
+					if = {
+						limit = { has_variable = travl_knights_changed }
+						scope:army_owner = {
+							# Trigger on_army_knights_changed on_action
+							trigger_event = {
+								on_action = travl_on_army_knights_changed
+							}
+						}
+					}
+					if = {
+						limit = { has_variable = travl_commander_changed }
+						scope:army_owner = {
+							# Trigger on_army_commander_changed on_action
+							trigger_event = {
+								on_action = travl_on_army_commander_changed
+							}
+						}
+					}
+				}
+
 				# Trigger on_army_created on_action for every newly created army
 				every_army = {
 					limit = {
-						NOT = { has_variable = travl_created }
+						NOT = { var:travl_created ?= scope:army_owner }
 					}
 
 					# Mark this army as created
-					set_variable = { name = travl_created value = yes }
+					set_variable = { name = travl_created value = scope:army_owner }
 
 					save_scope_as = army
 					scope:army_owner = {
@@ -50,8 +156,8 @@ travl_travel.0002 = {
 					value = travl_num_armies_value
 				}
 
-				# Trigger on_army_deleted on_action for every deleted army
-				while = {
+				# Trigger on_army_deleted on_action if there are deleted armies
+				if = {
 					limit = {
 						has_variable = travl_num_armies
 						var:travl_num_armies > scope:travl_num_armies
@@ -63,7 +169,14 @@ travl_travel.0002 = {
 					}
 
 					# Decrement travl_num_armies variable
-					change_variable = { name = travl_num_armies subtract = 1 }
+					set_variable = { name = travl_num_armies value = scope:travl_num_armies }
+				}
+			}
+
+			every_ruler = {
+				travl_check_officers_effect = yes
+				every_army = {
+					travl_check_army_commander_effect = yes
 				}
 			}
 		}

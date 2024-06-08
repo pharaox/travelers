@@ -67,9 +67,20 @@
  travl_debug_msg_character_teleported: "$travl_debug_prefix$: Character teleported ($travl_location$)"
  travl_debug_msg_invalid_character_location_detected: "$travl_debug_prefix$: Invalid character location detected ($travl_location$)"
 
- travl_debug_msg_army_created: "$travl_debug_prefix$: Army $travl_army$ created in $travl_army_location$"
- travl_debug_msg_army_deleted: "$travl_debug_prefix$: Army deleted"
- travl_debug_msg_army_entered: "$travl_debug_prefix$: Army $travl_army$ entered $travl_army_location$"
+ travl_debug_msg_army_created: "$travl_debug_prefix$: Army $travl_army$ created in province $travl_army_location$"
+ travl_debug_msg_army_deleted: "$travl_debug_prefix$: Armies deleted"
+ travl_debug_msg_knights_changed: "$travl_debug_prefix$: Knights changed"
+ travl_debug_msg_army_knights_changed: "$travl_debug_prefix$: Knights changed for army $travl_army$"
+ travl_debug_msg_army_commander_changed: "$travl_debug_prefix$: Commander changed for army $travl_army$, new commander is $travl_army_commander$"
+ travl_debug_msg_army_entered_province: "$travl_debug_prefix$: Army $travl_army$ entered province $travl_army_location$"
+
+ travl_debug_msg_removing_army_commander: "$travl_debug_prefix$: Removing army commander $travl_current_army_commander$ from army $travl_current_army$"
+ travl_debug_msg_assigning_army_commander: "$travl_debug_prefix$: Assigning army commander $travl_current_army_commander$ to army $travl_current_army$"
+
+ travl_debug_msg_invalid_officer: "$travl_debug_prefix$: Invalid officer $travl_officer$ detected"
+ travl_debug_msg_invalid_army_commander: "$travl_debug_prefix$: Invalid army commander $travl_current_army_commander$ detected for army $travl_current_army$"
+
+ travl_debug_msg_army_status: "$travl_debug_prefix$: Army $travl_army$ status"
 
  travl_debug_msg_travel_on_action_fired: "$travl_debug_prefix$: Travel on_action $travl_event$ fired ($travl_location$)"
  travl_debug_msg_travel_event_fired: "$travl_debug_prefix$: Travel event $travl_event$ fired ($travl_location$)"
@@ -223,7 +234,11 @@
  travl_event: "[THIS.Var('event').GetFlagName]"
 
  travl_army: "[THIS.Var('army').Army.GetNameNoTooltip] ([THIS.Var('army').Army.GetArmyId])"
+ travl_army_commander: "[THIS.Var('army').Army.GetCommander.GetFullNameNoTooltip] ([THIS.Var('army').Army.GetCommander.GetID])"
  travl_army_location: "[THIS.Var('army').Army.GetLocation.GetNameNoTooltip]"
+ travl_current_army: "[THIS.Var('current_army').Army.GetNameNoTooltip] ([THIS.Var('current_army').Army.GetArmyId])"
+ travl_current_army_commander: "[THIS.Var('current_army').Army.GetCommander.GetFullNameNoTooltip] ([THIS.Var('current_army').Army.GetCommander.GetID])"
+ travl_officer: "[THIS.Var('officer').Char.GetFullNameNoTooltip] ([THIS.Var('officer').Char.GetID])"
 
  travl_danger_value: "[THIS.Var('danger_value').GetValue]"
  travl_for_prison_guard: "[Select_CString(THIS.Var('prison_guard').IsSet, ' for prison guard', '')]"

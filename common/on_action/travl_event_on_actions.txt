@@ -217,6 +217,12 @@ travl_on_leave_court = {
 	effect = {
 		#travl_debug_log_effect = { MSG = travl_debug_msg_character_left_court }
 
+		if = {
+			limit = { has_variable = travl_army_owner }
+			travl_remove_officer_effect = yes
+			travl_remove_army_officer_effect = yes
+		}
+
 		travl_notify_liege_effect = yes
 
 		if = {
@@ -243,6 +249,12 @@ on_imprison = {
 travl_on_imprison = {
 	effect = {
 		#travl_debug_log_effect = { MSG = travl_debug_msg_character_imprisoned }
+
+		if = {
+			limit = { has_variable = travl_army_owner }
+			travl_remove_officer_effect = yes
+			travl_remove_army_officer_effect = yes
+		}
 
 		if = {
 			limit = { has_variable = travl_combat_location }
@@ -302,6 +314,12 @@ travl_on_title_gain = {
 		#travl_debug_log_effect = { MSG = travl_debug_msg_character_gained_title }
 
 		if = {
+			limit = { travl_has_valid_army_owner_trigger = no }
+			travl_remove_officer_effect = yes
+			travl_remove_army_officer_effect = yes
+		}
+
+		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
 			travl_travel_effect = {
 				SENDER = this
@@ -329,6 +347,12 @@ on_title_lost = {
 travl_on_title_lost = {
 	effect = {
 		#travl_debug_log_effect = { MSG = travl_debug_msg_character_lost_title }
+
+		if = {
+			limit = { travl_has_valid_army_owner_trigger = no }
+			travl_remove_officer_effect = yes
+			travl_remove_army_officer_effect = yes
+		}
 
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
@@ -573,6 +597,43 @@ travl_on_combat_end_loser = {
 				name = travl_combat_location
 				value = scope:combat_location
 				days = 1
+			}
+		}
+	}
+}
+
+# character just about to die in root scope
+# if a killer is known, it's set as scope:killer
+#Triggered by code
+on_death = {
+	on_actions = { travl_on_death }
+}
+
+travl_on_death = {
+	effect = {
+		if = {
+			limit = { has_variable = travl_army_owner }
+			travl_remove_officer_effect = yes
+			travl_remove_army_officer_effect = yes
+		}
+	}
+}
+
+# A character gains a vassal
+# root = character gaining vassal
+# scope:vassal = vassal being gained
+# scope:old_liege = the previous liege of the vassal. Might be the null character (vassal used to be a non-ruler or independent), so make sure to use "exists" checks where relevant
+on_vassal_gained = {
+	on_actions = { travl_on_vassal_gained }
+}
+
+travl_on_vassal_gained = {
+	effect = {
+		scope:vassal = {
+			if = {
+				limit = { travl_has_valid_army_owner_trigger = no }
+				travl_remove_officer_effect = yes
+				travl_remove_army_officer_effect = yes
 			}
 		}
 	}
