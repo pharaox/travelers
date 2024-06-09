@@ -10,7 +10,7 @@ travl_is_vanilla_teleporting_character_trigger = {
 	is_imprisoned = no
 	OR = {
 		is_pool_character = yes
-		is_in_army = yes
+		travl_is_in_army_trigger = yes
 		has_variable = gone_adventuring
 	}
 }

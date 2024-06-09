@@ -1,0 +1,55 @@
+﻿# Determines who can command troops; will still show up in the list, with a breakdown explaining why they can't command
+# Root is the potential commander
+# scope:army_owner is who owns the army to command
+can_command_troops_now = {
+	can_be_commander_now_trigger = { ARMY_OWNER = scope:army_owner }
+
+	# Travelers
+	NOR = {
+		commanding_army ?= {
+			NOT = { army_owner = scope:army_owner }
+		}
+		knight_army ?= {
+			NOT = { army_owner = scope:army_owner }
+		}
+		AND = {
+			has_variable = travl_officer_army
+			var:travl_officer_army ?= {
+				NOT = { army_owner = scope:army_owner }
+			}
+		}
+	}
+}
+
+# Determines if a character may be appointed as a knight. Checked during automatic knight assignment
+# Root is the potential knight
+can_be_knight = {
+	trigger_if = {
+		limit = {
+			OR = {
+				is_landed = no
+				root = root.court_owner
+			}
+			NOT = { exists = liege }
+		}
+		root.court_owner = { save_temporary_scope_as = army_owner }
+	}
+	trigger_else = {
+		liege = { save_temporary_scope_as = army_owner }
+	}
+	can_be_knight_trigger = { ARMY_OWNER = scope:army_owner }
+
+	# Travelers
+	NOR = {
+		commanding_army ?= {
+			NOT = { army_owner = scope:army_owner }
+		}
+		knight_army ?= {
+			NOT = { army_owner = scope:army_owner }
+		}
+		AND = {
+			has_variable = travl_officer_army
+			exists = var:travl_officer_army
+		}
+	}
+}

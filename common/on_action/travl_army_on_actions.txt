@@ -7,14 +7,49 @@ travl_on_army_created = {
 			MSG = travl_debug_msg_army_created
 			NAME1 = army TYPE1 = flag:army
 		}
+
+		# Remove or reassign officers from any deleted armies
+		travl_remove_deleted_army_officers_effect = yes
+
+		# Add or reassign officers to the newly created army
+		travl_add_created_army_officers_effect = { ARMY = scope:army }
+
+		scope:army = {
+			# Ensure that this army commander is valid for it
+			travl_ensure_valid_army_commander_effect = yes
+		}
+
+		travl_debug_log_army_status_effect = yes
 	}
 }
 
-# Fired by the army pulse event when it detects that an army has been deleted
+# Fired by the army pulse event when it detects that some armies have been deleted
 # root is the owner of the army
 travl_on_army_deleted = {
 	effect = {
 		travl_debug_log_effect = { MSG = travl_debug_msg_army_deleted }
+
+		# Remove or reassign officers from any deleted armies
+		travl_remove_deleted_army_officers_effect = yes
+	}
+}
+
+# Fired by the army pulse event when it detects that an army commander is invalid
+# root is the owner of the army
+# scope:army is the army
+travl_on_army_invalid_commander = {
+	effect = {
+		travl_debug_log_1_effect = {
+			MSG = travl_debug_msg_army_invalid_commander
+			NAME1 = army TYPE1 = flag:army
+		}
+
+		scope:army = {
+			# Ensure that this army commander is valid for it
+			travl_ensure_valid_army_commander_effect = yes
+		}
+
+		travl_debug_log_army_status_effect = yes
 	}
 }
 
@@ -28,8 +63,13 @@ on_army_enter_province = {
 travl_on_army_enter_province = {
 	effect = {
 		travl_debug_log_1_effect = {
-			MSG = travl_debug_msg_army_entered
+			MSG = travl_debug_msg_army_entered_province
 			NAME1 = army TYPE1 = flag:army
+		}
+
+		scope:army = {
+			# Move this army knights and officers to its location
+			travl_move_army_characters_effect = yes
 		}
 	}
 }

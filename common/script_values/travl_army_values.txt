@@ -1,0 +1,41 @@
+﻿travl_number_of_armies_value = {
+	value = 0
+	every_army = {
+		add = 1
+	}
+}
+
+travl_number_of_officers_value = {
+	value = 0
+	every_in_list = {
+		variable = travl_officers
+		add = 1
+	}
+}
+
+travl_number_of_army_officers_value = {
+	value = 0
+	every_in_list = {
+		variable = travl_army_officers
+		add = 1
+	}
+}
+
+travl_reassign_officer_chance = {
+	value = 50
+	if = {
+		limit = { commanding_army ?= scope:other_army }
+		value = 0
+	}
+	else_if = {
+		limit = {
+			OR = {
+				commanding_army ?= scope:army
+				scope:army = {
+					NOT = { has_variable_list = travl_army_officers }
+				}
+			}
+		}
+		value = 100
+	}
+}

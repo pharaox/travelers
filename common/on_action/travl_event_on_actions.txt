@@ -231,6 +231,11 @@ travl_on_leave_court = {
 			travl_abort_travel_effect = { EVENT = flag:on_leave_court }
 			travl_remove_location_effect = yes
 		}
+
+		if = {
+			limit = { has_variable = travl_officer_army }
+			travl_remove_army_officer_effect = yes
+		}
 	}
 }
 
@@ -260,6 +265,11 @@ travl_on_imprison = {
 		else = {
 			travl_abort_travel_effect = { EVENT = flag:on_imprison }
 			travl_remove_location_effect = yes
+		}
+
+		if = {
+			limit = { has_variable = travl_officer_army }
+			travl_remove_army_officer_effect = yes
 		}
 	}
 }
@@ -314,6 +324,12 @@ travl_on_title_gain = {
 			travl_remove_location_effect = yes
 		}
 
+		if = {
+			limit = { travl_has_valid_officer_army_owner_trigger = no }
+			travl_remove_army_officer_effect = yes
+			set_location_to_default = yes
+		}
+
 		travl_notify_courtiers_effect = yes
 	}
 }
@@ -341,6 +357,12 @@ travl_on_title_lost = {
 		else = {
 			travl_abort_travel_effect = { EVENT = flag:on_title_lost }
 			travl_remove_location_effect = yes
+		}
+
+		if = {
+			limit = { travl_has_valid_officer_army_owner_trigger = no }
+			travl_remove_army_officer_effect = yes
+			set_location_to_default = yes
 		}
 
 		travl_notify_courtiers_effect = yes
@@ -573,6 +595,85 @@ travl_on_combat_end_loser = {
 				name = travl_combat_location
 				value = scope:combat_location
 				days = 1
+			}
+		}
+	}
+}
+
+# character just about to die in root scope
+# if a killer is known, it's set as scope:killer
+#Triggered by code
+on_death = {
+	on_actions = { travl_on_death }
+}
+
+travl_on_death = {
+	effect = {
+		if = {
+			limit = { has_variable = travl_officer_army }
+			travl_remove_army_officer_effect = yes
+		}
+
+		# Copy army-related variables to primary heir
+		if = {
+			limit = { has_variable = travl_num_armies }
+			travl_debug_log_effect = { MSG = travl_debug_msg_copying_num_armies }
+			primary_heir ?= {
+				set_variable = { name = travl_num_armies value = prev.var:travl_num_armies }
+			}
+		}
+		if = {
+			limit = { has_variable_list = travl_officers }
+			travl_debug_log_effect = { MSG = travl_debug_msg_copying_officers }
+			every_in_list = {
+				variable = travl_officers
+				prev.primary_heir ?= {
+					add_to_variable_list = { name = travl_officers target = prev }
+				}
+			}
+		}
+	}
+}
+
+# A character gains a vassal
+# root = character gaining vassal
+# scope:vassal = vassal being gained
+# scope:old_liege = the previous liege of the vassal. Might be the null character (vassal used to be a non-ruler or independent), so make sure to use "exists" checks where relevant
+on_vassal_gained = {
+	on_actions = { travl_on_vassal_gained }
+}
+
+travl_on_vassal_gained = {
+	effect = {
+		scope:vassal = {
+			if = {
+				limit = { travl_has_valid_officer_army_owner_trigger = no }
+				travl_remove_army_officer_effect = yes
+				set_location_to_default = yes
+			}
+		}
+	}
+}
+
+# Starting a travel plan (starting to travel to the first destination)
+on_travel_plan_start = {
+	on_actions = { travl_on_travel_plan_start }
+}
+
+travl_on_travel_plan_start = {
+	effect = {
+		if = {
+			limit = { has_variable = travl_officer_army }
+			travl_debug_log_effect = { MSG = travl_debug_msg_removing_army_officer_travel_owner }
+			travl_remove_army_officer_effect = yes
+		}
+		current_travel_plan ?= {
+			every_entourage_character = {
+				if = {
+					limit = { has_variable = travl_officer_army }
+					travl_debug_log_effect = { MSG = travl_debug_msg_removing_army_officer_travel_entourage }
+					travl_remove_army_officer_effect = yes
+				}
 			}
 		}
 	}

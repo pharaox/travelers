@@ -70,10 +70,3 @@ travl_travel_danger_value = {
 	min = define:NTravel|TRAVEL_DANGER_MINIMUM
 	max = 100
 }
-
-travl_num_armies_value = {
-	value = 0
-	every_army = {
-		add = 1
-	}
-}

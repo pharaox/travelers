@@ -86,6 +86,32 @@ travl_debug_log_travel_event_effect = {
 	}
 }
 
+travl_debug_log_army_status_effect = {
+	if = {
+		limit = { debug_only = yes }
+
+		scope:army = {
+			army_commander ?= { save_temporary_scope_as = army_commander }
+			every_in_list = {
+				variable = travl_army_officers
+				add_to_temporary_list = army_officers
+			}
+			army_owner = {
+				every_knight = {
+					limit = { knight_army ?= scope:army }
+					add_to_temporary_list = army_knights
+				}
+			}
+		}
+
+		travl_debug_log_1_effect = {
+			MSG = travl_debug_msg_army_status
+			NAME1 = army TYPE1 = flag:army
+		}
+		debug_log_scopes = yes
+	}
+}
+
 travl_debug_log_1_effect = {
 	if = {
 		limit = { debug_only = yes }

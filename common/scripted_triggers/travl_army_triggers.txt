@@ -1,0 +1,50 @@
+﻿travl_is_in_army_trigger = {
+	OR = {
+		is_in_army = yes
+		has_variable = travl_officer_army
+	}
+}
+
+travl_is_valid_officer_trigger = {
+	can_be_commander_now_trigger = { ARMY_OWNER = $ARMY_OWNER$ }
+	NOT = { is_knight_of = $ARMY_OWNER$ }
+	OR = {
+		this = $ARMY_OWNER$
+		is_vassal_of = $ARMY_OWNER$
+		is_courtier_of = $ARMY_OWNER$
+	}
+
+	NOR = {
+		commanding_army ?= {
+			NOT = { army_owner = $ARMY_OWNER$ }
+		}
+		exists = knight_army
+		AND = {
+			has_variable = travl_officer_army
+			var:travl_officer_army ?= {
+				NOT = { army_owner = $ARMY_OWNER$ }
+			}
+		}
+	}
+}
+
+travl_is_valid_army_commander_trigger = {
+	trigger_if = {
+		limit = { has_variable = travl_officer_army }
+		var:travl_officer_army ?= $ARMY$
+	}
+	trigger_if = {
+		limit = { exists = knight_army }
+		knight_army = $ARMY$
+	}
+}
+
+travl_has_valid_officer_army_owner_trigger = {
+	has_variable = travl_officer_army
+	var:travl_officer_army ?= {
+		OR = {
+			army_owner ?= prev
+			army_owner ?= prev.liege
+		}
+	}
+}
