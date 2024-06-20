@@ -278,8 +278,13 @@ travl_start_travel_effect = {
 					}
 
 					# Add the escort to the receiver's court
-					$RECEIVER$ = {
-						add_courtier = scope:escort
+					if = {
+						limit = {
+							NOT = { is_courtier_of = $RECEIVER$ }
+						}
+						$RECEIVER$ = {
+							add_courtier = scope:escort
+						}
 					}
 
 					# Set the knight status of the escort to forbid so that they are not knighted automatically.
@@ -1216,32 +1221,58 @@ travl_recruit_travel_leader_effect = {
 }
 
 travl_recruit_prison_guard_effect = {
-	# Try to find a suitable pool character, or else create a new one
+	# Try to find a suitable courtier or pool character, or else create a new one
 	clear_saved_scope = prison_guard
 	imprisoner = { save_temporary_scope_as = imprisoner1 }
-	random_pool_character = {
-		province = scope:imprisoner1.capital_province
-		limit = {
-			exists = this
-			is_available_ai_adult = yes
-			is_ruler = no
-			has_no_particular_noble_roots_trigger = yes
-			can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = scope:imprisoner1 }
-			martial >= low_skill_rating
-			prowess >= mediocre_skill_rating
-		}
-		save_temporary_scope_as = prison_guard
-	}
 	if = {
 		limit = {
-			NOT = { exists = scope:prison_guard }
+			scope:imprisoner1 = {
+				any_courtier = {
+					travl_can_be_prison_guard_trigger = { ARMY_OWNER = scope:imprisoner1 }
+				}
+			}
 		}
+		travl_debug_log_effect = { MSG = travl_debug_msg_choosing_courtier_prison_guard_character }
+		scope:imprisoner1 = {
+			random_courtier = {
+				limit = {
+					travl_can_be_prison_guard_trigger = { ARMY_OWNER = scope:imprisoner1 }
+				}
+				save_temporary_scope_as = prison_guard
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			any_pool_character = {
+				province = scope:imprisoner1.capital_province
+				travl_can_be_prison_guard_trigger = { ARMY_OWNER = scope:imprisoner1 }
+			}
+		}
+		travl_debug_log_effect = { MSG = travl_debug_msg_choosing_pool_prison_guard_character }
+		random_pool_character = {
+			province = scope:imprisoner1.capital_province
+			limit = {
+				travl_can_be_prison_guard_trigger = { ARMY_OWNER = scope:imprisoner1 }
+			}
+			save_temporary_scope_as = prison_guard
+		}
+		scope:prison_guard = {
+			if = {
+				limit = {
+					travl_should_mark_as_added_character_trigger = { LIEGE = scope:imprisoner1 }
+				}
+				add_character_flag = travl_added_character
+			}
+		}
+	}
+	else = {
 		travl_debug_log_effect = { MSG = travl_debug_msg_creating_prison_guard_character }
 		scope:imprisoner1 = { save_temporary_scope_as = value_target }
 		save_temporary_scope_as = character1
 		create_character = {
 			location = scope:character1.location
-			template = new_warrior_character
+			template = pool_repopulate_prowess
 			dynasty = none
 			faith = scope:imprisoner1.faith
 			culture = scope:imprisoner1.culture
@@ -1249,12 +1280,17 @@ travl_recruit_prison_guard_effect = {
 			save_temporary_scope_as = prison_guard
 		}
 		scope:prison_guard = {
+			if = {
+				limit = {
+					travl_should_mark_as_added_character_trigger = { LIEGE = scope:imprisoner1 }
+				}
+				add_character_flag = travl_added_character
+			}
 			move_to_pool = yes
 		}
 	}
 
 	scope:prison_guard = {
-		add_character_flag = travl_added_character
 		add_character_modifier = {
 			modifier = travl_prison_guard_modifier
 			years = 2
@@ -1264,10 +1300,12 @@ travl_recruit_prison_guard_effect = {
 
 travl_move_added_characters_to_pool_effect = {
 	travl_move_added_character_to_pool_effect = yes
+	travl_remove_prison_guard_modifier_effect = yes
 	current_travel_plan ?= {
 		every_entourage_character = {
 			travl_move_vanilla_added_character_to_pool_effect = yes
 			travl_move_added_character_to_pool_effect = yes
+			travl_remove_prison_guard_modifier_effect = yes
 		}
 	}
 }
@@ -1284,11 +1322,14 @@ travl_move_added_character_to_pool_effect = {
 	if = {
 		limit = { has_character_flag = travl_added_character }
 		#travl_debug_log_effect = { MSG = travl_debug_msg_moving_added_character_back_to_pool }
-		if = {
-			limit = { has_character_modifier = travl_prison_guard_modifier }
-			remove_character_modifier = travl_prison_guard_modifier
-		}
 		remove_character_flag = travl_added_character
 		select_and_move_to_pool_effect = yes
+	}
+}
+
+travl_remove_prison_guard_modifier_effect = {
+	if = {
+		limit = { has_character_modifier = travl_prison_guard_modifier }
+		remove_character_modifier = travl_prison_guard_modifier
 	}
 }

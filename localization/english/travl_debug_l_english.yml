@@ -23,6 +23,8 @@
  travl_debug_msg_sending_escaped_from_prison_message: "$travl_debug_prefix$: Sending $travl_msg_escaped_from_prison$ message"
  travl_debug_msg_sending_imprisoned_message: "$travl_debug_prefix$: Sending $travl_msg_imprisoned$ message"
 
+ travl_debug_msg_choosing_courtier_prison_guard_character: "$travl_debug_prefix$: Choosing courtier prison guard character" # Rare
+ travl_debug_msg_choosing_pool_prison_guard_character: "$travl_debug_prefix$: Choosing pool prison guard character" # Rare
  travl_debug_msg_creating_prison_guard_character: "$travl_debug_prefix$: Creating prison guard character" # Rare
 
  travl_debug_msg_changing_leader: "$travl_debug_prefix$: Changing travel leader" # Rare

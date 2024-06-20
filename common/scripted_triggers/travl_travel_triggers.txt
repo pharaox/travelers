@@ -238,3 +238,15 @@ travl_travel_should_send_message_trigger = {
 		imprisoner ?= $CHARACTER$
 	}
 }
+
+travl_can_be_prison_guard_trigger = {
+	is_available_ai_adult = yes
+	has_no_particular_noble_roots_trigger = yes
+	can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = $ARMY_OWNER$ }
+	martial >= low_skill_rating
+	prowess >= mediocre_skill_rating
+}
+
+travl_should_mark_as_added_character_trigger = {
+	exists = $LIEGE$
+}
