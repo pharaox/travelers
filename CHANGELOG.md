@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.7.6
+
+### Core Travel
+
+* Prisoner escort characters can now be chosen among own courtiers if ones with appropriate skills and traits are available, rather than from the pool.
+
+### Compatibility
+
+* Added more triggers to be overridden by compatibility submods.
+
 ## Version 0.7.5
 
 ### Compatibility
