@@ -285,12 +285,12 @@ travl_start_travel_effect = {
 						$RECEIVER$ = {
 							add_courtier = scope:escort
 						}
-					}
 
-					# Set the knight status of the escort to forbid so that they are not knighted automatically.
-					if = {
-						limit = { is_potential_knight = yes }
-						set_knight_status = forbid
+						# Set the knight status of the escort to forbid so that they are not knighted automatically.
+						if = {
+							limit = { is_potential_knight = yes }
+							set_knight_status = forbid
+						}
 					}
 				}
 			}
