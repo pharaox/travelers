@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.7.7
+
+### Compatibility
+
+* Added more values to be overridden by compatibility submods.
+
 ## Version 0.7.6
 
 ### Core Travel
