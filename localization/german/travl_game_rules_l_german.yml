@@ -31,6 +31,14 @@
  setting_travl_travel_safety_very_high: "#high Sehr hoch#!"
  setting_travl_travel_safety_very_high_desc: "Die [Concept('travel_safety','Reisesicherheit')|E] bei Reisen, die durch diese Mod verursacht werden, ist um 40 erhöht."
 
+ rule_travl_prisoner_event_chance: "#P Travelers:#! Chance auf Gefangenenereignisse"
+ setting_travl_prisoner_event_chance_low: "#hoch Niedrig#!"
+ setting_travl_prisoner_event_chance_low_desc: "Die Chance auf Gefangenenereignisse ist niedrig (5%)."
+ setting_travl_prisoner_event_chance_medium: "Mittel"
+ setting_travl_prisoner_event_chance_medium_desc: "Die Chance auf Gefangenenereignisse ist mittel (10%)."
+ setting_travl_prisoner_event_chance_high: "#hoch Hoch#!"
+ setting_travl_prisoner_event_chance_high_desc: "Die Chance auf Gefangenenereignisse ist hoch (20%)."
+
  rule_travl_interaction_range: "#P Travelers:#! Reichweite für Hofeinladungen"
  setting_travl_interaction_range_small: "#high Gering#!"
  setting_travl_interaction_range_small_desc: "Charaktere in [Concept('diplomatic_range','diplomatischer Reichweite')|E], welche sich innerhalb von 150-Karten-Pixeln Entfernung befinden, werden gelistet (am flüssigsten)."

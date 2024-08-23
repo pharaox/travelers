@@ -31,6 +31,14 @@
  setting_travl_travel_safety_very_high: "#높음 매우 높음#!"
  setting_travl_travel_safety_very_high_desc: "이 모드로 인한 모든 여행의 여행 안전이 40만큼 증가합니다."
 
+ rule_travl_prisoner_event_chance: "#P Travelers:#! Prisoner Events Chance"
+ setting_travl_prisoner_event_chance_low: "#high Low#!"
+ setting_travl_prisoner_event_chance_low_desc: "Chance for prisoner events is low (5%)."
+ setting_travl_prisoner_event_chance_medium: "Medium"
+ setting_travl_prisoner_event_chance_medium_desc: "Chance for prisoner events is medium (10%)."
+ setting_travl_prisoner_event_chance_high: "#high High#!"
+ setting_travl_prisoner_event_chance_high_desc: "Chance for prisoner events is high (20%)."
+
  rule_travl_interaction_range: "#P 여행자들:#! 궁정으로 캐릭터 초대 범위"
  setting_travl_interaction_range_small: "#높음 작음#!"
  setting_travl_interaction_range_small_desc: "외교 범위 내에 있는 캐릭터 중 150개의 지도 픽셀 내에 있는 캐릭터가 나열됩니다 (가장 빠름)."

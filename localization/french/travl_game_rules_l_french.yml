@@ -31,6 +31,14 @@
  setting_travl_travel_safety_very_high: "#high Très haute#!"
  setting_travl_travel_safety_very_high_desc: "La sécurité des voyages est augmentée de 40 pour tous les voyages provoqués par ce mod."
 
+ rule_travl_prisoner_event_chance: "#P Travelers:#! Chances d'événements de prisonniers"
+ setting_travl_prisoner_event_chance_low: "#high Faible#!"
+ setting_travl_prisoner_event_chance_low_desc: "Les chances d'événements de prisonniers sont faibles (5%)."
+ setting_travl_prisoner_event_chance_medium: "Moyenne"
+ setting_travl_prisoner_event_chance_medium_desc: "Les chances d'événements de prisonniers sont moyennes (10%)."
+ setting_travl_prisoner_event_chance_high: "#high Élevé#!"
+ setting_travl_prisoner_event_chance_high_desc: "Les chances d'événements de prisonniers sont élevées (20%)."
+
  rule_travl_interaction_range: "#P Travelers:#! Portée d'interaction 'Inviter des personnages à la Cour'"
  setting_travl_interaction_range_small: "#high Petite#!"
  setting_travl_interaction_range_small_desc: "Les personnages à portée diplomatique et situés dans un rayon de 150 pixels de la carte sont répertoriés (le plus vite)."

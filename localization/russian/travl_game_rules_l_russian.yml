@@ -31,6 +31,14 @@
  setting_travl_travel_safety_very_high: "#high Очень высокая#!"
  setting_travl_travel_safety_very_high_desc: "Безопасность в пути увеличивается на 40 для всех путешествий, вызванных этим модом."
 
+ rule_travl_prisoner_event_chance: "#P Travelers:#! Шанс событий с заключенными"
+ setting_travl_prisoner_event_chance_low: "#high Низкий#!"
+ setting_travl_prisoner_event_chance_low_desc: "Шанс событий с заключенными низкий (5%)"
+ setting_travl_prisoner_event_chance_medium: "Средний"
+ setting_travl_prisoner_event_chance_medium_desc: "Шанс событий с заключенными средний (10%)"
+ setting_travl_prisoner_event_chance_high: "#high Высокий#!"
+ setting_travl_prisoner_event_chance_high_desc: "Шанс событий с заключенными высокий (20%)"
+
  rule_travl_interaction_range: "#P Travelers:#! Радиус 'Пригласить персонажей ко двору'"
  setting_travl_interaction_range_small: "#high Маленький#!"
  setting_travl_interaction_range_small_desc: "Перечислены персонажи, находящиеся в дипломатическом радиусе и в радиусе 150 пикселей карты (наболее быстро)."
