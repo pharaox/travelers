@@ -1,5 +1,20 @@
 # Changelog
 
+## Version 0.7.8
+
+### Core Travel
+
+* Newly recruited (from pool) landed barons are now teleported directly to their capitals.
+* "Major interest" characters (councillors, consorts, etc.) are no longer chosen as prisoner escort characters.
+
+### Game Rules
+
+* Added the *Prisoner Events Chance* game rule to allow tuning the chance for *Escape from Prison* events.
+
+### Localization
+
+* Added partial German translation by @Feivel.
+
 ## Version 0.7.7
 
 ### Compatibility

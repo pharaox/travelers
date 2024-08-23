@@ -42,7 +42,7 @@ This mod also supports changing its game rules mid-game with the [Gamerule Gadge
 
 ## Localization
 
-This mod is currently available in English, Russian, (partially) French, and Korean (translated by @gazette2). For other languages, it uses the original English text as a placeholder.
+This mod is currently available in English, Russian, (partially) French, (partially) German (translated by @Feivel), and Korean (translated by @gazette2). For other languages, it uses the original English text as a placeholder.
 
 ## Features
 
