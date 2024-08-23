@@ -19,6 +19,17 @@
 
 	if = {
 		limit = {
+			NOT = { has_variable = travl_location }
+			exists = capital_province
+			highest_held_title_tier = tier_barony
+		}
+
+		# We are a newly recruited landed baron (e.g. from pool)
+		# Teleport us to our capital directly to avoid overly long trips
+		set_location = capital_province
+	}
+	else_if = {
+		limit = {
 			travl_has_teleported_trigger = no
 		}
 
