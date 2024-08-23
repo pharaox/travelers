@@ -74,6 +74,26 @@ travl_travel_safety = {
 	}
 }
 
+travl_prisoner_event_chance = {
+	categories = {
+		travl_travelers
+	}
+
+	default = travl_prisoner_event_chance_medium
+
+	travl_prisoner_event_chance_low = {
+		flag = GG_can_change_rule
+	}
+
+	travl_prisoner_event_chance_medium = {
+		flag = GG_can_change_rule
+	}
+
+	travl_prisoner_event_chance_high = {
+		flag = GG_can_change_rule
+	}
+}
+
 travl_interaction_range = {
 	categories = {
 		travl_travelers tweaks historicity

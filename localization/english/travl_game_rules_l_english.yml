@@ -31,6 +31,14 @@
  setting_travl_travel_safety_very_high: "#high Very High#!"
  setting_travl_travel_safety_very_high_desc: "Travel safety is increased by 40 for all travel caused by this mod."
 
+ rule_travl_prisoner_event_chance: "#P Travelers:#! Prisoner Events Chance"
+ setting_travl_prisoner_event_chance_low: "#high Low#!"
+ setting_travl_prisoner_event_chance_low_desc: "Chance for prisoner events is low (5%)."
+ setting_travl_prisoner_event_chance_medium: "Medium"
+ setting_travl_prisoner_event_chance_medium_desc: "Chance for prisoner events is medium (10%)."
+ setting_travl_prisoner_event_chance_high: "#high High#!"
+ setting_travl_prisoner_event_chance_high_desc: "Chance for prisoner events is high (20%)."
+
  rule_travl_interaction_range: "#P Travelers:#! Invite Characters to Court Range"
  setting_travl_interaction_range_small: "#high Small#!"
  setting_travl_interaction_range_small_desc: "Characters in diplomatic range and located within 150 map-pixels are listed (fastest)."

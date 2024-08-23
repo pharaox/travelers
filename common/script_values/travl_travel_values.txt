@@ -61,5 +61,16 @@ travl_travel_danger_value = {
 }
 
 travl_prisoner_event_chance_value = {
-	value = 10
+	if = {
+		limit = { has_game_rule = travl_prisoner_event_chance_low }
+		value = 5
+	}
+	else_if = {
+		limit = { has_game_rule = travl_prisoner_event_chance_medium }
+		value = 10
+	}
+	else_if = {
+		limit = { has_game_rule = travl_prisoner_event_chance_high }
+		value = 20
+	}
 }
