@@ -1,19 +1,19 @@
 ﻿l_german:
  # travl_invite_courtiers_interaction
- travl_invite_courtiers_interaction: "Invite Characters to Court"
- travl_invite_courtiers_interaction_desc: "Invite characters to move to your [court|E], where they will be your [courtiers|E]"
+ travl_invite_courtiers_interaction: "Charaktere an den Hof laden"
+ travl_invite_courtiers_interaction_desc: "Ladet Charaktere ein, als [courtiers|E] an Euren [court|E] zu ziehen"
  recipient_secondary_travl_invite_courtiers_interaction: "$INTERACTION_RECIPIENT$"
 
  # Message titles
- travl_msg_departed_for_court: "Departed for Court"
- travl_msg_arrived_at_court: "Arrived at Court"
- travl_msg_escaped_from_prison: "Escaped from Prison"
- travl_msg_imprisoned: "Imprisoned"
- travl_msg_prison_guard_departed: "Enemy Prisoner Escort Departed"
+ travl_msg_departed_for_court: "Aufbruch zu Hofe"
+ travl_msg_arrived_at_court: "Ankunft bei Hofe"
+ travl_msg_escaped_from_prison: "Gefangenschaft entronnen"
+ travl_msg_imprisoned: "Gefangennahme"
+ travl_msg_prison_guard_departed: "Feindlicher Gefangenentransport aufgebrochen"
 
  # Message tooltips
- travl_departed_for_court_tt: "[CHARACTER.GetShortUIName] departed for [TARGET_CHARACTER.GetShortUINamePossessive] court."
- travl_arrived_at_court_tt: "[CHARACTER.GetShortUIName] arrived at [TARGET_CHARACTER.GetShortUINamePossessive] court."
- travl_departed_for_court_joined_tt: "$travl_departed_for_court_tt$ [CHARACTER.GetSheHe|U] joined [TARGET_CHARACTER.GetShortUINamePossessive] court only temporarily and will leave on arrival."
- travl_arrived_at_court_joined_tt: "$travl_arrived_at_court_tt$ [CHARACTER.GetSheHe|U] joined [TARGET_CHARACTER.GetShortUINamePossessive] court only temporarily and will leave now."
- travl_prison_guard_departed_tt: "[CHARACTER.GetShortUIName] departed for your enemy [TARGET_CHARACTER.GetShortUINamePossessive] court escorting prisoners. You can try to free them by putting an army on [CHARACTER.GetHerHis] path."
+ travl_departed_for_court_tt: "[CHARACTER.GetShortUIName] brach auf, an [Select_CString(TARGET_CHARACTER.IsLocalPlayer, 'Euren', TARGET_CHARACTER.GetShortUINamePossessive)] Hof zu reisen."
+ travl_arrived_at_court_tt: "[CHARACTER.GetShortUIName] ist an [Select_CString(TARGET_CHARACTER.IsLocalPlayer, 'Eurem', TARGET_CHARACTER.GetShortUINamePossessive)] Hofe angekommen."
+ travl_departed_for_court_joined_tt: "$travl_departed_for_court_tt$ [CHARACTER.GetSheHe|U] ist [Select_CString(TARGET_CHARACTER.IsLocalPlayer, 'Eurem', TARGET_CHARACTER.GetShortUINamePossessive)] Hof nur vorübergehend beigetreten und wird bei Ankunft weiterreisen."
+ travl_arrived_at_court_joined_tt: "$travl_arrived_at_court_tt$ [CHARACTER.GetSheHe|U] war [Select_CString(TARGET_CHARACTER.IsLocalPlayer, 'Eurem', TARGET_CHARACTER.GetShortUINamePossessive)] Hof nur vorübergehend beigetreten und wird nun weiterziehen."
+ travl_prison_guard_departed_tt: "[CHARACTER.GetShortUIName] ist zum Hof Eures Feindes [TARGET_CHARACTER.GetShortUIName] aufgebrochen, die Gefangenen im Schlepptau. Ihr könnt einen Versuch unternehmen, sie zu befreien, indem ihr eigene Truppen auf [CHARACTER.Custom('DE_PRO_POS_S_3P')]e Fährte setzt."
