@@ -245,6 +245,9 @@ travl_can_be_prison_guard_trigger = {
 	can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = $ARMY_OWNER$ }
 	martial >= low_skill_rating
 	prowess >= mediocre_skill_rating
+	NOT = {
+		is_of_major_interest_trigger = { CHARACTER = $ARMY_OWNER$ }
+	}
 }
 
 travl_should_mark_as_added_character_trigger = {
