@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.7.9
+
+### Localization
+
+* Updated Korean translation by @gazette2.
+
 ## Version 0.7.8
 
 ### Core Travel
