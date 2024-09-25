@@ -850,6 +850,7 @@ travl_send_message_effect = {
 			list_size = { name = $TRAVELERS$ value > 0 }
 		}
 
+		save_temporary_scope_as = message_recipient
 		send_interface_message = {
 			type = travl_msg_travel
 			title = $TITLE$

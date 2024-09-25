@@ -81,13 +81,13 @@ travl_travel_danger.0002 = {
 		any_in_list = {
 			variable = travl_travel_companions
 			is_available_travelling = yes
-			is_landed = no
+			is_playable_character = no
 		}
 
-		# Available, traveling, adult, on land, and unlanded
+		# Available, traveling, adult, on land, and unplayable
 		is_available_travelling_adult = yes
 		is_location_valid_for_travel_event_on_land = yes
-		is_landed = no
+		is_playable_character = no
 
 		# Danger types
 		location = {
@@ -116,7 +116,7 @@ travl_travel_danger.0002 = {
 			variable = travl_travel_companions
 			limit = {
 				is_available_travelling = yes
-				is_landed = no
+				is_playable_character = no
 			}
 			save_scope_as = missing_companion
 		}

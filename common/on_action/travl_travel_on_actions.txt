@@ -203,11 +203,11 @@ travl_travel_on_arrival = {
 			}
 		}
 
-		# Maybe gain the traveler trait if adult and unlanded
+		# Maybe gain the traveler trait if adult and unplayable
 		if = {
 			limit = {
 				is_adult = yes
-				is_landed = no
+				is_playable_character = no
 				NOT = { has_trait = lifestyle_traveler }
 			}
 			random_list = {

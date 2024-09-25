@@ -19,7 +19,10 @@ travel_completion_event.1000 = {
 		# are we home or somewhere abroad?
 		first_valid = {
 			triggered_desc = {
-				trigger = { location = root.default_location }
+				trigger = {
+					is_landed_or_landless_administrative = yes
+					location = root.default_location
+				}
 				desc = travel_completion_event.1000.desc.home
 			}
 			# Travelers: Mention reaching final destination only for vanilla travel
@@ -173,8 +176,24 @@ travel_completion_event.1000 = {
 				limit = {
 					has_character_flag = travel_option_added_character
 				}
-				remove_character_flag = travel_option_added_character
-				select_and_move_to_pool_effect = yes
+				if = { #Characters that should in fact not leave because of _stuff_ that happened en route
+					limit = {
+						NOT = { is_spouse_of = root }
+						NOT = { is_consort_of = root }
+						has_any_court_position = no
+						trigger_if  = {
+							limit = {
+								exists = inspiration
+								inspiration = {
+									exists = inspiration_sponsor
+								}
+							}
+							NOT = { root = inspiration.inspiration_sponsor }
+						}
+					}
+					select_and_move_to_pool_effect = yes
+				}
+				remove_character_flag = travel_option_added_character #We always clean up the flag.
 				if = {
 					limit = { has_character_flag = in_pilgrimage_event_chain } # Travelers: Adapt Unofficial Patch changes
 					remove_character_flag = in_pilgrimage_event_chain #Unop: Fallback cleanup
@@ -190,6 +209,10 @@ travel_completion_event.1000 = {
 	#Yay, we're home
 	option = {
 		name = travel_completion_event.1000.a
+		name = {
+			trigger = { is_landless_adventurer = yes }
+			text = travel_completion_event.1000.a.adventurer
+		}
 		trigger = { location = root.default_location }
 		stress_impact = {
 			craven = miniscule_stress_impact_loss
@@ -200,6 +223,10 @@ travel_completion_event.1000 = {
 	#Let's return home
 	option = {
 		name = travel_completion_event.1000.b
+		name = {
+			trigger = { is_landless_adventurer = yes }
+			text = travel_completion_event.1000.b.adventurer
+		}
 		trigger = {
 			NOT = { location = root.default_location }
 			# Travelers: Reroute to home only for vanilla travel

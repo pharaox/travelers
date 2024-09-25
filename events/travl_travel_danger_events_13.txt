@@ -125,9 +125,9 @@ travl_travel_danger.0013 = {
 		has_variable = travl_travel_leader
 		var:travl_travel_leader = root
 
-		# Available, traveling, adult, and unlanded
+		# Available, traveling, adult, and unplayable
 		is_available_travelling_adult = yes
-		is_landed = no
+		is_playable_character = no
 
 		# No holding (sparsely inhabited)
 		location = { has_holding = no }
