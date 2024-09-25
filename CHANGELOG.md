@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.8.0
+
+### Compatibility
+
+* Adapted to CK3 1.13.0.1
+
+### Core Travel
+
+* If the receiver is a landless adventurer traveling with domicile, travel to their final destination instead of their capital.
+
 ## Version 0.7.9
 
 ### Localization

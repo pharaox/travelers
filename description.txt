@@ -26,7 +26,7 @@ Finally, this mod also adds an [b]Invite Characters to Court[/b] convenience int
 
 [h2]Compatibility[/h2]
 
-The current version is compatible with CK3 1.12. If you are still on CK3 1.11.x, use [url=https://github.com/pharaox/travelers/releases/download/0.5.3/travelers-0.5.3.zip]version 0.5.3[/url] instead.
+The current version is compatible with CK3 1.13. If you are still on CK3 1.13.x, use [url=https://github.com/pharaox/travelers/releases/download/0.7.9/travelers-0.7.9.zip]version 0.7.9[/url] instead.
 
 This mod is compatible with most other mods, except for mods that make similar changes to the travel system, or modify the [b]travl_on_actions.txt[/b] and [b]travel_options.txt[/b] vanilla files. Unfortunately, the latter includes most total conversion mods. If you use such mods, put this mod before them in the load order - the travel of imprisoned rulers may be affected as a result, but everything else should work as expected.
 

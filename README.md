@@ -30,7 +30,7 @@ Finally, this mod also adds an **Invite Characters to Court** convenience intera
 
 ## Compatibility
 
-The current version is compatible with CK3 1.12. If you are still on CK3 1.11.x, use [version 0.5.3](https://github.com/pharaox/travelers/releases/download/0.5.3/travelers-0.5.3.zip) instead.
+The current version is compatible with CK3 1.13. If you are still on CK3 1.12.x, use [version 0.7.9](https://github.com/pharaox/travelers/releases/download/0.7.9/travelers-0.7.9.zip) instead.
 
 This mod is compatible with most other mods, except for mods that make similar changes to the travel system, or modify the `travl_on_actions.txt` and `travel_options.txt` vanilla files. Unfortunately, the latter includes most total conversion mods. If you use such mods, put this mod before them in the load order - the travel of imprisoned rulers may be affected as a result, but everything else should work as expected.
 
@@ -48,7 +48,7 @@ This mod is currently available in English, Russian, (partially) French, (partia
 
 ### Character Travel
 
-This mod makes characters travel to their default location (also called their "home") when it changes instead of teleporting. This applies to both landed and unlanded characters, and covers all possible cases, including the following:
+This mod makes characters travel to their default location (also called their "home") when it changes instead of teleporting. This applies to both playable (landed, or landless adventurers) and unplayable characters, and covers all possible cases, including the following:
 
 * Marriage as a minor partner
 * Joining a different court due to being invited, becoming a guest, etc.
@@ -56,9 +56,9 @@ This mod makes characters travel to their default location (also called their "h
 * Becoming landed for the first time
 * Realm capital change due to a variety of reasons such as manual change, loss in conquest, inheritance, or being granted a better title
 
-To ensure that important vanilla mechanics are not negatively affected, wandering and adventuring characters, as well those in an army are still able to teleport. Characters will also not interrupt most ongoing vanilla travel, such as traveling landed characters, characters traveling due to being involved in an activity, or unlanded characters traveling for a special purpose, e.g. wards traveling to their guardian's court. Unlanded characters returning home outside of an activity might interrupt their travel if their home changed, and head to their new home.
+To ensure that important vanilla mechanics are not negatively affected, wandering and adventuring characters, as well those in an army are still able to teleport. Characters will also not interrupt most ongoing vanilla travel, such as traveling playable characters, characters traveling due to being involved in an activity, or unplayable characters traveling for a special purpose, e.g. wards traveling to their guardian's court. Unplayable characters returning home outside of an activity might interrupt their travel if their home changed, and head to their new home.
 
-The character home and therefore their travel destination is always the realm capital of a landed character who acts as *receiver*. This may be their jailor (if they are imprisoned), the character itself (if they are landed), or else their warden (if they are a hostage), host (if they are a guest), or liege (if they are a courtier). In some situations, another character, usually residing at the travel origin may act as *sender*. If the player is either a sender or a receiver, they will get a message informing them about the departure or arrival. These messages can be enabled or disabled via the **Travel Messages** game rule.
+The character home and therefore their travel destination is always the realm capital of a playable character who acts as *receiver*. This may be their jailor (if they are imprisoned), the character itself (if they are playable), or else their warden (if they are a hostage), host (if they are a guest), or liege (if they are a courtier). In some situations, another character, usually residing at the travel origin may act as *sender*. If the player is either a sender or a receiver, they will get a message informing them about the departure or arrival. These messages can be enabled or disabled via the **Travel Messages** game rule.
 
 ### Core Travel Mechanics
 
@@ -107,7 +107,7 @@ Since character homes may change mid-travel, such groups may lose members, chang
 
 While traveling, rulers and their entourage may get some of the vanilla travel and danger events. As a result, some of them may die or leave, and others may join. Rulers can also select a travel leader, add travel options, and get experience on arrival.
 
-Since there are no travel events for non-ruler characters available in vanilla, this mod adds 14 new travel danger events for non-ruler group leaders, loosely based on existing vanilla events. Other group members may also participate in the resolution of such an event, and all may suffer its consequences. The player is informed about such events with appropriate messages. These events can be disabled via the **Travel Events for Unlanded Characters** game rule.
+Since there are no travel events for non-ruler characters available in vanilla, this mod adds 14 new travel danger events for non-ruler group leaders, loosely based on existing vanilla events. Other group members may also participate in the resolution of such an event, and all may suffer its consequences. The player is informed about such events with appropriate messages. These events can be disabled via the **Travel Events for Unplayable Characters** game rule.
 
 Similarly to vanilla events, such events may only happen under certain conditions that may include various travel danger types, availability of companions or pool characters, winter or no winter, etc. Usually, they can be resolved via multiple options, most of them involving a skill-based challenge. The group member with the highest skill is always chosen for such challenges, if a member with at least 5 in the corresponding skill exists. Which option is eventually chosen depends on the AI dispositions of all participating characters and a random factor. There is always an "automatic failure" that is chosen if no other options are available.
 
