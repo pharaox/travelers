@@ -35,7 +35,7 @@ travl_is_imprisoned_travelling_adult_trigger = {
 	is_busy_in_events_unlocalised = no
 }
 
-travl_is_travelling_to_receiver_trigger = {
+travl_is_travelling_to_destination_trigger = {
 	current_travel_plan ?= {
 		travel_plan_owner = {
 			is_alive = yes
@@ -44,7 +44,7 @@ travl_is_travelling_to_receiver_trigger = {
 				var:travl_travel_receiver = $RECEIVER$
 			}
 		}
-		final_destination_province = $RECEIVER$.capital_province
+		final_destination_province = $DESTINATION$
 		is_aborted = no
 	}
 }
@@ -199,7 +199,7 @@ travl_should_notify_trigger = {
 		current_travel_plan ?= {
 			OR = {
 				is_aborted = yes
-				NOT = { final_destination_province = $LIEGE$.capital_province }
+				NOT = { final_destination_province = $DESTINATION$ }
 			}
 		}
 	}

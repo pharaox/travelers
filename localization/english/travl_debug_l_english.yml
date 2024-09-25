@@ -77,7 +77,7 @@
 
  travl_debug_msg_accessing_recent_location: "$travl_debug_prefix$: Accessing recent location $travl_location$, previous location was $travl_prev_location$" # Rare
 
- travl_error_msg_starting_travel_to_non_default_location: "$travl_debug_prefix$: Starting travel to non-default location, receiver is [THIS.Var('receiver').Char.GetFullNameNoTooltip], default location is [THIS.Var('default_location').Province.GetNameNoTooltip]"
+ travl_error_msg_starting_travel_with_incorrect_receiver: "$travl_debug_prefix$: Starting travel with incorrect receiver, receiver is [THIS.Var('receiver').Char.GetFullNameNoTooltip], default location is [THIS.Var('default_location').Province.GetNameNoTooltip]"
 
  travl_debug_msg_travel_danger_0001_t: "$travl_debug_prefix$: $travl_msg_travel_danger_0001_t$ event fired$travl_for_prison_guard$, danger: $travl_danger_value$, terrain: $travl_terrain$"
  travl_debug_msg_travel_danger_0001_a_success: "$travl_debug_prefix$: $travl_msg_travel_danger_0001_t$ event option a success"
