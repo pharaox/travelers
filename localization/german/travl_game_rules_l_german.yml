@@ -9,11 +9,11 @@
  setting_travl_travel_messages_events_only: "#high Nur Ereignisse#!"
  setting_travl_travel_messages_events_only_desc: "Nur Ereignis-Benachrichtigungen für relevante Charaktere sind eingeschaltet."
 
- rule_travl_travel_events: "#P Travelers:#! Reise-Ereignisse für landlose Charaktere"
+ rule_travl_travel_events: "#P Travelers:#! Reise-Ereignisse für nicht spielbare Charaktere"
  setting_travl_travel_events_disabled: "#high Aus#!"
- setting_travl_travel_events_disabled_desc: "Reise-Ereignisse für landlose Charaktere sind ausgeschaltet."
+ setting_travl_travel_events_disabled_desc: "Reise-Ereignisse für nicht spielbare Charaktere sind ausgeschaltet."
  setting_travl_travel_events_enabled: "An"
- setting_travl_travel_events_enabled_desc: "Reise-Ereignisse für landlose Charaktere sind eingeschaltet."
+ setting_travl_travel_events_enabled_desc: "Reise-Ereignisse für nicht spielbare Charaktere sind eingeschaltet."
 
  rule_travl_prison_interactions: "#P Travelers:#! Interaktion mit reisenden Gefangenen"
  setting_travl_prison_interactions_disabled: "Aus"

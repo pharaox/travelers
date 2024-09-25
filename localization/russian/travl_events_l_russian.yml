@@ -304,4 +304,4 @@
  travl_is_as_sya: "[Select_CString(THIS.Char.IsLocalPlayer, 'ись', Select_CString(THIS.Char.IsFemale, 'ась', 'ся'))]"
 
  # Custom tooltips
- travl_they_got_a_visitor_tt: "[THIS.Char.GetShortUIName|U] переселился ко [Concept('court', 'двору')|E] [Select_CString(THIS.Char.IsLocalPlayer, '', 'персонажа ')][THIS.Var('travl_event_host').Char.GetNamePossessiveOrMy][Select_CString(THIS.Char.IsLocalPlayer, 'его персонажа', '')]"
+ travl_they_got_a_visitor_tt: "[THIS.Char.GetShortUIName|U] переселился в [THIS.Var('travl_event_host').Char.Custom('GetCourtConcept')] [Select_CString(THIS.Char.IsLocalPlayer, '', 'персонажа ')][THIS.Var('travl_event_host').Char.GetNamePossessiveOrMy][Select_CString(THIS.Char.IsLocalPlayer, 'его персонажа', '')]"

@@ -302,4 +302,4 @@
  travl_char_were_was: "[Select_CString(THIS.Char.IsLocalPlayer, 'were', 'was')]"
 
  # Custom tooltips
- travl_they_got_a_visitor_tt: "[THIS.Char.GetShortUIName|U]는 [THIS.Var('travl_event_host').Char.GetShortUINamePossessive] [court|E]에 머물기로 했습니다."
+ travl_they_got_a_visitor_tt: "[THIS.Char.GetShortUIName|U]는 [THIS.Var('travl_event_host').Char.GetShortUINamePossessive] [THIS.Var('travl_event_host').Char.Custom('GetCourtConcept')]에 머물기로 했습니다."
