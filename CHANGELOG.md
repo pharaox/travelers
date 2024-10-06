@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.8.1
+
+### Performance
+
+* Fixed a performance issue affecting submods.
+
 ## Version 0.8.0
 
 ### Compatibility
