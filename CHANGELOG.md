@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.8.2
+
+### Compatibility
+
+* Adapted to CK3 1.13.1
+
 ## Version 0.8.1
 
 ### Performance
