@@ -900,15 +900,16 @@ vanilla_on_travel_plan_start = {
 					any_court_position_holder = {
 						type = court_physician_court_position
 						is_available = yes
+						is_travel_entourage_character = no
 						is_at_same_location = root # Travelers
 					}
 				}
 				random_court_position_holder = {
 					type = court_physician_court_position
-					 # Travelers
 					limit = {
 						is_available = yes
-						is_at_same_location = root
+						is_travel_entourage_character = no
+						is_at_same_location = root # Travelers
 					}
 					save_scope_as = court_phys
 				}
@@ -932,10 +933,10 @@ vanilla_on_travel_plan_start = {
 				}
 				random_court_position_holder = {
 					type = bodyguard_court_position
-					 # Travelers
 					limit = {
 						is_available = yes
-						is_at_same_location = root
+						is_travel_entourage_character = no
+						is_at_same_location = root # Travelers
 					}
 					save_scope_as = bodyguard
 				}
@@ -954,20 +955,21 @@ vanilla_on_travel_plan_start = {
 					any_court_position_holder = {
 						type = akolouthos_court_position
 						is_available = yes
+						is_travel_entourage_character = no
 						is_at_same_location = root # Travelers
 					}
 				}
 				random_court_position_holder = {
 					type = akolouthos_court_position
-					 # Travelers
 					limit = {
 						is_available = yes
-						is_at_same_location = root
+						is_travel_entourage_character = no
+						is_at_same_location = root # Travelers
 					}
-					save_scope_as = bodyguard
+					save_scope_as = akolouthos
 				}
 				current_travel_plan ?= { # Travelers: Fix scope errors
-					add_companion = scope:bodyguard
+					add_companion = scope:akolouthos
 				}
 			}
 			# Achievements.
@@ -1239,6 +1241,21 @@ vanilla_on_travel_plan_abort = {
 			limit = {has_character_modifier = laamp_provisions_forgiveness_travel_modifier }
 			remove_character_modifier = laamp_provisions_forgiveness_travel_modifier
 		}
+		if = {
+			limit = {
+				has_character_flag = petition_liege_character_flag
+			}
+			send_interface_toast = {
+				type = event_toast_effect_neutral
+				title = petition_liege_costs_refunded
+				left_icon = root 
+				remove_decision_cooldown = petition_liege_decision
+				# refund prestige cost
+				add_prestige = standard_activity_cost
+			}
+			# remove variables and flags 
+			petition_liege_variable_cleanup_effect = yes
+		}
 	}
 }
 
@@ -1274,34 +1291,7 @@ vanilla_on_travel_plan_cancel = {
 				add_prestige = standard_activity_cost
 			}
 			# remove variables and flags
-			if = {
-				limit = { has_variable = petition_liege_scope }
-				remove_variable = petition_liege_scope
-			}
-			if = {
-				limit = { has_variable = petition_type }
-				remove_variable = petition_type
-			}
-			if = {
-				limit = { has_variable = petition_liege_council_first }
-				remove_variable = petition_liege_council_first
-			}
-			if = {
-				limit = { has_variable = petition_liege_council_second }
-				remove_variable = petition_liege_council_second
-			}
-			if = {
-				limit = { has_character_flag = petition_liege_character_flag }
-				remove_character_flag = petition_liege_character_flag
-			}
-			if = {
-				limit = { has_variable_list = available_petitions }
-				clear_variable_list = available_petitions
-			}
-			if = {
-				limit = { has_variable_list = petitions_to_show }
-				clear_variable_list = petitions_to_show
-			}
+			petition_liege_variable_cleanup_effect = yes
 		}
 		if = {
 			limit = {
