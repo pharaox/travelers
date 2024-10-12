@@ -144,6 +144,7 @@ travl_start_travel_effect = {
 		# Check that the receiver is correct
 		if = {
 			limit = {
+				exists = $RECEIVER$.capital_province
 				NOT = { default_location = $RECEIVER$.capital_province }
 			}
 			default_location = { save_temporary_scope_as = default_location }
@@ -767,6 +768,26 @@ travl_ensure_all_locations_effect = {
 		every_entourage_character = {
 			limit = { is_alive = yes }
 			travl_ensure_location_effect = { LOCATION = $LOCATION$ }
+		}
+	}
+}
+
+travl_ensure_army_character_locations_effect = {
+	#travl_debug_log_effect = { MSG = travl_debug_msg_ensuring_army_character_locations }
+	# Ensure the location of the army commander
+	scope:army.army_commander ?= {
+		travl_ensure_location_effect = { LOCATION = scope:army.location }
+	}
+	# Ensure the locations of all army knights
+	every_knight = {
+		if = {
+			limit = {
+				knight_army ?= scope:army
+				# Ruler and traveling knights are moved back automatically
+				is_ruler = no
+				is_travelling = no
+			}
+			travl_ensure_location_effect = { LOCATION = scope:army.location }
 		}
 	}
 }

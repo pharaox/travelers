@@ -73,6 +73,7 @@
 
  travl_debug_msg_delaying_on_join_court_event: "$travl_debug_prefix$: Delaying joining [THIS.Char.GetLiege.GetFullNameNoTooltip]'s court, travl_adding_courtier: [Select_CString(THIS.Var('travl_adding_courtier').IsSet, 'yes', 'no')] ($travl_location$)"
 
+ travl_debug_msg_ensuring_army_character_locations: "$travl_debug_prefix$: Ensuring army character locations"
  travl_debug_msg_ensuring_location: "$travl_debug_prefix$: Ensuring location ($travl_location$)"
 
  travl_debug_msg_accessing_recent_location: "$travl_debug_prefix$: Accessing recent location $travl_location$, previous location was $travl_prev_location$" # Rare
