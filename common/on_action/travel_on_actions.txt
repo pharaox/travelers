@@ -77,7 +77,7 @@ vanilla_on_travel_plan_movement = {
 		}
 		# We change your Legend if you travel through somewhere relevant
 		if = {
-			limit = {	
+			limit = {
 				current_travel_plan.current_location = {
 					has_any_point_of_interest_flag = yes
 				}
@@ -314,7 +314,7 @@ vanilla_on_travel_plan_movement = {
 			add_gold = adventurers_make_local_deals_option_value
 			add_to_variable_list = {
 				name = haggle_provinces
-				target = root.current_travel_plan.current_location 
+				target = root.current_travel_plan.current_location
 			}
 		}
 		if = {
@@ -419,7 +419,7 @@ vanilla_on_travel_plan_movement = {
 					type = send_interface_message_good
 					title = adventurers_proselytize_zealously_option.title
 					left_icon = scope:wanderer_to_convert
-					add_piety = minor_piety_value
+					add_piety = miniscule_piety_value
 					scope:wanderer_to_convert = {
 						set_character_faith = root.faith
 					}
@@ -567,7 +567,7 @@ travel_danger_events_on_action = {
 		100 = travel_events.4020 # Danger! Strong believers harass your caravan and demand payment
 		100 = travel_events.4003 # You encounter vikings at sea
 		250 = bp1_yearly.0100 # You are caught in a storm and a rival's property is the only shelter
-		
+
 		# Laamp Travel Danger Events
 		350 = ep3_laamp_flavour_ewan.4001	# Bandits! - Bandit raid.
 		350 = ep3_laamp_flavour_ewan.4021	# Parched - Difficulty finding water.
@@ -1248,12 +1248,18 @@ vanilla_on_travel_plan_abort = {
 			send_interface_toast = {
 				type = event_toast_effect_neutral
 				title = petition_liege_costs_refunded
-				left_icon = root 
+				left_icon = root
 				remove_decision_cooldown = petition_liege_decision
-				# refund prestige cost
-				add_prestige = standard_activity_cost
+				# refund prestige and influence cost
+				if = {
+					limit = { petition_liege_admin_valid_trigger = yes }
+					change_influence_no_experience = standard_activity_cost
+				}
+				else = {
+					add_prestige_no_experience = standard_activity_cost
+				}
 			}
-			# remove variables and flags 
+			# remove variables and flags
 			petition_liege_variable_cleanup_effect = yes
 		}
 	}
@@ -1287,8 +1293,14 @@ vanilla_on_travel_plan_cancel = {
 				title = petition_liege_costs_refunded
 				left_icon = root
 				remove_decision_cooldown = petition_liege_decision
-				# refund prestige cost
-				add_prestige = standard_activity_cost
+				# refund prestige and influence cost
+				if = {
+					limit = { petition_liege_admin_valid_trigger = yes }
+					change_influence_no_experience = standard_activity_cost
+				}
+				else = {
+					add_prestige_no_experience = standard_activity_cost
+				}
 			}
 			# remove variables and flags
 			petition_liege_variable_cleanup_effect = yes
@@ -1469,7 +1481,7 @@ travel_laamps_provisions_on_action = {
 	events = {
 		ep3_laamps_provisions.1080
 	}
-	
+
 	random_events = {
 		chance_of_no_event = {
 			value = 10
