@@ -178,6 +178,7 @@ The **Invite Characters to Court** interaction might also become slow if the num
 * [Travelers AGOT Compatibility](https://steamcommunity.com/sharedfiles/filedetails/?id=3166199552)
 * [Travelers and Prisoners of War Compatch (by @cuomo860)](https://steamcommunity.com/sharedfiles/filedetails/?id=3098184700)
 * [Chinese Translation (by @牛奶大魔王)](https://steamcommunity.com/sharedfiles/filedetails/?id=2903983628)
+* [German Translation (by @finallyciv)](https://steamcommunity.com/sharedfiles/filedetails/?id=3355568022)
 * [GitHub Repository](https://github.com/pharaox/travelers)
 
 ## Changes to Vanilla
