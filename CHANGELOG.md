@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 0.8.3
+
+### Compatibility
+
+* Adapted to CK3 1.13.2
+
+### Bug Fixes
+
+* Army characters will now teleport back to the army when it moves to a new province, if they are located somewhere else (vanilla issue).
+* Added consistency check to prevent characters from being knights and commanders in two different armies at the same time (vanilla issue).
+
 ## Version 0.8.2
 
 ### Compatibility
