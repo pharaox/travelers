@@ -9,15 +9,15 @@
 		NOT = { has_perk = toe_the_line_perk }
 		is_landless_adventurer = yes
 	}
-	
+
 	travel_modifier = {
 		travel_speed = -5
 	}
-	
+
 	on_applied_effect = {
 		custom_tooltip = adventurers_scout_for_talent_option.tt
 	}
-	
+
 	ai_will_do = {
 		value = 100
 	}
@@ -33,15 +33,15 @@ adventurers_make_local_deals_option = {
 		has_perk = fearful_troops_perk
 		is_landless_adventurer = yes
 	}
-	
+
 	travel_modifier = {
 		travel_safety = -20
 	}
-	
+
 	on_applied_effect = {
 		custom_tooltip = adventurers_make_local_deals_option.tt
 	}
-	
+
 	ai_will_do = {
 		value = 100
 	}
@@ -57,16 +57,16 @@ adventurers_search_for_secrets_option = {
 		has_perk = digging_for_dirt_perk
 		is_landless_adventurer = yes
 	}
-	
+
 	travel_modifier = {
 		travel_safety = -10
 		travel_speed = 10
 	}
-	
+
 	on_applied_effect = {
 		custom_tooltip = adventurers_search_for_secrets_option.tt
 	}
-	
+
 	ai_will_do = {
 		value = 100
 	}
@@ -86,16 +86,16 @@ adventurers_encourage_relationships_option = {
 		}
 		is_landless_adventurer = yes
 	}
-	
+
 	travel_modifier = {
 		travel_speed = 5
 		travel_safety = -5
 	}
-	
+
 	on_applied_effect = {
 		custom_tooltip = adventurers_encourage_relationships_option.tt
 	}
-	
+
 	ai_will_do = {
 		value = 100
 	}
@@ -111,16 +111,16 @@ adventurers_gather_inspiration_option = {
 		has_perk = popular_figurehead_perk
 		is_landless_adventurer = yes
 	}
-	
+
 	travel_modifier = {
 		travel_speed = 5
 		travel_safety = -5
 	}
-	
+
 	on_applied_effect = {
 		custom_tooltip = adventurers_gather_inspiration_option.tt
 	}
-	
+
 	ai_will_do = {
 		value = 100
 	}
@@ -136,16 +136,16 @@ adventurers_proselytize_zealously_option = {
 		has_perk = zealous_proselytizer_perk
 		is_landless_adventurer = yes
 	}
-	
+
 	travel_modifier = {
 		travel_speed = 5
 		travel_safety = -5
 	}
-	
+
 	on_applied_effect = {
 		custom_tooltip = adventurers_proselytize_zealously_option.tt
 	}
-	
+
 	ai_will_do = {
 		value = 100
 	}
@@ -163,15 +163,15 @@ adventurers_forward_scouts_option = {
 			domicile ?= { has_domicile_parameter = camp_unlocks_forward_scouts }
 		}
 	}
-	
+
 	travel_modifier = {
 		travel_safety = 20
 		travel_speed = -5
 	}
-	
+
 	on_applied_effect = {
 	}
-	
+
 	ai_will_do = {
 		value = 100
 	}
@@ -187,7 +187,7 @@ purchase_rough_terrain_gear_option = {
 	is_valid = {
 		is_landless_adventurer = yes
 	}
-	
+
 	cost = {
 		gold = {
 			add = {
@@ -203,10 +203,10 @@ purchase_rough_terrain_gear_option = {
 		wetlands_travel_danger = wetlands_low_danger_reduction
 		floodplains_travel_danger = floodplains_low_danger_reduction
 	}
-	
+
 	on_applied_effect = {
 	}
-	
+
 	ai_will_do = {
 		value = 0
 		if = {
@@ -239,7 +239,7 @@ purchase_desert_gear_option = {
 	is_valid = {
 		is_landless_adventurer = yes
 	}
-	
+
 	cost = {
 		gold = {
 			add = {
@@ -255,10 +255,10 @@ purchase_desert_gear_option = {
 		drylands_travel_danger = drylands_low_danger_reduction
 		desert_mountains_travel_danger = desert_mountains_low_danger_reduction
 	}
-	
+
 	on_applied_effect = {
 	}
-	
+
 	ai_will_do = {
 		value = 0
 		if = {
@@ -290,7 +290,7 @@ purchase_forest_gear_option = {
 	is_valid = {
 		is_landless_adventurer = yes
 	}
-	
+
 	cost = {
 		gold = {
 			add = {
@@ -305,10 +305,10 @@ purchase_forest_gear_option = {
 		taiga_travel_danger = taiga_low_danger_reduction
 		jungle_travel_danger = jungle_low_danger_reduction
 	}
-	
+
 	on_applied_effect = {
 	}
-	
+
 	ai_will_do = {
 		value = 0
 		if = {
@@ -1293,6 +1293,7 @@ court_physician_option = {
 			exists = court_position:court_physician_court_position
 			court_position:court_physician_court_position = {
 				is_ai = yes
+				is_available = yes
 			}
 		}
 	}
@@ -1440,6 +1441,147 @@ cultural_ambassador_option = {
 				value = -500
 			}
 		}
+	}
+}
+
+hire_allied_mercenaries_option = {
+	is_shown = {
+		has_bp3_dlc_trigger = yes
+		is_imprisoned = no # Travelers
+	}
+
+	is_valid = {
+		has_perk = mercenary_contacts_perk
+	}
+
+	travel_modifier = {
+		travel_speed = 5
+		travel_safety = 5
+	}
+
+	ai_will_do = {
+		value = 100
+	}
+}
+
+appeasement_option = {
+	is_shown = {
+		has_bp3_dlc_trigger = yes
+		is_imprisoned = no # Travelers
+	}
+
+	is_valid = {
+		has_perk = local_hero_perk
+	}
+
+	owner_modifier = {
+		monthly_tyranny = -0.8
+		monthly_dread = -0.4
+	}
+
+	ai_will_do = {
+		value = 50
+	}
+}
+
+leisurely_option = {
+	is_shown = {
+		has_bp3_dlc_trigger = yes
+		is_imprisoned = no # Travelers
+	}
+
+	is_valid = {
+		has_perk = local_hero_perk
+	}
+
+	owner_modifier = {
+		stress_gain_mult = -0.5
+	}
+
+	travel_modifier = {
+		travel_speed = -20
+	}
+
+	on_travel_end_effect = {
+		custom_tooltip = leisurely_option_tt
+	}
+
+	ai_will_do = {
+		value = 50
+	}
+}
+
+tutor_child_option = {
+	is_shown = {
+		has_bp3_dlc_trigger = yes
+		is_imprisoned = no # Travelers
+	}
+
+	is_valid = {
+		has_perk = know_your_land_know_your_people_perk
+		trigger_if = {
+			limit = {
+				exists = player_heir
+			}
+			player_heir = {
+				age < 15
+				save_temporary_scope_as = heir_for_tooltip
+				custom_tooltip = {
+					text = heir_can_join_tt
+					location = root.location
+					is_available_allow_travelling = yes
+				}
+			}
+		}
+		trigger_else = {
+			custom_tooltip = {
+				text = no_heir_tt
+				always = no
+			}
+		}
+	}
+
+	owner_modifier = {
+		child_opinion = 5
+	}
+
+	travel_modifier = {
+		travel_speed = -5
+	}
+
+	on_applied_effect = {
+		hidden_effect = {
+			if = {
+				limit = {
+					exists = player_heir
+					player_heir = {
+						age < 15
+						location = root.location
+					}
+				}
+				player_heir = { save_scope_as = tutored_heir }
+				root.current_travel_plan ?= {
+					add_companion = scope:tutored_heir
+				}
+			}
+		}
+		if = {
+			limit = {
+				exists = scope:tutored_heir
+			}
+			custom_tooltip = child_brought_along_specific.tt
+		}
+		else = {
+			custom_tooltip = child_brought_along.tt
+		}
+	}
+
+	ai_will_do = {
+		value = 1
+	}
+
+	on_travel_end_effect = {
+		custom_tooltip = tutor_child_option_tt
 	}
 }
 
@@ -1620,7 +1762,7 @@ estate_mounts_option = {
 	travel_modifier = {
 		travel_speed = 10
 	}
-	
+
 	owner_modifier = {
 		travel_companion_opinion = 10
 		monthly_prestige = 1
