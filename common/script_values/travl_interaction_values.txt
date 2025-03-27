@@ -1,0 +1,27 @@
+﻿travl_court_lodging_standards_amenity_level_value = {
+	value = 0
+	if = {
+		limit = {
+			amenity_level = { type = court_lodging_standards value >= medium_amenity_level }
+		}
+		add = 1
+	}
+	if = {
+		limit = {
+			amenity_level = { type = court_lodging_standards value >= high_amenity_level }
+		}
+		add = 1
+	}
+	if = {
+		limit = {
+			amenity_level = { type = court_lodging_standards value >= very_high_amenity_level }
+		}
+		add = 1
+	}
+	if = {
+		limit = {
+			amenity_level = { type = court_lodging_standards value >= max_amenity_level }
+		}
+		add = 1
+	}
+}

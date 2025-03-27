@@ -1,8 +1,8 @@
-﻿# Invite courtiers.
+﻿# Invite guests.
 # Human player only.
-travl_invite_courtiers_interaction = {
+travl_invite_guests_interaction = {
 	category = interaction_category_vassal
-	desc = travl_invite_courtiers_interaction_desc
+	desc = travl_invite_guests_interaction_desc
 	icon = guest
 
 	populate_recipient_list = {
@@ -21,11 +21,11 @@ travl_invite_courtiers_interaction = {
 						}
 					}
 				}
-				save_temporary_scope_as = recruitee
+				save_temporary_scope_as = invitee
 				scope:actor = {
 					is_character_interaction_potentially_accepted = {
-						interaction = invite_to_court_interaction
-						recipient = scope:recruitee
+						interaction = travl_invite_as_guest_interaction
+						recipient = scope:invitee
 					}
 				}
 			}
@@ -41,6 +41,10 @@ travl_invite_courtiers_interaction = {
 		scope:actor = {
 			is_busy_in_events_localised = yes
 			is_imprisoned = no
+			custom_tooltip = {
+				text = travl_invite_as_guest_actor_cooldown_tt
+				NOT = { has_variable = travl_invite_as_guest_actor_cooldown }
+			}
 		}
 	}
 
@@ -49,20 +53,14 @@ travl_invite_courtiers_interaction = {
 			scope:secondary_recipient = {
 				every_traveling_family_member = {
 					scope:actor = {
-						add_courtier = prev
+						add_visiting_courtier = prev
 					}
-				}
-			}
-
-			scope:actor = {
-				stress_impact = {
-					shy = minor_stress_impact_gain
 				}
 			}
 		}
 
 		open_interaction_window = {
-			interaction = invite_to_court_interaction
+			interaction = travl_invite_as_guest_interaction
 			actor = scope:actor
 			recipient = scope:secondary_recipient
 		}

@@ -1,0 +1,339 @@
+﻿travl_invite_as_guest_interaction = {
+	category = interaction_category_vassal
+	desc = travl_invite_as_guest_interaction_desc
+	icon = guest	
+	
+	is_shown = {
+		scope:recipient = {
+			is_pool_character = yes
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:recipient = {
+			is_pool_guest = no
+			is_imprisoned = no
+			NOT = { has_relation_rival = scope:actor }
+			custom_tooltip = {
+				text = travl_not_in_realm_tt
+				OR = {
+					is_in_pool_at = scope:actor.capital_province
+					location.province_owner ?= {
+						OR = {
+							this = scope:actor
+							any_liege_or_above = {
+								this = scope:actor
+							}
+						}
+					}
+				}
+			}
+			custom_tooltip = {
+				text = travl_cant_be_your_guest_tt
+				travl_guest_can_arrive_trigger = { HOST = scope:actor }
+			}
+			travl_can_be_invited_as_guest_trigger = { INVITER = scope:actor }
+			custom_tooltip = {
+				text = travl_invite_as_guest_cooldown_tt
+				NOT = { has_variable = travl_invite_as_guest_cooldown }
+			}
+		}
+		scope:actor = {
+			is_busy_in_events_localised = yes
+			is_imprisoned = no
+			custom_tooltip = {
+				text = travl_invite_as_guest_actor_cooldown_tt
+				NOT = { has_variable = travl_invite_as_guest_actor_cooldown }
+			}
+		}
+	}
+
+	cooldown = { years = 1 }
+
+	send_option = {
+		is_valid = {
+			scope:actor = {
+				has_usable_hook = scope:recipient
+			}
+		}
+		flag = hook
+		localization = SCHEME_HOOK
+	}
+	should_use_extra_icon = {
+		scope:actor = { has_usable_hook = scope:recipient }
+	}
+	extra_icon = "gfx/interface/icons/character_interactions/hook_icon.dds"
+
+	send_options_exclusive = no
+
+	on_accept = {
+		scope:actor = {
+			send_interface_message = {
+				type = event_generic_neutral
+				title = travl_invite_as_guest_interaction_notification
+				right_icon = scope:recipient
+
+				scope:recipient = {
+					every_traveling_family_member = {
+						scope:actor = {
+							add_visiting_courtier = prev
+						}
+					}
+				}
+
+				if = {
+					limit = { scope:hook = yes }
+					scope:actor = {
+						use_hook = scope:recipient
+					}
+				}
+			}
+		}
+
+		hidden_effect = {
+			scope:recipient = {
+				set_variable = {
+					name = travl_invite_as_guest_cooldown
+					years = 5
+				}
+			}
+			scope:actor = {
+				set_variable = {
+					name = travl_invite_as_guest_actor_cooldown
+					years = 1
+				}
+			}
+		}
+	}
+
+	ai_accept = {
+		base = -50
+
+		# Opinion
+		opinion_modifier = {
+			opinion_target = scope:actor
+			multiplier = 0.5
+			step = 5
+		}
+		
+		# Spouse, child, or relative
+		modifier = {
+			is_spouse_of = scope:actor
+			add = 100
+			desc = AI_YOUR_SPOUSE
+		}
+		modifier = {
+			is_child_of = scope:actor
+			add = 100
+			desc = AI_YOUR_CHILD
+		}
+		modifier = {
+			is_close_family_of = scope:actor
+			NOT = { is_child_of = scope:actor }
+			add = 50
+			desc = AI_YOUR_RELATIVE
+		}
+		modifier = {
+			is_extended_family_of = scope:actor
+			NOT = { is_close_family_of = scope:actor }
+			add = 20
+			desc = AI_YOUR_RELATIVE
+		}
+
+		# Friend or lover
+		modifier = {
+			has_relation_friend = scope:actor
+			add = 100
+			desc = AI_YOUR_FRIEND
+		}
+		modifier = {
+			has_relation_lover = scope:actor
+			add = 100
+			desc = AI_YOUR_LOVER
+		}
+
+		# House or dynasty head
+		modifier = {
+			house.house_head = scope:actor
+			add = 50
+			desc = AI_YOU_ARE_THE_HOUSE_HEAD
+		}
+		modifier = {
+			dynasty.dynast = scope:actor
+			add = 20
+			desc = AI_YOU_ARE_THE_DYNAST
+		}
+
+		# Leaving spouse or children behind
+		modifier = {
+			exists = location
+			any_consort_not_in_traveling_family_trigger = yes
+			add = -100
+			desc = AI_LEAVING_MY_SPOUSE
+		}
+		modifier = {
+			exists = location
+			any_child_not_in_traveling_family_trigger = yes
+			add = -100
+			desc = AI_LEAVING_MY_CHILD
+		}
+
+		# Wrong marriage type
+		modifier = {
+			is_married = yes
+			is_male = yes
+			any_spouse = {
+				matrilinear_marriage = yes
+			}
+			add = -50
+			desc = AI_MARRIED_MATRILINIALLY
+		}
+		modifier = {
+			is_married = yes
+			is_female = yes
+			any_spouse = {
+				patrilinear_marriage = yes
+			}
+			add = -50
+			desc = AI_MARRIED_PATRILINIALLY
+		}
+
+		# Inspiration
+		modifier = {
+			inspiration ?= {
+				NOT = { exists = inspiration_sponsor }
+			}
+			add = -50
+			desc = AI_INSPIRED
+		}
+		modifier = {
+			inspiration ?= {
+				exists = inspiration_sponsor
+			}
+			add = -200
+			desc = AI_SPONSORED_INSPIRATION
+		}
+
+		# Wanderlust
+		modifier = {
+			is_child_of = scope:actor
+			has_character_modifier = lust_for_adventure
+			add = -200
+			desc = AI_WANDERLUST
+		}
+		
+		# Humiliated as stooge
+		modifier = {
+			has_variable = non_recruitable_var
+			var:non_recruitable_var = scope:actor
+			add = -200
+			desc = AI_STOOGE
+		}
+
+		# Eluding castrator
+		modifier = {
+			is_adult = no
+			any_memory = {
+				has_memory_type = family_castration_fled_memory
+				memory_participant:castrator ?= scope:actor
+			}
+			add = -200
+			desc = ELUDING_CASTRATOR
+		}
+
+		# Can be persuaded to stay
+		modifier = {
+			add = {
+				value = scope:actor.diplomacy
+
+				# Same or compatible faith
+				if = {
+					limit = { faith = scope:actor.faith }
+					add = 10
+				}
+				else_if = {
+					limit = {
+						faith = {
+							religion = scope:actor.faith.religion
+							faith_hostility_level = {
+								target = scope:actor.faith
+								value < 2
+							}
+						}
+					}
+					add = 5
+				}
+
+				# Same or compatible culture
+				if = {
+					limit = {
+						culture = scope:actor.culture
+					}
+					add = 10
+				}
+				else_if = {
+					limit = {
+						culture = {
+							has_same_culture_heritage = scope:actor.culture
+						}
+					}
+					add = 5
+				}
+
+				# Personality traits
+				if = {
+					limit = {
+						OR = {
+							has_trait = content
+							has_trait = lazy
+							has_trait = trusting
+						}
+					}
+					add = 10
+				}
+			}
+			desc = AI_CAN_BE_PERSUADED_TO_STAY
+		}
+
+		# Amenities impact
+		modifier = {
+			scope:actor = {
+				has_royal_court = yes
+				has_dlc_feature = royal_court
+			}
+			add = {
+				value = scope:actor.travl_court_lodging_standards_amenity_level_value
+				multiply = 10
+			}
+			desc = AI_COURT_LODGING_STANDARDS_QUALITY
+		}
+
+		# House unity impact
+		modifier = {
+			scope:actor = {
+				government_has_flag = government_is_clan
+			}
+			house ?= {
+				this = scope:actor.house
+				OR = {
+					has_house_unity_stage = harmonious
+					has_house_unity_stage = friendly
+				}
+			}
+			add = {
+				value = house.house_unity_value
+				multiply = 0.5
+			}
+			desc = AI_HOUSE_UNITY
+		}
+	}
+
+	auto_accept = {
+		custom_description = {
+			text = "spending_hook"
+			subject = scope:actor
+			object = scope:recipient
+			scope:hook = yes
+		}
+	}
+}
