@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 0.10.1
+
+### Interactions
+
+* Added the *Invite as Guest* interaction that enables inviting a wandering character as a guest, so you could later recruit them for the usual fee.
+* Added the *Invite Characters as Guests* convenience interaction that allows finding all characters that would accept *Invite as Guest*.
+
 ## Version 0.10.0
 
 ### Compatibility

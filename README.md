@@ -26,7 +26,10 @@ Imprisoned rulers traveling to their jailor's capital are assigned a "prison gua
 
 Traveling prisoners are moved to a special prison type and can't be interacted with (ransomed, executed, etc.) (can be disabled via a game rule). They may try to escape while traveling via a special event, and may also get freed if their escorting character moves to a location containing a hostile army. As a player, you can try to free prisoners captured by an enemy by putting one of your armies on their path.
 
-Finally, this mod also adds an **Invite Characters to Court** convenience interaction that lists all characters that would accept **Invite to Court**.
+Finally, this mod also adds 3 new interactions:
+
+* The **Invite as Guest** interaction enables inviting a wandering character as a guest, so you could later recruit them for the usual fee.
+* The **Invite Characters to Court** and **Invite Characters as Guests** convenience interactions allow finding all characters that would accept **Invite to Court** and **Invite as Guest** respectively.
 
 ## Compatibility
 
@@ -143,9 +146,15 @@ Unlike rulers that travel to their own realm capital, imprisoned rulers travelin
 
 Traveling prisoners are moved to a special prison type and can't be interacted with (ransomed, executed, etc.). This can be disabled via the **Interactions for Traveling Prisoners** game rule. They may try to escape while traveling via a special **Escape from Prison** event by winning a prowess, diplomacy, or intrigue challenge against their guard, although their chances of success are rather low and most would not even try it. They may also get freed if their escorting character moves to a location containing a hostile army and fails a martial challenge against the army commander. As a player, you can try to free prisoners captured by an enemy by putting one of your armies on their path.
 
-### Invite Characters to Court Interaction
+### New Interactions
 
-To make it easier for players to find targets for the **Invite to Court** interaction, this mod adds an **Invite Characters to Court** convenience interaction that lists all characters that would accept such an invitation. This interaction redirects to **Invite to Court** for the selected target so that players may see their reasons for accepting.
+#### Invite as Guest
+
+The new **Invite as Guest** interaction enables inviting a wandering character as a guest, so you could later recruit them for the usual fee. The character must be located within your realm, or near your camp (in the same duchy) if you are a landless adventurer. To prevent exploits, you are limited to inviting only a single character per year in this way. The AI willingness to accept is similar to **Invite to Court**, with some minor changes. In general, characters are slightly less willing to be invited as guests, but their opinion of you has a stronger impact.
+
+#### Invite Characters to Court and Invite Characters as Guest
+
+To make it easier for players to find targets for the **Invite to Court** and **Invite as Guest** interactions, this mod adds the **Invite Characters to Court** and **Invite Characters as Guest** convenience interactions that allow finding all characters that would accept such an invitation. These interactions redirect to **Invite to Court** or **Invite as Guest** for the selected target so that players may see their reasons for accepting.
 
 ## Performance
 
