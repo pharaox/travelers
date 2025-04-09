@@ -1,2 +1,2 @@
 ﻿l_french:
- invite_to_court_interaction_notification: "Rejoint la cour"
+ invite_to_court_interaction_notification: "Rejoint la [actor.Custom('GetCourt')]"

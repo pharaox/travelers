@@ -1,2 +1,2 @@
 ﻿l_english:
- invite_to_court_interaction_notification:0 "Joined Court"
+ invite_to_court_interaction_notification:1 "Joined [actor.Custom('GetCourt')|U]"

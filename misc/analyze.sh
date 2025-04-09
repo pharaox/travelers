@@ -110,6 +110,6 @@ echo
 #echo
 
 # Errors
-echo "Starting travel to non-default location: $(grep -a "Starting travel to non-default location" error.log | wc -l)"
+echo "Starting travel with incorrect receiver: $(grep -a "Starting travel with incorrect receiver" error.log | wc -l)"
 echo "Removing travel plan: $(grep -a "Removing travel plan from the character .* owner when the travel plan is not ending normally" error.log | wc -l)"
 echo

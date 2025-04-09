@@ -1,5 +1,69 @@
 # Changelog
 
+## Version 0.10.1
+
+### Interactions
+
+* Added the *Invite as Guest* interaction that enables inviting a wandering character as a guest, so you could later recruit them for the usual fee.
+* Added the *Invite Characters as Guests* convenience interaction that allows finding all characters that would accept *Invite as Guest*.
+
+## Version 0.10.0
+
+### Compatibility
+
+* Adapted to CK3 1.15.0
+
+## Version 0.9.1
+
+### Compatibility
+
+* Adapted to CK3 1.14.1
+
+## Version 0.9.0
+
+### Compatibility
+
+* Adapted to CK3 1.14.0.1
+
+## Version 0.8.3
+
+### Compatibility
+
+* Adapted to CK3 1.13.2
+
+### Bug Fixes
+
+* Army characters will now teleport back to the army when it moves to a new province, if they are located somewhere else (vanilla issue).
+* Added consistency check to prevent characters from being knights and commanders in two different armies at the same time (vanilla issue).
+
+## Version 0.8.2
+
+### Compatibility
+
+* Adapted to CK3 1.13.1
+
+## Version 0.8.1
+
+### Performance
+
+* Fixed a performance issue affecting submods.
+
+## Version 0.8.0
+
+### Compatibility
+
+* Adapted to CK3 1.13.0.1
+
+### Core Travel
+
+* If the receiver is a landless adventurer traveling with domicile, travel to their final destination instead of their capital.
+
+## Version 0.7.9
+
+### Localization
+
+* Updated Korean translation by @gazette2.
+
 ## Version 0.7.8
 
 ### Core Travel

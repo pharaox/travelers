@@ -9,11 +9,11 @@
  setting_travl_travel_messages_events_only: "#high Événements uniquement#!"
  setting_travl_travel_messages_events_only_desc: "Seuls les messages d'événement pour les personnages d'intérêt sont activés."
 
- rule_travl_travel_events: "#P Travelers:#! Événements pour les personnages sans terre"
+ rule_travl_travel_events: "#P Travelers:#! Événements pour les personnages injouables"
  setting_travl_travel_events_disabled: "#high Désactivé#!"
- setting_travl_travel_events_disabled_desc: "Événements pour les personnages sans terre sont désactivés."
+ setting_travl_travel_events_disabled_desc: "Événements pour les personnages injouables sont désactivés."
  setting_travl_travel_events_enabled: "Activé"
- setting_travl_travel_events_enabled_desc: "Événements pour les personnages sans terre sont activés."
+ setting_travl_travel_events_enabled_desc: "Événements pour les personnages injouables sont activés."
 
  rule_travl_prison_interactions: "#P Travelers:#! Interactions avec les prisonniers itinérants"
  setting_travl_prison_interactions_disabled: "Désactivé"

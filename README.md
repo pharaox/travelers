@@ -26,11 +26,14 @@ Imprisoned rulers traveling to their jailor's capital are assigned a "prison gua
 
 Traveling prisoners are moved to a special prison type and can't be interacted with (ransomed, executed, etc.) (can be disabled via a game rule). They may try to escape while traveling via a special event, and may also get freed if their escorting character moves to a location containing a hostile army. As a player, you can try to free prisoners captured by an enemy by putting one of your armies on their path.
 
-Finally, this mod also adds an **Invite Characters to Court** convenience interaction that lists all characters that would accept **Invite to Court**.
+Finally, this mod also adds 3 new interactions:
+
+* The **Invite as Guest** interaction enables inviting a wandering character as a guest, so you could later recruit them for the usual fee.
+* The **Invite Characters to Court** and **Invite Characters as Guests** convenience interactions allow finding all characters that would accept **Invite to Court** and **Invite as Guest** respectively.
 
 ## Compatibility
 
-The current version is compatible with CK3 1.12. If you are still on CK3 1.11.x, use [version 0.5.3](https://github.com/pharaox/travelers/releases/download/0.5.3/travelers-0.5.3.zip) instead.
+The current version is compatible with CK3 1.15. If you are still on CK3 1.14.x, use [version 0.9.1](https://github.com/pharaox/travelers/releases/download/0.9.1/travelers-0.9.1.zip) instead.
 
 This mod is compatible with most other mods, except for mods that make similar changes to the travel system, or modify the `travl_on_actions.txt` and `travel_options.txt` vanilla files. Unfortunately, the latter includes most total conversion mods. If you use such mods, put this mod before them in the load order - the travel of imprisoned rulers may be affected as a result, but everything else should work as expected.
 
@@ -48,7 +51,7 @@ This mod is currently available in English, Russian, (partially) French, (partia
 
 ### Character Travel
 
-This mod makes characters travel to their default location (also called their "home") when it changes instead of teleporting. This applies to both landed and unlanded characters, and covers all possible cases, including the following:
+This mod makes characters travel to their default location (also called their "home") when it changes instead of teleporting. This applies to both playable (landed, or landless adventurers) and unplayable characters, and covers all possible cases, including the following:
 
 * Marriage as a minor partner
 * Joining a different court due to being invited, becoming a guest, etc.
@@ -56,9 +59,9 @@ This mod makes characters travel to their default location (also called their "h
 * Becoming landed for the first time
 * Realm capital change due to a variety of reasons such as manual change, loss in conquest, inheritance, or being granted a better title
 
-To ensure that important vanilla mechanics are not negatively affected, wandering and adventuring characters, as well those in an army are still able to teleport. Characters will also not interrupt most ongoing vanilla travel, such as traveling landed characters, characters traveling due to being involved in an activity, or unlanded characters traveling for a special purpose, e.g. wards traveling to their guardian's court. Unlanded characters returning home outside of an activity might interrupt their travel if their home changed, and head to their new home.
+To ensure that important vanilla mechanics are not negatively affected, wandering and adventuring characters, as well those in an army are still able to teleport. Characters will also not interrupt most ongoing vanilla travel, such as traveling playable characters, characters traveling due to being involved in an activity, or unplayable characters traveling for a special purpose, e.g. wards traveling to their guardian's court. Unplayable characters returning home outside of an activity might interrupt their travel if their home changed, and head to their new home.
 
-The character home and therefore their travel destination is always the realm capital of a landed character who acts as *receiver*. This may be their jailor (if they are imprisoned), the character itself (if they are landed), or else their warden (if they are a hostage), host (if they are a guest), or liege (if they are a courtier). In some situations, another character, usually residing at the travel origin may act as *sender*. If the player is either a sender or a receiver, they will get a message informing them about the departure or arrival. These messages can be enabled or disabled via the **Travel Messages** game rule.
+The character home and therefore their travel destination is always the realm capital of a playable character who acts as *receiver*. This may be their jailor (if they are imprisoned), the character itself (if they are playable), or else their warden (if they are a hostage), host (if they are a guest), or liege (if they are a courtier). In some situations, another character, usually residing at the travel origin may act as *sender*. If the player is either a sender or a receiver, they will get a message informing them about the departure or arrival. These messages can be enabled or disabled via the **Travel Messages** game rule.
 
 ### Core Travel Mechanics
 
@@ -107,7 +110,7 @@ Since character homes may change mid-travel, such groups may lose members, chang
 
 While traveling, rulers and their entourage may get some of the vanilla travel and danger events. As a result, some of them may die or leave, and others may join. Rulers can also select a travel leader, add travel options, and get experience on arrival.
 
-Since there are no travel events for non-ruler characters available in vanilla, this mod adds 14 new travel danger events for non-ruler group leaders, loosely based on existing vanilla events. Other group members may also participate in the resolution of such an event, and all may suffer its consequences. The player is informed about such events with appropriate messages. These events can be disabled via the **Travel Events for Unlanded Characters** game rule.
+Since there are no travel events for non-ruler characters available in vanilla, this mod adds 14 new travel danger events for non-ruler group leaders, loosely based on existing vanilla events. Other group members may also participate in the resolution of such an event, and all may suffer its consequences. The player is informed about such events with appropriate messages. These events can be disabled via the **Travel Events for Unplayable Characters** game rule.
 
 Similarly to vanilla events, such events may only happen under certain conditions that may include various travel danger types, availability of companions or pool characters, winter or no winter, etc. Usually, they can be resolved via multiple options, most of them involving a skill-based challenge. The group member with the highest skill is always chosen for such challenges, if a member with at least 5 in the corresponding skill exists. Which option is eventually chosen depends on the AI dispositions of all participating characters and a random factor. There is always an "automatic failure" that is chosen if no other options are available.
 
@@ -143,9 +146,15 @@ Unlike rulers that travel to their own realm capital, imprisoned rulers travelin
 
 Traveling prisoners are moved to a special prison type and can't be interacted with (ransomed, executed, etc.). This can be disabled via the **Interactions for Traveling Prisoners** game rule. They may try to escape while traveling via a special **Escape from Prison** event by winning a prowess, diplomacy, or intrigue challenge against their guard, although their chances of success are rather low and most would not even try it. They may also get freed if their escorting character moves to a location containing a hostile army and fails a martial challenge against the army commander. As a player, you can try to free prisoners captured by an enemy by putting one of your armies on their path.
 
-### Invite Characters to Court Interaction
+### New Interactions
 
-To make it easier for players to find targets for the **Invite to Court** interaction, this mod adds an **Invite Characters to Court** convenience interaction that lists all characters that would accept such an invitation. This interaction redirects to **Invite to Court** for the selected target so that players may see their reasons for accepting.
+#### Invite as Guest
+
+The new **Invite as Guest** interaction enables inviting a wandering character as a guest, so you could later recruit them for the usual fee. The character must be located within your realm, or near your camp (in the same duchy) if you are a landless adventurer. To prevent exploits, you are limited to inviting only a single character per year in this way. The AI willingness to accept is similar to **Invite to Court**, with some minor changes. In general, characters are slightly less willing to be invited as guests, but their opinion of you has a stronger impact.
+
+#### Invite Characters to Court and Invite Characters as Guest
+
+To make it easier for players to find targets for the **Invite to Court** and **Invite as Guest** interactions, this mod adds the **Invite Characters to Court** and **Invite Characters as Guest** convenience interactions that allow finding all characters that would accept such an invitation. These interactions redirect to **Invite to Court** or **Invite as Guest** for the selected target so that players may see their reasons for accepting.
 
 ## Performance
 
@@ -178,6 +187,7 @@ The **Invite Characters to Court** interaction might also become slow if the num
 * [Travelers AGOT Compatibility](https://steamcommunity.com/sharedfiles/filedetails/?id=3166199552)
 * [Travelers and Prisoners of War Compatch (by @cuomo860)](https://steamcommunity.com/sharedfiles/filedetails/?id=3098184700)
 * [Chinese Translation (by @牛奶大魔王)](https://steamcommunity.com/sharedfiles/filedetails/?id=2903983628)
+* [German Translation (by @finallyciv)](https://steamcommunity.com/sharedfiles/filedetails/?id=3355568022)
 * [GitHub Repository](https://github.com/pharaox/travelers)
 
 ## Changes to Vanilla

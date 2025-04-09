@@ -32,7 +32,7 @@ travl_travel.0001 = {
 
 								# Baron at their capital
 								AND = {
-									is_landed = yes
+									exists = capital_province
 									highest_held_title_tier = tier_barony
 									location = capital_province
 								}

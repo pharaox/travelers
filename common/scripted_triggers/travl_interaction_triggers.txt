@@ -1,0 +1,47 @@
+﻿# See guest_management.guest_can_arrive
+travl_guest_can_arrive_trigger = {
+	any_traveling_family_member = { # the whole family must be allowed to arrive
+		count = all
+		guest_allowed_to_arrive_trigger = { HOST = $HOST$ }
+	}
+	#If claimant, make sure that they don't have a claim on the new host.
+	trigger_if = {
+		limit = { is_claimant = yes }
+		any_claim = {
+			courtier_or_guest_claim_trigger = { RULER = $HOST$ }
+		}
+	}
+}
+
+# See can_recruit_character_to_court_trigger
+travl_can_be_invited_as_guest_trigger = {
+	save_temporary_scope_as = invitee
+	NOR = {
+		custom_description = {
+			text = is_not_wandering_child
+			subject = scope:invitee
+			AND = {
+				is_adult = no
+				NOT = { is_close_or_extended_family_of = $INVITER$ }
+			}
+		}
+		custom_description = {
+			text = is_escaped_prisoner
+			subject = scope:invitee
+			OR = {
+				has_opinion_modifier = {
+					modifier = attempted_imprisonment_opinion
+					target = $INVITER$
+				}
+				has_opinion_modifier = {
+					modifier = treasonous_imprison_refusal
+					target = $INVITER$
+				}
+				AND = {
+					exists = var:escaped_imprisonment_from
+					var:escaped_imprisonment_from = $INVITER$
+				}
+			}
+		}
+	}
+}

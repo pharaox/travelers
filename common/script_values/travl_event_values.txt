@@ -12,7 +12,7 @@ travl_major_travel_delay_value = 100
 travl_bribe_gold_value = {
 	if = {
 		limit = {
-			is_landed = yes
+			is_ruler = yes
 			highest_held_title_tier >= tier_county
 		}
 		value = medium_gold_value

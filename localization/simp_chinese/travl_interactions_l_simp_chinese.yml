@@ -1,19 +1,38 @@
 ﻿l_simp_chinese:
  # travl_invite_courtiers_interaction
- travl_invite_courtiers_interaction: "Invite Characters to Court"
- travl_invite_courtiers_interaction_desc: "Invite characters to move to your [court|E], where they will be your [courtiers|E]"
+ travl_invite_courtiers_interaction: "Invite Characters to [actor.Custom('GetCourt')|U]"
+ travl_invite_courtiers_interaction_desc: "Invite characters to move to your [actor.Custom('GetCourtConcept')], where they will be your [actor.Custom('GetCourtierConceptPlural')]"
  recipient_secondary_travl_invite_courtiers_interaction: "$INTERACTION_RECIPIENT$"
 
+ # travl_invite_guests_interaction
+ travl_invite_guests_interaction: "Invite Characters as Guests"
+ travl_invite_guests_interaction_desc: "Invite characters to stay at to your [actor.Custom('GetCourtConcept')] as guests"
+ recipient_secondary_travl_invite_guests_interaction: "$INTERACTION_RECIPIENT$"
+
+ # travl_invite_as_guest_interaction
+ travl_invite_as_guest_interaction: "Invite as Guest"
+ travl_invite_as_guest_interaction_desc: "Invite [recipient.GetShortUINameNoTooltip] to stay at your [actor.Custom('GetCourtConcept')] as guest"
+ travl_invite_as_guest_interaction_extra_icon: "$hook_extra_icon$"
+
+ # Interaction tooltips
+ travl_not_in_realm_tt: "[recipient.GetShortUINameNoTooltip] is not near your capital or in your realm"
+ travl_cant_be_your_guest_tt: "[recipient.GetShortUINameNoTooltip] cannot be your guest"
+ travl_invite_as_guest_cooldown_tt: "They recently accepted an invite as guest and cannot be invited again for a while"
+ travl_invite_as_guest_actor_cooldown_tt: "You recently invited another character as guest and cannot invite again for a while"
+
+ # Interaction notifications
+ travl_invite_as_guest_interaction_notification: "Staying at your [actor.Custom('GetCourt')] as guest"
+
  # Message titles
- travl_msg_departed_for_court: "Departed for Court"
- travl_msg_arrived_at_court: "Arrived at Court"
+ travl_msg_departed_for_court: "Departed for [message_recipient.Custom('GetCourt')|U]"
+ travl_msg_arrived_at_court: "Arrived at [message_recipient.Custom('GetCourt')|U]"
  travl_msg_escaped_from_prison: "Escaped from Prison"
  travl_msg_imprisoned: "Imprisoned"
  travl_msg_prison_guard_departed: "Enemy Prisoner Escort Departed"
 
  # Message tooltips
- travl_departed_for_court_tt: "[CHARACTER.GetShortUIName] departed for [TARGET_CHARACTER.GetShortUINamePossessive] court."
- travl_arrived_at_court_tt: "[CHARACTER.GetShortUIName] arrived at [TARGET_CHARACTER.GetShortUINamePossessive] court."
- travl_departed_for_court_joined_tt: "$travl_departed_for_court_tt$ [CHARACTER.GetSheHe|U] joined [TARGET_CHARACTER.GetShortUINamePossessive] court only temporarily and will leave on arrival."
- travl_arrived_at_court_joined_tt: "$travl_arrived_at_court_tt$ [CHARACTER.GetSheHe|U] joined [TARGET_CHARACTER.GetShortUINamePossessive] court only temporarily and will leave now."
- travl_prison_guard_departed_tt: "[CHARACTER.GetShortUIName] departed for your enemy [TARGET_CHARACTER.GetShortUINamePossessive] court escorting prisoners. You can try to free them by putting an army on [CHARACTER.GetHerHis] path."
+ travl_departed_for_court_tt: "[CHARACTER.GetShortUIName] departed for [TARGET_CHARACTER.GetShortUINamePossessive] [TARGET_CHARACTER.Custom('GetCourt')]."
+ travl_arrived_at_court_tt: "[CHARACTER.GetShortUIName] arrived at [TARGET_CHARACTER.GetShortUINamePossessive] [TARGET_CHARACTER.Custom('GetCourt')]."
+ travl_departed_for_court_joined_tt: "$travl_departed_for_court_tt$ [CHARACTER.GetSheHe|U] joined [TARGET_CHARACTER.GetShortUINamePossessive] [TARGET_CHARACTER.Custom('GetCourt')] only temporarily and will leave on arrival."
+ travl_arrived_at_court_joined_tt: "$travl_arrived_at_court_tt$ [CHARACTER.GetSheHe|U] joined [TARGET_CHARACTER.GetShortUINamePossessive] [TARGET_CHARACTER.Custom('GetCourt')] only temporarily and will leave now."
+ travl_prison_guard_departed_tt: "[CHARACTER.GetShortUIName] departed for your enemy [TARGET_CHARACTER.GetShortUINamePossessive] [TARGET_CHARACTER.Custom('GetCourt')] escorting prisoners. You can try to free them by putting an army on [CHARACTER.GetHerHis] path."

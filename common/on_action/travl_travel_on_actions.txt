@@ -203,11 +203,11 @@ travl_travel_on_arrival = {
 			}
 		}
 
-		# Maybe gain the traveler trait if adult and unlanded
+		# Maybe gain the traveler trait if adult and unplayable
 		if = {
 			limit = {
 				is_adult = yes
-				is_landed = no
+				is_playable_character = no
 				NOT = { has_trait = lifestyle_traveler }
 			}
 			random_list = {
@@ -278,17 +278,23 @@ travl_on_travel_plan_movement = {
 					}
 				}
 			}
-			else_if = {
-				limit = {
-					scope:receiver ?= { exists = capital_province }
-					current_travel_plan ?= {
-						NOT = { final_destination_province = scope:receiver.capital_province }
+			else = {
+				# Determine destination
+				travl_set_destination_effect = { RECEIVER = scope:receiver }
+
+				# Trigger travl_on_invalid_destination event for all travelers if needed
+				if = {
+					limit = {
+						exists = scope:destination
+						current_travel_plan ?= {
+							NOT = { final_destination_province = scope:destination }
+						}
 					}
-				}
-				every_in_list = {
-					list = travelers
-					trigger_event = {
-						on_action = travl_on_invalid_destination
+					every_in_list = {
+						list = travelers
+						trigger_event = {
+							on_action = travl_on_invalid_destination
+						}
 					}
 				}
 			}

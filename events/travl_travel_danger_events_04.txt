@@ -89,10 +89,10 @@ travl_travel_danger.0004 = {
 		has_variable = travl_travel_leader
 		var:travl_travel_leader = root
 
-		# Available, traveling, adult, on land, and unlanded
+		# Available, traveling, adult, on land, and unplayable
 		is_available_travelling_adult = yes
 		is_location_valid_for_travel_event_on_land = yes
-		is_landed = no
+		is_playable_character = no
 
 		# Danger types
 		location = {
@@ -121,7 +121,7 @@ travl_travel_danger.0004 = {
 				variable = travl_travel_companions
 				limit = {
 					is_available_travelling_adult = yes
-					is_landed = no
+					is_playable_character = no
 				}
 				save_scope_as = water_hider
 			}

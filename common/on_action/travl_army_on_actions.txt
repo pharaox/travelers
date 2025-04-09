@@ -1,0 +1,19 @@
+﻿# called for armies every 30 days; exact date dependent on army ID
+# root is the owner of the army
+# scope:army is the army
+on_army_monthly = {
+	on_actions = { travl_on_army_update_location }
+}
+
+# called for armies whenever they enter a province
+# root is the owner of the army
+# scope:army is the army
+on_army_enter_province = {
+	on_actions = { travl_on_army_update_location }
+}
+
+travl_on_army_update_location = {
+	effect = {
+		travl_ensure_army_character_locations_effect = yes
+	}
+}
