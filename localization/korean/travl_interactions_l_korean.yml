@@ -1,8 +1,27 @@
-﻿l_korean:
+l_korean:
  # travl_invite_courtiers_interaction
  travl_invite_courtiers_interaction: "궁정으로 인물 초대"
  travl_invite_courtiers_interaction_desc: "인물들을 [court|E]로 이동시켜서 그들을 [courtiers|E]로 만듭니다."
  recipient_secondary_travl_invite_courtiers_interaction: "$INTERACTION_RECIPIENT$"
+
+ # travl_invite_guests_interaction
+ travl_invite_guests_interaction: "여러 인물 초대"
+ travl_invite_guests_interaction_desc: "여러 캐릭터를 [actor.Custom('GetCourtConcept')]에 손님으로 초대합니다"
+ recipient_secondary_travl_invite_guests_interaction: "$INTERACTION_RECIPIENT$"
+
+ # travl_invite_as_guest_interaction
+ travl_invite_as_guest_interaction: "손님으로 초대"
+ travl_invite_as_guest_interaction_desc: "[recipient.GetShortUINameNoTooltip]을(를) 당신의 [actor.Custom('GetCourtConcept')]에 손님으로 초대합니다"
+ travl_invite_as_guest_interaction_extra_icon: "$hook_extra_icon$"
+
+ # Interaction tooltips
+ travl_not_in_realm_tt: "[recipient.GetShortUINameNoTooltip]은(는) 당신의 수도 근처에 없거나 영지 내에 있지 않습니다"
+ travl_cant_be_your_guest_tt: "[recipient.GetShortUINameNoTooltip]은(는) 손님이 될 수 없습니다"
+ travl_invite_as_guest_cooldown_tt: "최근 손님 초대를 수락한 적이 있어 당분간 다시 초대할 수 없습니다"
+ travl_invite_as_guest_actor_cooldown_tt: "최근 다른 인물을 손님으로 초대하여 당분간 다시 초대할 수 없습니다"
+
+ # Interaction notifications
+ travl_invite_as_guest_interaction_notification: "[actor.Custom('GetCourt')]에 손님으로 머무는 중"
 
  # Message titles
  travl_msg_departed_for_court: "궁정으로 출발"
