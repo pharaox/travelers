@@ -325,6 +325,14 @@ travl_on_title_lost = {
 	effect = {
 		#travl_debug_log_effect = { MSG = travl_debug_msg_character_lost_title }
 
+		# Mark landless nomads losing titles to prevent starting travel
+		# since they are about to migrate on their own
+		if = {
+			limit = { is_landless_nomad = yes }
+			travl_debug_log_effect = { MSG = travl_debug_msg_landless_nomad_lost_title }
+			set_variable = { name = travl_landless_nomad_lost_title value = yes days = 2 }
+		}
+
 		if = {
 			limit = { travl_is_teleporting_character_trigger = no }
 			travl_travel_effect = {

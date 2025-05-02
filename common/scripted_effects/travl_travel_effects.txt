@@ -133,6 +133,11 @@ travl_start_travel_effect = {
 						travl_is_PoW_traveler_trigger = yes
 					}
 				}
+
+				# The receiver is not a landless nomad who lost their title and is about to migrate
+				$RECEIVER$ = {
+					has_variable = travl_landless_nomad_lost_title
+				}
 			}
 
 			# This destination can be reached by travel
@@ -1182,7 +1187,10 @@ travl_set_destination_effect = {
 	if = {
 		limit = {
 			$RECEIVER$ ?= {
-				is_landless_adventurer = yes
+				OR = {
+					is_landless_adventurer = yes
+					is_landless_nomad = yes
+				}
 				current_travel_plan ?= {
 					is_travel_with_domicile = yes
 				}
@@ -1335,6 +1343,7 @@ travl_recruit_prison_guard_effect = {
 		limit = {
 			any_pool_character = {
 				province = scope:imprisoner1.capital_province
+				exists = this
 				travl_can_be_prison_guard_trigger = { ARMY_OWNER = scope:imprisoner1 }
 			}
 		}
@@ -1342,6 +1351,7 @@ travl_recruit_prison_guard_effect = {
 		random_pool_character = {
 			province = scope:imprisoner1.capital_province
 			limit = {
+				exists = this
 				travl_can_be_prison_guard_trigger = { ARMY_OWNER = scope:imprisoner1 }
 			}
 			save_temporary_scope_as = prison_guard

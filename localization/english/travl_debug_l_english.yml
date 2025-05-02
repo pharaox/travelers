@@ -57,6 +57,8 @@
  travl_debug_msg_character_lost_title: "$travl_debug_prefix$: Character lost title ($travl_location$)"
  travl_debug_msg_realm_capital_changed: "$travl_debug_prefix$: Realm capital changed ($travl_location$)"
 
+ travl_debug_msg_landless_nomad_lost_title: "$travl_debug_prefix$: Landless nomad lost title ($travl_location$)"
+
  travl_debug_msg_guest_arrived_from_pool: "$travl_debug_prefix$: Guest arrived from pool ($travl_location$)"
  travl_debug_msg_guest_moved_to_pool: "$travl_debug_prefix$: Guest moved to pool ($travl_location$)"
  travl_debug_msg_character_yearly_pulse: "$travl_debug_prefix$: Character yearly pulse ($travl_location$)"
@@ -75,6 +77,8 @@
 
  travl_debug_msg_ensuring_army_character_locations: "$travl_debug_prefix$: Ensuring army character locations"
  travl_debug_msg_ensuring_location: "$travl_debug_prefix$: Ensuring location ($travl_location$)"
+
+ travl_debug_msg_adding_companion: "$travl_debug_prefix$: Adding companion to travel with domicile"
 
  travl_debug_msg_accessing_recent_location: "$travl_debug_prefix$: Accessing recent location $travl_location$, previous location was $travl_prev_location$" # Rare
 

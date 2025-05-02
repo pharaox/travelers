@@ -1,0 +1,39 @@
+﻿namespace = travl_travel
+
+travl_travel.0002 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		OR = {
+			is_landless_adventurer = yes
+			is_landless_nomad = yes
+		}
+		current_travel_plan ?= {
+			is_travel_with_domicile = yes
+		}
+	}
+
+	immediate = {
+		every_courtier_or_guest = {
+			limit = {
+				is_travelling = no
+				is_in_army = no
+			}
+			add_to_list = travel_companions
+		}
+		every_prisoner = {
+			limit = {
+				is_travelling = no
+			}
+			add_to_list = travel_companions
+		}
+		every_in_list = {
+			list = travel_companions
+			travl_debug_log_effect = { MSG = travl_debug_msg_adding_companion }
+			root.current_travel_plan = {
+				add_companion = prev
+			}
+		}
+	}
+}
