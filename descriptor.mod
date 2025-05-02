@@ -1,8 +1,8 @@
-version="0.10.1"
+version="0.11.0"
 tags={
 	"Gameplay"
 	"Character Interactions"
 	"Events"
 }
 name="Travelers"
-supported_version="1.15.*"
+supported_version="1.16.*"
