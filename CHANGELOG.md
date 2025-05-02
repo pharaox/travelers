@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.11.0
+
+### Compatibility
+
+* Adapted to CK3 1.16.0.1
+
+### Localization
+
+* Updated Korean translation by @gazette2.
+
 ## Version 0.10.1
 
 ### Interactions
