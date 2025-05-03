@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.11.1
+
+### Compatibility
+
+* Added more triggers to be overridden by compatibility submods.
+
+### Bug Fixes
+
+* Fixed cases of incorrect travel for landless administrative heirs.
+
 ## Version 0.11.0
 
 ### Compatibility
