@@ -79,6 +79,7 @@
  travl_debug_msg_ensuring_location: "$travl_debug_prefix$: Ensuring location ($travl_location$)"
 
  travl_debug_msg_adding_companion: "$travl_debug_prefix$: Adding companion to travel with domicile"
+ travl_debug_msg_setting_domicile_location: "$travl_debug_prefix$: Setting domicile location"
 
  travl_debug_msg_accessing_recent_location: "$travl_debug_prefix$: Accessing recent location $travl_location$, previous location was $travl_prev_location$" # Rare
 

@@ -23,7 +23,7 @@
 	if = {
 		limit = {
 			NOT = { has_variable = travl_location }
-			exists = capital_province
+			is_landed = yes
 			highest_held_title_tier = tier_barony
 		}
 
@@ -1184,28 +1184,43 @@ travl_set_receiver_effect = {
 
 travl_set_destination_effect = {
 	clear_saved_scope = destination
-	if = {
-		limit = {
-			$RECEIVER$ ?= {
+	$RECEIVER$ ?= {
+		if = {
+			limit = {
+				is_landed = no
 				OR = {
-					is_landless_adventurer = yes
-					is_landless_nomad = yes
+					has_domicile = yes
+					has_variable = travl_domicile_location
 				}
-				current_travel_plan ?= {
-					is_travel_with_domicile = yes
+			}
+			if = {
+				limit = {
+					current_travel_plan ?= {
+						is_travel_with_domicile = yes
+					}
+				}
+				# For landless rulers traveling with domicile,
+				# set the destination to their final destination as their domicile location changes to every province they move into
+				current_travel_plan.final_destination_province ?= {
+					save_temporary_scope_as = destination
+				}
+			}
+			else_if = {
+				limit = { has_domicile = yes }
+				domicile.domicile_location ?= {
+					save_temporary_scope_as = destination
+				}
+			}
+			else = {
+				var:travl_domicile_location = {
+					save_temporary_scope_as = destination
 				}
 			}
 		}
-
-		# For landless adventurers traveling with domicile,
-		# set the destination to their final destination as their capital provice changes to every province they move into
-		$RECEIVER$.current_travel_plan.final_destination_province ?= {
-			save_temporary_scope_as = destination
-		}
-	}
-	else = {
-		$RECEIVER$.capital_province ?= {
-			save_temporary_scope_as = destination
+		else = {
+			capital_province ?= {
+				save_temporary_scope_as = destination
+			}
 		}
 	}
 }

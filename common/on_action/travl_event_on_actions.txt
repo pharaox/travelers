@@ -580,3 +580,31 @@ travl_on_combat_end_loser = {
 		}
 	}
 }
+
+# character just about to die in root scope
+# if a killer is known, it's set as scope:killer
+#Triggered by code
+on_death = {
+	on_actions = {
+		travl_on_death
+		travl_debug_on_death
+	}
+}
+
+travl_on_death = {
+	trigger = {
+		has_domicile = yes
+		exists = player_heir
+	}
+	effect = {
+		save_scope_as = dead_character
+		player_heir = {
+			travl_debug_log_effect = { MSG = travl_debug_msg_setting_domicile_location }
+			set_variable = {
+				name = travl_domicile_location
+				value = scope:dead_character.domicile.domicile_location
+				days = 1
+			}
+		}
+	}
+}

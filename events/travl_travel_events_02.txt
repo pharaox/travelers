@@ -5,10 +5,7 @@ travl_travel.0002 = {
 	hidden = yes
 
 	trigger = {
-		OR = {
-			is_landless_adventurer = yes
-			is_landless_nomad = yes
-		}
+		has_domicile = yes
 		current_travel_plan ?= {
 			is_travel_with_domicile = yes
 		}
