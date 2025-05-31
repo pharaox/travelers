@@ -2,6 +2,8 @@
 
 scripted_trigger travl_prisoner_0002_army_trigger = {
 	exists = army_commander
+	is_army_in_combat = no
+	army_is_moving = no
 	root = {
 		trigger_if = {
 			limit = { is_ruler = yes }
