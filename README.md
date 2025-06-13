@@ -24,7 +24,7 @@ Prisoners are a special case. Imprisoned characters always travel as companions 
 
 Imprisoned rulers traveling to their jailor's capital are assigned a "prison guard" travel leader, can't add travel options, and other characters may not join their entourages. They also don't get any vanilla travel events, but may still be affected by the danger events mentioned above.
 
-Traveling prisoners are moved to a special prison type and can't be interacted with (ransomed, executed, etc.) (can be disabled via a game rule). They may try to escape while traveling via a special event, and may also get freed if their escorting character moves to a location containing a hostile army. As a player, you can try to free prisoners captured by an enemy by putting one of your armies on their path.
+Traveling prisoners are moved to a special prison type and can't be interacted with (ransomed, executed, etc.), unless you are at the same location (can be disabled via a game rule). They may try to escape while traveling via a special event, and may also get freed if their escorting character moves to a location containing a hostile army. As a player, you can try to free prisoners captured by an enemy by putting one of your armies on their path.
 
 Finally, this mod also adds 3 new interactions:
 
@@ -144,7 +144,7 @@ Imprisoned characters always travel as companions of a "prisoner escort" group l
 
 Unlike rulers that travel to their own realm capital, imprisoned rulers traveling to their jailor's capital are assigned a "prison guard" travel leader, can't add travel options, and other characters may not join their entourages. They also don't get any vanilla travel events, but may still be affected by the travel danger events mentioned above if they happen to the character who escorts them.
 
-Traveling prisoners are moved to a special prison type and can't be interacted with (ransomed, executed, etc.). This can be disabled via the **Interactions for Traveling Prisoners** game rule. They may try to escape while traveling via a special **Escape from Prison** event by winning a prowess, diplomacy, or intrigue challenge against their guard, although their chances of success are rather low and most would not even try it. They may also get freed if their escorting character moves to a location containing a hostile army and fails a martial challenge against the army commander. As a player, you can try to free prisoners captured by an enemy by putting one of your armies on their path.
+Traveling prisoners are moved to a special prison type and can't be interacted with (ransomed, executed, etc.), unless you are at the same location. This can be disabled via the **Interactions for Traveling Prisoners** game rule. They may try to escape while traveling via a special **Escape from Prison** event by winning a prowess, diplomacy, or intrigue challenge against their guard, although their chances of success are rather low and most would not even try it. They may also get freed if their escorting character moves to a location containing a hostile army and fails a martial challenge against the army commander. As a player, you can try to free prisoners captured by an enemy by putting one of your armies on their path.
 
 ### New Interactions
 

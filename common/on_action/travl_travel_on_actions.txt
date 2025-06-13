@@ -299,6 +299,9 @@ travl_on_travel_plan_movement = {
 				}
 			}
 		}
+
+		# Enable or disable prisoner interactions
+		travl_enable_or_disable_prisoner_interactions_effect = yes
 	}
 
 	on_actions = {

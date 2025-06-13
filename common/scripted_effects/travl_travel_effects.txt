@@ -266,7 +266,8 @@ travl_start_travel_effect = {
 			}
 
 			# Set prisoner flags
-			travl_set_prisoner_flags_effect = yes
+			travl_set_travel_prison_type_effect = yes
+			travl_enable_or_disable_prisoner_interactions_effect = yes
 
 			# Add character as leader or companion
 			travl_add_leader_or_companion_effect = {
@@ -618,40 +619,49 @@ travl_set_sender_and_receiver_effect = {
 	}
 }
 
-travl_set_prisoner_flags_effect = {
+travl_set_travel_prison_type_effect = {
+	# Move the prisoner to a special prison type
+	if = {
+		limit = {
+			is_imprisoned = yes
+			NOT = { is_in_prison_type = travl_travel_prison_type }
+		}
+		if = {
+			limit = { is_in_prison_type = house_arrest }
+			set_variable = {
+				name = travl_prison_type
+				value = flag:house_arrest
+				years = 2
+			}
+		}
+		else = {
+			set_variable = {
+				name = travl_prison_type
+				value = flag:dungeon
+				years = 2
+			}
+		}
+		change_prison_type = travl_travel_prison_type
+	}
+}
+
+travl_enable_or_disable_prisoner_interactions_effect = {
 	if = {
 		limit = {
 			is_imprisoned = yes
 			has_game_rule = travl_prison_interactions_disabled
 		}
 
-		# Add is_being_tortured to disable prison interactions
-		add_character_flag = {
-			flag = is_being_tortured
-			years = 2
-		}
-
-		# Move the prisoner to a special prison type
+		# Add or remove is_being_tortured to disable or enable prison interactions
 		if = {
-			limit = {
-				NOT = { is_in_prison_type = travl_travel_prison_type }
+			limit = { NOT = { location = imprisoner.location } }
+			add_character_flag = {
+				flag = is_being_tortured
+				years = 2
 			}
-			if = {
-				limit = { is_in_prison_type = house_arrest }
-				set_variable = {
-					name = travl_prison_type
-					value = flag:house_arrest
-					years = 2
-				}
-			}
-			else = {
-				set_variable = {
-					name = travl_prison_type
-					value = flag:dungeon
-					years = 2
-				}
-			}
-			change_prison_type = travl_travel_prison_type
+		}
+		else = {
+			remove_character_flag = is_being_tortured
 		}
 	}
 }
@@ -1152,9 +1162,10 @@ travl_imprison_effect = {
 		}
 	}
 
-	# Set prisoner flags and move to "travel" prison type
 	hidden_effect = {
-		travl_set_prisoner_flags_effect = yes
+		# Set prisoner flags
+		travl_set_travel_prison_type_effect = yes
+		travl_enable_or_disable_prisoner_interactions_effect = yes
 	}
 }
 

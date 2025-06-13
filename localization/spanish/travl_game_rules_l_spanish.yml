@@ -17,7 +17,7 @@
 
  rule_travl_prison_interactions: "#P Travelers:#! Interactions for Traveling Prisoners"
  setting_travl_prison_interactions_disabled: "Disabled"
- setting_travl_prison_interactions_disabled_desc: "Some interactions for traveling prisoners are disabled."
+ setting_travl_prison_interactions_disabled_desc: "Some interactions for traveling prisoners are disabled, unless you are at the same location."
  setting_travl_prison_interactions_enabled: "#high Enabled#!"
  setting_travl_prison_interactions_enabled_desc: "All interactions for traveling prisoners are enabled."
 
