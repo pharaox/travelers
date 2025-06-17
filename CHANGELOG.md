@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.11.2
+
+### Core Travel
+
+* Traveling prisoners can now always be interacted with (ransomed, executed, etc.) if you is at the same location.
+
+### Travel Events
+
+* Enemy armies that are moving or in combat can no longer intercept prisoner convoys and free traveling prisoners.
+
 ## Version 0.11.1
 
 ### Compatibility
