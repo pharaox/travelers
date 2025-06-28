@@ -190,6 +190,8 @@ The **Invite Characters to Court** interaction might also become slow if the num
 * [German Translation (by @finallyciv)](https://steamcommunity.com/sharedfiles/filedetails/?id=3355568022)
 * [GitHub Repository](https://github.com/pharaox/travelers)
 
+Thumbnail Source: [*Marco Polo with elephants and camels arriving at Hormuz on the Gulf of Persia from India* by Boucicaut Master](https://commons.wikimedia.org/wiki/File:Marco_Polo_with_elephants_and_camels_arriving_at_Hormuz_on_the_Gulf_of_Persia_from_India.jpeg)
+
 ## Changes to Vanilla
 
 The sections below list the changes made to existing vanilla objects in somewhat more detail for easier checking of compatibility with other mods.

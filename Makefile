@@ -19,6 +19,10 @@ clean:
 	rm -rf tmp
 	rm -f ck3-tiger.out
 
+.PHONY: thumbnail
+thumbnail:
+	convert images/Marco_Polo_with_elephants_and_camels_arriving_at_Hormuz_on_the_Gulf_of_Persia_from_India.jpeg -crop 1368x1368+240+85 +repage -resize 1024x1024^ -gravity center -extent 1024x1024 thumbnail.png
+
 .PHONY: update-version
 update-version:
 	sed -i 's/$(VERSION)/$(NEW_VERSION)/g' descriptor.mod VERSION
