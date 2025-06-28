@@ -21,7 +21,7 @@ clean:
 
 .PHONY: thumbnail
 thumbnail:
-	convert images/Marco_Polo_with_elephants_and_camels_arriving_at_Hormuz_on_the_Gulf_of_Persia_from_India.jpeg -crop 1368x1368+240+85 +repage -resize 1024x1024^ -gravity center -extent 1024x1024 thumbnail.png
+	convert images/Marco_Polo_with_elephants_and_camels_arriving_at_Hormuz_on_the_Gulf_of_Persia_from_India.jpeg -crop 1368x1368+240+85 +repage -resize 512x512^ -gravity center -extent 512x512 thumbnail.png
 
 .PHONY: update-version
 update-version:
