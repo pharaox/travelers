@@ -1,4 +1,0 @@
-﻿prisoner_of_war = {
-	icon = prison_negative
-	diplomacy = -1
-}

@@ -1,0 +1,5 @@
+﻿l_german:
+ # New modifier similar to prepare_travels_modifier, but added to the travel owner so that it scales properly
+ unop_prepare_travels_character_modifier: "$prepare_travels_modifier$"
+ unop_prepare_travels_character_modifier_desc: "$prepare_travels_modifier_desc$"
+ unop_prepare_travels_character_modifier_scale_desc: "$prepare_travels_modifier_scale_desc$"

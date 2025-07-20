@@ -1,0 +1,17 @@
+﻿prisoner_of_war = {
+	icon = prison_negative
+	diplomacy = -1
+}
+
+#Unop Modifier to be added to the travel owner so that it scales properly
+unop_prepare_travels_character_modifier = {
+	icon = travel
+	character_travel_safety = 1
+	character_travel_speed = 1
+
+	scale = {
+		value = prepare_travels_modifier_value
+		desc = prepare_travels_modifier_scale_desc
+		display_mode = scaled
+	}
+}
