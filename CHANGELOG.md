@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 0.12.0
+
+### Compatibility
+
+* Adapted to CK3 1.17.0
+* Adapted to latest Unofficial Patch changes
+
 ## Version 0.11.2
 
 ### Core Travel

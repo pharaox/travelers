@@ -33,7 +33,7 @@ Finally, this mod also adds 3 new interactions:
 
 ## Compatibility
 
-The current version is compatible with CK3 1.16. If you are still on CK3 1.15.x, use [version 0.10.1](https://github.com/pharaox/travelers/releases/download/0.10.1/travelers-0.10.1.zip) instead.
+The current version is compatible with CK3 1.17. If you are still on CK3 1.16.x, use [version 0.11.2](https://github.com/pharaox/travelers/releases/download/0.11.2/travelers-0.11.2.zip) instead.
 
 This mod is compatible with most other mods, except for mods that make similar changes to the travel system, or modify the `travl_on_actions.txt` and `travel_options.txt` vanilla files. Unfortunately, the latter includes most total conversion mods. If you use such mods, put this mod before them in the load order - the travel of imprisoned rulers may be affected as a result, but everything else should work as expected.
 
@@ -188,6 +188,7 @@ The **Invite Characters to Court** interaction might also become slow if the num
 * [Travelers and Prisoners of War Compatch (by @cuomo860)](https://steamcommunity.com/sharedfiles/filedetails/?id=3098184700)
 * [Chinese Translation (by @無壹)](https://steamcommunity.com/sharedfiles/filedetails/?id=3090564070)
 * [German Translation (by @finallyciv)](https://steamcommunity.com/sharedfiles/filedetails/?id=3355568022)
+* [Russian Translation (by @Gordon_Wolfich)](https://steamcommunity.com/sharedfiles/filedetails/?id=3491999601)
 * [GitHub Repository](https://github.com/pharaox/travelers)
 
 Thumbnail Source: [*Marco Polo with elephants and camels arriving at Hormuz on the Gulf of Persia from India* by Boucicaut Master](https://commons.wikimedia.org/wiki/File:Marco_Polo_with_elephants_and_camels_arriving_at_Hormuz_on_the_Gulf_of_Persia_from_India.jpeg)

@@ -30,7 +30,7 @@ Finally, this mod also adds 3 new interactions:
 
 [h2]Compatibility[/h2]
 
-The current version is compatible with CK3 1.16. If you are still on CK3 1.15.x, use [url=https://github.com/pharaox/travelers/releases/download/0.10.1/travelers-0.10.1.zip]version 0.10.1[/url] instead.
+The current version is compatible with CK3 1.17. If you are still on CK3 1.16.x, use [url=https://github.com/pharaox/travelers/releases/download/0.11.2/travelers-0.11.2.zip]version 0.11.2[/url] instead.
 
 This mod is compatible with most other mods, except for mods that make similar changes to the travel system, or modify the [b]travl_on_actions.txt[/b] and [b]travel_options.txt[/b] vanilla files. Unfortunately, the latter includes most total conversion mods. If you use such mods, put this mod before them in the load order - the travel of imprisoned rulers may be affected as a result, but everything else should work as expected.
 
@@ -58,6 +58,7 @@ The [b]Invite Characters to Court[/b] interaction might also become slow if the 
   [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3098184700]Travelers and Prisoners of War Compatch (by @cuomo860)[/url]
   [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3090564070]Chinese Translation (by @無壹)[/url]
   [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3355568022]German Translation (by @finallyciv)[/url]
+  [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3491999601]Russian Translation (by @Gordon_Wolfich)[/url]
   [*] [url=https://github.com/pharaox/travelers]GitHub Repository[/url]
 [/list]
 
