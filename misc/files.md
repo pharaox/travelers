@@ -21,10 +21,6 @@
   * `currently_being_tortured`
 * `events/travel_events/travel_completion_events.txt`
   * Entire file
-* `localization/english/core_l_english.yml`
-  * `CHARACTER_TRAVELING_TOOLTIP`
-* `localization/english/interactions_l_english.yml`
-  * `invite_to_court_interaction_notification`
 
 ### Implicit
 
