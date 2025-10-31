@@ -3,7 +3,7 @@
 		limit = { exists = var:travl_travel_leader }
 
 		if = {
-			limit = { NOT = { var:travl_travel_leader = this } }
+			limit = { var:travl_travel_leader != this }
 			var:travl_travel_leader = { save_scope_as = companion1 }
 		}
 
@@ -12,7 +12,7 @@
 		}
 		every_in_list = {
 			list = companions
-			limit = { NOT = { this = prev } }
+			limit = { this != prev }
 			if = {
 				limit = { NOT = { exists = scope:companion1 } }
 				save_scope_as = companion1

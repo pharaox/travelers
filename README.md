@@ -33,7 +33,7 @@ Finally, this mod also adds 3 new interactions:
 
 ## Compatibility
 
-The current version is compatible with CK3 1.17. If you are still on CK3 1.16.x, use [version 0.11.2](https://github.com/pharaox/travelers/releases/download/0.11.2/travelers-0.11.2.zip) instead.
+The current version is compatible with CK3 1.18. If you are still on CK3 1.17.x, use [version 0.12.0](https://github.com/pharaox/travelers/releases/download/0.12.0/travelers-0.12.0.zip) instead.
 
 This mod is compatible with most other mods, except for mods that make similar changes to the travel system, or modify the `travl_on_actions.txt` and `travel_options.txt` vanilla files. Unfortunately, the latter includes most total conversion mods. If you use such mods, put this mod before them in the load order - the travel of imprisoned rulers may be affected as a result, but everything else should work as expected.
 

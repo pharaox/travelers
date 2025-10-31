@@ -26,13 +26,14 @@ travl_is_PoW_teleporting_character_trigger = {
 }
 
 travl_is_imprisoned_travelling_adult_trigger = {
-	is_alive = yes
-	is_adult = yes
-	is_imprisoned = yes
-	is_travelling = yes
+	is_available_quick = {
+		alive = yes
+		adult = yes
+		imprisoned = yes
+		travel = yes
+		incapable = no
+	}
 	has_contagious_deadly_disease_trigger = no
-	is_incapable = no
-	is_busy_in_events_unlocalised = no
 }
 
 travl_is_travelling_to_destination_trigger = {
@@ -61,7 +62,7 @@ travl_may_travel_to_receiver_trigger = {
 		AND = {
 			is_imprisoned = no
 			exists = capital_province
-			NOT = { this = $RECEIVER$ }
+			this != $RECEIVER$
 		}
 
 		# Not imprisoned and somebody else's hostage

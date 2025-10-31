@@ -181,7 +181,7 @@ travl_event_animal_wound_effect = {
 travl_event_death_effect = {
 	show_as_tooltip = {
 		if = {
-			limit = { NOT = { $KILLER$ = this } }
+			limit = { $KILLER$ != this }
 			death = { death_reason = $REASON$ killer = $KILLER$ }
 		}
 		else = {

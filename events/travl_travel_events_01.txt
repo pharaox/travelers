@@ -24,7 +24,7 @@ travl_travel.0001 = {
 					if = {
 						limit = {
 							has_variable = travl_location
-							NOT = { var:travl_location = location }
+							var:travl_location != location
 
 							NOR = {
 								# Travelling and at their current location

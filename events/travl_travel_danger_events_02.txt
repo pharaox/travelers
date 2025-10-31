@@ -125,7 +125,7 @@ travl_travel_danger.0002 = {
 		ordered_in_list = {
 			list = travelers
 			limit = {
-				NOT = { this = scope:missing_companion }
+				this != scope:missing_companion
 				is_available_travelling_adult = yes
 				stewardship >= low_skill_rating
 			}

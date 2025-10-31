@@ -320,7 +320,10 @@ travl_start_travel_effect = {
 
 						# Set the knight status of the escort to forbid so that they are not knighted automatically.
 						if = {
-							limit = { is_potential_knight = yes }
+							limit = {
+								exists = liege
+								is_potential_knight = yes
+							}
 							set_knight_status = forbid
 						}
 					}
@@ -654,7 +657,7 @@ travl_enable_or_disable_prisoner_interactions_effect = {
 
 		# Add or remove is_being_tortured to disable or enable prison interactions
 		if = {
-			limit = { NOT = { location = imprisoner.location } }
+			limit = { location != imprisoner.location }
 			add_character_flag = {
 				flag = is_being_tortured
 				years = 2
@@ -874,7 +877,7 @@ travl_get_message_recipients_effect = {
 	if = {
 		limit = {
 			exists = $RECEIVER$
-			NOT = { $RECEIVER$ = $SENDER$ }
+			$RECEIVER$ != $SENDER$
 			travl_travel_should_send_message_trigger = { CHARACTER = $RECEIVER$ }
 		}
 		$RECEIVER$ = { add_to_list = $RECIPIENTS$ }
@@ -1369,7 +1372,6 @@ travl_recruit_prison_guard_effect = {
 		limit = {
 			any_pool_character = {
 				province = scope:imprisoner1.capital_province
-				exists = this
 				travl_can_be_prison_guard_trigger = { ARMY_OWNER = scope:imprisoner1 }
 			}
 		}
@@ -1377,7 +1379,6 @@ travl_recruit_prison_guard_effect = {
 		random_pool_character = {
 			province = scope:imprisoner1.capital_province
 			limit = {
-				exists = this
 				travl_can_be_prison_guard_trigger = { ARMY_OWNER = scope:imprisoner1 }
 			}
 			save_temporary_scope_as = prison_guard

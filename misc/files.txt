@@ -1,7 +1,6 @@
 common/customizable_localization/00_prison_custom_loc.txt
 common/on_action/travel_on_actions.txt
 common/scripted_rules/00_rules.txt
-common/scripted_triggers/00_available_for_events_triggers.txt
 common/traits/00_traits.txt
 common/travel/travel_options/travel_options.txt
 common/trigger_localization/01_character_interaction_triggers.txt

@@ -139,7 +139,7 @@ travl_error_log_2_effect = {
 travl_debug_set_scope_variable_effect = {
 	if = {
 		limit = {
-			NOT = { $TYPE$ = flag:variable }
+			$TYPE$ != flag:variable
 			exists = scope:$NAME$
 			trigger_if = {
 				limit = { $TYPE$ = flag:boolean }
@@ -153,7 +153,7 @@ travl_debug_set_scope_variable_effect = {
 travl_debug_remove_scope_variable_effect = {
 	if = {
 		limit = {
-			NOT = { $TYPE$ = flag:variable }
+			$TYPE$ != flag:variable
 			has_variable = $NAME$
 		}
 		remove_variable = $NAME$

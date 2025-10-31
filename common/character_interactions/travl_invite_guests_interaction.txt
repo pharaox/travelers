@@ -39,7 +39,6 @@ travl_invite_guests_interaction = {
 
 	is_valid_showing_failures_only = {
 		scope:actor = {
-			is_busy_in_events_localised = yes
 			is_imprisoned = no
 			custom_tooltip = {
 				text = travl_invite_as_guest_actor_cooldown_tt

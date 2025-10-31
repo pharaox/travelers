@@ -13,8 +13,6 @@
 * `common/scripted_rules/00_rules.txt`
   * `can_command_troops_now`
   * `can_be_knight`
-* `common/scripted_triggers/00_available_for_events_triggers.txt`
-  * `is_busy_in_events_localised`
 * `common/travel/travel_options/travel_options.txt`
   * Entire file
 * `common/trigger_localization/01_character_interaction_triggers.txt`

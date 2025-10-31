@@ -17,16 +17,12 @@ can_be_knight = {
 	# Travelers, capture army_owner as scope
 	trigger_if = {
 		limit = {
-			OR = {
-				is_playable_character = no
-				root = root.court_owner
-			}
-			NOT = { exists = liege }
+			exists = liege
 		}
-		root.court_owner = { save_temporary_scope_as = army_owner }
+		liege = { save_temporary_scope_as = army_owner }
 	}
 	trigger_else = {
-		liege = { save_temporary_scope_as = army_owner }
+		root.court_owner = { save_temporary_scope_as = army_owner }
 	}
 	can_be_knight_trigger = { ARMY_OWNER = scope:army_owner }
 	

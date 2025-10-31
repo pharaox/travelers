@@ -135,7 +135,7 @@ travl_travel_danger.0007 = {
 		ordered_in_list = {
 			list = travelers
 			limit = {
-				NOT = { this = scope:avalanche_victim }
+				this != scope:avalanche_victim
 				is_available_travelling_adult = yes
 				prowess >= low_skill_rating
 			}

@@ -181,7 +181,7 @@ travl_prisoner.0001 = {
 
 		# Travel companion of a prison guard character
 		has_variable = travl_travel_leader
-		NOT = { var:travl_travel_leader = root }
+		var:travl_travel_leader != root
 		var:travl_travel_leader ?= {
 			has_character_modifier = travl_prison_guard_modifier
 		}
