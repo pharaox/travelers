@@ -8,6 +8,10 @@
 		value = 5
 	}
 	else_if = {
+		limit = { has_game_rule = travl_teleport_detector_interval_07 }
+		value = 7
+	}
+	else_if = {
 		limit = { has_game_rule = travl_teleport_detector_interval_10 }
 		value = 10
 	}
@@ -62,6 +66,14 @@ travl_travel_danger_value = {
 
 travl_prisoner_event_chance_value = {
 	if = {
+		limit = { has_game_rule = travl_prisoner_event_chance_none }
+		value = 0
+	}
+	else_if = {
+		limit = { has_game_rule = travl_prisoner_event_chance_very_low }
+		value = 2
+	}
+	else_if = {
 		limit = { has_game_rule = travl_prisoner_event_chance_low }
 		value = 5
 	}

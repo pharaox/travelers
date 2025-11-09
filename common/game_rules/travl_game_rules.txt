@@ -55,7 +55,7 @@ travl_travel_safety = {
 		travl_travelers
 	}
 
-	default = travl_travel_safety_high
+	default = travl_travel_safety_very_high
 
 	travl_travel_safety_default = {
 		flag = GG_can_change_rule
@@ -72,6 +72,10 @@ travl_travel_safety = {
 	travl_travel_safety_very_high = {
 		flag = GG_can_change_rule
 	}
+
+	travl_travel_safety_extremely_high = {
+		flag = GG_can_change_rule
+	}
 }
 
 travl_prisoner_event_chance = {
@@ -79,7 +83,15 @@ travl_prisoner_event_chance = {
 		travl_travelers
 	}
 
-	default = travl_prisoner_event_chance_medium
+	default = travl_prisoner_event_chance_low
+
+	travl_prisoner_event_chance_none = {
+		flag = GG_can_change_rule
+	}
+
+	travl_prisoner_event_chance_very_low = {
+		flag = GG_can_change_rule
+	}
 
 	travl_prisoner_event_chance_low = {
 		flag = GG_can_change_rule
@@ -147,7 +159,7 @@ travl_teleport_detector_interval = {
 		travl_travelers
 	}
 
-	default = travl_teleport_detector_interval_05
+	default = travl_teleport_detector_interval_07
 
 	#travl_teleport_detector_interval_01 = {
 	#	flag = GG_can_change_rule
@@ -158,6 +170,10 @@ travl_teleport_detector_interval = {
 	}
 
 	travl_teleport_detector_interval_05 = {
+		flag = GG_can_change_rule
+	}
+
+	travl_teleport_detector_interval_07 = {
 		flag = GG_can_change_rule
 	}
 

@@ -1,5 +1,21 @@
 # Changelog
 
+## Version 0.13.1
+
+### Game Rules
+
+* Added *Very Low* and *None* settings to the *Prisoner Events Chance* game rule, and changed the default to *Low* (5%).
+* Added *Extremely High* setting to the *Travel Safety* game rule, and changed the default to *Very High* (increased by 40).
+* Added *7 days* setting to the *Location Tracker Interval* game rule, and set it as default (see below).
+
+### Performance
+
+* Increased the default location tracker interval from 5 to 7 days for better performance in the larger AUH world.
+
+### Localization
+
+* Updated Korean translation by @gazette2.
+
 ## Version 0.13.0
 
 ### Compatibility

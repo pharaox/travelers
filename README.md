@@ -160,7 +160,7 @@ To make it easier for players to find targets for the **Invite to Court** and **
 
 The *location tracker* mentioned previously tracks the location of every non-teleporting character. It activates on a regular basis and checks most living characters. This has a negative impact on the overall game performance that might be noticeable on lower-end machines.
 
-By default, the location tracker activates every 5 days, for a reasonable tradeoff between performance and accuracy. You can use the **Location Tracker Interval** game rule to make it either more accurate or faster. This rule allows specifying if the detector should activate every 2, 5, or 10 days. Increasing this interval will result in better performance, but will also increase the chance for using an inaccurate location when determining if a character should travel and from where.
+By default, the location tracker activates every 7 days, for a reasonable tradeoff between performance and accuracy. You can use the **Location Tracker Interval** game rule to make it either more accurate or faster. This rule allows specifying if the detector should activate every 2, 5, 7, or 10 days. Increasing this interval will result in better performance, but will also increase the chance for using an inaccurate location when determining if a character should travel and from where.
 
 When an inaccurate location is used, the character may teleport instead of traveling, or travel when they shouldn't. However, the chance for this is quite small for all settings. For the fastest setting, it amounts to less than 1% inaccurate travel cases out of all travel caused by this mod. Since the player sees only a small percentage of all this travel, the chance that they ever notice such inaccuracies is really small.
 
@@ -173,7 +173,7 @@ The following table contains the times in seconds for 1, 2, 5, and 10 game years
 | Travelers |  5d | 12 | 23 | 62 | 136 | 17% | < 0.50% |
 | Travelers | 10d | 10 | 22 | 59 | 129 | 11% | < 1.00% |
 
-As you can see, the slowest setup is 35% slower than vanilla, the fastest is 11% slower, and the default one is 17% slower.
+As you can see, the slowest setup is 35% slower than vanilla, the fastest is 11% slower, and the middle one is 17% slower.
 
 As a recommendation, if you don't notice any performance issues, just leave the default settings. Otherwise, you may try increasing the **Location Tracker Interval** to 10 days.
 

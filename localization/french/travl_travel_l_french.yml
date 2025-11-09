@@ -8,6 +8,8 @@
  travl_travel_safety_high_modifier_desc: "La sécurité des voyages est augmentée conformément aux règles du jeu"
  travl_travel_safety_very_high_modifier: "Très haute sécurité de voyage"
  travl_travel_safety_very_high_modifier_desc: "$travl_travel_safety_high_modifier_desc$"
+ travl_travel_safety_extremely_high_modifier: "Extrêmement élevée sécurité de voyage"
+ travl_travel_safety_extremely_high_modifier_desc: "$travl_travel_safety_high_modifier_desc$"
 
  travl_prison_guard_modifier: "Escorte de prisonniers"
  travl_prison_guard_modifier_desc: "Ce personnage escorte des prisonniers itinérants"

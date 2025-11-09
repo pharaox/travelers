@@ -8,6 +8,8 @@
  travl_travel_safety_high_modifier_desc: "게임 규칙에 따라 여행 안전성이 증가합니다."
  travl_travel_safety_very_high_modifier: "매우 높은 여행 안전성"
  travl_travel_safety_very_high_modifier_desc: "$travl_travel_safety_high_modifier_desc$"
+ travl_travel_safety_extremely_high_modifier: "매우 높은 여행 안전성"
+ travl_travel_safety_extremely_high_modifier_desc: "$travl_travel_safety_high_modifier_desc$"
 
  travl_prison_guard_modifier: "수감자 호위"
  travl_prison_guard_modifier_desc: "이 캐릭터는 수감자를 호위하고 있습니다."

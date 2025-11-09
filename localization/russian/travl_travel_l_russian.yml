@@ -8,6 +8,8 @@
  travl_travel_safety_high_modifier_desc: "Безопасность в пути повышена в соответствии с правилами игры."
  travl_travel_safety_very_high_modifier: "Очень высокая безопасность в пути"
  travl_travel_safety_very_high_modifier_desc: "$travl_travel_safety_high_modifier_desc$"
+ travl_travel_safety_extremely_high_modifier: "Чрезвычайно высокая безопасность в пути"
+ travl_travel_safety_extremely_high_modifier_desc: "$travl_travel_safety_high_modifier_desc$"
 
  travl_prison_guard_modifier: "Эскорт заключенных"
  travl_prison_guard_modifier_desc: "Этот персонаж сопровождает путешествующих заключенных."

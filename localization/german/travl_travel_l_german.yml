@@ -8,6 +8,8 @@
  travl_travel_safety_high_modifier_desc: "Reisesicherheit ist gemäß des Spielparameters erhöht"
  travl_travel_safety_very_high_modifier: "Sehr hohe Reisesicherheit"
  travl_travel_safety_very_high_modifier_desc: "$travl_travel_safety_high_modifier_desc$"
+ travl_travel_safety_extremely_high_modifier: "Extrem hohe Reisesicherheit"
+ travl_travel_safety_extremely_high_modifier_desc: "$travl_travel_safety_high_modifier_desc$"
 
  travl_prison_guard_modifier: "Gefangeneneskorte"
  travl_prison_guard_modifier_desc: "Dieser Charakter eskortiert einen Gefangenentransport"

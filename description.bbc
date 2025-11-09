@@ -44,9 +44,9 @@ This mod is currently available in English, Russian, (partially) French, (partia
 
 [h2]Performance[/h2]
 
-To achieve its goals, this mod introduces a [i]location tracker[/i] that tracks the location of every non-teleporting character. It activates on a regular basis and checks most living characters. This has a negative impact on the overall game performance that might be noticeable on lower-end machines. By default, the location tracker activates every 5 days, for a reasonable tradeoff between performance and accuracy. You can use the [b]Location Tracker Interval[/b] game rule to make it either more accurate or faster.
+To achieve its goals, this mod introduces a [i]location tracker[/i] that tracks the location of every non-teleporting character. It activates on a regular basis and checks most living characters. This has a negative impact on the overall game performance that might be noticeable on lower-end machines. By default, the location tracker activates every 7 days, for a reasonable tradeoff between performance and accuracy. You can use the [b]Location Tracker Interval[/b] game rule to make it either more accurate or faster.
 
-I measured that the slowest and highest accuracy setting (2 days) is about 35% slower than vanilla, while the fastest (10 days) is about 10% slower, while still being pretty accurate. The default setting (5 days) is about 17% slower and is accurate enough for players to almost never notice any inaccuracies.
+I measured that the slowest and highest accuracy setting (2 days) is about 35% slower than vanilla, while the fastest (10 days) is about 10% slower, while still being pretty accurate. The default setting (7 days) is about 15% slower and is accurate enough for players to almost never notice any inaccuracies.
 
 As a recommendation, if you don't notice any performance issues, just leave the default settings. Otherwise, you may try adjusting the above game rule to the fastest setting.
 
