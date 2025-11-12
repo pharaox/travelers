@@ -81,14 +81,14 @@ travel_completion_event.1000 = {
 			desc = travel_completion_event.1000.desc.memory
 		}
 	}
-	theme = realm
+	theme = realm 
 	override_background = { reference = terrain }
 	override_icon = {
 		trigger = { always = yes }
 		reference = "gfx/interface/icons/event_types/type_travel_stewardship.dds"
 	}
 	left_portrait = {
-		character = root
+		character = root 
 		animation = holding_staff
 	}
 	right_portrait = {
@@ -136,7 +136,7 @@ travel_completion_event.1000 = {
 			}
 			if = {
 				limit = {
-					exists = var:travel_plan_start_date
+					exists = var:travel_plan_start_date 
 					exists = var:travel_plan_end_date
 					exists = var:travel_plan_elapsed_days
 				}
@@ -210,7 +210,7 @@ travel_completion_event.1000 = {
 	}
 
 	#Yay, we're home
-	option = {
+	option = { 
 		name = travel_completion_event.1000.a
 		name = {
 			trigger = { has_government = landless_adventurer_government }
@@ -224,7 +224,7 @@ travel_completion_event.1000 = {
 	}
 
 	#Let's return home
-	option = {
+	option = { 
 		name = travel_completion_event.1000.b
 		name = {
 			trigger = { has_government = landless_adventurer_government }
@@ -239,7 +239,7 @@ travel_completion_event.1000 = {
 			}
 		}
 		#Nooo not more outdoors!
-		stress_impact = {
+		stress_impact = {   
 			craven = miniscule_stress_impact_gain
 		    paranoid = miniscule_stress_impact_gain
 		}

@@ -9,15 +9,15 @@
 		NOT = { has_perk = toe_the_line_perk }
 		has_government = landless_adventurer_government
 	}
-
+	
 	travel_modifier = {
 		travel_speed = -5
 	}
-
+	
 	on_applied_effect = {
 		custom_tooltip = adventurers_scout_for_talent_option.tt
 	}
-
+	
 	ai_will_do = {
 		value = 100
 	}
@@ -33,15 +33,15 @@ adventurers_make_local_deals_option = {
 		has_perk = fearful_troops_perk
 		has_government = landless_adventurer_government
 	}
-
+	
 	travel_modifier = {
 		travel_safety = -20
 	}
-
+	
 	on_applied_effect = {
 		custom_tooltip = adventurers_make_local_deals_option.tt
 	}
-
+	
 	ai_will_do = {
 		value = 100
 	}
@@ -57,16 +57,16 @@ adventurers_search_for_secrets_option = {
 		has_perk = digging_for_dirt_perk
 		has_government = landless_adventurer_government
 	}
-
+	
 	travel_modifier = {
 		travel_safety = -10
 		travel_speed = 10
 	}
-
+	
 	on_applied_effect = {
 		custom_tooltip = adventurers_search_for_secrets_option.tt
 	}
-
+	
 	ai_will_do = {
 		value = 100
 	}
@@ -86,16 +86,16 @@ adventurers_encourage_relationships_option = {
 		}
 		has_government = landless_adventurer_government
 	}
-
+	
 	travel_modifier = {
 		travel_speed = 5
 		travel_safety = -5
 	}
-
+	
 	on_applied_effect = {
 		custom_tooltip = adventurers_encourage_relationships_option.tt
 	}
-
+	
 	ai_will_do = {
 		value = 100
 	}
@@ -111,16 +111,16 @@ adventurers_gather_inspiration_option = {
 		has_perk = popular_figurehead_perk
 		has_government = landless_adventurer_government
 	}
-
+	
 	travel_modifier = {
 		travel_speed = 5
 		travel_safety = -5
 	}
-
+	
 	on_applied_effect = {
 		custom_tooltip = adventurers_gather_inspiration_option.tt
 	}
-
+	
 	ai_will_do = {
 		value = 100
 	}
@@ -136,16 +136,16 @@ adventurers_proselytize_zealously_option = {
 		has_perk = zealous_proselytizer_perk
 		has_government = landless_adventurer_government
 	}
-
+	
 	travel_modifier = {
 		travel_speed = 5
 		travel_safety = -5
 	}
-
+	
 	on_applied_effect = {
 		custom_tooltip = adventurers_proselytize_zealously_option.tt
 	}
-
+	
 	ai_will_do = {
 		value = 100
 	}
@@ -163,15 +163,15 @@ adventurers_forward_scouts_option = {
 			domicile ?= { has_domicile_parameter = camp_unlocks_forward_scouts }
 		}
 	}
-
+	
 	travel_modifier = {
 		travel_safety = 20
 		travel_speed = -5
 	}
-
+	
 	on_applied_effect = {
 	}
-
+	
 	ai_will_do = {
 		value = 100
 	}
@@ -187,7 +187,7 @@ purchase_rough_terrain_gear_option = {
 	is_valid = {
 		has_government = landless_adventurer_government
 	}
-
+	
 	cost = {
 		gold = {
 			add = {
@@ -203,10 +203,10 @@ purchase_rough_terrain_gear_option = {
 		wetlands_travel_danger = wetlands_low_danger_reduction
 		floodplains_travel_danger = floodplains_low_danger_reduction
 	}
-
+	
 	on_applied_effect = {
 	}
-
+	
 	ai_will_do = {
 		value = 0
 		if = {
@@ -239,7 +239,7 @@ purchase_desert_gear_option = {
 	is_valid = {
 		has_government = landless_adventurer_government
 	}
-
+	
 	cost = {
 		gold = {
 			add = {
@@ -255,10 +255,10 @@ purchase_desert_gear_option = {
 		drylands_travel_danger = drylands_low_danger_reduction
 		desert_mountains_travel_danger = desert_mountains_low_danger_reduction
 	}
-
+	
 	on_applied_effect = {
 	}
-
+	
 	ai_will_do = {
 		value = 0
 		if = {
@@ -290,7 +290,7 @@ purchase_forest_gear_option = {
 	is_valid = {
 		has_government = landless_adventurer_government
 	}
-
+	
 	cost = {
 		gold = {
 			add = {
@@ -305,10 +305,10 @@ purchase_forest_gear_option = {
 		taiga_travel_danger = taiga_low_danger_reduction
 		jungle_travel_danger = jungle_low_danger_reduction
 	}
-
+	
 	on_applied_effect = {
 	}
-
+	
 	ai_will_do = {
 		value = 0
 		if = {
@@ -337,7 +337,7 @@ experienced_captains_option = {
 
 	is_valid = {
 	}
-
+	
 	cost = {
 		gold = {
 			if = {
@@ -384,7 +384,7 @@ experienced_captains_option = {
 		coastal_sea_travel_danger = medium_sea_danger_reduction
 		sea_travel_danger = medium_sea_danger_reduction #Still a bit more dangerous since sea travel is more dangerous than coastal sea
 	}
-
+	
 	on_applied_effect = {
 		hidden_effect = {
 			if = { # No reason to character bloat for the AI
@@ -481,7 +481,7 @@ experienced_captains_option = {
 		}
 		custom_tooltip = captain_recruited.tt
 	}
-
+	
 	ai_will_do = {
 		value = 0
 		if = {
@@ -523,7 +523,7 @@ hire_experienced_mercenaries_option = {
 			}
 		}
 	}
-
+	
 	cost = {
 		gold = {
 			if = {
@@ -565,12 +565,12 @@ hire_experienced_mercenaries_option = {
 			}
 		}
 	}
-
+	
 	travel_modifier = {
 		travel_speed = 10
 		travel_safety = 20
 	}
-
+	
 	on_applied_effect = {
 		hidden_effect = {
 			random_mercenary_company = {
@@ -592,11 +592,11 @@ hire_experienced_mercenaries_option = {
 					save_scope_as = mercenary_leader
 				}
 			}
-
+			
 			scope:mercenary_leader = {
 				add_gold = root.high_travel_option_cost
 			}
-
+			
 			if = { # No reason to steal too many Mercenaries away for travels; players and AI kings+ only
 				limit = {
 					OR = {
@@ -616,7 +616,7 @@ hire_experienced_mercenaries_option = {
 		}
 		custom_tooltip = mercenary_leader_recruited.tt
 	}
-
+	
 	ai_will_do = {
 		value = 0
 		if = {
@@ -649,7 +649,7 @@ hire_jungle_expert_option = {
 
 	is_valid = {
 	}
-
+	
 	cost = {
 		gold = {
 			if = {
@@ -695,7 +695,7 @@ hire_jungle_expert_option = {
 	owner_modifier = {
 		jungle_travel_danger = jungle_medium_danger_reduction
 	}
-
+	
 	on_applied_effect = {
 		hidden_effect = {
 			if = { # No reason to steal too many Mercenaries away for travels; players and AI kings+ only
@@ -798,7 +798,7 @@ hire_jungle_expert_option = {
 		}
 		custom_tooltip = jungle_stalker_recruited.tt
 	}
-
+	
 	ai_will_do = {
 		value = 0
 		if = {
@@ -824,7 +824,7 @@ hire_mountaineer_option = {
 
 	is_valid = {
 	}
-
+	
 	cost = {
 		gold = {
 			if = {
@@ -872,7 +872,7 @@ hire_mountaineer_option = {
 		desert_mountains_travel_danger = desert_mountains_medium_danger_reduction
 		hills_travel_danger = hills_medium_danger_reduction
 	}
-
+	
 	on_applied_effect = {
 		hidden_effect = {
 			if = { # No reason to steal too many Mercenaries away for travels; players and AI kings+ only
@@ -972,7 +972,7 @@ hire_mountaineer_option = {
 		}
 		custom_tooltip = mountaineer_recruited.tt
 	}
-
+	
 	ai_will_do = {
 		value = 0
 		if = {
@@ -1003,7 +1003,7 @@ hire_forder_option = {
 	is_valid = {
 		is_playable_character = yes
 	}
-
+	
 	cost = {
 		gold = {
 			if = {
@@ -1050,7 +1050,7 @@ hire_forder_option = {
 		wetlands_travel_danger = wetlands_medium_danger_reduction
 		floodplains_travel_danger = floodplains_medium_danger_reduction
 	}
-
+	
 	on_applied_effect = {
 		hidden_effect = {
 			if = { # No reason to steal too many Mercenaries away for travels; players and AI kings+ only
@@ -1150,7 +1150,7 @@ hire_forder_option = {
 		}
 		custom_tooltip = forder_recruited.tt
 	}
-
+	
 	ai_will_do = {
 		value = 0
 		if = {
@@ -1179,7 +1179,7 @@ hire_desert_warrior_option = {
 
 	is_valid = {
 	}
-
+	
 	cost = {
 		gold = {
 			if = {
@@ -1227,7 +1227,7 @@ hire_desert_warrior_option = {
 		steppe_travel_danger = steppe_medium_danger_reduction
 		drylands_travel_danger = drylands_medium_danger_reduction
 	}
-
+	
 	on_applied_effect = {
 		hidden_effect = {
 			if = { # No reason to steal too many Mercenaries away for travels; players and AI kings+ only
@@ -1327,7 +1327,7 @@ hire_desert_warrior_option = {
 		}
 		custom_tooltip = desert_warrior_recruited.tt
 	}
-
+	
 	ai_will_do = {
 		value = 0
 		if = {
@@ -1357,7 +1357,7 @@ hire_rough_terrain_expert_option = {
 
 	is_valid = {
 	}
-
+	
 	cost = {
 		gold = {
 			if = {
@@ -1404,7 +1404,7 @@ hire_rough_terrain_expert_option = {
 		forest_travel_danger = forest_medium_danger_reduction
 		taiga_travel_danger = taiga_medium_danger_reduction
 	}
-
+	
 	on_applied_effect = {
 		hidden_effect = {
 			if = { # No reason to steal too many Mercenaries away for travels; players and AI kings+ only
@@ -1504,7 +1504,7 @@ hire_rough_terrain_expert_option = {
 		}
 		custom_tooltip = rough_terrain_expert_recruited.tt
 	}
-
+	
 	ai_will_do = {
 		value = 0
 		if = {
@@ -1604,7 +1604,7 @@ cultural_ambassador_option = {
 
 	is_valid = {
 	}
-
+	
 	cost = {
 		gold = {
 			if = {
@@ -1646,7 +1646,7 @@ cultural_ambassador_option = {
 			}
 		}
 	}
-
+	
 	on_applied_effect = {
 		hidden_effect = {
 			if = { # No reason to steal too many Mercenaries away for travels; players and AI kings+ only
@@ -1720,7 +1720,7 @@ cultural_ambassador_option = {
 		}
 		custom_tooltip = cultural_ambassador_recruited.tt
 	}
-
+	
 	ai_will_do = {
 		value = 0
 		if = {
@@ -1786,12 +1786,12 @@ hire_allied_mercenaries_option = {
 	is_valid = {
 		has_perk = mercenary_contacts_perk
 	}
-
+	
 	travel_modifier = {
 		travel_speed = 5
 		travel_safety = 5
 	}
-
+	
 	ai_will_do = {
 		value = 100
 	}
@@ -1907,7 +1907,7 @@ tutor_child_option = {
 			custom_tooltip = child_brought_along.tt
 		}
 	}
-
+	
 	ai_will_do = {
 		value = 1
 	}
@@ -2094,7 +2094,7 @@ estate_mounts_option = {
 	travel_modifier = {
 		travel_speed = 10
 	}
-
+	
 	owner_modifier = {
 		travel_companion_opinion = 10
 		monthly_prestige = 1

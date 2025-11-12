@@ -1,7 +1,4 @@
-﻿# Determines who can command troops; will still show up in the list, with a breakdown explaining why they can't command
-# Root is the potential commander
-# scope:army_owner is who owns the army to command
-can_command_troops_now = {
+﻿can_command_troops_now = {
 	can_be_commander_now_trigger = { ARMY_OWNER = scope:army_owner }
 
 	# Travelers, if knight in an army it should be owned by the same owner
@@ -11,8 +8,6 @@ can_command_troops_now = {
 	}
 }
 
-# Determines if a character may be appointed as a knight. Checked during automatic knight assignment
-# Root is the potential knight
 can_be_knight = {
 	# Travelers, capture army_owner as scope
 	trigger_if = {
