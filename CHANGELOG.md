@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 0.13.2
+
+### Compatibility
+
+* Renamed `zzz_travl_00_rules.txt` to `aaa_travl_00_rules.txt` for better compatibility with other mods.
+
+### Game Rules
+
 ## Version 0.13.1
 
 ### Game Rules
