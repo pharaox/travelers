@@ -1,5 +1,5 @@
 ﻿l_french:
- game_rule_category_travl_Voyageurs: "Voyageurs"
+ game_rule_category_travl_travelers: "Voyageurs"
 
  rule_travl_travel_messages: "#P Voyageurs:#! Messages de voyage"
  setting_travl_travel_messages_disabled: "#high Désactivé#!"

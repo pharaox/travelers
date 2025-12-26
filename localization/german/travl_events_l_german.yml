@@ -139,10 +139,10 @@
  travl_prisoner.0001.a.failure: "Es ist Euch nicht gelungen, [guard.GetShortUIName] zu besiegen"
  travl_prisoner.0001.b: "[guard.GetShortUIName] überreden, mich freizulassen"
  travl_prisoner.0001.b.success: "Es ist Euch gelungen, [guard.GetShortUIName] zu überreden"
- travl_prisoner.0001.b.failure: "Es ist Euch nicht gelungen, [guard.GetShortUIName] zu überreden, und [guard.Custom('DE_PRO_PER_S_3P_N')] peitscht Euch aus für Eure Unverschämtheit"
+ travl_prisoner.0001.b.failure: "Es ist Euch nicht gelungen, [guard.GetShortUIName] zu überreden, und [guard.Custom('DE_PRO_PER_S_3P_N')] peitscht Euch für Eure Unverschämtheit aus"
  travl_prisoner.0001.c: "[guard.GetShortUIName] überlisten, damit [guard.Custom('DE_PRO_PER_S_3P_N')] mich befreit"
  travl_prisoner.0001.c.success: "Es ist Euch gelungen, [guard.GetShortUIName] zu überlisten"
- travl_prisoner.0001.c.failure: "Es ist Euch nicht gelungen, [guard.GetShortUIName] zu überlisten, und [guard.Custom('DE_PRO_PER_S_3P_N')] peitscht Euch (kräftig) aus für Eure Unverschämtheit"
+ travl_prisoner.0001.c.failure: "Es ist Euch nicht gelungen, [guard.GetShortUIName] zu überlisten, und [guard.Custom('DE_PRO_PER_S_3P_N')] peitscht Euch (kräftig) für Eure Unverschämtheit aus"
  travl_prisoner.0001.d: "[guard.GetShortUIName] bestechen, um zu entkommen"
  travl_prisoner.0001.d.success: "[guard.GetShortUIName] nimmt Eure Bestechung an und lässt Euch entkommen"
  travl_prisoner.0001.d.failure: "[guard.GetShortUIName] nimmt Eure Bestechung nicht an und lacht Euch aus"
@@ -302,4 +302,4 @@
  travl_char_were_was: "[Select_CString(THIS.Char.IsLocalPlayer, 'wurdet', 'wurde')]"
 
  # Custom tooltips
- travl_they_got_a_visitor_tt: "[THIS.Char.GetShortUIName|U] hat sich an den Hof [THIS.Var('travl_event_host').Char.Custom('DE_GEN_S_A_Pi')][THIS.Var('travl_event_host').Char.GetShortUIName] begeben, um dort zu verweilen"
+ travl_they_got_a_visitor_tt: "[THIS.Char.GetShortUIName|U] hat sich an den Hof von [THIS.Var('travl_event_host').Char.GetShortUIName] begeben, um dort zu verweilen"

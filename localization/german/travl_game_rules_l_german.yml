@@ -1,5 +1,5 @@
 ﻿l_german:
- game_rule_category_travl_Reisende: "Reisende"
+ game_rule_category_travl_travelers: "Reisende"
 
  rule_travl_travel_messages: "#P Reisende:#! Reise-Benachrichtigungen"
  setting_travl_travel_messages_disabled: "#high Aus#!"
