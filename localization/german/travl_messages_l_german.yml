@@ -1,0 +1,8 @@
+﻿l_german:
+ # Message group types
+ message_group_type_travl_travelers: "@travel_icon! Reisende"
+ # Message filter types
+ message_filter_travl_travel_message: "@travel_icon! Abreise- und Ankunftsnachrichten"
+ message_filter_travl_travel_message_desc: "Abreise- und Ankunftsnachrichten für Charaktere von Interesse"
+ message_filter_travl_danger_event: "@travel_danger_icon! Reiseereignis-Nachrichten"
+ message_filter_travl_danger_event_desc: "Reiseereignis-Nachrichten für Charaktere von Interesse"

@@ -5,7 +5,7 @@
  setting_travl_travel_messages_disabled: "#high Disabled#!"
  setting_travl_travel_messages_disabled_desc: "Departure, arrival, and event messages for characters of interest are disabled."
  setting_travl_travel_messages_enabled: "Enabled"
- setting_travl_travel_messages_enabled_desc: "Departure, arrival, and event messages for characters of interest are enabled."
+ setting_travl_travel_messages_enabled_desc: "Departure, arrival, and event messages for characters of interest are always enabled here, but can be disabled via Message Settings."
  setting_travl_travel_messages_events_only: "#high Events Only#!"
  setting_travl_travel_messages_events_only_desc: "Only event messages for characters of interest are enabled."
 
@@ -58,12 +58,6 @@
  setting_travl_interaction_range_massive_desc: "Characters in diplomatic range and located within 1200 map-pixels are listed."
  setting_travl_interaction_range_all: "Diplomatic Range"
  setting_travl_interaction_range_all_desc: "All characters in diplomatic range are listed (slowest)."
-
- rule_travl_teleport_detector_events: "#P Travelers:#! Location Tracker Events"
- setting_travl_teleport_detector_events_disabled: "Disabled"
- setting_travl_teleport_detector_events_disabled_desc: "Location Tracker events are disabled (faster, teleports may happen in very rare cases)."
- setting_travl_teleport_detector_events_enabled: "#high Enabled#!"
- setting_travl_teleport_detector_events_enabled_desc: "Location Tracker events are enabled (slower, teleports converted to travel)."
 
  rule_travl_teleport_detector_interval: "#P Travelers:#! Location Tracker Interval"
  setting_travl_teleport_detector_interval_01: "#high 1 day#!"

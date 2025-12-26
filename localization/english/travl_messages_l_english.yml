@@ -2,7 +2,7 @@
  # Message group types
  message_group_type_travl_travelers: "@travel_icon! Travelers"
  # Message filter types
- message_filter_travl_travel_message: "@travel_icon! Travelers Departure and Arrival Messages"
+ message_filter_travl_travel_message: "@travel_icon! Departure and Arrival Messages"
  message_filter_travl_travel_message_desc: "Departure and arrival messages for characters of interest"
- message_filter_travl_danger_event: "@travel_danger_icon! Travelers Travel Event Messages"
+ message_filter_travl_danger_event: "@travel_danger_icon! Travel Event Messages"
  message_filter_travl_danger_event_desc: "Travel event messages for characters of interest"

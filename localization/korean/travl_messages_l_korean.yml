@@ -1,0 +1,8 @@
+﻿l_korean:
+ # Message group types
+ message_group_type_travl_travelers: "@travel_icon! 여행자"
+ # Message filter types
+ message_filter_travl_travel_message: "@travel_icon! 출발 및 도착 메시지"
+ message_filter_travl_travel_message_desc: "관심 인물의 출발 및 도착 메시지"
+ message_filter_travl_danger_event: "@travel_danger_icon! 여행 이벤트 메시지"
+ message_filter_travl_danger_event_desc: "관심 인물의 여행 이벤트 메시지"

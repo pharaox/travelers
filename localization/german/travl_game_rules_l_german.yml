@@ -5,7 +5,7 @@
  setting_travl_travel_messages_disabled: "#high Aus#!"
  setting_travl_travel_messages_disabled_desc: "Aufbruchs-, Ankunfts- und Ereignis-Benachrichtigungen für relevante Charaktere sind ausgeschaltet."
  setting_travl_travel_messages_enabled: "An"
- setting_travl_travel_messages_enabled_desc: "Aufbruchs-, Ankunfts- und Ereignis-Benachrichtigungen für relevante Charaktere sind eingeschaltet."
+ setting_travl_travel_messages_enabled_desc: "Aufbruchs-, Ankunfts- und Ereignis-Benachrichtigungen für relevante Charaktere sind hier immer aktiviert, können aber über die Nachrichteneinstellungen deaktiviert werden."
  setting_travl_travel_messages_events_only: "#high Nur Ereignisse#!"
  setting_travl_travel_messages_events_only_desc: "Nur Ereignis-Benachrichtigungen für relevante Charaktere sind eingeschaltet."
 
@@ -58,12 +58,6 @@
  setting_travl_interaction_range_massive_desc: "Charaktere in [Concept('diplomatic_range','diplomatischer Reichweite')|E], welche sich innerhalb von 1200-Karten-Pixeln Entfernung befinden, werden gelistet."
  setting_travl_interaction_range_all: "Diplomatische Reichweite"
  setting_travl_interaction_range_all_desc: "Alle Charaktere innerhalb der [Concept('diplomatic_range','diplomatischen Reichweite')|E] werden gelistet (am langsamsten)."
-
- rule_travl_teleport_detector_events: "#P Travelers:#! Standortverfolgungsereignisse"
- setting_travl_teleport_detector_events_disabled: "Aus"
- setting_travl_teleport_detector_events_disabled_desc: "Standortverfolgungsereignisse sind ausgeschaltet (flüssiger, eventuell seltene Teleportationen)."
- setting_travl_teleport_detector_events_enabled: "#high An#!"
- setting_travl_teleport_detector_events_enabled_desc: "Standortverfolgungsereignisse sind eingeschaltet (langsamer, Teleportationen werden der Reisezeit angerechnet)."
 
  rule_travl_teleport_detector_interval: "#P Travelers:#! Standortverfolgungsintervall"
  setting_travl_teleport_detector_interval_01: "#high 1 Tag#!"

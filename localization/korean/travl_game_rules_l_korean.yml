@@ -5,7 +5,7 @@
  setting_travl_travel_messages_disabled: "#high 비활성화됨#!"
  setting_travl_travel_messages_disabled_desc: "관심 있는 캐릭터들의 출발, 도착 및 이벤트 메시지가 비활성화됩니다."
  setting_travl_travel_messages_enabled: "활성화됨"
- setting_travl_travel_messages_enabled_desc: "관심 있는 캐릭터들의 출발, 도착 및 이벤트 메시지가 활성화됩니다."
+ setting_travl_travel_messages_enabled_desc: "관심 있는 캐릭터들의 출발, 도착 및 이벤트 메시지가 여기에서 항상 활성화되지만 메시지 설정을 통해 비활성화할 수 있습니다."
  setting_travl_travel_messages_events_only: "#high 이벤트만#!"
  setting_travl_travel_messages_events_only_desc: "관심 있는 캐릭터들의 출발, 도착 및 이벤트 메시지가 활성화됩니다."
 
@@ -58,12 +58,6 @@
  setting_travl_interaction_range_massive_desc: "외교 범위 내에 있는 캐릭터 중 1200개의 지도 픽셀 내에 있는 캐릭터가 나열됩니다."
  setting_travl_interaction_range_all: "외교 범위"
  setting_travl_interaction_range_all_desc: "외교 범위 내의 모든 캐릭터가 나열됩니다 (가장 느림)."
-
- rule_travl_teleport_detector_events: "#P 여행자들:#! 위치 추적기 이벤트"
- setting_travl_teleport_detector_events_disabled: "비활성화됨"
- setting_travl_teleport_detector_events_disabled_desc: "위치 추적기 이벤트가 비활성화됩니다 (빠름, 매우 드문 경우에만 텔레포트가 발생합니다)."
- setting_travl_teleport_detector_events_enabled: "#high 활성화됨#!"
- setting_travl_teleport_detector_events_enabled_desc: "위치 추적기 이벤트가 활성화됩니다 (느림, 텔레포트가 여행으로 변환됩니다)."
 
  rule_travl_teleport_detector_interval: "#P 여행자들:#! 위치 추적기 간격"
  setting_travl_teleport_detector_interval_01: "#high 1일#!"

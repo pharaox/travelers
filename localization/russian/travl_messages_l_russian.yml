@@ -1,0 +1,8 @@
+﻿l_russian:
+ # Message group types
+ message_group_type_travl_travelers: "@travel_icon! Путешественники"
+ # Message filter types
+ message_filter_travl_travel_message: "@travel_icon! Сообщения об отправлении и прибытии"
+ message_filter_travl_travel_message_desc: "Сообщения об отправлении и прибытии персонажей, представляющих интерес"
+ message_filter_travl_danger_event: "@travel_danger_icon! Сообщения о событиях путешествия"
+ message_filter_travl_danger_event_desc: "Сообщения о событиях путешествия для персонажей, представляющих интерес"

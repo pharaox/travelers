@@ -1,0 +1,8 @@
+﻿l_french:
+ # Message group types
+ message_group_type_travl_travelers: "@travel_icon! Voyageurs"
+ # Message filter types
+ message_filter_travl_travel_message: "@travel_icon! Messages de départ et d'arrivée"
+ message_filter_travl_travel_message_desc: "Messages de départ et d'arrivée pour les personnages d'intérêt"
+ message_filter_travl_danger_event: "@travel_danger_icon! Messages d'événements de voyage"
+ message_filter_travl_danger_event_desc: "Messages d'événements de voyage pour les personnages d'intérêt"
