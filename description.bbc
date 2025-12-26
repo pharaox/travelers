@@ -12,7 +12,7 @@ Since character homes may change mid-travel, such groups may lose members, chang
 
 While traveling, rulers and their entourage may get some of the vanilla travel and danger events. As a result, some of them may die or leave, and others may join. Rulers can also select a travel leader, add travel options, and get experience on arrival.
 
-Since there are no travel events for non-ruler characters available in vanilla, this mod adds 15 new travel danger events for non-ruler group leaders, loosely based on existing vanilla events. Other group members may also participate in the resolution of such an event, and all may suffer its consequences. The player is informed about such events with appropriate messages, and they can be disabled via a game rule.
+Since there are no travel events for non-ruler characters available in vanilla, this mod adds 15 new travel danger events for non-ruler group leaders, loosely based on existing vanilla events. Other group members may also participate in the resolution of such an event, and all may suffer its consequences. The player is informed about such events with appropriate messages.
 
 Due to the increased volume of travel caused by this mod and the new travel danger events mentioned above, more characters may die or get injured due to travel danger events than before. To compensate for this, the travel safety of all travel caused by this mod is increased compared to vanilla travel. If you prefer, you can increase it even further or decrease it to its default level via a game rule.
 

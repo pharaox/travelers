@@ -1,5 +1,17 @@
 # Changelog
 
+## Version 0.13.3
+
+### Game Rules
+
+* Added message filters to messages so that they could be configured via *Message Settings*.
+* Deprecated the *Travel Messages* game rule. It is now always set to *Enabled*, but messages can be disabled via *Message Settings*.
+* Removed the previously deprecated *Location Tracker Events* game rule.
+
+### Compatibility
+
+* Adapted to CK3 1.18.2.
+
 ## Version 0.13.2
 
 ### Compatibility
