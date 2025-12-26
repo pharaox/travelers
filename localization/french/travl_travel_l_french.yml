@@ -2,13 +2,13 @@
  travl_is_imprisoned_modifier: "Emprisonné"
  travl_is_imprisoned_modifier_desc: "Vous êtes emprisonné et vous vous rendez à votre prison"
 
- travl_travel_safety_medium_modifier: "Moyenne sécurité de voyage"
+ travl_travel_safety_medium_modifier: "Sécurité de voyage moyenne"
  travl_travel_safety_medium_modifier_desc: "$travl_travel_safety_high_modifier_desc$"
- travl_travel_safety_high_modifier: "Haute sécurité de voyage"
+ travl_travel_safety_high_modifier: "Sécurité de voyage élevée"
  travl_travel_safety_high_modifier_desc: "La sécurité des voyages est augmentée conformément aux règles du jeu"
- travl_travel_safety_very_high_modifier: "Très haute sécurité de voyage"
+ travl_travel_safety_very_high_modifier: "Sécurité de voyage très élevée"
  travl_travel_safety_very_high_modifier_desc: "$travl_travel_safety_high_modifier_desc$"
- travl_travel_safety_extremely_high_modifier: "Extrêmement élevée sécurité de voyage"
+ travl_travel_safety_extremely_high_modifier: "Sécurité de voyage extrêmement élevée"
  travl_travel_safety_extremely_high_modifier_desc: "$travl_travel_safety_high_modifier_desc$"
 
  travl_prison_guard_modifier: "Escorte de prisonniers"
@@ -31,8 +31,8 @@
  travl_they_are_traveling_or_being_tortured: "[SelectLocalization(CHARACTER.MakeScope.Var('travl_travel_receiver').IsSet, 'travl_they_are_traveling', 'travl_they_are_being_tortured')]"
  travl_i_am_traveling: "Vous vous rendez à votre prison"
  travl_they_are_traveling: "[Character.GetShortUIName|U] se rend à sa prison"
- travl_i_am_being_tortured: "Vous subissez la torture!"
- travl_they_are_being_tortured: "[Character.Custom('FR_le_Char_U_Pi')|U][Character.GetShortUIName] subit la torture!"
+ travl_i_am_being_tortured: "Vous subissez la torture !"
+ travl_they_are_being_tortured: "[Character.Custom('FR_le_Char_U_Pi')|U][Character.GetShortUIName] subit la torture !"
 
  travl_prisontype_travel: "voyage de prisonnier"
  travl_prisontypemodifier_travel: "[GetModifier('travl_travel_prison_type').GetNameWithTooltip]"

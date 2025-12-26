@@ -5,23 +5,23 @@
  recipient_secondary_travl_invite_courtiers_interaction: "$INTERACTION_RECIPIENT$"
 
  # travl_invite_guests_interaction
- travl_invite_guests_interaction: "Invite Characters as Guests"
- travl_invite_guests_interaction_desc: "Invite characters to stay at to your [actor.Custom('GetCourtConcept')] as guests"
+ travl_invite_guests_interaction: "Inviter des personnages comme invités"
+ travl_invite_guests_interaction_desc: "Invitez des personnages à séjourner à votre [actor.Custom('GetCourtConcept')] en tant qu'invités"
  recipient_secondary_travl_invite_guests_interaction: "$INTERACTION_RECIPIENT$"
 
  # travl_invite_as_guest_interaction
- travl_invite_as_guest_interaction: "Invite as Guest"
- travl_invite_as_guest_interaction_desc: "Invite [recipient.GetShortUINameNoTooltip] to stay at your [actor.Custom('GetCourtConcept')] as guest"
+ travl_invite_as_guest_interaction: "Inviter comme invité"
+ travl_invite_as_guest_interaction_desc: "Inviter [recipient.GetShortUINameNoTooltip] à séjourner à votre [actor.Custom('GetCourtConcept')] en tant qu'invité"
  travl_invite_as_guest_interaction_extra_icon: "$hook_extra_icon$"
 
  # Interaction tooltips
- travl_not_in_realm_tt: "[recipient.GetShortUINameNoTooltip] is not near your capital or in your realm"
- travl_cant_be_your_guest_tt: "[recipient.GetShortUINameNoTooltip] cannot be your guest"
- travl_invite_as_guest_cooldown_tt: "They recently accepted an invite as guest and cannot be invited again for a while"
- travl_invite_as_guest_actor_cooldown_tt: "You recently invited another character as guest and cannot invite again for a while"
+ travl_not_in_realm_tt: "[recipient.GetShortUINameNoTooltip] n'est pas près de votre capitale ou dans votre royaume"
+ travl_cant_be_your_guest_tt: "[recipient.GetShortUINameNoTooltip] ne peut pas être votre invité"
+ travl_invite_as_guest_cooldown_tt: "[recipient.GetSheHe|U] a récemment accepté une invitation en tant qu'invité et ne peut pas être invité à nouveau pour le moment"
+ travl_invite_as_guest_actor_cooldown_tt: "Vous avez récemment invité un autre personnage en tant qu'invité et ne pouvez pas inviter à nouveau pour le moment"
 
  # Interaction notifications
- travl_invite_as_guest_interaction_notification: "Staying at your [actor.Custom('GetCourt')] as guest"
+ travl_invite_as_guest_interaction_notification: "Séjournant à votre [actor.Custom('GetCourt')] en tant qu'invité"
 
  # Message titles
  travl_msg_departed_for_court: "Parti pour la [message_recipient.Custom('GetCourt')|U]"
