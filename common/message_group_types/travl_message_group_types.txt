@@ -1,0 +1,3 @@
+﻿travl_travelers = {
+	sort_order = 320 # Before vanilla groups
+}

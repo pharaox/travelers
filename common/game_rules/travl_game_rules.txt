@@ -5,17 +5,17 @@
 
 	default = travl_travel_messages_enabled
 
-	travl_travel_messages_disabled = {
-		flag = GG_can_change_rule
-	}
+	#travl_travel_messages_disabled = {
+	#	flag = GG_can_change_rule
+	#}
 
 	travl_travel_messages_enabled = {
 		flag = GG_can_change_rule
 	}
 
-	travl_travel_messages_events_only = {
-		flag = GG_can_change_rule
-	}
+	#travl_travel_messages_events_only = {
+	#	flag = GG_can_change_rule
+	#}
 }
 
 travl_travel_events = {
@@ -136,22 +136,6 @@ travl_interaction_range = {
 	travl_interaction_range_all = {
 		flag = GG_can_change_rule
 	}
-}
-
-travl_teleport_detector_events = {
-	categories = {
-		travl_travelers
-	}
-
-	default = travl_teleport_detector_events_disabled
-
-	travl_teleport_detector_events_disabled = {
-		flag = GG_can_change_rule
-	}
-
-	#travl_teleport_detector_events_enabled = {
-	#	flag = GG_can_change_rule
-	#}
 }
 
 travl_teleport_detector_interval = {

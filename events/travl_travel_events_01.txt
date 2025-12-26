@@ -9,7 +9,7 @@ travl_travel.0001 = {
 
 		if = {
 			limit = {
-				NOT = { has_game_rule = travl_teleport_detector_events_disabled }
+				always = no # Game rule removed, keeping the code below for reference
 				# If more than 20 days have passed since the last pulse event,
 				# assume saved locations are stale and don't trigger teleport detector events
 				travl_days_since_last_event_value <= 20

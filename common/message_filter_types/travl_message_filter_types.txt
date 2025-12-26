@@ -1,0 +1,9 @@
+﻿travl_travel_message = {
+	display = feed
+	group = travl_travelers
+}
+
+travl_danger_event = {
+	display = feed
+	group = travl_travelers
+}

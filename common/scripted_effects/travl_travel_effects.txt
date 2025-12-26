@@ -909,7 +909,6 @@ travl_send_messages_effect = {
 travl_send_message_effect = {
 	if = {
 		limit = {
-			has_game_rule = travl_travel_messages_enabled
 			list_size = { name = $TRAVELERS$ value > 0 }
 		}
 

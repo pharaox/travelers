@@ -228,35 +228,29 @@ travl_event_apply_outcome_effect = {
 }
 
 travl_send_event_messages_effect = {
-	if = {
-		limit = {
-			NOT = { has_game_rule = travl_travel_messages_disabled }
-		}
+	save_temporary_scope_as = character
+	every_in_list = {
+		list = $RECIPIENTS$
+		send_interface_message = {
+			type = travl_msg_danger_event
+			title = $TITLE$
+			right_icon = scope:character
 
-		save_temporary_scope_as = character
-		every_in_list = {
-			list = $RECIPIENTS$
-			send_interface_message = {
-				type = travl_msg_danger_event
-				title = $TITLE$
-				right_icon = scope:character
+			scope:character = {
+				custom_tooltip = $TEXT$
+			}
 
-				scope:character = {
-					custom_tooltip = $TEXT$
+			show_as_tooltip = {
+				every_in_list = {
+					list = $TRAVELERS$
+					travl_event_apply_character_effect = yes
 				}
-
-				show_as_tooltip = {
-					every_in_list = {
-						list = $TRAVELERS$
-						travl_event_apply_character_effect = yes
-					}
-					travl_escape_from_prison_prisoners_effect = {
-						PRISONERS = escaped_prisoners
-					}
-					travl_imprison_prisoners_effect = {
-						PRISONERS = imprisoned_prisoners
-						IMPRISONER = scope:imprisoner
-					}
+				travl_escape_from_prison_prisoners_effect = {
+					PRISONERS = escaped_prisoners
+				}
+				travl_imprison_prisoners_effect = {
+					PRISONERS = imprisoned_prisoners
+					IMPRISONER = scope:imprisoner
 				}
 			}
 		}
