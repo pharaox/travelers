@@ -2,11 +2,26 @@
 
 ## Version 0.13.3
 
+### Core Travel
+
+* Characters may join the receiver's entourage if in the same location instead of traveling to their home, also if the receiver is in vanilla travel.
+
+### Interactions
+
+* The *Invite as Guest* interaction now requires the invited character to be located near your current location if you are traveling, rather than near your capital or in your realm.
+* Interaction ranges are now centered on your location if you are traveling, rather than your capital.
+
 ### Game Rules
 
 * Added message filters to messages so that they could be configured via *Message Settings*.
 * Deprecated the *Travel Messages* game rule. It is now always set to *Enabled*, but messages can be disabled via *Message Settings*.
 * Removed the previously deprecated *Location Tracker Events* game rule.
+
+### Localization
+
+* Completed and improved the French translation.
+* Completed and improved the German translation.
+* Updated and improved the Russian translation.
 
 ### Compatibility
 

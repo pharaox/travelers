@@ -45,7 +45,7 @@ This mod also supports changing its game rules mid-game with the [Gamerule Gadge
 
 ## Localization
 
-This mod is currently available in English, Russian, (partially) French, (partially) German (translated by @Feivel), and Korean (translated by @gazette2). For other languages, it uses the original English text as a placeholder.
+This mod is currently available in English, Russian, French, German, and Korean (translated by @gazette2). For other languages, it uses the original English text as a placeholder.
 
 ## Features
 
@@ -150,7 +150,7 @@ Traveling prisoners are moved to a special prison type and can't be interacted w
 
 #### Invite as Guest
 
-The new **Invite as Guest** interaction enables inviting a wandering character as a guest, so you could later recruit them for the usual fee. The character must be located within your realm, or near your camp (in the same duchy) if you are a landless adventurer. To prevent exploits, you are limited to inviting only a single character per year in this way. The AI willingness to accept is similar to **Invite to Court**, with some minor changes. In general, characters are slightly less willing to be invited as guests, but their opinion of you has a stronger impact.
+The new **Invite as Guest** interaction enables inviting a wandering character as a guest, so you could later recruit them for the usual fee. The character must be located within your realm, or near your location (in the same duchy) if you are traveling. To prevent exploits, you are limited to inviting only a single character per year in this way. The AI willingness to accept is similar to **Invite to Court**, with some minor changes. In general, characters are slightly less willing to be invited as guests, but their opinion of you has a stronger impact.
 
 #### Invite Characters to Court and Invite Characters as Guest
 
