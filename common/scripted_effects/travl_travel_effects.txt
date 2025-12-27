@@ -217,7 +217,7 @@ travl_start_travel_effect = {
 						RECEIVER = $RECEIVER$
 						DESTINATION = $DESTINATION$
 					}
-					has_variable = travl_travel_leader
+					#has_variable = travl_travel_leader
 					OR = {
 						location = scope:traveler.location
 						current_travel_plan ?= {
@@ -237,7 +237,13 @@ travl_start_travel_effect = {
 				exists = scope:travel_owner
 			}
 
-			#travl_debug_log_effect = { MSG = travl_debug_msg_adding_entourage_character }
+			#if = {
+			#	limit = { scope:travel_owner = { has_variable = travl_travel_leader } }
+			#	travl_debug_log_effect = { MSG = travl_debug_msg_adding_entourage_character }
+			#}
+			#else = {
+			#	travl_debug_log_effect = { MSG = travl_debug_msg_adding_entourage_character_2 }
+			#}
 
 			# Add character to the travel owner's entourage
 			save_temporary_scope_as = companion

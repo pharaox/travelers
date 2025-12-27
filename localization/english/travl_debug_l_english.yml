@@ -12,7 +12,8 @@
  travl_debug_msg_recruited_as_escort: "$travl_debug_prefix$: Recruited as escort"
  travl_debug_msg_recruited_as_travel_leader: "$travl_debug_prefix$: Recruited as travel leader"
  travl_debug_msg_moving_added_character_back_to_pool: "$travl_debug_prefix$: Moving added character back to pool"
- travl_debug_msg_adding_entourage_character: "$travl_debug_prefix$: Adding entourage character ($travl_travel_event$)"
+ travl_debug_msg_adding_entourage_character: "$travl_debug_prefix$: Adding entourage character to mod travel ($travl_travel_event$)"
+ travl_debug_msg_adding_entourage_character_2: "$travl_debug_prefix$: Adding entourage character to vanilla travel ($travl_travel_event$)"
  travl_debug_msg_aborting_travel_to_start_travel: "$travl_debug_prefix$: Aborting travel to start travel$travl_imprisoned$ ($travl_travel_event$)" # Rare
  travl_debug_msg_aborting_travel_completely: "$travl_debug_prefix$: Aborting travel completely$travl_imprisoned$ ($travl_travel_event$)" # Rare
  travl_debug_msg_aborting_travel_for_prison_guard: "$travl_debug_prefix$: Aborting travel for prison guard$travl_imprisoned$" # Rare

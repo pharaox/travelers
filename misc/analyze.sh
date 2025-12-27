@@ -108,6 +108,11 @@ echo
 #echo
 #echo "Accessing recent location: $(grep -a "Accessing recent location" $LOGFILE | wc -l)"
 #echo
+#echo "Adding entourage character: $(grep -a "Adding entourage character" $LOGFILE | wc -l)"
+#echo "- to mod travel: $(grep -a "Adding entourage character to mod travel" $LOGFILE | wc -l)"
+#echo "- to vanilla travel: $(grep -a "Adding entourage character to vanilla travel" $LOGFILE | wc -l)"
+#echo
+
 
 # Errors
 echo "Starting travel with incorrect receiver: $(grep -a "Starting travel with incorrect receiver" error.log | wc -l)"
