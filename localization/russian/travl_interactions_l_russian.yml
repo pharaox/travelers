@@ -16,6 +16,7 @@
 
  # Interaction tooltips
  travl_not_in_realm_tt: "Персонаж [recipient.GetShortUINameNoTooltip] находится не вблизи вашей столицы и не в вашем государстве"
+ travl_not_near_location_tt: "Персонаж [recipient.GetShortUINameNoTooltip] находится не вблизи вашего текущего местоположения"
  travl_cant_be_your_guest_tt: "Персонаж [recipient.GetShortUINameNoTooltip] не может быть вашим гостем"
  travl_invite_as_guest_cooldown_tt: "[Select_CString(recipient.IsFemale, 'Она недавно приняла', 'Он недавно принял' )] приглашение в качестве гостя и не может быть приглашен[Select_CString(recipient.IsFemale, 'а', '' )] снова в течение некоторого времени"
  travl_invite_as_guest_actor_cooldown_tt: "Вы недавно пригласили другого персонажа в качестве гостя и не можете пригласить снова в течение некоторого времени"

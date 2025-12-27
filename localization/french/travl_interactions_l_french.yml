@@ -16,6 +16,7 @@
 
  # Interaction tooltips
  travl_not_in_realm_tt: "[recipient.GetShortUINameNoTooltip] n'est pas près de votre capitale ou dans votre royaume"
+ travl_not_near_location_tt: "[recipient.GetShortUINameNoTooltip] n'est pas près de votre position actuelle"
  travl_cant_be_your_guest_tt: "[recipient.GetShortUINameNoTooltip] ne peut pas être votre invité"
  travl_invite_as_guest_cooldown_tt: "[recipient.GetSheHe|U] a récemment accepté une invitation en tant qu'invité et ne peut pas être invité à nouveau pour le moment"
  travl_invite_as_guest_actor_cooldown_tt: "Vous avez récemment invité un autre personnage en tant qu'invité et ne pouvez pas inviter à nouveau pour le moment"

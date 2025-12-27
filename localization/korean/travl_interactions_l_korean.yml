@@ -16,6 +16,7 @@
 
  # Interaction tooltips
  travl_not_in_realm_tt: "[recipient.GetShortUINameNoTooltip]은(는) 당신의 수도 근처에 없거나 영지 내에 있지 않습니다"
+ travl_not_near_location_tt: "[recipient.GetShortUINameNoTooltip]은(는) 당신의 현재 위치 근처에 없습니다"
  travl_cant_be_your_guest_tt: "[recipient.GetShortUINameNoTooltip]은(는) 문객이 될 수 없습니다"
  travl_invite_as_guest_cooldown_tt: "최근 문객 초대를 수락한 적이 있어 당분간 다시 초대할 수 없습니다"
  travl_invite_as_guest_actor_cooldown_tt: "최근 다른 인물을 문객으로 초대하여 당분간 다시 초대할 수 없습니다"
