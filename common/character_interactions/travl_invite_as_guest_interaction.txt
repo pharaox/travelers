@@ -14,15 +14,31 @@
 			is_pool_guest = no
 			is_imprisoned = no
 			NOT = { has_relation_rival = scope:actor }
-			custom_tooltip = {
-				text = travl_not_in_realm_tt
-				OR = {
-					is_in_pool_at = scope:actor.capital_province
-					location.province_owner ?= {
+			trigger_if = {
+				limit = { 
+					scope:actor = {
 						OR = {
-							this = scope:actor
-							any_liege_or_above = {
+							exists = current_travel_plan
+							is_commanding_army = yes
+						}
+					}
+				}
+				custom_tooltip = {
+					text = travl_not_near_location_tt
+					is_in_pool_at = scope:actor.location
+				}
+			}
+			trigger_else = {
+				custom_tooltip = {
+					text = travl_not_in_realm_tt
+					OR = {
+						is_in_pool_at = scope:actor.capital_province
+						location.province_owner ?= {
+							OR = {
 								this = scope:actor
+								any_liege_or_above = {
+									this = scope:actor
+								}
 							}
 						}
 					}

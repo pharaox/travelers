@@ -14,12 +14,7 @@ travl_invite_guests_interaction = {
 					limit = {
 						NOT = { has_game_rule = travl_interaction_range_all }
 					}
-					location ?= {
-						squared_distance = {
-							target = scope:actor.capital_province
-							value <= scope:actor.travl_interaction_range_value
-						}
-					}
+					travl_is_character_within_interaction_range_trigger = { PARTY = scope:actor }
 				}
 				save_temporary_scope_as = invitee
 				scope:actor = {

@@ -45,3 +45,33 @@ travl_can_be_invited_as_guest_trigger = {
 		}
 	}
 }
+
+travl_is_character_within_interaction_range_trigger = {
+	$PARTY$ = {
+		travl_get_party_capital_province_trigger = yes
+	}
+	exists = scope:party_capital_province
+	location ?= {
+		squared_distance = {
+			target = scope:party_capital_province
+			value <= $PARTY$.travl_interaction_range_value
+		}
+	}
+}
+
+# The "party" is the acting side (actor), they are always a ruler.
+# Their "capital" is their location if they are traveling, or their actual capital if not.
+travl_get_party_capital_province_trigger = {
+	trigger_if = {
+		limit = {
+			OR = {
+				exists = current_travel_plan
+				is_commanding_army = yes
+			}
+		}
+		location ?= { save_temporary_scope_as = party_capital_province }
+	}
+	trigger_else = {
+		capital_province ?= { save_temporary_scope_as = party_capital_province }
+	}
+}
