@@ -33,7 +33,7 @@ Finally, this mod also adds 3 new interactions:
 
 ## Compatibility
 
-The current version is compatible with CK3 1.18. If you are still on CK3 1.17.x, use [version 0.12.0](https://github.com/pharaox/travelers/releases/download/0.12.0/travelers-0.12.0.zip) instead.
+The current version is compatible with CK3 1.19. If you are still on CK3 1.18.x, use [version 0.13.3](https://github.com/pharaox/travelers/releases/download/0.13.3/travelers-0.13.3.zip) instead.
 
 This mod is compatible with most other mods, except for mods that make similar changes to the travel system, or modify the `travl_on_actions.txt` and `travel_options.txt` vanilla files. Unfortunately, the latter includes most total conversion mods. If you use such mods, put this mod before them in the load order - the travel of imprisoned rulers may be affected as a result, but everything else should work as expected.
 
@@ -119,8 +119,8 @@ If the challenge ends in a success, the responsible character may be rewarded by
 These new travel danger events for non-ruler characters are the following:
 
 | No | Name | Danger Types | Other Conditions | Challenges |
-|---:|---|---|---|---|
-| 1 | Bandits | Mountains, Desert Mountains, County control |  | Prowess, Diplomacy |
+| ---: | --- | --- | --- | --- |
+| 1 | Bandits | Mountains, Desert Mountains, County control | | Prowess, Diplomacy |
 | 2 | Missing Companion | Wetlands, Forest, Taiga, Jungle | At least one companion | Stewardship |
 | 3 | Lost | Forest, Taiga, Jungle | Not terrain expert | Learning, Stewardship |
 | 4 | Out of Water | Desert, Desert Mountains, Drylands, Steppe | Not terrain expert | Diplomacy |
@@ -128,7 +128,7 @@ These new travel danger events for non-ruler characters are the following:
 | 6 | Sea Storm | Sea, Coastal Sea | Not terrain expert, Traveled for > 15 days | |
 | 7 | Avalanche | Mountains, Desert Mountains | At least one companion, Winter, Not terrain expert | Prowess |
 | 8 | Snowbound | | Winter, Not winter expert | Diplomacy |
-| 9 | Ripped Sails | Sea, Coastal Sea | Not terrain expert  | Learning |
+| 9 | Ripped Sails | Sea, Coastal Sea | Not terrain expert | Learning |
 | 10 | Brush Fire | Hills | No winter, Not terrain expert | Martial |
 | 11 | Mosquitoes | Wetlands, Floodplains, Forest, Taiga, Jungle | No winter, Not terrain expert | Learning |
 | 12 | Beast Attack | Forest, Taiga, Jungle | Not terrain expert | Prowess |
@@ -167,10 +167,10 @@ When an inaccurate location is used, the character may teleport instead of trave
 The following table contains the times in seconds for 1, 2, 5, and 10 game years and different settings, measured on my own computer with CK3 1.11.3 and the Travelers 0.5.0, on max speed, in observer mode, and using the 867 game start:
 
 | Setup | Interval | 1y (s) | 2y (s) | 5y (s) | 10y (s) | Impact (%) | Inacc. Chance (%) |
-|---|---:|---:|---:|---:|---:|---:|---:|
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | Vanilla | - | 10 | 21 | 54 | 116 | - | - |
-| Travelers |  2d | 13 | 27 | 71 | 157 | 35% | < 0.25% |
-| Travelers |  5d | 12 | 23 | 62 | 136 | 17% | < 0.50% |
+| Travelers | 2d | 13 | 27 | 71 | 157 | 35% | < 0.25% |
+| Travelers | 5d | 12 | 23 | 62 | 136 | 17% | < 0.50% |
 | Travelers | 10d | 10 | 22 | 59 | 129 | 11% | < 1.00% |
 
 As you can see, the slowest setup is 35% slower than vanilla, the fastest is 11% slower, and the middle one is 17% slower.

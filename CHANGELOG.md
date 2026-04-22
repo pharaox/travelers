@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.14.0
+
+### Compatibility
+
+* Adapted to CK3 1.19.0.3
+
 ## Version 0.13.3
 
 ### Core Travel
