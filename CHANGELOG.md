@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.14.1
+
+### Core Travel
+
+* Fixed imprisoned rulers being teleported back to their capital shortly after arrival, caused by a CK3 1.19 change to travel completion.
+
 ## Version 0.14.0
 
 ### Compatibility

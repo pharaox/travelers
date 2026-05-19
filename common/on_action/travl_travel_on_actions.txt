@@ -203,6 +203,13 @@ travl_travel_on_arrival = {
 			}
 		}
 
+		# CK3 1.19 sends imprisoned rulers back to their capital on arrival, so check and fix after arrival
+		# Very rarely (~1%), they are sent back to their capital on the second day, could be fixed, but ok as is
+		trigger_event = {
+			on_action = travl_travel_on_1_day_after_arrival
+			days = 1
+		}
+
 		# Maybe gain the traveler trait if adult and unplayable
 		if = {
 			limit = {
@@ -223,6 +230,21 @@ travl_travel_on_arrival = {
 
 		# Move added characters back to pool
 		travl_move_added_characters_to_pool_effect = yes
+	}
+}
+
+travl_travel_on_1_day_after_arrival = {
+	effect = {
+		if = {
+			limit = {
+				exists = default_location
+				location != default_location
+				is_travelling = no
+				is_in_army = no
+			}
+			travl_debug_log_default_location_effect = { MSG = travl_debug_msg_setting_default_location_after_arrival }
+			set_location = default_location
+		}
 	}
 }
 

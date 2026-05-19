@@ -54,6 +54,8 @@ echo "Travel plan aborted: $(grep -a "Travel plan to .*'s court aborted" $LOGFIL
 echo "- imprisoned: $(grep -a "Travel plan to .*'s court aborted, imprisoned" $LOGFILE | uniq | wc -l)"
 echo "Aborting travel for prison guard: $(grep -a "Aborting travel for prison guard" $LOGFILE | uniq | wc -l)"
 echo
+echo "Setting default location after arrival: $(grep -a "Setting default location after arrival" $LOGFILE | wc -l)"
+echo
 
 # Pulse events
 echo "Pulse event fired: $(grep -a "Pulse event fired" $LOGFILE | wc -l)"

@@ -18,6 +18,7 @@
  travl_debug_msg_aborting_travel_completely: "$travl_debug_prefix$: Aborting travel completely$travl_imprisoned$ ($travl_travel_event$)" # Rare
  travl_debug_msg_aborting_travel_for_prison_guard: "$travl_debug_prefix$: Aborting travel for prison guard$travl_imprisoned$" # Rare
  travl_debug_msg_restoring_location: "$travl_debug_prefix$: Restoring location$travl_imprisoned$ ($travl_location$)" # Rare
+ travl_debug_msg_setting_default_location_after_arrival: "$travl_debug_prefix$: Setting default location after arrival, default location: [THIS.Var('default_location').Province.GetNameNoTooltip], ruler: $travl_ruler$$travl_imprisoned$"
 
  travl_debug_msg_escaping_from_prison: "$travl_debug_prefix$: Escaping from prison" # Rare
  travl_debug_msg_imprisoning: "$travl_debug_prefix$: Imprisoning" # Rare
@@ -231,3 +232,5 @@
  travl_terrain: "[THIS.Var('terrain').GetFlagName]"
 
  travl_imprisoned: "[Select_CString(THIS.Char.IsImprisoned, ', imprisoned', '')]"
+
+ travl_ruler: "[Select_CString(THIS.Var('ruler').IsSet, 'yes', 'no')]"

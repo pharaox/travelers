@@ -86,6 +86,20 @@ travl_debug_log_travel_event_effect = {
 	}
 }
 
+travl_debug_log_default_location_effect = {
+	if = {
+		limit = { debug_only = yes }
+
+		default_location = { save_temporary_scope_as = default_location }
+		travl_debug_save_trigger_effect = { TRIGGER = is_ruler NAME = ruler }
+		travl_debug_log_2_effect = {
+			MSG = $MSG$
+			NAME1 = default_location TYPE1 = flag:location
+			NAME2 = ruler TYPE2 = flag:boolean
+		}
+	}
+}
+
 travl_debug_log_1_effect = {
 	if = {
 		limit = { debug_only = yes }
@@ -157,5 +171,15 @@ travl_debug_remove_scope_variable_effect = {
 			has_variable = $NAME$
 		}
 		remove_variable = $NAME$
+	}
+}
+
+travl_debug_save_trigger_effect = {
+	if = {
+		limit = { $TRIGGER$ = yes }
+		save_temporary_scope_value_as = { name = $NAME$ value = yes }
+	}
+	else = {
+		save_temporary_scope_value_as = { name = $NAME$ value = no }
 	}
 }
