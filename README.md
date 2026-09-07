@@ -8,9 +8,9 @@ Ever wondered why hostages or wards must travel to your court, but spouses, invi
 
 If you did, you no longer need to wait for Paradox to fix it. With this mod, characters always travel to their default location when it changes instead of teleporting, no matter if it changed due to marriage, invitation, imprisonment or release from prison, becoming a guest, becoming landed for the first time, or realm capital change.
 
-To ensure that important vanilla mechanics are not negatively affected, wandering and adventuring characters, as well those in an army are still able to teleport. Characters will also not interrupt any ongoing vanilla travel except in cases they would previously have teleported.
+To ensure that important vanilla mechanics are not negatively affected, wandering and adventuring characters, as well as those in an army, are still able to teleport. Characters will also not interrupt any ongoing vanilla travel except in cases they would previously have teleported.
 
-Not only do they travel, but they often don't do it alone. When multiple characters in the same location start travel to the same destination, they form a group with a single leader and one or more companions. If the leader is a ruler, the other travelers may join their entourage. Otherwise, each character travels alone in vanilla terms (since non-ruler characters can't have entourages), but they all arrive together. In both cases, the player is informed about the departure or arrival with a single message that lists all members of the group.
+Not only do they travel, but they often don't do it alone. When multiple characters in the same location start traveling to the same destination, they form a group with a single leader and one or more companions. If the leader is a ruler, the other travelers may join their entourage. Otherwise, each character travels alone in vanilla terms (since non-ruler characters can't have entourages), but they all arrive together. In both cases, the player is informed about the departure or arrival with a single message that lists all members of the group.
 
 Since character homes may change mid-travel, such groups may lose members, change their destination, split, or disband altogether, but every character should eventually arrive at their correct home.
 
@@ -20,7 +20,7 @@ Since there are no travel events for non-ruler characters available in vanilla, 
 
 Due to the increased volume of travel caused by this mod and the new travel danger events mentioned above, more characters may die or get injured due to travel danger events than before. To compensate for this, the travel safety of all travel caused by this mod is increased compared to vanilla travel. If you prefer, you can increase it even further or decrease it to its default level via a game rule.
 
-Prisoners are a special case. Imprisoned characters always travel as companions of a "prisoner escort" group leader, who joins the imprisoner's court only temporarily and leaves on arrival, and may also get some of the danger events mentioned above. If their travel is aborted for any reason, e.g. death due to an event, all prisoners escape.
+Prisoners are a special case. Imprisoned characters always travel as companions of a "prisoner escort" group leader, who joins the imprisoner's court only temporarily and leaves on arrival, and may also get some of the danger events mentioned above. If their travel is aborted for any reason, for example death due to an event, all prisoners escape.
 
 Imprisoned rulers traveling to their jailor's capital are assigned a "prison guard" travel leader, can't add travel options, and other characters may not join their entourages. They also don't get any vanilla travel events, but may still be affected by the danger events mentioned above.
 
@@ -35,7 +35,7 @@ Finally, this mod also adds 3 new interactions:
 
 The current version is compatible with CK3 1.19. If you are still on CK3 1.18.x, use [version 0.13.3](https://github.com/pharaox/travelers/releases/download/0.13.3/travelers-0.13.3.zip) instead.
 
-This mod is compatible with most other mods, except for mods that make similar changes to the travel system, or modify the `travl_on_actions.txt` and `travel_options.txt` vanilla files. Unfortunately, the latter includes most total conversion mods. If you use such mods, put this mod before them in the load order - the travel of imprisoned rulers may be affected as a result, but everything else should work as expected.
+This mod is compatible with most other mods, except for mods that make similar changes to the travel system, or modify the `travel_on_actions.txt` and `travel_options.txt` vanilla files. Unfortunately, the latter includes most total conversion mods. If you use such mods, put this mod before them in the load order - the travel of imprisoned rulers may be affected as a result, but everything else should work as expected.
 
 This mod is now fully compatible with [A Game of Thrones](https://steamcommunity.com/sharedfiles/filedetails/?id=2962333032) with a compatibility patch, see [Links](#links).
 
@@ -59,7 +59,7 @@ This mod makes characters travel to their default location (also called their "h
 * Becoming landed for the first time
 * Realm capital change due to a variety of reasons such as manual change, loss in conquest, inheritance, or being granted a better title
 
-To ensure that important vanilla mechanics are not negatively affected, wandering and adventuring characters, as well those in an army are still able to teleport. Characters will also not interrupt most ongoing vanilla travel, such as traveling playable characters, characters traveling due to being involved in an activity, or unplayable characters traveling for a special purpose, e.g. wards traveling to their guardian's court. Unplayable characters returning home outside of an activity might interrupt their travel if their home changed, and head to their new home.
+To ensure that important vanilla mechanics are not negatively affected, wandering and adventuring characters, as well as those in an army, are still able to teleport. Characters will also not interrupt most ongoing vanilla travel, such as traveling playable characters, characters traveling due to being involved in an activity, or unplayable characters traveling for a special purpose, e.g. wards traveling to their guardian's court. Unplayable characters returning home outside of an activity might interrupt their travel if their home changed, and head to their new home.
 
 The character home and therefore their travel destination is always the realm capital of a playable character who acts as *receiver*. This may be their jailor (if they are imprisoned), the character itself (if they are playable), or else their warden (if they are a hostage), host (if they are a guest), or liege (if they are a courtier). In some situations, another character, usually residing at the travel origin may act as *sender*. If the player is either a sender or a receiver, they will get a message informing them about the departure or arrival. These messages can be enabled or disabled via the **Travel Messages** game rule.
 
@@ -87,8 +87,8 @@ The challenge with these on_actions is that they may be triggered before or afte
 
 The logic to handle any of the above events is always the same, and it does approximately the following:
 
-* If the character is not at home, and their saved location is the same (or not yet available), start new travel to home (unless already traveling to home).
-* If the character is at home, and their saved location is different, return them to that location and start new travel to home (unless already traveling to home).
+* If the character is not at home, and their saved location is the same (or not yet available), start new travel home (unless already traveling home).
+* If the character is at home, and their saved location is different, return them to that location and start new travel home (unless already traveling home).
 * If the character is not at home, and their saved location is different, just return them to that location. Either they are already at home and were teleported to the wrong place (yes, vanilla does this sometimes), or they are not and will be sent traveling to home by another event.
 
 There are some exceptions to the above to adjust for specific cases. Also, sometimes lieges notify their courtiers and courtiers notify their lieges about events that happened to them (via the custom on_actions `on_liege_event` and `on_courtier_event`), to ensure that everyone is notified and that liege events always precede courtier events so courtiers may join their liege's entourage.
@@ -98,11 +98,11 @@ There are some exceptions to the above to adjust for specific cases. Also, somet
 In a few cases, characters may teleport without any of the above events firing. In other cases, they may find themselves in a non-default location and not traveling. In previous versions of this mod, the *location tracker* detected such cases and triggered the custom on_actions `on_teleport` and `on_invalid_location` to send such characters traveling home from their saved location. However, this had a significant negative performance impact, so these events are now disabled. As a player, you are rather unlikely to notice any difference, because:
 
 * There are very few cases of teleports remaining. One such case is when a traveling entourage character is removed from the travel and returned home in certain vanilla events. Another is when a courtier character is sent to visit a different court in certain vanilla events and interactions. Both are rather rare, causing less than 10 teleports per year.
-* Characters stuck in non-default locations is caused by flawed vanilla logic and is also quite rare. It auto-corrects itself when any of the above events is triggered for such a character. The `random_yearly_everyone_pulse` event is triggered once per year for every character, so a character may remain no more than an year in a non-default location.
+* Characters getting stuck in non-default locations is caused by flawed vanilla logic and is also quite rare. It auto-corrects itself when any of the above events is triggered for such a character. The `random_yearly_everyone_pulse` event is triggered once per year for every character, so a character may remain no more than an year in a non-default location.
 
 ### Traveling in Groups
 
-When multiple characters in the same location start travel to the same destination, they form a group with a single *leader* and one or more *companions*. If the leader is a ruler, the other travelers may join their entourage. Otherwise, each character travels alone in vanilla terms (since non-ruler characters can't have entourages), but they all arrive together. In both cases, the player is informed about the departure or arrival with a single message that lists all members of the group.
+When multiple characters in the same location start traveling to the same destination, they form a group with a single *leader* and one or more *companions*. If the leader is a ruler, the other travelers may join their entourage. Otherwise, each character travels alone in vanilla terms (since non-ruler characters can't have entourages), but they all arrive together. In both cases, the player is informed about the departure or arrival with a single message that lists all members of the group.
 
 Since character homes may change mid-travel, such groups may lose members, change their destination, split, or disband altogether as a result. However, every character should eventually arrive at their correct home (unless they died during their travel).
 
@@ -110,7 +110,7 @@ Since character homes may change mid-travel, such groups may lose members, chang
 
 While traveling, rulers and their entourage may get some of the vanilla travel and danger events. As a result, some of them may die or leave, and others may join. Rulers can also select a travel leader, add travel options, and get experience on arrival.
 
-Since there are no travel events for non-ruler characters available in vanilla, this mod adds 14 new travel danger events for non-ruler group leaders, loosely based on existing vanilla events. Other group members may also participate in the resolution of such an event, and all may suffer its consequences. The player is informed about such events with appropriate messages. These events can be disabled via the **Travel Events for Unplayable Characters** game rule.
+Since there are no travel events for non-ruler characters available in vanilla, this mod adds 15 new travel danger events for non-ruler group leaders, loosely based on existing vanilla events. Other group members may also participate in the resolution of such an event, and all may suffer its consequences. The player is informed about such events with appropriate messages. These events can be disabled via the **Travel Events for Unplayable Characters** game rule.
 
 Similarly to vanilla events, such events may only happen under certain conditions that may include various travel danger types, availability of companions or pool characters, winter or no winter, etc. Usually, they can be resolved via multiple options, most of them involving a skill-based challenge. The group member with the highest skill is always chosen for such challenges, if a member with at least 5 in the corresponding skill exists. Which option is eventually chosen depends on the AI dispositions of all participating characters and a random factor. There is always an "automatic failure" that is chosen if no other options are available.
 
@@ -140,7 +140,7 @@ Due to the increased volume of travel caused by this mod and the new travel dang
 
 ### Prisoner Travel
 
-Imprisoned characters always travel as companions of a "prisoner escort" group leader, who joins the imprisoner's court only temporarily and leaves on arrival, similarly to characters joining court due to travel options. The escorting character may also get some of the danger events mentioned in [Travel and Danger Events](#travel-and-danger-events). If this character travel is aborted for any reason, e.g. death due to an event, all prisoners escape.
+Imprisoned characters always travel as companions of a "prisoner escort" group leader, who joins the imprisoner's court only temporarily and leaves on arrival, similarly to characters joining court due to travel options. The escorting character may also get some of the danger events mentioned in [Travel and Danger Events](#travel-and-danger-events). If this character travel is aborted for any reason, for example death due to an event, all prisoners escape.
 
 Unlike rulers that travel to their own realm capital, imprisoned rulers traveling to their jailor's capital are assigned a "prison guard" travel leader, can't add travel options, and other characters may not join their entourages. They also don't get any vanilla travel events, but may still be affected by the travel danger events mentioned above if they happen to the character who escorts them.
 
@@ -152,7 +152,7 @@ Traveling prisoners are moved to a special prison type and can't be interacted w
 
 The new **Invite as Guest** interaction enables inviting a wandering character as a guest, so you could later recruit them for the usual fee. The character must be located within your realm, or near your location (in the same duchy) if you are traveling. To prevent exploits, you are limited to inviting only a single character per year in this way. The AI willingness to accept is similar to **Invite to Court**, with some minor changes. In general, characters are slightly less willing to be invited as guests, but their opinion of you has a stronger impact.
 
-#### Invite Characters to Court and Invite Characters as Guest
+#### Invite Characters to Court and Invite Characters as Guests
 
 To make it easier for players to find targets for the **Invite to Court** and **Invite as Guest** interactions, this mod adds the **Invite Characters to Court** and **Invite Characters as Guest** convenience interactions that allow finding all characters that would accept such an invitation. These interactions redirect to **Invite to Court** or **Invite as Guest** for the selected target so that players may see their reasons for accepting.
 
