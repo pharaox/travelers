@@ -360,7 +360,7 @@ on_realm_capital_change = {
 
 travl_on_realm_capital_change = {
 	effect = {
-		holder = {
+		holder ?= {
 			#travl_debug_log_effect = { MSG = travl_debug_msg_realm_capital_changed }
 
 			if = {
