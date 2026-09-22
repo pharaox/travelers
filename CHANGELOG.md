@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.14.2
+
+### Game Rules
+
+* Added *Maximum* setting to the *Travel Safety* game rule, which increases travel safety by 1000, capping travel danger at 1%.
+
 ## Version 0.14.1
 
 ### Core Travel
