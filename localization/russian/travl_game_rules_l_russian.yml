@@ -32,6 +32,8 @@
  setting_travl_travel_safety_very_high_desc: "Безопасность в пути увеличивается на 40 для всех путешествий, вызванных этим модом."
  setting_travl_travel_safety_extremely_high: "#high Чрезвычайно высокая#!"
  setting_travl_travel_safety_extremely_high_desc: "Безопасность в пути увеличивается на 60 для всех путешествий, вызванных этим модом."
+ setting_travl_travel_safety_max: "#high Максимальная#!"
+ setting_travl_travel_safety_max_desc: "Безопасность в пути увеличена на 1000 для всех путешествий, вызванных этим модом. Это ограничивает опасность путешествий до 1%."
 
  rule_travl_prisoner_event_chance: "#P Путешественники:#! Шанс событий с заключенными"
  setting_travl_prisoner_event_chance_none: "#high Никакой#!"

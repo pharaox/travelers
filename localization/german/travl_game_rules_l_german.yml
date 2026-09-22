@@ -32,6 +32,8 @@
  setting_travl_travel_safety_very_high_desc: "Die [Concept('travel_safety','Reisesicherheit')|E] bei Reisen, die durch diese Mod verursacht werden, ist um 40 erhöht."
  setting_travl_travel_safety_extremely_high: "#high Extrem hoch#!"
  setting_travl_travel_safety_extremely_high_desc: "Die [Concept('travel_safety','Reisesicherheit')|E] bei Reisen, die durch diese Mod verursacht werden, ist um 60 erhöht."
+ setting_travl_travel_safety_max: "#high Maximum#!"
+ setting_travl_travel_safety_max_desc: "Die [Concept('travel_safety','Reisesicherheit')|E] bei Reisen, die durch diese Mod verursacht werden, ist um 1000 erhöht. Dies begrenzt die Reisegefahr auf 1%."
 
  rule_travl_prisoner_event_chance: "#P Reisende:#! Chance auf Gefangenenereignisse"
  setting_travl_prisoner_event_chance_none: "#high Keiner#!"

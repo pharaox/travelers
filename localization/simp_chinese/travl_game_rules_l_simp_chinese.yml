@@ -32,6 +32,8 @@
  setting_travl_travel_safety_very_high_desc: "Travel safety is increased by 40 for all travel caused by this mod."
  setting_travl_travel_safety_extremely_high: "#high Extremely High#!"
  setting_travl_travel_safety_extremely_high_desc: "Travel safety is increased by 60 for all travel caused by this mod."
+ setting_travl_travel_safety_max: "#high Maximum#!"
+ setting_travl_travel_safety_max_desc: "Travel safety is increased by 1000 for all travel caused by this mod. This caps travel danger at 1%."
 
  rule_travl_prisoner_event_chance: "#P Travelers:#! Prisoner Events Chance"
  setting_travl_prisoner_event_chance_none: "#high None#!"

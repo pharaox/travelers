@@ -76,6 +76,10 @@ travl_travel_safety = {
 	travl_travel_safety_extremely_high = {
 		flag = GG_can_change_rule
 	}
+
+	travl_travel_safety_max = {
+		flag = GG_can_change_rule
+	}
 }
 
 travl_prisoner_event_chance = {

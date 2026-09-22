@@ -32,6 +32,8 @@
  setting_travl_travel_safety_very_high_desc: "La sécurité des voyages est augmentée de 40 pour tous les voyages provoqués par ce mod."
  setting_travl_travel_safety_extremely_high: "#high Extrêmement élevé#!"
  setting_travl_travel_safety_extremely_high_desc: "La sécurité des voyages est augmentée de 60 pour tous les voyages provoqués par ce mod."
+ setting_travl_travel_safety_max: "#high Maximum#!"
+ setting_travl_travel_safety_max_desc: "La sécurité des voyages est augmentée de 1000 pour tous les voyages causés par ce mod. Cela limite le danger des voyages à 1%."
 
  rule_travl_prisoner_event_chance: "#P Voyageurs:#! Probabilité d'événements de prisonniers"
  setting_travl_prisoner_event_chance_none: "#high Aucune#!"

@@ -32,6 +32,8 @@
  setting_travl_travel_safety_very_high_desc: "이 모드로 인한 모든 여행의 여행 안전이 40만큼 증가합니다."
  setting_travl_travel_safety_extremely_high: "#high 매우 높음#!"
  setting_travl_travel_safety_extremely_high_desc: "이 모드로 인한 모든 여행의 여행 안전이 60만큼 증가합니다."
+ setting_travl_travel_safety_max: "#high 최대#!"
+ setting_travl_travel_safety_max_desc: "이 모드로 인한 모든 여행의 여행 안전이 1000만큼 증가합니다. 이는 여행 위험을 1%로 제한합니다."
 
  rule_travl_prisoner_event_chance: "#P 여행자:#! 포로 이벤트 발생 확률"
  setting_travl_prisoner_event_chance_none: "#high 없음#!"

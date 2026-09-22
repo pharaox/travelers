@@ -23,6 +23,11 @@ travl_travel_safety_extremely_high_modifier = {
 	travel_safety = 60
 }
 
+travl_travel_safety_max_modifier = {
+	icon = outdoors_positive
+	travel_safety = 1000
+}
+
 travl_prison_guard_modifier = {
 	icon = prison_positive
 	diplomacy = -1
