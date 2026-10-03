@@ -1,0 +1,91 @@
+CK3: 1.20.0.3, mod: 0.15.0
+
+Departed as leader: 5486
+Departed as companion: 2510
+Departed as entourage: 3114
+- No event: 847
+Arrived as leader: 5255
+Arrived as companion: 2184
+Arrived as entourage: 2993
+
+on_join_court: 2270
+- on_marriage: 101
+- on_concubinage: 0
+- on_delayed_join_court: 63
+on_leave_court: 284
+on_imprison: 1255
+on_release_from_prison: 789
+on_title_gain: 321
+on_title_lost: 133
+on_realm_capital_change: 55
+on_guest_arrived: 256
+on_guest_moved: 18
+on_yearly_pulse: 341
+on_invalid_receiver: 5
+on_invalid_destination: 70
+on_liege_event: 3414
+on_courtier_event: 624
+on_teleport: 0
+on_invalid_location: 0
+escort: 949
+travel_event: 24
+
+Aborting travel to start travel: 546
+- imprisoned: 45
+Aborting travel completely: 158
+- imprisoned: 0
+Restoring location: 414
+Changing travel leader: 70
+Removing travel companion: 273
+Escaping from prison: 40
+Imprisoning: 10
+Creating prison guard character: 490
+
+Travel plan aborted: 138
+- imprisoned: 13
+Aborting travel for prison guard: 91
+
+Setting default location after arrival: 193
+
+Pulse event fired: 521
+
+Danger: Bandits event fired: 63
+Danger: Missing Companion event fired: 3
+Danger: Lost event fired: 41
+Danger: Out of Water event fired: 30
+Danger: Aftermath event fired: 33
+Danger: Sea Storm event fired: 0
+Danger: Avalanche event fired: 1
+Danger: Snowbound event fired: 37
+Danger: Ripped Sails event fired: 15
+Danger: Brush Fire event fired: 42
+Danger: Mosquitoes event fired: 17
+Danger: Beast Attack event fired: 32
+Danger: Spoiled Food event fired: 28
+Danger: Sickness event fired: 29
+Danger: Carrion event fired: 4
+Total danger events: 375
+- for prison guard: 165
+Character died: 33
+Character died while traveling: 422
+- ruler: 64
+
+Escape from Prison event fired: 77
+- option a success: 0
+- option a failure: 4
+- option b success: 2
+- option b failure: 5
+- option c success: 5
+- option c failure: 15
+- option d success: 0
+- option d failure: 0
+- option e success: 0
+- option e failure: 1
+- option z: 45
+Hostile Army event fired: 21
+- option a success: 3
+- option a failure: 18
+
+Starting travel with incorrect receiver: 0
+Removing travel plan: 24
+
