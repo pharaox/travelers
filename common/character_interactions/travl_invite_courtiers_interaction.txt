@@ -49,7 +49,7 @@ travl_invite_courtiers_interaction = {
 			}
 
 			scope:actor = {
-				stress_impact = {
+				stress_and_fulfillment_impact = {
 					shy = minor_stress_impact_gain
 				}
 			}

@@ -160,6 +160,7 @@ travl_travel_danger.0008 = {
 				template = new_warrior_character
 				culture = root.location.culture
 				faith = root.location.faith
+				rite = root.location.rite
 				gender_female_chance = root_soldier_female_chance
 				after_creation = {
 					add_trait = winter_soldier

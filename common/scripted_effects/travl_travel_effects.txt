@@ -1418,6 +1418,7 @@ travl_recruit_prison_guard_effect = {
 			template = pool_repopulate_prowess
 			dynasty = none
 			faith = scope:imprisoner1.faith
+			rite = scope:imprisoner1.rite
 			culture = scope:imprisoner1.culture
 			gender_female_chance = scope_value_target_soldier_female_chance
 			save_temporary_scope_as = prison_guard

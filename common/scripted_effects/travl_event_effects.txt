@@ -74,7 +74,7 @@ travl_event_epidemic_effect = {
 
 travl_event_add_stress_effect = {
 	show_as_tooltip = {
-		stress_impact = { $TRAIT$ = $VALUE$_stress_impact_gain }
+		stress_and_fulfillment_impact = { $TRAIT$ = $VALUE$_stress_impact_gain }
 	}
 	set_variable = { name = travl_event_stress_gain_trait value = flag:$TRAIT$ }
 	set_variable = { name = travl_event_stress_gain_value value = flag:$VALUE$ }
@@ -598,73 +598,73 @@ travl_event_apply_stress_impact_effect = {
 	switch = {
 		trigger = var:travl_event_stress_gain_trait
 		flag:brave = {
-			stress_impact = { brave = $VALUE$ }
+			stress_and_fulfillment_impact = { brave = $VALUE$ }
 		}
 		flag:craven = {
-			stress_impact = { craven = $VALUE$ }
+			stress_and_fulfillment_impact = { craven = $VALUE$ }
 		}
 		flag:chaste = {
-			stress_impact = { chaste = $VALUE$ }
+			stress_and_fulfillment_impact = { chaste = $VALUE$ }
 		}
 		flag:lustful = {
-			stress_impact = { lustful = $VALUE$ }
+			stress_and_fulfillment_impact = { lustful = $VALUE$ }
 		}
 		flag:forgiving = {
-			stress_impact = { forgiving = $VALUE$ }
+			stress_and_fulfillment_impact = { forgiving = $VALUE$ }
 		}
 		flag:vengeful = {
-			stress_impact = { vengeful = $VALUE$ }
+			stress_and_fulfillment_impact = { vengeful = $VALUE$ }
 		}
 		flag:generous = {
-			stress_impact = { generous = $VALUE$ }
+			stress_and_fulfillment_impact = { generous = $VALUE$ }
 		}
 		flag:greedy = {
-			stress_impact = { greedy = $VALUE$ }
+			stress_and_fulfillment_impact = { greedy = $VALUE$ }
 		}
 		flag:gregarious = {
-			stress_impact = { gregarious = $VALUE$ }
+			stress_and_fulfillment_impact = { gregarious = $VALUE$ }
 		}
 		flag:shy = {
-			stress_impact = { shy = $VALUE$ }
+			stress_and_fulfillment_impact = { shy = $VALUE$ }
 		}
 		flag:honest = {
-			stress_impact = { honest = $VALUE$ }
+			stress_and_fulfillment_impact = { honest = $VALUE$ }
 		}
 		flag:deceitful = {
-			stress_impact = { deceitful = $VALUE$ }
+			stress_and_fulfillment_impact = { deceitful = $VALUE$ }
 		}
 		flag:just = {
-			stress_impact = { just = $VALUE$ }
+			stress_and_fulfillment_impact = { just = $VALUE$ }
 		}
 		flag:arbitrary = {
-			stress_impact = { arbitrary = $VALUE$ }
+			stress_and_fulfillment_impact = { arbitrary = $VALUE$ }
 		}
 		flag:patient = {
-			stress_impact = { patient = $VALUE$ }
+			stress_and_fulfillment_impact = { patient = $VALUE$ }
 		}
 		flag:impatient = {
-			stress_impact = { impatient = $VALUE$ }
+			stress_and_fulfillment_impact = { impatient = $VALUE$ }
 		}
 		flag:trusting = {
-			stress_impact = { trusting = $VALUE$ }
+			stress_and_fulfillment_impact = { trusting = $VALUE$ }
 		}
 		flag:paranoid = {
-			stress_impact = { paranoid = $VALUE$ }
+			stress_and_fulfillment_impact = { paranoid = $VALUE$ }
 		}
 		flag:zealous = {
-			stress_impact = { zealous = $VALUE$ }
+			stress_and_fulfillment_impact = { zealous = $VALUE$ }
 		}
 		flag:cynical = {
-			stress_impact = { cynical = $VALUE$ }
+			stress_and_fulfillment_impact = { cynical = $VALUE$ }
 		}
 		flag:compassionate = {
-			stress_impact = { compassionate = $VALUE$ }
+			stress_and_fulfillment_impact = { compassionate = $VALUE$ }
 		}
 		flag:callous = {
-			stress_impact = { callous = $VALUE$ }
+			stress_and_fulfillment_impact = { callous = $VALUE$ }
 		}
 		flag:sadistic = {
-			stress_impact = { sadistic = $VALUE$ }
+			stress_and_fulfillment_impact = { sadistic = $VALUE$ }
 		}
 	}
 }
