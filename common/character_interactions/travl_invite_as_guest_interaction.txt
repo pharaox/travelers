@@ -326,20 +326,33 @@
 		# House unity impact
 		modifier = {
 			scope:actor = {
-				government_has_flag = government_is_clan
+				government_has_flag = government_uses_house_unity
 			}
 			house ?= {
 				this = scope:actor.house
-				OR = {
-					has_house_unity_stage = harmonious
-					has_house_unity_stage = friendly
-				}
+				house_unity_is_positive_trigger = yes
 			}
 			add = {
 				value = house.house_unity_value
 				multiply = 0.5
 			}
 			desc = AI_HOUSE_UNITY
+		}
+
+		# Company direction impact
+		modifier = {
+			scope:actor = {
+				government_has_flag = government_uses_company_sentiment
+			}
+			house ?= {
+				this = scope:actor.house
+				house_unity_is_positive_trigger = yes
+			}
+			add = {
+				value = house.house_unity_value
+				multiply = 0.5
+			}
+			desc = AI_COMPANY_DIRECTION
 		}
 	}
 
